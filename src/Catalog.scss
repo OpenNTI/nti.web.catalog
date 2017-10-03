@@ -102,10 +102,9 @@ body {
   margin: 40px auto; 
   //===============================Side-Bar======================//
   .side-bar-left {
-    width: 30%;
+    width: 22%;
     max-width: 242px;
     float: left;
-    margin-right: 15px;
     .item{
       padding: 20px;
       ackground-color: #FFFFFF;  
@@ -167,17 +166,22 @@ body {
   }
 
   //===============================Course Card ======================//
+  .content-right {
+    width: 77%;
+    float: right;
+  }
   .course-card {
-    display: flex;
     margin-bottom: 30px;
     .course-block {
-      width: 30.33%;
+      width: 31.33%;
       background-color: #FFFFFF;
       box-shadow: 0 1px 2px 0 rgba(0,0,0,0.3);
       // min-height: 290px;
       padding: 5px;
-      margin: 0 15px;
+      margin-right: 2%;
       position: relative;
+      float: left;
+      margin-bottom: 2%;
       figure {
         overflow: hidden;
       }
@@ -210,6 +214,9 @@ body {
           line-height: 18px;
           margin-bottom: 15px;
           font-family: "Open Sans Condensed";
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
         }
         a {
           display: block;
@@ -247,6 +254,9 @@ body {
             }
           }
         }
+      }
+      &:nth-child(3n+3) {
+        margin-right: 0;
       }
     }
   }
