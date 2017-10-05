@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
+// import PropTypes from 'prop-types';
+
+import Carousel from './components/carousel/Carousel';
 import GridCard from './components/grid-card/GridCard';
 import MenuBar from './components/menu-bar/MenuBar';
+
 
 class Catalog extends Component {
 	constructor(props) {
@@ -116,21 +120,27 @@ class Catalog extends Component {
 				}
 			]
 		};
-
 	}
 
 	render() {
 		let self = this;
 		return (
 			<div>
-				<section className="content-catalog">
-					<MenuBar data={self.state.menuData}/>
-					<GridCard data={self.state.courses}/>
-				</section>
-
+				<div>
+					<section className="carousel">
+						<Carousel />
+					</section>
+					<section className="content-catalog">
+						<MenuBar data={self.state.menuData}/>
+						<GridCard data={self.state.courses}/>
+					</section>
+				</div>
 			</div>
 		);
 	}
 }
+
+// Catalog.propTypes = {
+// };
 
 export default Catalog;
