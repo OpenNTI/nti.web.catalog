@@ -10,6 +10,9 @@ body {
   width: 100%;
   box-sizing: border-box;
 }
+ul, ol {
+	list-style: none;
+}
 //===============================Header======================//
 header {
   display: flex;
@@ -61,15 +64,13 @@ header {
   position: relative;
   .carousel-block {
     padding: 20px 0;
-    &.item1 {
-      background: url('http://42796r1ctbz645bo223zkcdl-wpengine.netdna-ssl.com/wp-content/uploads/2013/10/iStock_000027440241XSmall.jpg');
-      background-size: 100%;
-    }
+		background-size: cover;
+
     .title-carousel {
       width: 350px;
       color: #FFFFFF;
       font-size: 28px;
-      font-family: 'OpenSans-CondensedBold';
+      font-family: 'Open Sans Condensed';
       line-height: 34px;
       text-transform: uppercase;
     }
@@ -268,7 +269,7 @@ header {
           font-size: 16px;
           line-height: 18px;
           margin-bottom: 15px;
-          font-family: "OpenSans-CondensedBold";
+          font-family: "Open Sans Condensed";
           text-overflow: ellipsis;
           white-space: nowrap;
           overflow: hidden;

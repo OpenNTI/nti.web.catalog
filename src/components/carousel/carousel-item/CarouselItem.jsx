@@ -69,13 +69,13 @@ class CarouselItem extends Component {
 								<p className="date">Starts {startDate}</p>
 							</li>
 							<li>
-								<p className="visiter">• {self.state.learnerNumber} Learners</p>
+								<p className="visiter">• &nbsp;&nbsp;&nbsp;{self.state.learnerNumber} Learners</p>
 							</li>
 							<li>
 								<p className="spot">{self.state.spotLeft} Spots Left</p>
 							</li>
 						</ul>
-					</div><img alt="carousel" src="https://janux.ou.edu/masters/dsa/resources/images/video-cs5013.png" className="img-content"/>
+					</div><img alt="carousel" src={self.state.detailImage} className="img-content"/>
 				</div>
 			</div>
 		);
