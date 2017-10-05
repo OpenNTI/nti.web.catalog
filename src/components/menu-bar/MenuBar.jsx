@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PopularMenu from'./poplular-menu/PopularMenu';
 import TagMenu from './tag-menu/TagMenu';
+import RedeemBar from './redeem-bar/RedeemBar.jsx';
 import PropType from 'prop-types';
 
 class MenuBar extends Component{
@@ -10,6 +11,7 @@ class MenuBar extends Component{
 			<div className="side-bar-left">
 				<PopularMenu data={self.props.data.popularCourses}/>
 				<TagMenu data={self.props.data.tag}/>
+				<RedeemBar/>
 			</div>
 		);
 	}
