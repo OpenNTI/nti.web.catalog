@@ -10,12 +10,14 @@ const data = [
 		background: {
 			url: 'http://www.menucool.com/slider/ninja-slider/img/abc.jpg',
 			width: '100%',
-			height: '100%'
+			height: '300px',
+			backgroundRepeat: "no-repeat"
+
 		},
 		displayImage: {
 			url: 'http://www.menucool.com/slider/ninja-slider/img/abc.jpg',
 			width: '100%',
-			height: '100%'
+			height: '300px'
 		},
 		title: 'FUNDAMENTALS OF ENGINEERING STATISTICAL ANALYSIS',
 		description: 'This course provides fundamental concepts in probability and statistical inference',
@@ -28,12 +30,13 @@ const data = [
 		background: {
 			url: 'https://www.w3schools.com/css/trolltunga.jpg',
 			width: '100%',
-			height: '100%'
+			height: '300px',
+			backgroundRepeat: "no-repeat"
 		},
 		displayImage: {
 			url: 'https://www.w3schools.com/css/trolltunga.jpg',
 			width: '100%',
-			height: '100%'
+			height: '300px'
 		},
 		title: 'FUNDAMENTALS OF ENGINEERING STATISTICAL ANALYSIS',
 		description: 'This course provides fundamental concepts in probability and statistical inference',
@@ -46,12 +49,14 @@ const data = [
 		background: {
 			url: 'https://pbs.twimg.com/media/DGH9R3GXgAAQhGU.jpg',
 			width: '100%',
-			height: '100%'
+			height: '300px',
+			backgroundRepeat: "no-repeat"
 		},
 		displayImage: {
 			url: 'https://pbs.twimg.com/media/DGH9R3GXgAAQhGU.jpg',
 			width: '100%',
-			height: '100%'
+			height: '300px',
+			backgroundRepeat: "no-repeat"
 		},
 		title: 'FUNDAMENTALS OF ENGINEERING STATISTICAL ANALYSIS',
 		description: 'This course provides fundamental concepts in probability and statistical inference',
@@ -64,12 +69,14 @@ const data = [
 		background: {
 			url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp-04BiWEVASGYSPWssT0Y7eTtA0AQjxap_l-mcAS5Wem9sb2z',
 			width: '100%',
-			height: '100%'
+			height: '300px',
+			backgroundRepeat: "no-repeat"
 		},
 		displayImage: {
 			url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp-04BiWEVASGYSPWssT0Y7eTtA0AQjxap_l-mcAS5Wem9sb2z',
 			width: '100%',
-			height: '100%'
+			height: '300px',
+			backgroundRepeat: "no-repeat"
 		},
 		title: 'FUNDAMENTALS OF ENGINEERING STATISTICAL ANALYSIS',
 		description: 'This course provides fundamental concepts in probability and statistical inference',

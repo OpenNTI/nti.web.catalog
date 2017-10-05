@@ -60,7 +60,7 @@ header {
   width: 100%;
   position: relative;
   .carousel-block {
-    padding: 40px 0;
+    padding: 20px 0;
     &.item1 {
       background: url('http://42796r1ctbz645bo223zkcdl-wpengine.netdna-ssl.com/wp-content/uploads/2013/10/iStock_000027440241XSmall.jpg');
       background-size: 100%;
@@ -83,21 +83,20 @@ header {
       margin-top: 10px;
     }
   }
-  .content-carousel {
-    width: 80%;
-    margin: 0 auto;
-    position: relative;
-    .img-content {
-      max-width: 360px;
-      max-height: 220px;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      right: 40px;
-      width: 100%;
-    }
-    .statistic {
-      overflow: hidden;
+	.content-carousel {
+		width: 80%;
+		margin: 0 auto;
+		position: relative;
+		.img-content {
+			object-fit: cover;
+			width: 361px;
+			height: 220px;
+			position: absolute;
+			top: 60%;
+			transform: translateY(-50%);
+			right: 40px;
+		}
+		.statistic {
       li {
         float: left;
         p {

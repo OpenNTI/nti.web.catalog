@@ -75,7 +75,7 @@ header .menu ul li a:hover {
 }
 
 .carousel .carousel-block {
-  padding: 40px 0;
+  padding: 20px 0;
 }
 
 .carousel .carousel-block.item1 {
@@ -109,18 +109,15 @@ header .menu ul li a:hover {
 }
 
 .carousel .content-carousel .img-content {
-  max-width: 360px;
-  max-height: 220px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 361px;
+  height: 220px;
   position: absolute;
-  top: 50%;
+  top: 60%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
   right: 40px;
-  width: 100%;
-}
-
-.carousel .content-carousel .statistic {
-  overflow: hidden;
 }
 
 .carousel .content-carousel .statistic li {
