@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import Carousel from './components/carousel/Carousel';
+
 Catalog.propTypes = {
 	items: PropTypes.array
 };
@@ -9,28 +11,8 @@ export default function Catalog ({items}) {
 		<div className="container">
 			<main>
 				<div className="wrapper">
-					<section className="slider">
-						<div className="slider-block item1">
-							<div className="content-slider">
-								<h3 className="title-slider">Fundamentals of Engineering Statistical Analysis</h3>
-								<p className="detail-txt">This course provides fundamental concepts in probability and statistical inference, with application to engineering contexts.</p>
-								<div className="statistic">
-									<ul>
-										<li>
-											<p className="date">Starts December 30  </p>
-										</li>
-										<li>
-											<p className="visiter">• &nbsp; &nbsp; 4,321 Learners</p>
-										</li>
-										<li>
-											<p className="spot">20 Spots Left</p>
-										</li>
-									</ul>
-								</div><img alt="slider" src="https://janux.ou.edu/masters/dsa/resources/images/video-cs5013.png" className="img-content"/>
-							</div>
-						</div>
-						<button className="arrow-left"/>
-						<button className="arrow-right"/>
+					<section className="carousel">
+						<Carousel />
 					</section>
 					<section className="content-catalog">
 						<div className="side-bar-left">
@@ -130,3 +112,28 @@ export default function Catalog ({items}) {
 		</div>
 	);
 }
+
+
+// <section className="slider">
+// 	<div className="slider-block item1">
+// 		<div className="content-slider">
+// 			<h3 className="title-slider">Fundamentals of Engineering Statistical Analysis</h3>
+// 			<p className="detail-txt">This course provides fundamental concepts in probability and statistical inference, with application to engineering contexts.</p>
+// 			<div className="statistic">
+// 				<ul>
+// 					<li>
+// 						<p className="date">Starts December 30  </p>
+// 					</li>
+// 					<li>
+// 						<p className="visiter">• &nbsp; &nbsp; 4,321 Learners</p>
+// 					</li>
+// 					<li>
+// 						<p className="spot">20 Spots Left</p>
+// 					</li>
+// 				</ul>
+// 			</div><img alt="slider" src="https://janux.ou.edu/masters/dsa/resources/images/video-cs5013.png" className="img-content"/>
+// 		</div>
+// 	</div>
+// 	<button className="arrow-left"/>
+// 	<button className="arrow-right"/>
+// </section>
