@@ -1,5 +1,5 @@
-import React, {component} from 'react';
-import PropTypes from 'prop-types';
+import React, {Component} from 'react';
+// import PropTypes from 'prop-types';
 
 import Carousel from './components/carousel/Carousel';
 import GridCard from './components/grid-card/GridCard';
@@ -125,24 +125,22 @@ class Catalog extends Component {
 	render() {
 		let self = this;
 		return (
-			<div className="container">
-				<main>
-					<div className="wrapper">
-						<section className="carousel">
-							<Carousel />
-						</section>
-						<section className="content-catalog">
-							<MenuBar data={self.state.menuData}/>
-							<GridCard data={self.state.courses}/>
-						</section>
-					</div>
-				</main>
+			<div>
+				<div>
+					<section className="carousel">
+						<Carousel />
+					</section>
+					<section className="content-catalog">
+						<MenuBar data={self.state.menuData}/>
+						<GridCard data={self.state.courses}/>
+					</section>
+				</div>
 			</div>
 		);
 	}
 }
 
-Catalog.propTypes = {
-};
+// Catalog.propTypes = {
+// };
 
 export default Catalog;

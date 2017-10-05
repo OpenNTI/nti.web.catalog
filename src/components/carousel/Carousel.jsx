@@ -183,7 +183,7 @@ class Carousel extends Component {
 			self.setState({
 				transitionStatus: 'free'
 			});
-		}, self.state.transformDuring*1000);
+		}, self.state.transformDuring * 1000);
 	}
 
 	onclickRight() {
