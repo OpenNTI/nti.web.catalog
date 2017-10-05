@@ -1,3 +1,463 @@
+@charset "UTF-8";
+
+.hidden {
+  display: none;
+}
+
+body {
+  font-family: "OpenSans";
+}
+
+.container {
+  padding: 0 !important;
+  margin: 0 auto;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+header {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 10px 30px 5px 30px;
+}
+
+header .logo {
+  max-width: 40px;
+  height: 40px;
+  background: #8E8E8E;
+  border-radius: 100%;
+  float: left;
+  margin-right: 50px;
+  width: 10%;
+  margin-top: 5px;
+}
+
+header .logo img {
+  display: block;
+  margin: 0 auto;
+  padding-top: 11px;
+}
+
+header .menu {
+  width: 40%;
+  float: left;
+}
+
+header .menu h1 {
+  margin-bottom: 10px;
+}
+
+header .menu ul li {
+  float: left;
+  margin-right: 50px;
+}
+
+header .menu ul li a {
+  color: #000000;
+  font-size: 16px;
+  line-height: 22px;
+  cursor: pointer;
+  padding-bottom: 3px;
+}
+
+header .menu ul li a:hover {
+  color: #3FB3F6;
+  font-weight: 600;
+  border-bottom: 2px solid #3FB3F6;
+}
+
+.carousel {
+  width: 100%;
+  position: relative;
+}
+
+.carousel .carousel-block {
+  padding: 40px 0;
+}
+
+.carousel .carousel-block.item1 {
+  background: url("http://42796r1ctbz645bo223zkcdl-wpengine.netdna-ssl.com/wp-content/uploads/2013/10/iStock_000027440241XSmall.jpg");
+  background-size: 100%;
+}
+
+.carousel .carousel-block .title-carousel {
+  width: 350px;
+  color: #FFFFFF;
+  font-size: 28px;
+  font-family: 'OpenSans-CondensedBold';
+  line-height: 34px;
+  text-transform: uppercase;
+}
+
+.carousel .carousel-block .detail-txt {
+  width: 350px;
+  opacity: 0.7;
+  color: #FFFFFF;
+  font-size: 16px;
+  font-style: italic;
+  line-height: 22px;
+  margin-top: 10px;
+}
+
+.carousel .content-carousel {
+  width: 80%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.carousel .content-carousel .img-content {
+  max-width: 360px;
+  max-height: 220px;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  right: 40px;
+  width: 100%;
+}
+
+.carousel .content-carousel .statistic {
+  overflow: hidden;
+}
+
+.carousel .content-carousel .statistic li {
+  float: left;
+}
+
+.carousel .content-carousel .statistic li p {
+  color: #3FB3F6;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 19px;
+  margin: 10px;
+  margin-top: 18px;
+}
+
+.carousel .content-carousel .statistic li p.date {
+  margin-left: 0;
+}
+
+.carousel .content-carousel .statistic li p.spot {
+  width: 117px;
+  border-radius: 100px;
+  background-color: rgba(255, 255, 255, 0.2);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 19px;
+  color: #fff;
+  text-align: center;
+  padding: 7px 0;
+  margin-top: 12px;
+}
+
+.carousel button {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  width: 15px;
+  height: 40px;
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.carousel button.arrow-right {
+  right: 40px;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAkCAYAAABrLwHZAAAA9UlEQVRIia3UsRHCMAyF4d8cK9BAHwqWIKwBU9ATn8MULENYggJ6aBgBCookHCQOsay4kl18p3fWyeTOJcAB2GTW3lCcUQUtgWPu3EyLrYErkGhBA5A7NwWKCrwCq5jIpi6GAM33RQua5oMGbGEa0IvFgp1YDPgXk4K9mAQMwkLBYCwEFGF94EiKZdbegRS40FgO4s4aHR6Bed1hNOYBC3HMxnkCr6o+aWJOKD9iAZyJjemB0szaR8xoeCGQD20nJML6oGAsBArCQqFeTAL9xaRQJxYDebFYqIVpoB9MC32wISAAMxQE5dreDwEBjIFtVe80EMAbfsbCzTRTKSAAAAAASUVORK5CYII=) no-repeat;
+  background-size: 100%;
+}
+
+.carousel button.arrow-left {
+  left: 40px;
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAkCAYAAABrLwHZAAAA80lEQVRIia3WsRHCMAyF4Z9c2CCiYAAoWALYgxpqeipmYQ1gCVLQUzlD0JAcSZzEku3Khe87+87S06wsS2KWiAhwBc55AugBbACyRNALuJgwD7QrisKpsSEIlM8cg1SYD3LOuf8zQVgIFISFQpOYBhrFtNAgZoG8mBXqYTFQC4uFGiwFBJCJyCIFVN/slAKqse1vnwNzK1RjB+ANrIG7iCzNmHPuA+xTgBmAB3xYwOafdcCVBWxVQCzYq80Y0Ns1rOBgP7OAo51WC05mgAYMSqdQMDg3Q0BVovvAqqoaUD1rjIGmKWgINM9nHvBmxjrgEzh+AYEFwpThJAI0AAAAAElFTkSuQmCC) no-repeat;
+  background-size: 100%;
+}
+
+.content-catalog {
+  width: 80%;
+  margin: 40px auto;
+}
+
+.content-catalog .side-bar-left {
+  width: 22%;
+  max-width: 242px;
+  float: left;
+}
+
+.content-catalog .side-bar-left .item {
+  padding: 20px;
+  ackground-color: #FFFFFF;
+  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+          box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  margin-bottom: 15px;
+}
+
+.content-catalog .side-bar-left .item.tag-block p {
+  padding-left: 0;
+}
+
+.content-catalog .side-bar-left .title-sidebar {
+  color: #B8B8B8;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 14px;
+  padding-left: 0;
+}
+
+.content-catalog .side-bar-left li {
+  margin: 10px 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.content-catalog .side-bar-left ol,
+.content-catalog .side-bar-left ul {
+  margin-top: 15px;
+}
+
+.content-catalog .side-bar-left ul p {
+  color: #3FB3F6;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+.content-catalog .side-bar-left span {
+  color: #B8B8B8;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 19px;
+}
+
+.content-catalog .side-bar-left p {
+  color: #494949;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 19px;
+  display: inline;
+  padding-left: 5px;
+  font-weight: normal;
+}
+
+.content-catalog .side-bar-left .redeem-block p {
+  position: relative;
+  padding-left: 25px;
+}
+
+.content-catalog .side-bar-left .redeem-block p:before {
+  position: absolute;
+  left: 0;
+  content: '';
+  background: url(assets/arrow3-8e123367f1b5a18ff2b50722da0ce9f0.png) no-repeat;
+  height: 15px;
+  width: 16px;
+  top: 2px;
+}
+
+.content-catalog .content-right {
+  width: 77%;
+  float: right;
+}
+
+.content-catalog .course-card {
+  margin-bottom: 30px;
+}
+
+.content-catalog .course-card .course-block {
+  width: 31.33%;
+  background-color: #FFFFFF;
+  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+          box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  padding: 5px;
+  margin-right: 2%;
+  position: relative;
+  float: left;
+  margin-bottom: 2%;
+}
+
+.content-catalog .course-card .course-block figure {
+  overflow: hidden;
+}
+
+.content-catalog .course-card .course-block img {
+  width: 100%;
+  cursor: pointer;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+}
+
+.content-catalog .course-card .course-block img:hover {
+  -webkit-transform: scale(1.3);
+  transform: scale(1.3);
+}
+
+.content-catalog .course-card .course-block .info-course {
+  padding: 0 5px;
+}
+
+.content-catalog .course-card .course-block .info-course span {
+  color: #B8B8B8;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 14px;
+  display: block;
+  margin: 5px 0;
+}
+
+.content-catalog .course-card .course-block .info-course h3 {
+  color: #494949;
+  font-size: 16px;
+  line-height: 18px;
+  margin-bottom: 15px;
+  font-family: "OpenSans-CondensedBold";
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-transform: uppercase;
+}
+
+.content-catalog .course-card .course-block .info-course a {
+  display: block;
+  color: #3FB3F6;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 14px;
+}
+
+.content-catalog .course-card .course-block .stamp {
+  position: absolute;
+  top: 15px;
+  left: 10px;
+}
+
+.content-catalog .course-card .course-block .stamp a {
+  color: #FFFFFF;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 14px;
+  padding: 4px 10px 4px 20px;
+  border-radius: 2px;
+  background-color: #3FB34F;
+}
+
+.content-catalog .course-card .course-block .stamp a.start {
+  padding: 4px 10px;
+  background-color: #3FB3F6;
+}
+
+.content-catalog .course-card .course-block .stamp a.enroll:before {
+  position: absolute;
+  content: '\2714';
+  color: #fff;
+  width: 6px;
+  height: 6px;
+  top: 0;
+  left: 9px;
+}
+
+.content-catalog .course-card .course-block:nth-child(3n+3) {
+  margin-right: 0;
+}
+
+.carousel-content {
+  display: inline-block;
+  overflow: hidden;
+  outline: 0px;
+}
+
+.carousel-content--image {
+  border: 1px solid #fff;
+  position: relative;
+}
+
+.animation--next-enter {
+  -webkit-transform: translate(100%, 0);
+          transform: translate(100%, 0);
+  -webkit-transition: -webkit-transform 1.5s;
+  transition: -webkit-transform 1.5s;
+  transition: transform 1.5s;
+  transition: transform 1.5s, -webkit-transform 1.5s;
+}
+
+.animation--next-enter.animation--next-enter-active {
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+
+.animation--next-leave {
+  left: 0;
+  position: absolute;
+  top: 0;
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
+  -webkit-transition: -webkit-transform 1.5s;
+  transition: -webkit-transform 1.5s;
+  transition: transform 1.5s;
+  transition: transform 1.5s, -webkit-transform 1.5s;
+}
+
+.animation--next-leave.animation--next-leave-active {
+  -webkit-transform: translate(-100%, 0);
+          transform: translate(-100%, 0);
+}
+
+.animation--previous-enter {
+  -webkit-transform: translate(-100%, 0);
+          transform: translate(-100%, 0);
+  -webkit-transition: -webkit-transform 1.5s;
+  transition: -webkit-transform 1.5s;
+  transition: transform 1.5s;
+  transition: transform 1.5s, -webkit-transform 1.5s;
+}
+
+.animation--previous-enter.animation--previous-enter-active {
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+
+.animation--previous-leave {
+  left: 0;
+  position: absolute;
+  top: 0;
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
+  -webkit-transition: -webkit-transform 1.5s;
+  transition: -webkit-transform 1.5s;
+  transition: transform 1.5s;
+  transition: transform 1.5s, -webkit-transform 1.5s;
+}
+
+.animation--previous-leave.animation--previous-leave-active {
+  -webkit-transform: translate(100%, 0);
+          transform: translate(100%, 0);
+}
+
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  -webkit-transition: opacity 500ms ease-in;
+  transition: opacity 500ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  -webkit-transition: opacity 300ms ease-in;
+  transition: opacity 300ms ease-in;
+}
+
 .course-card {
   display: -ms-flexbox;
   display: -webkit-box;
@@ -179,6 +639,21 @@ figure {
   width: 185px;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.side-bar-left .redeem-block p {
+  position: relative;
+  padding-left: 25px;
+}
+
+.side-bar-left .redeem-block p:before {
+  position: absolute;
+  left: 0;
+  content: '';
+  background: url("https://cdn4.iconfinder.com/data/icons/6x16-free-application-icons/16/Taxi.png") no-repeat;
+  height: 16px;
+  width: 16px;
+  top: 0;
 }
 
 
