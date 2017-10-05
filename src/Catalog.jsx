@@ -1,139 +1,148 @@
-import React from 'react';
+import React, {component} from 'react';
 import PropTypes from 'prop-types';
 
 import Carousel from './components/carousel/Carousel';
+import GridCard from './components/grid-card/GridCard';
+import MenuBar from './components/menu-bar/MenuBar';
 
-Catalog.propTypes = {
-	items: PropTypes.array
-};
-export default function Catalog ({items}) {
-	return (
-		<div className="container">
-			<main>
-				<div className="wrapper">
-					<section className="carousel">
-						<Carousel />
-					</section>
-					<section className="content-catalog">
-						<div className="side-bar-left">
-							<div className="item popular-block">
-								<p className="title-sidebar">POPULAR COURSES</p>
-								<ol>
-									<li><span>1</span>
-										<p>Law and Jusice</p>
-									</li>
-									<li><span>2</span>
-										<p>Chemistry of Beer</p>
-									</li>
-									<li><span>3</span>
-										<p>Gateway to College Learning  </p>
-									</li>
-									<li><span>4</span>
-										<p>Physical Geology for Scien …</p>
-									</li>
-									<li><span>5</span>
-										<p>Data Analyitcs  </p>
-									</li>
-								</ol>
-							</div>
-							<div className="item tag-block">
-								<p className="title-sidebar">BROWSE BY TAG</p>
-								<ul>
-									<li>
-										<p>Free Courses</p>
-									</li>
-									<li>
-										<p>Physics</p>
-									</li>
-									<li>
-										<p>Computer Science  </p>
-									</li>
-									<li>
-										<p>Health</p>
-									</li>
-									<li>
-										<p>Economics </p>
-									</li>
-								</ul>
-							</div>
-							<div className="item redeem-block">
-								<ul>
-									<li>
-										<p>Redeem Code       </p>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div className="course-card">
-							<div className="course-block">
-								<figure><img alt="course" src="images/course1.png"/></figure>
-								<div className="info-course"><span>STATS 3201</span>
-									<h3>INTRODUCTION TO WATER</h3><a href="#">R. DOUGLAS ELMORE, PHD</a>
-								</div>
-							</div>
-							<div className="course-block">
-								<figure><img alt="course" src="images/course2.png"/></figure>
-								<div className="info-course"><span>BIOL 2124</span>
-									<h3>HUMAN PHYSIOLOGY</h3><a href="#">R. DOUGLAS ELMORE, PHD</a>
-								</div>
-							</div>
-							<div className="course-block">
-								<figure><img alt="course" src="images/course3.png"/></figure>
-								<div className="info-course"><span>ECON 2843</span>
-									<h3>ELEMANTARY BUSINESS STATISTICS</h3><a href="#">R. DOUGLAS ELMORE, PHD        </a>
-								</div>
-								<div className="stamp"><a className="enroll">ENROLLED</a></div>
-							</div>
-						</div>
-						<div className="course-card">
-							<div className="course-block">
-								<figure><img alt="course" src="images/course4.png"/></figure>
-								<div className="info-course"><span>UCOL 1002</span>
-									<h3>Gateway to College Learning</h3><a href="#">LILEAN MILLER, M.ED.</a>
-								</div>
-							</div>
-							<div className="course-block">
-								<figure><img alt="course" src="images/course5.png"/></figure>
-								<div className="info-course"><span>SS 001</span>
-									<h3>GARY ENGLAND’S TORNADO ALLEY</h3><a href="#">R. DOUGLAS ELMORE, PHD</a>
-								</div>
-							</div>
-							<div className="course-block">
-								<figure><img alt="course" src="images/course3.png"/></figure>
-								<div className="info-course"><span>ECON 2843</span>
-									<h3>ELEMANTARY BUSINESS STATISTICS</h3><a href="#">R. DOUGLAS ELMORE, PHD        </a>
-								</div>
-								<div className="stamp"><a className="start">STARTS NOV. 23    </a></div>
-							</div>
-						</div>
-					</section>
-				</div>
-			</main>
-		</div>
-	);
+
+class Catalog extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			menuData:{
+				popularCourses: [
+					{
+						title: 'Law and Jusice',
+						id: 1
+					},
+					{
+						title: 'Chemistry of Beer',
+						id: 2
+					},
+					{
+						title: 'Gateway to College Learning',
+						id: 3
+					},
+					{
+						title: 'Physical Geology for Scien …',
+						id: 4
+					},
+					{
+						title: 'Data Analyitcs',
+						id: 5
+					},
+					{
+						title: 'Data Analyitcs',
+						id: 5
+					}
+				],
+				tag:[
+					{
+						title:'Free Courses',
+						id:'Free Courses'
+					},
+					{
+						title:'Physics',
+						id:'Physics'
+					},
+					{
+						title:'Computer Science',
+						id:'Computer Science'
+					},
+					{
+						title:'Health',
+						id:'Health'
+					},
+					{
+						title:'Economics',
+						id:'Economics'
+					},
+					{
+						title:'Free Courses',
+						id:'Free Courses'
+					}
+				]
+			},
+			courses: [
+				{
+					imgUrl: 'http://sv1.upsieutoc.com/2017/10/03/course1.png',
+					courseTitle: 'INTRODUCTION TO WATER',
+					courseId: 'STATS 3201',
+					author: 'R. DOUGLAS ELMORE, PHD',
+					status:{
+						type:'start',
+						title:'STARTS NOV. 23'
+					}
+				},
+				{
+					imgUrl: 'http://sv1.upsieutoc.com/2017/10/03/course2.png',
+					courseTitle: 'HUMAN PHYSIOLOGY',
+					courseId: 'BIOL 2124',
+					author: 'R. DOUGLAS ELMORE, PHD',
+					status:{
+						type:'enroll',
+						title:'ENROLLED'
+					}
+				},
+				{
+					imgUrl: 'http://sv1.upsieutoc.com/2017/10/03/course3.png',
+					courseTitle: 'ELEMANTARY BUSINESS STATISTICS',
+					courseId: 'ECON 2843',
+					author: 'R. DOUGLAS ELMORE, PHD',
+					status:{
+						type:'finish',
+						title:'FINISHED 2017'
+					}
+				},
+				{
+					imgUrl: 'http://sv1.upsieutoc.com/2017/10/03/course4.jpg',
+					courseTitle: 'Gateway to College Learning',
+					courseId: 'UCOL 1002',
+					author: 'LILEAN MILLER, M.ED.',
+					status:{
+						type:'enroll',
+						title:'ENROLLED'
+					}
+				},
+				{
+					imgUrl: 'http://sv1.upsieutoc.com/2017/10/03/course5.png',
+					courseTitle: 'GARY ENGLAND’S TORNADO ALLEY',
+					courseId: 'SS 001',
+					author: 'R. DOUGLAS ELMORE, PHD'
+				},
+				{
+					imgUrl: 'http://sv1.upsieutoc.com/2017/10/03/course5.png',
+					courseTitle: 'GARY ENGLAND’S TORNADO ALLEY',
+					courseId: 'SS 002',
+					author: 'R. DOUGLAS ELMORE, PHD'
+				}
+			]
+		};
+	}
+
+	render() {
+		let self = this;
+		return (
+			<div className="container">
+				<main>
+					<div className="wrapper">
+						<section className="carousel">
+							<Carousel />
+						</section>
+						<section className="content-catalog">
+							<MenuBar data={self.state.menuData}/>
+							<GridCard data={self.state.courses}/>
+						</section>
+					</div>
+				</main>
+			</div>
+		);
+	}
 }
 
+Catalog.propTypes = {
+};
 
-// <section className="slider">
-// 	<div className="slider-block item1">
-// 		<div className="content-slider">
-// 			<h3 className="title-slider">Fundamentals of Engineering Statistical Analysis</h3>
-// 			<p className="detail-txt">This course provides fundamental concepts in probability and statistical inference, with application to engineering contexts.</p>
-// 			<div className="statistic">
-// 				<ul>
-// 					<li>
-// 						<p className="date">Starts December 30  </p>
-// 					</li>
-// 					<li>
-// 						<p className="visiter">• &nbsp; &nbsp; 4,321 Learners</p>
-// 					</li>
-// 					<li>
-// 						<p className="spot">20 Spots Left</p>
-// 					</li>
-// 				</ul>
-// 			</div><img alt="slider" src="https://janux.ou.edu/masters/dsa/resources/images/video-cs5013.png" className="img-content"/>
-// 		</div>
-// 	</div>
-// 	<button className="arrow-left"/>
-// 	<button className="arrow-right"/>
-// </section>
+export default Catalog;
