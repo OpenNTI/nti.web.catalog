@@ -16,6 +16,11 @@ body {
           box-sizing: border-box;
 }
 
+ul,
+ol {
+  list-style: none;
+}
+
 header {
   display: -webkit-box;
   display: -webkit-flex;
@@ -76,18 +81,14 @@ header .menu ul li a:hover {
 
 .carousel .carousel-block {
   padding: 20px 0;
-}
-
-.carousel .carousel-block.item1 {
-  background: url("http://42796r1ctbz645bo223zkcdl-wpengine.netdna-ssl.com/wp-content/uploads/2013/10/iStock_000027440241XSmall.jpg");
-  background-size: 100%;
+  background-size: cover;
 }
 
 .carousel .carousel-block .title-carousel {
   width: 350px;
   color: #FFFFFF;
   font-size: 28px;
-  font-family: 'OpenSans-CondensedBold';
+  font-family: 'Open Sans Condensed';
   line-height: 34px;
   text-transform: uppercase;
 }
@@ -312,7 +313,7 @@ header .menu ul li a:hover {
   font-size: 16px;
   line-height: 18px;
   margin-bottom: 15px;
-  font-family: "OpenSans-CondensedBold";
+  font-family: "Open Sans Condensed";
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -578,6 +579,73 @@ header .menu ul li a:hover {
 
 figure {
   margin: 0;
+}
+
+.modalDialog {
+  position: fixed;
+  font-family: Arial, Helvetica, sans-serif;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 99999;
+  -webkit-transition: opacity 400ms ease-in;
+  transition: opacity 400ms ease-in;
+}
+
+.modalDialog > div {
+  width: 1024px;
+  position: relative;
+  margin: 10% auto;
+  border-radius: 0;
+  background: #fff;
+}
+
+.modalDialog .cd-popup-container {
+  width: 1024px;
+  min-height: 300px;
+}
+
+.modalDialog .cd-popup-container .popup-header {
+  height: 60px;
+  padding: 10px 0 0 15px;
+}
+
+.modalDialog .cd-popup-container .popup-header .course-id {
+  height: 14px;
+  width: 69px;
+  color: #B8B8B8;
+  font-family: "Open Sans";
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 14px;
+}
+
+.modalDialog .cd-popup-container .popup-header .course-title {
+  height: 27px;
+  width: 448px;
+  color: #494949;
+  font-family: "Open Sans";
+  font-size: 20px;
+  line-height: 27px;
+}
+
+.modalDialog .cd-popup-container .popup-header .close-popup {
+  position: relative;
+  float: right;
+  top: -35px;
+  opacity: 0.3;
+  font-size: 30px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.modalDialog .cd-popup-container .popup-content {
+  width: 100%;
+  background-image: url("https://cdn.pixabay.com/photo/2015/10/31/00/43/background-texture-1014963_960_720.jpg");
+  height: 100%;
+  min-height: 300px;
 }
 
 .side-bar-left {
