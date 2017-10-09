@@ -54,3 +54,16 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+.side-bar-left .redeem-block p {
+	position: relative;
+	padding-left: 25px;
+}
+.side-bar-left .redeem-block p:before {
+	position: absolute;
+	left: 0;
+	content: '';
+	background: url('https://cdn4.iconfinder.com/data/icons/6x16-free-application-icons/16/Taxi.png') no-repeat;
+	height: 16px;
+	width: 16px;
+	top: 0;
+}

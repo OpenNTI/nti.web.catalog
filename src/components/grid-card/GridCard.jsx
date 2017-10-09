@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import CourseCard from '../card/Card';
+import CourseCard from './card/Card';
 import PropTypes from 'prop-types';
 
 class GridCard extends Component {
