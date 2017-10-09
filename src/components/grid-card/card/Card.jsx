@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropType from 'prop-types';
+
 import CourseDetail from '../../course-detail/CourseDetail';
 
 class CourseCard extends Component {
@@ -10,16 +11,16 @@ class CourseCard extends Component {
 		this.closeDetail = this.closeDetail.bind(this);
 
 		this.state = {
-			showDetail: false
+			showDialog: false
 		};
 	}
 
 	showDetail = (title) => () => {
-		this.setState({showDetail: true});
+		this.setState({showDialog: true});
 	}
 
 	closeDetail = () => () => {
-		this.state({showDetail: false});
+		this.setState({showDialog: false});
 	}
 
 	render() {
@@ -34,16 +35,18 @@ class CourseCard extends Component {
 
 		//set course detail dialog
 		let detailDOM = '';
-		if (self.state.showDetail) {
+		if (self.state.showDialog) {
 			detailDOM = (<CourseDetail
 				course={self.props.courseTitle}
-				close={self.closeDetail}
+				close={self.closeDetail(this)}
 			/>);
 		}
 
 		return (
-			<div className="course-block" onClick={self.showDetail(self.props.courseTitle)}>
-				<figure><img alt="course" src={self.props.imgUrl}/></figure>
+			<div className="course-block">
+				<figure>
+					<img alt="course" src={self.props.imgUrl} onClick={self.showDetail(self.props.courseTitle)}/>
+				</figure>
 				<div className="info-course"><span>{self.props.courseId}</span>
 					<h3>{self.props.courseTitle}</h3>
 					<a href="#">{self.props.author}</a>
