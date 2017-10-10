@@ -3,6 +3,31 @@ import PropType from 'prop-types';
 
 import CourseDetail from '../../course-detail/CourseDetail';
 
+const courseData = {
+	id: 'DSA / ISE 5013',
+	title: 'Fundamentals of Engineering Statistical Analysis',
+	description: 'Human Physiology is the study of normal biological function from atoms to molecules, ' +
+	'to cells to tissues, and to organs and organ systems. It is the integration of each of these elements ' +
+	'that allows for the human body to function as a whole to accomplish particular tasks. In this course, ' +
+	'we will focus on how the human body works through the activities of interconnected organ systems. ' +
+	'We will begin by reviewing fundamental concepts from related fields of study including Chemistry, ' +
+	'Molecular Biology, and Cell Biology. We will then build upon those concepts as we explore each of the ' +
+	'organ systems, their interconnectivity and the effects that specific perturbations will have on those ' +
+	'to cells to tissues, and to organs and organ systems. It is the integration of each of these elements ' +
+	'that allows for the human body to function as a whole to accomplish particular tasks. In this course, ' +
+	'we will focus on how the human body works through the activities of interconnected organ systems. ' +
+	'We will begin by reviewing fundamental concepts from related fields of study including Chemistry, ' +
+	'Molecular Biology, and Cell Biology. We will then build upon those concepts as we explore each of the ' +
+	'organ systems, their interconnectivity and the effects that specific perturbations will have on those ' +
+	'organ systems and',
+	videoUrl: 'https://www.youtube.com/embed/3wi9jEss-PA',
+	courseInfo: {
+		title: 'This Course is Archived.',
+		status: 'Free',
+		detail: 'Archived courses are out of session but all course content will remain available including the lectures, course materials, quizzes, and discussions.',
+	}
+};
+
 class CourseCard extends Component {
 	constructor(props) {
 		super(props);
@@ -11,7 +36,8 @@ class CourseCard extends Component {
 		this.closeDetail = this.closeDetail.bind(this);
 
 		this.state = {
-			showDialog: false
+			showDialog: false,
+			courseData: courseData,
 		};
 	}
 
@@ -37,7 +63,7 @@ class CourseCard extends Component {
 		let detailDOM = '';
 		if (self.state.showDialog) {
 			detailDOM = (<CourseDetail
-				course={self.props.courseTitle}
+				course={self.state.courseData}
 				close={self.closeDetail(this)}
 			/>);
 		}

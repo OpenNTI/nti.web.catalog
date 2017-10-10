@@ -29,6 +29,18 @@
 		.dialog-top {
 			background: #FBFBFB;
 			padding: 10px 22px;
+			position: relative;
+			.close-dialog {
+				position: absolute;
+				content: '';
+				background: url(../../images/sprite.png) no-repeat;
+				background-position: -1240px -416px;
+				width: 26px;
+				height: 26px;
+				top: 17px;
+				right: 20px;
+				cursor: pointer;
+			}
 			.sub-title {
 				color: #B8B8B8;
 				font-size: 10px;
@@ -40,6 +52,7 @@
 				font-size: 20px;
 				line-height: 27px;
 				font-weight: normal;
+				margin: 0;
 			}
 			.close-popup {
 

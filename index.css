@@ -611,6 +611,19 @@ figure {
 .modalDialog .popup-container .dialog-top {
   background: #FBFBFB;
   padding: 10px 22px;
+  position: relative;
+}
+
+.modalDialog .popup-container .dialog-top .close-dialog {
+  position: absolute;
+  content: '';
+  background: url(assets/sprite-0b61280306743fc428ae5203dacc8f76.png) no-repeat;
+  background-position: -1240px -416px;
+  width: 26px;
+  height: 26px;
+  top: 17px;
+  right: 20px;
+  cursor: pointer;
 }
 
 .modalDialog .popup-container .dialog-top .sub-title {
@@ -625,6 +638,7 @@ figure {
   font-size: 20px;
   line-height: 27px;
   font-weight: normal;
+  margin: 0;
 }
 
 .modalDialog .popup-container .content-dialog {

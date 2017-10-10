@@ -6,9 +6,10 @@ class Video extends Component {
 	}
 
 	render() {
+		let self = this;
 		return (
-			<div className="course-video">
-				video
+			<div className="video">
+				<iframe src={self.props.videoUrl} frameBorder="0" allowFullScreen=""/>
 			</div>
 		);
 	}
