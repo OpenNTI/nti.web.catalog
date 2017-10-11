@@ -1,27 +1,22 @@
-import React, {Component} from 'react';
-import PopularMenu from'./poplular-menu/PopularMenu';
+import React from 'react';
+import PopularMenu from './poplular-menu/PopularMenu';
 import TagMenu from './tag-menu/TagMenu';
 import RedeemBar from './redeem-bar/RedeemBar.jsx';
-import PropType from 'prop-types';
+import PropTypes from 'prop-types';
 
-class MenuBar extends Component{
-	render(){
-		let self = this;
-		return(
-			<div className="side-bar-left">
-				<PopularMenu data={self.props.data.popularCourses}/>
-				<TagMenu data={self.props.data.tag}/>
-				<RedeemBar/>
-			</div>
-		);
-	}
-}
-
-MenuBar.PropTypes = {
-	data: PropType.shape({
-		popularCourses: PropType.array,
-		tag: PropType.array
-	})
+MenuBar.propTypes = {
+	data: PropTypes.shape({
+		popular: PropTypes.array,
+		tag: PropTypes.array
+	}),
 };
 
-export default MenuBar;
+export default function MenuBar(data) {
+	return (
+		<div className="side-bar-left">
+			<PopularMenu data={data.popular}/>
+			<TagMenu data={data.tag}/>
+			<RedeemBar/>
+		</div>
+	);
+}

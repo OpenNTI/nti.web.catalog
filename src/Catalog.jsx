@@ -11,7 +11,7 @@ class Catalog extends Component {
 		super(props);
 
 		this.state = {
-			menuData:{
+			menuData: {
 				popularCourses: [
 					{
 						title: 'Law and Jusice',
@@ -38,30 +38,30 @@ class Catalog extends Component {
 						id: 5
 					}
 				],
-				tag:[
+				tag: [
 					{
-						title:'Free Courses',
-						id:'Free Courses'
+						title: 'Free Courses',
+						id: 'Free Courses'
 					},
 					{
-						title:'Physics',
-						id:'Physics'
+						title: 'Physics',
+						id: 'Physics'
 					},
 					{
-						title:'Computer Science',
-						id:'Computer Science'
+						title: 'Computer Science',
+						id: 'Computer Science'
 					},
 					{
-						title:'Health',
-						id:'Health'
+						title: 'Health',
+						id: 'Health'
 					},
 					{
-						title:'Economics',
-						id:'Economics'
+						title: 'Economics',
+						id: 'Economics'
 					},
 					{
-						title:'Free Courses',
-						id:'Free Courses'
+						title: 'Free Courses',
+						id: 'Free Courses'
 					}
 				]
 			},
@@ -71,9 +71,9 @@ class Catalog extends Component {
 					courseTitle: 'INTRODUCTION TO WATER',
 					courseId: 'STATS 3201',
 					author: 'R. DOUGLAS ELMORE, PHD',
-					status:{
-						type:'start',
-						title:'STARTS NOV. 23'
+					status: {
+						type: 'start',
+						title: 'STARTS NOV. 23'
 					}
 				},
 				{
@@ -81,9 +81,9 @@ class Catalog extends Component {
 					courseTitle: 'HUMAN PHYSIOLOGY',
 					courseId: 'BIOL 2124',
 					author: 'R. DOUGLAS ELMORE, PHD',
-					status:{
-						type:'enroll',
-						title:'ENROLLED'
+					status: {
+						type: 'enroll',
+						title: 'ENROLLED'
 					}
 				},
 				{
@@ -91,9 +91,9 @@ class Catalog extends Component {
 					courseTitle: 'ELEMANTARY BUSINESS STATISTICS',
 					courseId: 'ECON 2843',
 					author: 'R. DOUGLAS ELMORE, PHD',
-					status:{
-						type:'finish',
-						title:'FINISHED 2017'
+					status: {
+						type: 'finish',
+						title: 'FINISHED 2017'
 					}
 				},
 				{
@@ -101,9 +101,9 @@ class Catalog extends Component {
 					courseTitle: 'Gateway to College Learning',
 					courseId: 'UCOL 1002',
 					author: 'LILEAN MILLER, M.ED.',
-					status:{
-						type:'enroll',
-						title:'ENROLLED'
+					status: {
+						type: 'enroll',
+						title: 'ENROLLED'
 					}
 				},
 				{
@@ -128,10 +128,10 @@ class Catalog extends Component {
 			<div>
 				<div>
 					<section className="carousel">
-						<Carousel />
+						<Carousel/>
 					</section>
 					<section className="content-catalog">
-						<MenuBar data={self.state.menuData}/>
+						<MenuBar popular={self.state.menuData.popularCourses} tag={self.state.menuData.tag}/>
 						<GridCard data={self.state.courses}/>
 					</section>
 				</div>

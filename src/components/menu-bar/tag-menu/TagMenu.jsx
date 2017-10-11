@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import PropType from 'prop-types';
+import PropTypes from 'prop-types';
 
-class TagMenu extends Component {
-	constructor(props) {
-		super(props);
-		this.selectTag = this.selectTag.bind(this);
+export default class TagMenu extends Component {
+	static propTypes = {
+		data: PropTypes.array
 	}
 
 	selectTag = (title) => () => {
@@ -12,40 +11,26 @@ class TagMenu extends Component {
 	}
 
 	render() {
-		let self = this;
-
 		//if no data return null
-		if (!self.props.data) {
+		if (!this.props.data) {
 			return null;
 		}
 
-		//map data to list
-		let listItem = [];
-
-		for (let i = 0; i < self.props.data.length; i++) {
-			let row = (<li key={i}>
-				<p onClick={self.selectTag(self.props.data[i].title)}>{self.props.data[i].title}</p>
-			</li>);
-			listItem.push(row);
-
-			// up to 5 rows
-			if (i === 4) {
-				break;
-			}
-		}
 		return (
 			<div className="item tag-block">
 				<p className="title-sidebar">BROWSE BY TAG</p>
 				<ul>
-					{listItem}
+					{this.props.data.map((item, index) => {
+						if (index < 5) {
+							return (
+								<li key={index}>
+									<p onClick={this.selectTag(item.title)}>{item.title}</p>
+								</li>
+							);
+						}
+					})}
 				</ul>
 			</div>
 		);
 	}
 }
-
-TagMenu.PropTypes = {
-	data: PropType.array
-};
-
-export default TagMenu;

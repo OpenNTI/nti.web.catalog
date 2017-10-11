@@ -1,51 +1,37 @@
 import React, {Component} from 'react';
-import PropType from 'prop-types';
+import PropTypes from 'prop-types';
 
-class PopularMenu extends Component {
-	constructor(props) {
-		super(props);
-		this.openLink = this.openLink.bind(this);
+export default class PopularMenu extends Component {
+	static propTypes = {
+		data: PropTypes.array
 	}
 
 	openLink = (title) => () => {
-		alert('you click on course: ' + title);
+		alert('you click on course ha ha: ' + title);
 	}
 
 	render() {
-		let self = this;
-
 		//if no data return null
-		if (!self.props.data) {
+		if (!this.props.data) {
 			return null;
-		}
-
-		//map data to list
-		let itemList = [];
-		for (let i = 0; i < self.props.data.length; i++) {
-			let rowData = (<li key={i}><span>{i + 1}</span>
-				<p onClick={self.openLink(self.props.data[i].title)}>{self.props.data[i].title}</p>
-			</li>);
-			itemList.push(rowData);
-
-			// up to 5 rows
-			if (i === 4) {
-				break;
-			}
 		}
 
 		return (
 			<div className="item popular-block">
 				<p className="title-sidebar">POPULAR COURSES</p>
 				<ol>
-					{itemList}
+					{this.props.data.map((item, index) => {
+						if (index < 5) {
+							return (
+								<li key={index}>
+									<span>{index + 1}</span>
+									<p onClick={this.openLink(item.title)}>{item.title}</p>
+								</li>
+							);
+						}
+					})}
 				</ol>
 			</div>
 		);
 	}
 }
-
-PopularMenu.PropTypes = {
-	data: PropType.array
-};
-
-export default PopularMenu;
