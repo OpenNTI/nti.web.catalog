@@ -1,7 +1,7 @@
 import React from 'react';
 import PopularMenu from './poplular-menu/PopularMenu';
 import TagMenu from './tag-menu/TagMenu';
-import RedeemBar from './redeem-bar/RedeemBar.jsx';
+import RedeemBar from './redeem-bar/RedeemBar';
 import PropTypes from 'prop-types';
 
 MenuBar.propTypes = {
