@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import Video from './video/Video';
 import CourseInfo from './course-info/CourseInfo';
 
@@ -8,7 +9,7 @@ CourseDetail.propTypes = {
 	close: PropTypes.func
 };
 
-export default function CourseDetail(props) {
+export default function CourseDetail (props) {
 	return (
 		<div id="course-detail" className="course-popup-detail">
 			<div id="openModal" className="modalDialog">

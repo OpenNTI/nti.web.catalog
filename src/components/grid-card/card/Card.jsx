@@ -35,14 +35,14 @@ export default class CourseCard extends Component {
 		courseId: PropType.string,
 		courseTitle: PropType.string,
 		author: PropType.string,
-		status: PropType.shape({
+		status: PropType.shape ({
 			type: PropType.string,
 			title: PropType.string
 		})
 	}
 
-	constructor(props) {
-		super(props);
+	constructor (props) {
+		super (props);
 
 		this.state = {
 			showDialog: false,
@@ -51,18 +51,18 @@ export default class CourseCard extends Component {
 	}
 
 	showDetail = (title) => () => {
-		this.setState({showDialog: true});
+		this.setState ({showDialog: true});
 	}
 
 	closeDetail = () => () => {
-		this.setState({showDialog: false});
+		this.setState ({showDialog: false});
 	}
 
-	render() {
+	render () {
 		return (
 			<div className="course-block">
 				<figure>
-					<img alt="course" src={this.props.imgUrl} onClick={this.showDetail(this.props.courseTitle)}/>
+					<img alt="course" src={this.props.imgUrl} onClick={this.showDetail (this.props.courseTitle)}/>
 				</figure>
 				<div className="info-course"><span>{this.props.courseId}</span>
 					<h3>{this.props.courseTitle}</h3>
@@ -71,11 +71,9 @@ export default class CourseCard extends Component {
 				{this.props.status && (
 					<div className="stamp"><a className={this.props.status.type}>{this.props.status.title}</a></div>)}
 				{this.state.showDialog && (
-					<CourseDetail course={this.state.courseData} close={this.closeDetail(this)}
+					<CourseDetail course={this.state.courseData} close={this.closeDetail (this)}
 					/>)}
 			</div>
 		);
 	}
 }
-
-

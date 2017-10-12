@@ -7,10 +7,10 @@ export default class TagMenu extends Component {
 	}
 
 	selectTag = (title) => () => {
-		alert('you click on tag: ' + title);
+		alert ('you click on tag: ' + title);
 	}
 
-	render() {
+	render () {
 		//if no data return null
 		if (!this.props.data) {
 			return null;
@@ -20,11 +20,11 @@ export default class TagMenu extends Component {
 			<div className="item tag-block">
 				<p className="title-sidebar">BROWSE BY TAG</p>
 				<ul>
-					{this.props.data.map((item, index) => {
+					{this.props.data.map ((item, index) => {
 						if (index < 5) {
 							return (
 								<li key={index}>
-									<p onClick={this.selectTag(item.title)}>{item.title}</p>
+									<p onClick={this.selectTag (item.title)}>{item.title}</p>
 								</li>
 							);
 						}

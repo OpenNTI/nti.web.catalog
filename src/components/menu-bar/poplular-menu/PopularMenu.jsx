@@ -7,10 +7,10 @@ export default class PopularMenu extends Component {
 	}
 
 	openLink = (title) => () => {
-		alert('you click on course ha ha: ' + title);
+		alert ('you click on course ha ha: ' + title);
 	}
 
-	render() {
+	render () {
 		//if no data return null
 		if (!this.props.data) {
 			return null;
@@ -20,12 +20,12 @@ export default class PopularMenu extends Component {
 			<div className="item popular-block">
 				<p className="title-sidebar">POPULAR COURSES</p>
 				<ol>
-					{this.props.data.map((item, index) => {
+					{this.props.data.map ((item, index) => {
 						if (index < 5) {
 							return (
 								<li key={index}>
 									<span>{index + 1}</span>
-									<p onClick={this.openLink(item.title)}>{item.title}</p>
+									<p onClick={this.openLink (item.title)}>{item.title}</p>
 								</li>
 							);
 						}

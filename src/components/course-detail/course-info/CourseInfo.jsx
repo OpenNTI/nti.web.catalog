@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 
 export default class CourseInfo extends Component {
 	static propTypes = {
-		info: PropTypes.shape({
+		info: PropTypes.shape ({
 			title: PropTypes.string,
 			status: PropTypes.string,
 			detail: PropTypes.string
 		})
 	}
 
-	render() {
+	render () {
 		return (
 			<div>
 				<div className="status-course">

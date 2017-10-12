@@ -7,8 +7,8 @@ import MenuBar from './components/menu-bar/MenuBar';
 
 
 class Catalog extends Component {
-	constructor(props) {
-		super(props);
+	constructor (props) {
+		super (props);
 
 		this.state = {
 			menuData: {
@@ -122,7 +122,7 @@ class Catalog extends Component {
 		};
 	}
 
-	render() {
+	render () {
 		let self = this;
 		return (
 			<div>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function RedeemBar() {
+export default function RedeemBar () {
 	return (
 		<div className="item redeem-block">
 			<ul>
