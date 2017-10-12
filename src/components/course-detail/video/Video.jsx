@@ -1,18 +1,14 @@
-import React, {Component} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class Video extends Component {
-	constructor(props) {
-		super(props);
-	}
+Video.propTypes = {
+	videoUrl: PropTypes.string
+};
 
-	render() {
-		let self = this;
-		return (
-			<div className="video">
-				<iframe src={self.props.videoUrl} frameBorder="0" allowFullScreen=""/>
-			</div>
-		);
-	}
+export default function Video(props) {
+	return (
+		<div className="video">
+			<iframe src={props.videoUrl} frameBorder="0" allowFullScreen=""/>
+		</div>
+	);
 }
-
-export default Video;

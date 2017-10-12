@@ -1,25 +1,27 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
-class CourseInfo extends Component {
-	constructor(props) {
-		super(props);
+export default class CourseInfo extends Component {
+	static propTypes = {
+		info: PropTypes.shape({
+			title: PropTypes.string,
+			status: PropTypes.string,
+			detail: PropTypes.string
+		})
 	}
 
 	render() {
-		let self = this;
 		return (
 			<div>
 				<div className="status-course">
-					<p className="title">{self.props.info.title}</p>
-					<p className="status">{self.props.info.status}</p>
+					<p className="title">{this.props.info.title}</p>
+					<p className="status">{this.props.info.status}</p>
 				</div>
 				<div className="detail-course">
-					<p>{self.props.info.detail}</p>
+					<p>{this.props.info.detail}</p>
 				</div>
 				<div className="add-course"><a>Add Archived Course</a></div>
 			</div>
 		);
 	}
 }
-
-export default CourseInfo;
