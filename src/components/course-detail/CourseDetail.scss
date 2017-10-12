@@ -1,3 +1,4 @@
+@import "~nti-style-common";
 .modalDialog {
 	position: fixed;
 	font-family: Arial, Helvetica, sans-serif;
@@ -27,7 +28,7 @@
 		width: 1024px;
 		min-height: 300px;
 		.dialog-top {
-			background: #FBFBFB;
+			background: $panel-background;
 			padding: 10px 22px;
 			position: relative;
 			.close-dialog {
@@ -53,13 +54,13 @@
 				cursor: pointer;
 			}
 			.sub-title {
-				color: #B8B8B8;
+				color: $tertiary-grey;
 				font-size: 10px;
 				font-weight: bold;
 				line-height: 14px;
 			}
 			h3 {
-				color: #494949;
+				color: $primary-grey;
 				font-size: 20px;
 				line-height: 27px;
 				font-weight: normal;
@@ -92,7 +93,7 @@
 				}
 				.description {
 					p {
-						color: #494949;
+						color: $primary-grey;
 						font-size: 14px;
 						line-height: 24px;
 						padding: 15px 10px;
@@ -117,13 +118,13 @@
 					p {
 						&.title {
 							float: left;
-							color: #494949;
+							color: $primary-grey;
 							font-size: 18px;
 							line-height: 24px;
 						}
 						&.status {
 							float: right;
-							color: #3FB34F;
+							color: $primary-green;
 							font-size: 18px;
 							line-height: 24px;
 						}
@@ -131,7 +132,7 @@
 				}
 				.detail-course {
 					p {
-						color: #494949;
+						color: $primary-grey;
 						font-size: 14px;
 						line-height: 24px;
 					}
@@ -139,7 +140,7 @@
 				.add-course {
 					position: absolute;
 					bottom: 0;
-					background-color: #3FB3F6;
+					background-color: $primary-blue;
 					width: 100%;
 					padding: 15px 0;
 					text-align: center;

@@ -71,7 +71,7 @@ class CarouselItem extends Component {
 							<li>
 								<p className="visiter">• &nbsp;&nbsp;&nbsp;{self.state.learnerNumber} Learners</p>
 							</li>
-							<li>
+							<li className="hidden">
 								<p className="spot">{self.state.spotLeft} Spots Left</p>
 							</li>
 						</ul>
@@ -82,10 +82,10 @@ class CarouselItem extends Component {
 	}
 }
 // <div className={className} key={self.state.id}>
-//	 <div style={style}>
-//	 	<span>{self.state.title}</span>
-//	 	<span>{self.state.description}</span>
-//	 </div>
+//   <div style={style}>
+//    <span>{self.state.title}</span>
+//    <span>{self.state.description}</span>
+//   </div>
 // </div>
 
 CarouselItem.propTypes = {

@@ -23,7 +23,7 @@ class PopularMenu extends Component {
 		let itemList = [];
 		for (let i = 0; i < self.props.data.length; i++) {
 			let rowData = (<li key={i}><span>{i + 1}</span>
-				<p onClick={self.openLink(self.props.data[i].title)}>{self.props.data[i].title}</p>
+				<a onClick={self.openLink(self.props.data[i].title)}>{self.props.data[i].title}</a>
 			</li>);
 			itemList.push(rowData);
 

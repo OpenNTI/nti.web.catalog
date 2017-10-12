@@ -24,7 +24,7 @@ class TagMenu extends Component {
 
 		for (let i = 0; i < self.props.data.length; i++) {
 			let row = (<li key={i}>
-				<p onClick={self.selectTag(self.props.data[i].title)}>{self.props.data[i].title}</p>
+				<a onClick={self.selectTag(self.props.data[i].title)}>{self.props.data[i].title}</a>
 			</li>);
 			listItem.push(row);
 
