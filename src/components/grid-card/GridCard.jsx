@@ -2,46 +2,42 @@ import React, {Component} from 'react';
 import CourseCard from './card/Card';
 import PropTypes from 'prop-types';
 
-class GridCard extends Component {
-	constructor(props) {
-		super(props);
+export default class GridCard extends Component {
+	static propTypes = {
+		data: PropTypes.array
 	}
 
 	render() {
-		let self = this;
-		let gridDOM = [];
-		for (let i = 0; i < self.props.data.length; i++) {
-			let girdTemp = [];
-
-			//get 3 item and put it in 1 row
-			for (let j = 0; j < 3; j++) {
-				if (i + j < self.props.data.length) {
-					let item = (<CourseCard
-						imgUrl={self.props.data[i + j].imgUrl}
-						courseTitle={self.props.data[i + j].courseTitle}
-						courseId={self.props.data[i + j].courseId}
-						author={self.props.data[i + j].author}
-						status={self.props.data[i + j].status}
-						key={self.props.data[i + j].courseId}
-					/>);
-					girdTemp.push(item);
-				}
-			}
-
-			gridDOM.push(<div className="course-card" key={i}>
-				{girdTemp}
-			</div>);
-			i += 2;
-		}
+		//get 3 courses for each row
+		let listCourse = chunk(this.props.data, 3);
 
 		return (
 			<div className="content-right">
-				{gridDOM}
+				{listCourse.map((item, index) => {
+					return (
+						<div className="course-card" key={index}>
+							{item.map((course, courseIndex) => {
+								return (
+									<CourseCard
+										imgUrl={course.imgUrl}
+										courseTitle={course.courseTitle}
+										courseId={course.courseId}
+										author={course.author}
+										status={course.status}
+										key={courseIndex}
+									/>
+								);
+							})}
+						</div>
+					);
+				})}
 			</div>
 		);
 	}
 }
-GridCard.PropTypes = {
-	data: PropTypes.array
-};
-export default GridCard;
+
+function chunk(arr, n) {
+	return arr.slice(0, (arr.length + n - 1) / n | 0).map(function (c, i) {
+		return arr.slice(n * i, n * i + n);
+	});
+}

@@ -24,16 +24,25 @@ const courseData = {
 	courseInfo: {
 		title: 'This Course is Archived.',
 		status: 'Free',
-		detail: 'Archived courses are out of session but all course content will remain available including the lectures, course materials, quizzes, and discussions.',
+		detail: 'Archived courses are out of session but all course content will remain available ' +
+		'including the lectures, course materials, quizzes, and discussions.',
 	}
 };
 
-class CourseCard extends Component {
+export default class CourseCard extends Component {
+	static propTypes = {
+		imgUrl: PropType.string,
+		courseId: PropType.string,
+		courseTitle: PropType.string,
+		author: PropType.string,
+		status: PropType.shape({
+			type: PropType.string,
+			title: PropType.string
+		})
+	}
+
 	constructor(props) {
 		super(props);
-
-		this.showDetail = this.showDetail.bind(this);
-		this.closeDetail = this.closeDetail.bind(this);
 
 		this.state = {
 			showDialog: false,
@@ -50,49 +59,23 @@ class CourseCard extends Component {
 	}
 
 	render() {
-		let self = this;
-
-		//set status style
-		let statusDOM = '';
-		if (self.props.status) {
-			statusDOM =
-				<div className="stamp"><a className={self.props.status.type}>{self.props.status.title}</a></div>;
-		}
-
-		//set course detail dialog
-		let detailDOM = '';
-		if (self.state.showDialog) {
-			detailDOM = (<CourseDetail
-				course={self.state.courseData}
-				close={self.closeDetail(this)}
-			/>);
-		}
-
 		return (
 			<div className="course-block">
 				<figure>
-					<img alt="course" src={self.props.imgUrl} onClick={self.showDetail(self.props.courseTitle)}/>
+					<img alt="course" src={this.props.imgUrl} onClick={this.showDetail(this.props.courseTitle)}/>
 				</figure>
-				<div className="info-course"><span>{self.props.courseId}</span>
-					<h3>{self.props.courseTitle}</h3>
-					<a href="#">{self.props.author}</a>
+				<div className="info-course"><span>{this.props.courseId}</span>
+					<h3>{this.props.courseTitle}</h3>
+					<a href="#">{this.props.author}</a>
 				</div>
-				{statusDOM}
-				{detailDOM}
+				{this.props.status && (
+					<div className="stamp"><a className={this.props.status.type}>{this.props.status.title}</a></div>)}
+				{this.state.showDialog && (
+					<CourseDetail course={this.state.courseData} close={this.closeDetail(this)}
+					/>)}
 			</div>
 		);
 	}
 }
 
-CourseCard.PropTypes = {
-	imgUrl: PropType.string,
-	courseId: PropType.string,
-	courseTitle: PropType.string,
-	author: PropType.string,
-	status: PropType.shape({
-		type: PropType.string,
-		title: PropType.string
-	})
-};
 
-export default CourseCard;
