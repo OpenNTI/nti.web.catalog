@@ -73,7 +73,7 @@ export default class Carousel extends Component {
 		if(this.state.transitionStatus === 'lock') {
 			return;
 		}
-		let nextIndex = (this.state.selectedIndex < this.state.data.length - 1) ? this.state.selectedIndex + 1 : 0;
+		const nextIndex = (this.state.selectedIndex < this.state.data.length - 1) ? this.state.selectedIndex + 1 : 0;
 		this.setState({
 			slideshowDirection: 'next',
 			transitionStatus: 'lock',
@@ -88,7 +88,7 @@ export default class Carousel extends Component {
 		if(this.state.transitionStatus === 'lock') {
 			return;
 		}
-		let nextIndex = (this.state.selectedIndex > 0) ? this.state.selectedIndex - 1 : this.state.data.length - 1;
+		const nextIndex = (this.state.selectedIndex > 0) ? this.state.selectedIndex - 1 : this.state.data.length - 1;
 		this.setState({
 			slideshowDirection: 'previous',
 			transitionStatus: 'lock',
