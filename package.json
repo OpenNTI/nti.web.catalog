@@ -5,6 +5,10 @@
   "description": "Shows thing that a user can get access to",
   "license": "UNLICENSED",
   "main": "./lib/index.js",
+  "module": "./lib/index.js",
+  "files":[
+    "lib"
+  ],
   "scripts": {
     "test": "nti-cmp-scripts test",
     "start": "nti-cmp-scripts start",
