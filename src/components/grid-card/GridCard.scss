@@ -1,10 +1,138 @@
+@import "~nti-style-common";
+
 .course-card {
 	display: -ms-flexbox;
 	display: flex;
 	margin-bottom: 30px;
-}
+	.course-block {
+		width: 31.33%;
+		background-color: #FFFFFF;
+		box-shadow: 0 1px 2px 0 rgba(0,0,0,0.3);
+		// min-height: 290px;
+		padding: 5px;
+		margin-right: 2%;
+		position: relative;
+		float: left;
+		margin-bottom: 2%;
+		figure {
+			overflow: hidden;
+		}
+		img {
+			width: 100%;
+			cursor: pointer;
+			-webkit-transform: scale(1);
+			transform: scale(1);
+			-webkit-transition: .3s ease-in-out;
+			transition: .3s ease-in-out;
+			&:hover {
+				-webkit-transform: scale(1.3);
+				transform: scale(1.3);
+			}
+		}
+		.info-course {
+			padding: 0 5px;
+			span {
+				color: $tertiary-grey;
+				font-size: 10px;
+				font-weight: bold;
+				line-height: 14px;
+				display: block;
+				margin: 5px 0;
+			}
+			h3 {
+				color: $primary-grey;
+				font-size: 16px;
+				line-height: 18px;
+				margin-bottom: 15px;
+				font-family: $header-font-family;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
+				text-transform: uppercase;
+			}
+			a {
+				display: block;
+				color: $primary-blue;
+				font-size: 10px;
+				font-weight: bold;
+				line-height: 14px;
+			}
+		}
+		.stamp {
+			position: absolute;
+			top: 15px;
+			left: 10px;
+			a {
+				color: #FFFFFF;
+				font-size: 10px;
+				font-weight: bold;
+				line-height: 14px;
+				padding: 4px 10px 4px 20px;
+				border-radius: 2px;
+				background-color: $primary-green;
+				&:hover {
+					&.start {
+						background-color: #fff;
+						border: 2px solid $primary-blue;
+						color: $primary-blue;
+						border-radius: 2px;
+					}
+					&.enroll {
+						background-color: #fff;
+						border: 2px solid $primary-green;
+						color: $primary-green;
+						border-radius: 2px;
+						&:before {
+							position: absolute;
+							content: '✔';
+							color: $primary-green;
+							width: 6px;
+							height: 6px;
+							top: 5px;
+							left: 8px;
+						}
+					}
+					&.finish {
+						background-color: #fff;
+	                    border: 2px solid $secondary-grey;
+	                    color: $secondary-grey;
+	                    border-radius: 2px;
+	                }
 
+				}
+				&.start {
+					padding: 4px 10px;
+					background-color:$primary-blue;
+				}
+				&.enroll {
+					&:before {
+						position: absolute;
+						content: '✔';
+						color: #fff;
+						width: 6px;
+						height: 6px;
+						top: 5px;
+						left: 8px;
+					}
+				}
+                &.finish {
+                    padding: 4px 10px;
+                    background-color: $secondary-grey;
+                }
+			}
+		}
+		&:nth-child(3n+3) {
+			margin-right: 0;
+		}
+	}
+}
+figure {
+	-webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+}
 .content-right {
-	width: 76%;
+	width: 77%;
 	float: right;
 }
