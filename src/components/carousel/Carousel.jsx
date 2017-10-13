@@ -19,6 +19,7 @@ export default class Carousel extends Component {
 		super (props);
 
 		const {
+			data = [],
 			selectedIndex = 0,
 			slideshowDelay = 10000,
 			slideshowDirection = 'next',
@@ -27,7 +28,7 @@ export default class Carousel extends Component {
 		} = props;
 
 		this.state = {
-			data: this.props.data || [],
+			data: data,
 			selectedIndex: selectedIndex,
 			slideshowDelay: slideshowDelay, // in milisecond
 			slideshowDirection: slideshowDirection, // next, previous
