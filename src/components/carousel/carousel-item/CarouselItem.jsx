@@ -40,7 +40,7 @@ export default function CarouselItem (props) {
 }
 
 function _monthFormat (date) {
-	let d = new Date (date);
+	const d = new Date (date);
 
 	if(!d || d === 'Invalid Date') {
 		return '';
