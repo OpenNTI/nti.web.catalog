@@ -39,7 +39,7 @@ export default class Carousel extends Component {
 	}
 
 	componentWillMount () {
-		let carouselItems = this.state.data.map(function (item, index) {
+		const carouselItems = this.state.data.map(function (item, index) {
 			return (
 				<CarouselItem
 					key={item.id}
