@@ -6,7 +6,7 @@
   "license": "UNLICENSED",
   "main": "./lib/index.js",
   "module": "./lib/index.js",
-  "files":[
+  "files": [
     "lib"
   ],
   "scripts": {
@@ -46,7 +46,6 @@
     "nti-web-commons": "0.x.x",
     "prop-types": "^15.5.10",
     "react-dom": "^15.6.1",
-    "prop-types": "^15.5.10",
     "react-addons-css-transition-group": "^15.6.2"
   }
 }
