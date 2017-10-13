@@ -10,7 +10,7 @@ export default class GridCard extends Component {
 
 	render () {
 		//get 3 courses for each row
-		let listCourse = chunk (this.props.data, 3);
+		const listCourse = chunk (this.props.data, 3);
 
 		return (
 			<div className="content-right">
