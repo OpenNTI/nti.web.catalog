@@ -5,7 +5,7 @@ import Connector from 'nti-lib-store-connector';
 const propMap = {
 	tags: 'tags',
 	popular: 'popular',
-	items: 'items'
+	courses: 'courses'
 };
 
 StoreConnector.propTypes = {

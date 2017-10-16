@@ -1,10 +1,15 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 import Carousel from './components/carousel/Carousel';
 import GridCard from './components/grid-card/GridCard';
 import MenuBar from './components/menu-bar/MenuBar';
 
 export default class Catalog extends Component {
+	static propTypes = {
+		popular: PropTypes.array,
+		courses: PropTypes.array
+	}
 	constructor (props) {
 		super (props);
 
@@ -209,8 +214,8 @@ export default class Catalog extends Component {
 						<Carousel data={this.state.carousel}/>
 					</section>
 					<section className="content-catalog">
-						<MenuBar popular={this.state.menuData.popularCourses} tag={this.state.menuData.tag}/>
-						<GridCard data={this.state.courses}/>
+						<MenuBar popular={this.props.popular} tag={this.state.menuData.tag}/>
+						<GridCard data={this.props.courses}/>
 					</section>
 				</div>
 			</div>

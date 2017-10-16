@@ -9,6 +9,11 @@ export default class GridCard extends Component {
 	}
 
 	render () {
+		// return null if no data
+		if(!this.props.data){
+			return null;
+		}
+
 		//get 3 courses for each row
 		const listCourse = chunk (this.props.data, 3);
 
@@ -20,9 +25,9 @@ export default class GridCard extends Component {
 							{item.map ((course, courseIndex) => {
 								return (
 									<CourseCard
-										imgUrl={course.imgUrl}
-										courseTitle={course.courseTitle}
-										courseId={course.courseId}
+										imgUrl={course.LegacyPurchasableThumbnail}
+										courseTitle={course.Title}
+										courseId={course.ProviderDisplayName}
 										author={course.author}
 										status={course.status}
 										key={courseIndex}
