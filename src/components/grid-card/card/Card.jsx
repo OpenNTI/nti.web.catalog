@@ -62,7 +62,7 @@ export default class CourseCard extends Component {
 		return (
 			<div className="course-block">
 				<figure>
-					<img alt="course" src={this.props.imgUrl} onClick={this.showDetail (this.props.courseTitle)}/>
+					<img alt="" src={this.props.imgUrl} onClick={this.showDetail (this.props.courseTitle)}/>
 				</figure>
 				<div className="info-course"><span>{this.props.courseId}</span>
 					<h3>{this.props.courseTitle}</h3>
