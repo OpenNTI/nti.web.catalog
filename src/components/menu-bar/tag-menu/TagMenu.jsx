@@ -24,7 +24,7 @@ export default class TagMenu extends Component {
 						if (index < 5) {
 							return (
 								<li key={index}>
-									<p onClick={this.selectTag (item.title)}>{item.title}</p>
+									<a onClick={this.selectTag (item.title)}>{item.title}</a>
 								</li>
 							);
 						}

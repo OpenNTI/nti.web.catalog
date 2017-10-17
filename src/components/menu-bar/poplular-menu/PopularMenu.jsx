@@ -25,7 +25,7 @@ export default class PopularMenu extends Component {
 							return (
 								<li key={index}>
 									<span>{index + 1}</span>
-									<p onClick={this.openLink (item.title)}>{item.title}</p>
+									<a onClick={this.openLink (item.title)}>{item.title}</a>
 								</li>
 							);
 						}
