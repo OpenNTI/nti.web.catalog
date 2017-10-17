@@ -10,7 +10,7 @@ export default class GridCard extends Component {
 
 	render () {
 		// return null if no data
-		if(!this.props.data){
+		if (!this.props.data) {
 			return null;
 		}
 

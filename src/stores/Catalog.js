@@ -1,5 +1,8 @@
 import EventEmitter from 'events';
 
+import AppDispatcher from '../Dispatcher';
+import * as Constants from '../Constants';
+
 export default class CatalogStore extends EventEmitter {
 	constructor (service) {
 		super ();
@@ -8,6 +11,14 @@ export default class CatalogStore extends EventEmitter {
 
 		this.service = service;
 		this.href = href;
+
+		AppDispatcher.register ((payload) => {
+			const action = payload.action;
+			switch (action.actionType) {
+			case Constants.TEST:
+				console.log ('dispatch received action here');
+			}
+		});
 	}
 
 

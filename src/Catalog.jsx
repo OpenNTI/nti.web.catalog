@@ -4,12 +4,14 @@ import PropTypes from 'prop-types';
 import Carousel from './components/carousel/Carousel';
 import GridCard from './components/grid-card/GridCard';
 import MenuBar from './components/menu-bar/MenuBar';
+import * as Actions from './Actions';
 
 export default class Catalog extends Component {
 	static propTypes = {
 		popular: PropTypes.array,
 		courses: PropTypes.array
 	}
+
 	constructor (props) {
 		super (props);
 
@@ -139,7 +141,7 @@ export default class Catalog extends Component {
 					},
 					title: 'FUNDAMENTALS OF ENGINEERING STATISTICAL ANALYSIS',
 					description: 'This course provides fundamental concepts in probability and statistical inference',
-					startDate: new Date(),
+					startDate: new Date (),
 					learnersNumber: 4321,
 					spotsLeft: 20
 				},
@@ -158,7 +160,7 @@ export default class Catalog extends Component {
 					},
 					title: 'FUNDAMENTALS OF ENGINEERING STATISTICAL ANALYSIS',
 					description: 'This course provides fundamental concepts in probability and statistical inference',
-					startDate: new Date(),
+					startDate: new Date (),
 					learnersNumber: 4321,
 					spotsLeft: 50
 				},
@@ -178,7 +180,7 @@ export default class Catalog extends Component {
 					},
 					title: 'FUNDAMENTALS OF ENGINEERING STATISTICAL ANALYSIS',
 					description: 'This course provides fundamental concepts in probability and statistical inference',
-					startDate: new Date(),
+					startDate: new Date (),
 					learnersNumber: 2048,
 					spotsLeft: 15
 				},
@@ -198,12 +200,16 @@ export default class Catalog extends Component {
 					},
 					title: 'FUNDAMENTALS OF ENGINEERING STATISTICAL ANALYSIS',
 					description: 'This course provides fundamental concepts in probability and statistical inference',
-					startDate: new Date(),
+					startDate: new Date (),
 					learnersNumber: 1024,
 					spotsLeft: 9
 				}
 			]
 		};
+	}
+
+	componentDidMount (){
+		Actions.testAction();
 	}
 
 	render () {
