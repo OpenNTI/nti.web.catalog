@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import PropType from 'prop-types';
 
-import CourseDetail from '../../course-detail/CourseDetail';
+import {encodeForURI} from 'nti-lib-ntiids';
+// import CourseDetail from '../../course-detail/CourseDetail';
 
 const courseData = {
 	id: 'DSA / ISE 5013',
@@ -38,7 +39,8 @@ export default class CourseCard extends Component {
 		status: PropType.shape ({
 			type: PropType.string,
 			title: PropType.string
-		})
+		}),
+		ntiid: PropType.string
 	}
 
 	constructor (props) {
@@ -61,19 +63,22 @@ export default class CourseCard extends Component {
 	render () {
 		return (
 			<div className="course-block">
-				<figure>
-					<img alt="course" src={this.props.imgUrl} onClick={this.showDetail (this.props.courseTitle)}/>
-				</figure>
+				<a href={`./object/${encodeForURI(this.props.ntiid)}`}>
+					<figure>
+						<img alt="course" src={this.props.imgUrl}/>
+					</figure>
+				</a>
 				<div className="info-course"><span>{this.props.courseId}</span>
 					<h3>{this.props.courseTitle}</h3>
 					<a href="#">{this.props.author}</a>
 				</div>
 				{this.props.status && (
 					<div className="stamp"><a className={this.props.status.type}>{this.props.status.title}</a></div>)}
-				{this.state.showDialog && (
-					<CourseDetail course={this.state.courseData} close={this.closeDetail (this)}
-					/>)}
 			</div>
 		);
 	}
 }
+
+// {this.state.showDialog && (
+// 	<CourseDetail course={this.state.courseData} close={this.closeDetail (this)}
+// 	/>)}
