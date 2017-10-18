@@ -1,4 +1,5 @@
 import AppDispatcher from 'nti-lib-dispatcher';
+
 import * as Constants from './Constants';
 
 export function testAction () {

@@ -25,10 +25,10 @@ export default class GridCard extends Component {
 							{item.map ((course, courseIndex) => {
 								return (
 									<CourseCard
-										imgUrl={course.LegacyPurchasableThumbnail}
-										courseTitle={course.Title}
+										imgUrl="http://sv1.upsieutoc.com/2017/10/03/course1.png"
+										courseTitle={course.title}
 										courseId={course.ProviderDisplayName}
-										author={course.author}
+										author={course.Creator}
 										status={course.status}
 										key={courseIndex}
 									/>
