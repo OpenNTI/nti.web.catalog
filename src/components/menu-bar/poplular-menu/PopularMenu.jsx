@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import {encodeForURI} from 'nti-lib-ntiids';
 
 export default class PopularMenu extends Component {
 	static propTypes = {
@@ -25,7 +26,7 @@ export default class PopularMenu extends Component {
 							return (
 								<li key={index}>
 									<span>{index + 1}</span>
-									<a onClick={this.openLink (item.title)}>{item.title}</a>
+									<a href={`./object/${encodeForURI(item.NTIID)}`}>{item.title}</a>
 								</li>
 							);
 						}
