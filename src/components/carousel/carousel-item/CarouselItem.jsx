@@ -29,7 +29,7 @@ export default function CarouselItem (props) {
 						<li>
 							<p className="visiter">• &nbsp;&nbsp;&nbsp;{props.learnerNumber} Learners</p>
 						</li>
-						<li>
+						<li className="hidden">
 							<p className="spot">{props.spotLeft} Spots Left</p>
 						</li>
 					</ul>

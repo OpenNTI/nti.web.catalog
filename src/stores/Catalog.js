@@ -1,5 +1,10 @@
 import EventEmitter from 'events';
 
+import AppDispatcher from 'nti-lib-dispatcher';
+import * as Constants from '../Constants';
+
+const CHANGE = 'change';
+
 export default class CatalogStore extends EventEmitter {
 	constructor (service) {
 		super ();
@@ -8,6 +13,17 @@ export default class CatalogStore extends EventEmitter {
 
 		this.service = service;
 		this.href = href;
+
+		AppDispatcher.register ((payload) => {
+			const action = payload.action;
+			switch (action.type) {
+			case Constants.TEST:
+				// console.log ('dispatch received action here a a nha');
+				// this.popular = action.data;
+				// this.emit (CHANGE, {type: 'popular'});
+				break;
+			}
+		});
 	}
 
 
@@ -18,7 +34,7 @@ export default class CatalogStore extends EventEmitter {
 		this.courses = courses;
 		this.popular = popular;
 
-		this.emit ('change', {type: 'courses'}, {type: 'popular'});
+		this.emit (CHANGE, {type: 'courses'}, {type: 'popular'});
 	}
 
 
@@ -28,10 +44,10 @@ export default class CatalogStore extends EventEmitter {
 
 
 	addChangeListener (fn) {
-		this.addListener ('change', fn);
+		this.addListener (CHANGE, fn);
 	}
 
 	removeChangeListener (fn) {
-		this.removeListener ('change', fn);
+		this.removeListener (CHANGE, fn);
 	}
 }
