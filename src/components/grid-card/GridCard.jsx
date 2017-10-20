@@ -37,7 +37,7 @@ export default class GridCard extends Component {
 										courseTitle={course.title}
 										courseId={course.ProviderDisplayName}
 										author={course.Creator}
-										status={course.status}
+										status={course.EnrollmentOptions.Items}
 										ntiid={course.NTIID}
 										key={courseIndex}
 									/>

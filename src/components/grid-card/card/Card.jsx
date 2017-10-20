@@ -37,8 +37,7 @@ export default class CourseCard extends Component {
 		courseTitle: PropType.string,
 		author: PropType.string,
 		status: PropType.shape ({
-			type: PropType.string,
-			title: PropType.string
+			OpenEnrollment: PropType.object
 		}),
 		ntiid: PropType.string
 	}
@@ -61,6 +60,9 @@ export default class CourseCard extends Component {
 	}
 
 	render () {
+		const status = this.props.status && this.props.status.OpenEnrollment &&
+			this.props.status.OpenEnrollment.IsEnrolled;
+
 		return (
 			<div className="course-block">
 				<a href={`./object/${encodeForURI(this.props.ntiid)}`}>
@@ -72,8 +74,8 @@ export default class CourseCard extends Component {
 					<h3>{this.props.courseTitle}</h3>
 					<a href="#">{this.props.author}</a>
 				</div>
-				{this.props.status && (
-					<div className="stamp"><a className={this.props.status.type}>{this.props.status.title}</a></div>)}
+				{status && (
+					<div className="stamp"><a className="enroll">ENROLLED</a></div>)}
 			</div>
 		);
 	}
