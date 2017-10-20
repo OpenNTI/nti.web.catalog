@@ -14,8 +14,7 @@ export default class CourseCard extends Component {
 		ntiid: PropType.string
 	}
 
-	showDetail = (link) => () => {
-		console.log ('detail: ', link);
+	showDetail = () => {
 		const detailLink = `./object/${encodeForURI (this.props.ntiid)}`;
 		window.open (detailLink, '_self');
 	}
@@ -25,7 +24,7 @@ export default class CourseCard extends Component {
 			this.props.status.OpenEnrollment.IsEnrolled;
 
 		return (
-			<div className="course-block" onClick={this.showDetail(this.props.ntiid)}>
+			<div className="course-block" onClick={this.showDetail}>
 				<figure>
 					<img alt="course" src={this.props.imgUrl}/>
 				</figure>
