@@ -30,7 +30,7 @@ export default class CourseCard extends Component {
 				</figure>
 				<div className="info-course"><span>{this.props.courseId}</span>
 					<h3>{this.props.courseTitle}</h3>
-					<a href="#">{this.props.author}</a>
+					<a>{this.props.author}</a>
 				</div>
 				{status && (
 					<div className="stamp"><a className="enroll">ENROLLED</a></div>)}
