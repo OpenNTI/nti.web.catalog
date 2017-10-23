@@ -1,6 +1,4 @@
 import EventEmitter from 'events';
-// import AppDispatcher from 'nti-lib-dispatcher';
-// import * as Constants from '../Constants';
 
 const CHANGE = 'change';
 
@@ -12,18 +10,6 @@ export default class CatalogStore extends EventEmitter {
 
 		this.service = service;
 		this.href = href;
-
-		// listeners dispatch
-		// AppDispatcher.register ((payload) => {
-		// 	const action = payload.action;
-		// 	switch (action.type) {
-		// 	case Constants.TEST:
-		// 		console.log ('dispatch received action here a a nha');
-		// 		this.popular = action.data;
-		// 		this.emit (CHANGE, {type: 'popular'});
-		// 		break;
-		// 	}
-		// });
 	}
 
 
