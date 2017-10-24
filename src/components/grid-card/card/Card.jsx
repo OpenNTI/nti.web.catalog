@@ -24,7 +24,7 @@ export default class CourseCard extends Component {
 			this.props.status.OpenEnrollment.IsEnrolled;
 
 		return (
-			<div className="course-block" onClick={this.showDetail}>
+			<div className="" onClick={this.showDetail}>
 				<figure>
 					<img alt="course" src={this.props.imgUrl}/>
 				</figure>

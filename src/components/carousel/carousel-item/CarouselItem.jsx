@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import DateTime from '../../utility/DateTime';
+
 CarouselItem.propTypes = {
 	backgroundUrl: PropTypes.string,
-	backgroundWidth: PropTypes.string,
-	backgroundHeight: PropTypes.string,
 	detailImage: PropTypes.string,
-	detailImageWidth: PropTypes.string,
-	detailImageHeight: PropTypes.string,
 	title: PropTypes.string,
 	description: PropTypes.string,
 	startDate: PropTypes.instanceOf(Date),
@@ -24,7 +22,7 @@ export default function CarouselItem (props) {
 				<div className="statistic">
 					<ul>
 						<li>
-							<p className="date">Starts { _dateFormat(new Date(props.startDate)) }</p>
+							<p className="date">Starts {DateTime.format(props.startDate, 'll')}</p>
 						</li>
 						<li className="list-style">
 							<p className="visiter">{props.learnerNumber} Learners</p>
@@ -37,36 +35,4 @@ export default function CarouselItem (props) {
 			</div>
 		</div>
 	);
-}
-
-function _monthFormat (date) {
-	const d = new Date (date);
-
-	if(!d || d === 'Invalid Date') {
-		return '';
-	}
-
-	let month = new Array();
-	month[0] = 'January';
-	month[1] = 'February';
-	month[2] = 'March';
-	month[3] = 'April';
-	month[4] = 'May';
-	month[5] = 'June';
-	month[6] = 'July';
-	month[7] = 'August';
-	month[8] = 'September';
-	month[9] = 'October';
-	month[10] = 'November';
-	month[11] = 'December';
-
-	return month[d.getMonth()];
-}
-
-function _dateFormat (date) {
-	let d = new Date(date);
-	if(!d || d === 'Invalid Date') {
-		return '';
-	}
-	return _monthFormat(d) + ' ' + date.getDate();
 }

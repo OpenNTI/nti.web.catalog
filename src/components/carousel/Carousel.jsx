@@ -5,6 +5,15 @@ import PropTypes from 'prop-types';
 import CarouselItem from './carousel-item/CarouselItem';
 
 export default class Carousel extends Component {
+	static defaultProps = {
+		data : [],
+		selectedIndex : 0,
+		slideshowDelay : 10000,
+		slideshowDirection : 'next',
+		transitionStatus : 'free',
+		transformDuring : 1000
+	}
+
 	static propTypes = {
 		data: PropTypes.array,
 		selectedIndex: PropTypes.number,
@@ -18,22 +27,13 @@ export default class Carousel extends Component {
 	constructor (props) {
 		super (props);
 
-		const {
-			data = [],
-			selectedIndex = 0,
-			slideshowDelay = 10000,
-			slideshowDirection = 'next',
-			transitionStatus = 'free',
-			transformDuring = 1000
-		} = props;
-
 		this.state = {
-			data: data,
-			selectedIndex: selectedIndex,
-			slideshowDelay: slideshowDelay, // in milisecond
-			slideshowDirection: slideshowDirection, // next, previous
-			transitionStatus: transitionStatus, // free, lock
-			transformDuring: transformDuring, // milisecond
+			data: this.props.data,
+			selectedIndex: this.props.selectedIndex,
+			slideshowDelay: this.props.slideshowDelay, // in milisecond
+			slideshowDirection: this.props.slideshowDirection, // next, previous
+			transitionStatus: this.props.transitionStatus, // free, lock
+			transformDuring: this.props.transformDuring, // milisecond
 			carouselItems: []
 		};
 	}
@@ -44,11 +44,7 @@ export default class Carousel extends Component {
 				<CarouselItem
 					key={item.id}
 					backgroundUrl={item.background.url}
-					backgroundWidth={item.background.width}
-					backgroundHeight={item.background.height}
 					detailImage={item.displayImage.url}
-					detailImageWidth={item.displayImage.width}
-					detailImageHeight={item.displayImage.height}
 					title={(item.title.length < 60) ? item.title : item.title.substr(0,60) + ' ...'}
 					description={(item.description.length < 90) ? item.description : item.description.substr(0,90) + ' ...'}
 					startDate={item.startDate} learnerNumber={item.learnersNumber} spotLeft={item.spotsLeft}

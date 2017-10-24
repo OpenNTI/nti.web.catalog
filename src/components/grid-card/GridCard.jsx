@@ -29,21 +29,23 @@ export default class GridCard extends Component {
 			<div className="content-right">
 				{listCourse.map ((item, index) => {
 					return (
-						<div className="course-card" key={index}>
+						<ul className="course-card" key={index}>
 							{item.map ((course, courseIndex) => {
 								return (
-									<CourseCard
-										imgUrl={imagesUrl[((courseIndex + 1) * (index + 1)) % 5]}
-										courseTitle={course.title}
-										courseId={course.ProviderDisplayName}
-										author={course.Creator}
-										status={course.EnrollmentOptions.Items}
-										ntiid={course.NTIID}
-										key={courseIndex}
-									/>
+									<li key={courseIndex} className="course-block">
+										<CourseCard
+											imgUrl={imagesUrl[((courseIndex + 1) * (index + 1)) % 5]}
+											courseTitle={course.title}
+											courseId={course.ProviderDisplayName}
+											author={course.Creator}
+											status={course.EnrollmentOptions.Items}
+											ntiid={course.NTIID}
+											key={courseIndex}
+										/>
+									</li>
 								);
 							})}
-						</div>
+						</ul>
 					);
 				})}
 			</div>
