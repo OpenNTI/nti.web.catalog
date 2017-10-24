@@ -11,7 +11,7 @@ CourseDetail.propTypes = {
 
 export default function CourseDetail (props) {
 	return (
-		<div id="course-detail" className="course-popup-detail">
+		<div id="course-detail" className="catalog-course-popup-detail">
 			<div id="openModal" className="modalDialog">
 				<div className="popup-container">
 					<div className="dialog-top"><span className="sub-title">{props.course.id}</span>
