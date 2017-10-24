@@ -17,7 +17,7 @@ CarouselItem.propTypes = {
 
 export default function CarouselItem (props) {
 	return (
-		<div className="carousel-block" style={{'backgroundImage': 'url(' + props.backgroundUrl + ')', width: props.backgroundWidth, height: props.backgroundHeight}}>
+		<div className="carousel-block" style={{'backgroundImage': 'url(' + props.backgroundUrl + ')'}}>
 			<div className="content-carousel">
 				<h3 className="title-carousel">{props.title}</h3>
 				<p className="detail-txt">{props.description}</p>
@@ -26,8 +26,8 @@ export default function CarouselItem (props) {
 						<li>
 							<p className="date">Starts { _dateFormat(new Date(props.startDate)) }</p>
 						</li>
-						<li>
-							<p className="visiter">• &nbsp;&nbsp;&nbsp;{props.learnerNumber} Learners</p>
+						<li className="list-style">
+							<p className="visiter">{props.learnerNumber} Learners</p>
 						</li>
 						<li className="hidden">
 							<p className="spot">{props.spotLeft} Spots Left</p>

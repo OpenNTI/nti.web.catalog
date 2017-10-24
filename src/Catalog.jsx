@@ -130,7 +130,7 @@ export default class Catalog extends Component {
 	render () {
 		return (
 			<div>
-				<div>
+				<div className="catalog">
 					<section className="carousel">
 						<Carousel data={this.state.carousel}/>
 					</section>
