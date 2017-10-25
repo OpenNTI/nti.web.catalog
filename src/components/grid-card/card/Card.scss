@@ -1,5 +1,5 @@
 @import "~nti-style-common";
-.catalog { 
+.catalog {
 	.course-block {
 		width: 31.33%;
 		background-color: #FFFFFF;
@@ -24,6 +24,10 @@
 			transform: scale(1);
 			-webkit-transition: .3s ease-in-out;
 			transition: .3s ease-in-out;
+			height: 100%;
+		}
+		.course-panel {
+			width: 100%;
 			height: 100%;
 		}
 		.info-course {
