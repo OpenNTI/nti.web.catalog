@@ -12,7 +12,7 @@ export default class TagMenu extends Component {
 
 	render () {
 		//if no data return null
-		if (!this.props.data) {
+		if (!this.props.data && this.props.data.length === 0) {
 			return null;
 		}
 
