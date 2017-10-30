@@ -22,6 +22,9 @@
 	.content-right {
 		width: 77%;
 		float: right;
+		ul {
+			overflow: visible;
+		}
 	}
 
 }

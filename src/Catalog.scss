@@ -3,33 +3,23 @@
 	width: 100% !important;
 }
 .catalog {
-	*, *:before, *:after {
-    	box-sizing: inherit;
-	}
 	overflow: hidden;
 	.hidden {
 		display: none;
 	}
 	.list-style {
-		list-style: inherit;
+		list-style: inherit !important;
 		color: $primary-blue;
 	}
 	.container {
-		padding: 0!important;
+		padding: 0 !important;
 		margin: 0 auto;
 		width: 100%;
-		box-sizing: border-box;
 	}
 	ul, ol {
 		padding-left: 0;
 	    overflow: hidden;
-	    -webkit-margin-before: 0;
-    	-webkit-margin-after: 0;
-		li {
-			list-style: transparent;
-			-webkit-margin-before: 0;
-    		-webkit-margin-after: 0;
-		}
+	   	margin: 0;
 	}
 	a {
 	    cursor: pointer;
