@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-export default class TagMenu extends Component {
+export default class TagMenu extends React.Component {
 	static propTypes = {
 		data: PropTypes.array
 	}
@@ -16,18 +16,18 @@ export default class TagMenu extends Component {
 			return null;
 		}
 
+		const tags = this.props.data.slice (0, 5);
+
 		return (
 			<div className="item tag-block">
 				<p className="title-sidebar">BROWSE BY TAG</p>
 				<ul>
-					{this.props.data.map ((item, index) => {
-						if (index < 5) {
-							return (
-								<li key={index}>
-									<a onClick={this.selectTag (item.title)}>{item.title}</a>
-								</li>
-							);
-						}
+					{tags.map ((item, index) => {
+						return (
+							<li key={index}>
+								<a onClick={this.selectTag (item.title)}>{item.title}</a>
+							</li>
+						);
 					})}
 				</ul>
 			</div>

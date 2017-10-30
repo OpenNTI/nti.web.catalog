@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import CourseCard from './card/Card';
@@ -11,7 +11,7 @@ const imagesUrl = [
 	'http://sv1.upsieutoc.com/2017/10/03/course5.png'
 ];
 
-export default class GridCard extends Component {
+export default class GridCard extends React.Component {
 	static propTypes = {
 		data: PropTypes.array
 	}
