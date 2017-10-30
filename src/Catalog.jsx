@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import Carousel from './components/carousel/Carousel';
 import GridCard from './components/grid-card/GridCard';
 import MenuBar from './components/menu-bar/MenuBar';
 
-export default class Catalog extends Component {
+export default class Catalog extends React.Component {
 	static propTypes = {
 		popular: PropTypes.array,
 		courses: PropTypes.array

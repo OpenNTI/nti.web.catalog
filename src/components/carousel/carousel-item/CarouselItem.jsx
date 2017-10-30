@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import DateTime from '../../utility/DateTime';
+import {DateTime} from 'nti-web-commons';
+
 
 CarouselItem.propTypes = {
 	backgroundUrl: PropTypes.string,
@@ -22,7 +23,7 @@ export default function CarouselItem (props) {
 				<div className="statistic">
 					<ul>
 						<li>
-							<p className="date">Starts {DateTime.format(props.startDate, 'll')}</p>
+							<p className="date">Starts <DateTime date={props.startDate}/></p>
 						</li>
 						<li className="list-style">
 							<p className="visiter">{props.learnerNumber} Learners</p>

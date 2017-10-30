@@ -1,17 +1,18 @@
-import React, { Component } from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import React from 'react';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import PropTypes from 'prop-types';
 
 import CarouselItem from './carousel-item/CarouselItem';
 
-export default class Carousel extends Component {
+export default class Carousel extends React.Component {
 	static defaultProps = {
 		data : [],
 		selectedIndex : 0,
 		slideshowDelay : 10000,
 		slideshowDirection : 'next',
 		transitionStatus : 'free',
-		transformDuring : 1000
+		transformDuring : 1000,
+		carouselItems: []
 	}
 
 	static propTypes = {
@@ -27,15 +28,7 @@ export default class Carousel extends Component {
 	constructor (props) {
 		super (props);
 
-		this.state = {
-			data: this.props.data,
-			selectedIndex: this.props.selectedIndex,
-			slideshowDelay: this.props.slideshowDelay, // in milisecond
-			slideshowDirection: this.props.slideshowDirection, // next, previous
-			transitionStatus: this.props.transitionStatus, // free, lock
-			transformDuring: this.props.transformDuring, // milisecond
-			carouselItems: []
-		};
+		this.state = {...this.props};
 	}
 
 	componentWillMount () {
@@ -56,7 +49,7 @@ export default class Carousel extends Component {
 			carouselItems: carouselItems
 		}, function () {
 			if(this.state.slideshowDelay) {
-				this.intervalID = setInterval(this._showSlides, this.state.slideshowDelay);
+				this.intervalID = setInterval(this._nextSlide, this.state.slideshowDelay);
 			}
 		});
 	}
@@ -74,7 +67,7 @@ export default class Carousel extends Component {
 			slideshowDirection: 'next',
 			transitionStatus: 'lock',
 			selectedIndex: nextIndex
-		}, function () {
+		}, () => {
 			this._unclockTransitionStatusAfterTransform();
 		});
 
@@ -89,13 +82,9 @@ export default class Carousel extends Component {
 			slideshowDirection: 'previous',
 			transitionStatus: 'lock',
 			selectedIndex: nextIndex
-		}, function () {
+		}, () => {
 			this._unclockTransitionStatusAfterTransform();
 		});
-	}
-
-	_showSlides = () => {
-		this._nextSlide();
 	}
 
 	_unclockTransitionStatusAfterTransform = () => {
@@ -106,25 +95,17 @@ export default class Carousel extends Component {
 		}, this.state.transformDuring);
 	}
 
-	onclickRight = () => {
-		this._nextSlide();
-	}
-
-	onclickLeft = () => {
-		this._previousSlide();
-	}
-
 	render () {
 		return (
 			<div className="carousel-content--image">
-				<ReactCSSTransitionGroup
+				<CSSTransitionGroup
 					transitionName={'animation--' + this.state.slideshowDirection}
 					transitionEnterTimeout={this.state.transformDuring}
 					transitionLeaveTimeout={this.state.transformDuring}>
 					{this.state.carouselItems[this.state.selectedIndex]}
-				</ReactCSSTransitionGroup>
-				<button className="arrow-left" onClick={this.onclickLeft} />
-				<button className="arrow-right" onClick={this.onclickRight} />
+				</CSSTransitionGroup>
+				<button className="arrow-left" onClick={this._previousSlide} />
+				<button className="arrow-right" onClick={this._nextSlide} />
 			</div>
 		);
 	}

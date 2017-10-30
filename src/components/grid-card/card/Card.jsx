@@ -1,8 +1,8 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropType from 'prop-types';
 import {encodeForURI} from 'nti-lib-ntiids';
 
-export default class CourseCard extends Component {
+export default class CourseCard extends React.Component {
 	static propTypes = {
 		imgUrl: PropType.string,
 		courseId: PropType.string,
