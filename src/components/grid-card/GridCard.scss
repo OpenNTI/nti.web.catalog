@@ -1,9 +1,7 @@
 @import "~nti-style-common";
 .catalog {
 	.course-card {
-		display: -ms-flexbox;
-		display: flex;
-		// margin-bottom: 30px;
+
 		&:hover {
 			.course-block {
 				cursor: pointer;

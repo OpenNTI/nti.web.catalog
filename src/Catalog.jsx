@@ -111,7 +111,7 @@ export default class Catalog extends React.Component {
 					<section className="carousel">
 						<Carousel data={this.state.carousel}/>
 					</section>
-					<section className="content-catalog">
+					<section className="content-catalog no-sidebar">
 						<MenuBar popular={this.props.popular} tag={this.state.menuData.tag}/>
 						<GridCard data={this.props.courses}/>
 					</section>

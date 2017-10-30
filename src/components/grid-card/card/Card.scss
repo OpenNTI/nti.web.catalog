@@ -1,5 +1,16 @@
 @import "~nti-style-common";
 .catalog {
+	.content-catalog.no-sidebar {
+		&.no-sidebar {
+			.course-block {
+				width: 23%;
+				&:nth-child(3n+3) {
+					margin-right: 2%;
+				}
+			}
+
+		}
+	}
 	.course-block {
 		width: 31.33%;
 		background-color: #FFFFFF;
@@ -11,6 +22,7 @@
 		float: left;
 		margin-bottom: 2%;
 		min-height: 290px;
+		list-style: none;
 		figure {
 			overflow: hidden;
 			// width: 236px;
@@ -45,13 +57,12 @@
 				color: $primary-grey;
 				font-size: 16px;
 				line-height: 18px;
-				margin-bottom: 15px;
 				font-family: $header-font-family;
 				text-overflow: ellipsis;
 				white-space: nowrap;
 				overflow: hidden;
 				text-transform: uppercase;
-				-webkit-margin-before: 0;
+				margin: 0 0 15px 0;
 			}
 			a {
 				text-transform: uppercase;

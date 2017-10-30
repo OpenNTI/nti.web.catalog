@@ -27,10 +27,10 @@ export default class GridCard extends React.Component {
 
 		return (
 			<div className="content-right">
-				<ul className="" >
+				<ul className="course-card">
 					{listCourse.map ((course, index) => {
 						return (
-							<li key={index} className="">
+							<li key={index} className="course-block">
 								<CourseCard
 									imgUrl={imagesUrl[(index + 1) % 5]}
 									courseTitle={course.title}
