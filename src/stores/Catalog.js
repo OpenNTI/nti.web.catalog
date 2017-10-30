@@ -42,7 +42,7 @@ export default class CatalogStore extends EventEmitter {
 function getAPILink (data, rel) {
 	let apiLink = '';
 	data.map ((api) => {
-		if (api.rel.toUpperCase() === rel.toUpperCase()) {
+		if (api.rel.toUpperCase () === rel.toUpperCase ()) {
 			apiLink = api.href;
 		}
 	});

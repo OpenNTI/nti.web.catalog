@@ -22,13 +22,10 @@ export default class GridCard extends React.Component {
 			return null;
 		}
 
-		//get 3 courses for each row
-		const listCourse = this.props.data;//chunk (this.props.data, 3);
-
 		return (
 			<div className="content-right">
 				<ul className="course-card">
-					{listCourse.map ((course, index) => {
+					{this.props.data.map ((course, index) => {
 						return (
 							<li key={index} className="course-block">
 								<CourseCard
@@ -36,8 +33,10 @@ export default class GridCard extends React.Component {
 									courseTitle={course.title}
 									courseId={course.ProviderDisplayName}
 									author={course.Creator}
-									status={course.EnrollmentOptions.Items}
+									enroll={course.EnrollmentOptions.Items}
 									ntiid={course.NTIID}
+									startDate={course.StartDate}
+									endDate={course.EndDate}
 									key={index}
 								/>
 							</li>
@@ -48,9 +47,3 @@ export default class GridCard extends React.Component {
 		);
 	}
 }
-//
-// function chunk (arr, n) {
-// 	return arr.slice (0, (arr.length + n - 1) / n | 0).map (function (c, i) {
-// 		return arr.slice (n * i, n * i + n);
-// 	});
-// }

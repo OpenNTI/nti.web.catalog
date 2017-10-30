@@ -105,13 +105,17 @@ export default class Catalog extends React.Component {
 	}
 
 	render () {
+		let contentClass = 'content-catalog no-sidebar';
+		if (this.props.popular && this.props.popular.length !== 0) {
+			contentClass = 'content-catalog ';
+		}
 		return (
 			<div>
 				<div className="catalog">
 					<section className="carousel">
 						<Carousel data={this.state.carousel}/>
 					</section>
-					<section className="content-catalog no-sidebar">
+					<section className={contentClass}>
 						<MenuBar popular={this.props.popular} tag={this.state.menuData.tag}/>
 						<GridCard data={this.props.courses}/>
 					</section>
