@@ -1,28 +1,31 @@
 @import "~nti-style-common";
+
 .catalog {
 	.course-card {
-
 		&:hover {
 			.course-block {
 				cursor: pointer;
+
 				&:hover {
-			        img {
-			            -webkit-transform: scale(1.3);
-			            transform: scale(1.3);
-			        }
-		        }
+					img {
+						-webkit-transform: scale(1.3);
+						transform: scale(1.3);
+					}
+				}
 			}
 		}
-		li{
+
+		li {
 			list-style-type: none;
 		}
 	}
+
 	.content-right {
 		width: 77%;
 		float: right;
+
 		ul {
 			overflow: visible;
 		}
 	}
-
 }
