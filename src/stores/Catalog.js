@@ -19,7 +19,7 @@ export default class CatalogStore extends EventEmitter {
 
 		this.courses = courses;
 		this.popular = popular;
-		this.popular = [];
+		
 		this.emit (CHANGE, {type: 'courses'});
 		this.emit (CHANGE, {type: 'popular'});
 	}
