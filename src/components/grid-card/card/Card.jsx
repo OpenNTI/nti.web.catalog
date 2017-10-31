@@ -40,7 +40,7 @@ export default class CourseCard extends React.Component {
 					<div className="stamp"><a className="enroll">ENROLLED</a></div>)}
 				{status === 'start' && (
 					<div className="stamp">
-						<a className="start">Start <DateTime date={this.props.startDate} format="ll"/></a>
+						<a className="start">Starts <DateTime date={this.props.startDate} format="ll"/></a>
 					</div>)}
 				{status === 'finish' && (
 					<div className="stamp">
