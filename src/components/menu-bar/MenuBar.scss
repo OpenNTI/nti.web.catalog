@@ -62,22 +62,5 @@
 			padding-left: 10px;
 			//font-weight: normal;
 		}
-
-		.redeem-block {
-			p {
-				position: relative;
-				padding-left: 25px;
-
-				&::before {
-					position: absolute;
-					left: 0;
-					content: '';
-					background: url(./images/arrow3.png) no-repeat;
-					height: 15px;
-					width: 16px;
-					top: 2px;
-				}
-			}
-		}
 	}
 }

@@ -104,8 +104,8 @@ export default class Carousel extends React.Component {
 					transitionLeaveTimeout={this.state.transformDuring}>
 					{this.state.carouselItems[this.state.selectedIndex]}
 				</CSSTransitionGroup>
-				<button className="arrow-left" onClick={this._previousSlide} />
-				<button className="arrow-right" onClick={this._nextSlide} />
+				<button className="icon-chevronup-25" onClick={this._previousSlide} />
+				<button className="icon-chevrondown-25" onClick={this._nextSlide} />
 			</div>
 		);
 	}

@@ -1,0 +1,19 @@
+@import "~nti-style-common";
+.catalog {
+	.redeem-block {
+		p {
+			position: relative;
+			padding-left: 25px;
+
+			&::before {
+				position: absolute;
+				left: 0;
+				content: '';
+				background: url(./assets/arrow3.png) no-repeat;
+				height: 15px;
+				width: 16px;
+				top: 2px;
+			}
+		}
+	}
+}
