@@ -1,10 +1,10 @@
 @import "~nti-style-common";
 
-.catalog-body {
-	width: 100% !important;
+.course-catalog-body {
+	width: 100% !important;//used to override parent attribute in web module
 }
 
-.catalog {
+.course-catalog {
 	overflow: hidden;
 
 	.hidden {
