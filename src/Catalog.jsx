@@ -111,7 +111,7 @@ export default class Catalog extends React.Component {
 		}
 		return (
 			<div>
-				<div className="catalog">
+				<div className="course-catalog">
 					<section className="carousel">
 						<Carousel data={this.state.carousel}/>
 					</section>
