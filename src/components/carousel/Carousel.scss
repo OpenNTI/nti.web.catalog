@@ -53,8 +53,9 @@
 				li {
 					float: left;
 					margin-right: 20px;
-					list-style: none;
-
+					&:first-child {
+						list-style: transparent;
+					}
 					p {
 						color: $primary-blue;
 						font-size: 14px;

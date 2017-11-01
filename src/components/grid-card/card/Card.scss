@@ -35,9 +35,7 @@
 		img {
 			width: 100%;
 			cursor: pointer;
-			-webkit-transform: scale(1);
 			transform: scale(1);
-			-webkit-transition: 0.3s ease-in-out;
 			transition: 0.3s ease-in-out;
 			height: 100%;
 		}
@@ -83,11 +81,10 @@
 		}
 
 		.stamp {
-			position: absolute;
-			top: 15px;
-			left: 10px;
-
 			a {
+				position: absolute;
+				top: 15px;
+				left: 10px;
 				color: #fff;
 				font-size: 10px;
 				font-weight: bold;
@@ -96,46 +93,13 @@
 				border-radius: 2px;
 				background-color: $primary-green;
 
-				&:hover {
-					&.start {
-						background-color: #fff;
-						border: 2px solid $primary-blue;
-						color: $primary-blue;
-						border-radius: 2px;
-					}
-
-					&.enroll {
-						background-color: #fff;
-						border: 2px solid $primary-green;
-						color: $primary-green;
-						border-radius: 2px;
-
-						&::before {
-							position: absolute;
-							content: '✔';
-							color: $primary-green;
-							width: 6px;
-							height: 6px;
-							top: 5px;
-							left: 8px;
-						}
-					}
-
-					&.finish {
-						background-color: #fff;
-						border: 2px solid $secondary-grey;
-						color: $secondary-grey;
-						border-radius: 2px;
-					}
-				}
-
 				&.start {
 					padding: 4px 10px;
 					background-color: $primary-blue;
 				}
 
 				&.enroll {
-					&::before {
+					&:before {
 						position: absolute;
 						content: '✔';
 						color: #fff;
@@ -147,6 +111,10 @@
 				}
 
 				&.finish {
+					&.right {
+						right: 10px;
+						left: unset;
+					}
 					padding: 4px 10px;
 					background-color: $secondary-grey;
 				}

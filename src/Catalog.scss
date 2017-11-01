@@ -1,7 +1,7 @@
 @import "~nti-style-common";
 
 .catalog-body {
-	width: 100% !important;
+	width: 100%;
 }
 
 .catalog {
@@ -12,12 +12,12 @@
 	}
 
 	.list-style {
-		list-style: inherit !important;
+		list-style: inherit;
 		color: $primary-blue;
 	}
 
 	.container {
-		padding: 0 !important;
+		padding: 0;
 		margin: 0 auto;
 		width: 100%;
 	}
@@ -106,9 +106,6 @@
 	}
 
 	figure {
-		-webkit-margin-before: 0;
-		-webkit-margin-after: 0;
-		-webkit-margin-start: 0;
-		-webkit-margin-end: 0;
+		margin: 0;
 	}
 }
