@@ -4,7 +4,7 @@ export default function RedeemBar () {
 	return (
 		<div className="item redeem-block">
 			<ul>
-				<li>
+				<li className="redeem-block">
 					<p>Redeem Code </p>
 				</li>
 			</ul>

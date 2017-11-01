@@ -34,7 +34,7 @@
 
 				.close-dialog {
 					position: absolute;
-					content: '';
+					content: $icon-light-x;
 					background: url(../../images/sprite.png) no-repeat;
 					background-position: -1241px -417px;
 					width: 26px;
@@ -42,18 +42,11 @@
 					top: 17px;
 					right: 20px;
 					cursor: pointer;
+					color: $tertiary-grey;
 				}
 
 				.close-dialog:hover {
-					position: absolute;
-					content: '';
-					background: url(../../images/sprite.png) no-repeat;
-					background-position: -1267px -417px;
-					width: 26px;
-					height: 26px;
-					top: 17px;
-					right: 20px;
-					cursor: pointer;
+					opacity: 0.7;
 				}
 
 				.sub-title {

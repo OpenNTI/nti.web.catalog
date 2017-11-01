@@ -92,23 +92,25 @@
 		button {
 			position: absolute;
 			top: 50%;
-			transform: translateY(-50%);
-			width: 15px;
-			height: 40px;
+			transform: translateY(-50%) rotate(90deg);
+			background-color: transparent;
 			border: none;
 			box-shadow: none;
 			cursor: pointer;
 
-			&.arrow-right {
-				right: 80px;
-				background: url(./images/arrow1.png) no-repeat;
-				background-size: 100%;
+			&.icon-chevronup-25 {
+				right: 50px;
+				font-size: 50px;
+				color: #ebebeb;
+				font-weight: lighter;
 			}
 
-			&.arrow-left {
-				left: 80px;
-				background: url(./images/arrow.png) no-repeat;
-				background-size: 100%;
+			&.icon-chevrondown-25 {
+				left: 50px;
+				font-size: 50px;
+				color: #ebebeb;
+				font-weight: lighter;
+
 			}
 		}
 	}
