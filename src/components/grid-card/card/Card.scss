@@ -96,6 +96,10 @@
 				&.start {
 					padding: 4px 10px;
 					background-color: $primary-blue;
+					&.right {
+						right: 10px;
+						left: unset;
+					}
 				}
 
 				&.enroll {
