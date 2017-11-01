@@ -1,14 +1,17 @@
 @import "~nti-style-common";
+
 .catalog {
 	.side-bar-left {
 		width: 22%;
 		max-width: 242px;
 		float: left;
-		.item{
+
+		.item {
 			padding: 20px;
-			background-color: #FFFFFF;
-			box-shadow: 0 1px 2px 0 rgba(0,0,0,0.3);
+			background-color: #fff;
+			box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
 			margin-bottom: 15px;
+
 			&.tag-block {
 				a {
 					padding-left: 0;
@@ -23,15 +26,18 @@
 			line-height: 14px;
 			padding-left: 0;
 		}
+
 		li {
 			margin: 10px 0;
 			text-overflow: ellipsis;
 			white-space: nowrap;
 			overflow: hidden;
 		}
+
 		ol,ul {
 			margin-top: 15px;
 		}
+
 		ul {
 			p,a {
 				color: $primary-blue;
@@ -39,12 +45,14 @@
 				line-height: 19px;
 			}
 		}
+
 		span {
 			color: $tertiary-grey;
 			font-size: 14px;
 			font-weight: 600;
 			line-height: 19px;
 		}
+
 		p, a {
 			color: $primary-grey;
 			font-size: 14px;
@@ -52,13 +60,15 @@
 			line-height: 19px;
 			display: inline;
 			padding-left: 10px;
-			font-weight: normal;
+			//font-weight: normal;
 		}
+
 		.redeem-block {
 			p {
 				position: relative;
 				padding-left: 25px;
-				&:before {
+
+				&::before {
 					position: absolute;
 					left: 0;
 					content: '';
@@ -70,5 +80,4 @@
 			}
 		}
 	}
-
 }
