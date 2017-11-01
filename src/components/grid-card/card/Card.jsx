@@ -26,7 +26,12 @@ export default class CourseCard extends React.Component {
 		const enroll = this.props.enroll && this.props.enroll.OpenEnrollment &&
 			this.props.enroll.OpenEnrollment.IsEnrolled;
 
-		const status = checkStatus(this.props.startDate, this.props.endDate);
+		const status = checkStatus (this.props.startDate, this.props.endDate);
+		let statusClass = status;
+		if (enroll) {
+			statusClass = status + ' right';
+		}
+
 		return (
 			<div className="course-panel" onClick={this.showDetail}>
 				<figure>
@@ -40,11 +45,11 @@ export default class CourseCard extends React.Component {
 					<div className="stamp"><a className="enroll">ENROLLED</a></div>)}
 				{status === 'start' && (
 					<div className="stamp">
-						<a className="start">Starts <DateTime date={this.props.startDate} format="ll"/></a>
+						<a className={statusClass}>Starts <DateTime date={this.props.startDate} format="ll"/></a>
 					</div>)}
 				{status === 'finish' && (
 					<div className="stamp">
-						<a className="finish">Finish <DateTime date={this.props.endDate} format="ll"/></a>
+						<a className={statusClass}>Finish <DateTime date={this.props.endDate} format="ll"/></a>
 					</div>)}
 			</div>
 		);
