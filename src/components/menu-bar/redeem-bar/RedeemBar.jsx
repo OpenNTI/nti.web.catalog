@@ -2,9 +2,9 @@ import React from 'react';
 
 export default function RedeemBar () {
 	return (
-		<div className="item redeem-block class-test-css">
+		<div className="item redeem-block">
 			<ul>
-				<li className='test-class-here-here'>
+				<li>
 					<p>Redeem Code </p>
 				</li>
 			</ul>
