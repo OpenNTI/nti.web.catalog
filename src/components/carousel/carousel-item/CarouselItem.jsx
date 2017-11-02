@@ -9,8 +9,6 @@ CarouselItem.propTypes = {
 	title: PropTypes.string,
 	description: PropTypes.string,
 	startDate: PropTypes.instanceOf(Date),
-	learnerNumber: PropTypes.number,
-	spotLeft: PropTypes.number
 };
 
 export default function CarouselItem (props) {
@@ -23,12 +21,6 @@ export default function CarouselItem (props) {
 					<ul>
 						<li>
 							<p className="date">Starts <DateTime date={props.startDate}/></p>
-						</li>
-						<li className="list-style">
-							<p className="visiter">{props.learnerNumber} Learners</p>
-						</li>
-						<li className="hidden">
-							<p className="spot">{props.spotLeft} Spots Left</p>
 						</li>
 					</ul>
 				</div><img alt="carousel" src={props.detailImage} className="img-content"/>

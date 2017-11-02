@@ -40,7 +40,7 @@ export default class Carousel extends React.Component {
 					detailImage={item.displayImage.url}
 					title={(item.title.length < 60) ? item.title : item.title.substr(0,60) + ' ...'}
 					description={(item.description.length < 90) ? item.description : item.description.substr(0,90) + ' ...'}
-					startDate={item.startDate} learnerNumber={item.learnersNumber} spotLeft={item.spotsLeft}
+					startDate={item.startDate}
 				/>
 			);
 		});
