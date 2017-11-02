@@ -16,7 +16,13 @@ export default class CatalogStore extends EventEmitter {
 
 	async load () {
 		const {Items: courses, Links: links} = await this.service.get (this.href);
-		const {Items: popular} = await this.service.get (getLink(links, 'popular'));
+		let popular = [];
+		try{
+			popular = await this.service.get (getLink(links, 'popular'));
+		}
+		catch (e){
+			popular = [];
+		}
 
 		const parse = x => this.service.getObject(x);
 		this.courses = await Promise.all( courses.map(parse) );
