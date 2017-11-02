@@ -1,4 +1,5 @@
 import EventEmitter from 'events';
+
 import {getLink} from 'nti-lib-interfaces';
 
 const CHANGE = 'change';
@@ -19,14 +20,13 @@ export default class CatalogStore extends EventEmitter {
 		let popular = [];
 		try{
 			popular = await this.service.get (getLink(links, 'popular'));
-		}
-		catch (e){
+		} catch (e) {
 			popular = [];
 		}
 
 		const parse = x => this.service.getObject(x);
 		this.courses = await Promise.all( courses.map(parse) );
-		this.popular = await Promise.all( popular.map(parse) );
+		this.popular = await Promise.all( popular.Items.map(parse) );
 
 		this.emit (CHANGE, {type: 'courses'});
 		this.emit (CHANGE, {type: 'popular'});
