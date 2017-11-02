@@ -30,9 +30,9 @@ export default class GridCard extends React.Component {
 							<li key={index} className="course-block">
 								<CourseCard
 									imgUrl={imagesUrl[(index + 1) % 5]}
-									courseTitle={course.title}
-									courseId={course.ProviderDisplayName}
-									author={course.Creator}
+									courseTitle={course.Title}
+									courseId={course.ProviderUniqueID}
+									author={course.creator}
 									enroll={course.EnrollmentOptions.Items}
 									ntiid={course.NTIID}
 									startDate={course.StartDate}

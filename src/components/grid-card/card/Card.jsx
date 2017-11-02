@@ -9,9 +9,7 @@ export default class CourseCard extends React.Component {
 		courseId: PropType.string,
 		courseTitle: PropType.string,
 		author: PropType.string,
-		enroll: PropType.shape ({
-			OpenEnrollment: PropType.object
-		}),
+		enroll: PropType.object,
 		startDate: PropType.string,
 		endDate: PropType.string,
 		ntiid: PropType.string
@@ -24,7 +22,8 @@ export default class CourseCard extends React.Component {
 
 	render () {
 		const enroll = this.props.enroll && this.props.enroll.OpenEnrollment &&
-			this.props.enroll.OpenEnrollment.IsEnrolled;
+			this.props.enroll.StoreEnrollment && this.props.enroll.FiveMinuteEnrollment &&
+			this.props.enroll.OpenEnrollment.enrolled;
 
 		const status = checkStatus (this.props.startDate, this.props.endDate);
 		let statusClass = status;
