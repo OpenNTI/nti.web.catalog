@@ -1,5 +1,5 @@
 {
-  "name": "nti-web-catalog",
+  "name": "nti.web.component.catalog",
   "version": "0.0.0",
   "author": "nextthought",
   "description": "Shows thing that a user can get access to",
