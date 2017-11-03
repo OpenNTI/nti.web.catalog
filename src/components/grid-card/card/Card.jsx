@@ -1,7 +1,7 @@
 import React from 'react';
 import PropType from 'prop-types';
 import {encodeForURI} from 'nti-lib-ntiids';
-import {DateTime} from 'nti-web-commons';
+import {DateTime, Presentation} from 'nti-web-commons';
 
 export default class CourseCard extends React.Component {
 	static propTypes = {
@@ -12,7 +12,8 @@ export default class CourseCard extends React.Component {
 		enroll: PropType.object,
 		startDate: PropType.string,
 		endDate: PropType.string,
-		ntiid: PropType.string
+		ntiid: PropType.string,
+		course: PropType.object
 	}
 
 	showDetail = () => {
@@ -34,7 +35,9 @@ export default class CourseCard extends React.Component {
 		return (
 			<div className="course-panel" onClick={this.showDetail}>
 				<figure>
-					<img alt="course" src={this.props.imgUrl}/>
+					<Presentation.Asset contentPackage={this.props.course} propName="src" type="landing">
+						<img />
+					</Presentation.Asset>
 				</figure>
 				<div className="info-course"><span>{this.props.courseId}</span>
 					<h3>{this.props.courseTitle}</h3>
