@@ -8,7 +8,7 @@ export default class Carousel extends React.Component {
 	static defaultProps = {
 		data : [],
 		selectedIndex : 0,
-		slideshowDelay : 10000,
+		slideshowDelay : 1000000,
 		slideshowDirection : 'next',
 		transitionStatus : 'free',
 		transformDuring : 1000,
@@ -34,14 +34,7 @@ export default class Carousel extends React.Component {
 	componentWillMount () {
 		const carouselItems = this.state.data.map(function (item, index) {
 			return (
-				<CarouselItem
-					key={item.id}
-					backgroundUrl={item.background.url}
-					detailImage={item.displayImage.url}
-					title={(item.title.length < 60) ? item.title : item.title.substr(0,60) + ' ...'}
-					description={(item.description.length < 90) ? item.description : item.description.substr(0,90) + ' ...'}
-					startDate={item.startDate}
-				/>
+				<CarouselItem data={item} key={index}/>
 			);
 		});
 
@@ -62,7 +55,7 @@ export default class Carousel extends React.Component {
 		if(this.state.transitionStatus === 'lock') {
 			return;
 		}
-		const nextIndex = (this.state.selectedIndex < this.state.data.length - 1) ? this.state.selectedIndex + 1 : 0;
+		const nextIndex = 0;//(this.state.selectedIndex < this.state.data.length - 1) ? this.state.selectedIndex + 1 : 0;
 		this.setState({
 			slideshowDirection: 'next',
 			transitionStatus: 'lock',
@@ -77,7 +70,7 @@ export default class Carousel extends React.Component {
 		if(this.state.transitionStatus === 'lock') {
 			return;
 		}
-		const nextIndex = (this.state.selectedIndex > 0) ? this.state.selectedIndex - 1 : this.state.data.length - 1;
+		const nextIndex = 0;//(this.state.selectedIndex > 0) ? this.state.selectedIndex - 1 : this.state.data.length - 1;
 		this.setState({
 			slideshowDirection: 'previous',
 			transitionStatus: 'lock',
@@ -96,13 +89,22 @@ export default class Carousel extends React.Component {
 	}
 
 	render () {
+		if (!this.props.data || this.props.data.length === 0) {
+			return null;
+		}
+
+		const carouselItemList = this.props.data.map(function (item, index) {
+			return (
+				<CarouselItem data={item} key={index}/>
+			);
+		});
 		return (
 			<div className="carousel-content--image">
 				<CSSTransitionGroup
 					transitionName={'animation--' + this.state.slideshowDirection}
 					transitionEnterTimeout={this.state.transformDuring}
 					transitionLeaveTimeout={this.state.transformDuring}>
-					{this.state.carouselItems[this.state.selectedIndex]}
+					{carouselItemList[this.state.selectedIndex]}
 				</CSSTransitionGroup>
 				<button className="arrow-left" onClick={this._previousSlide} />
 				<button className="arrow-right" onClick={this._nextSlide} />
