@@ -23,8 +23,7 @@ export default class CourseCard extends React.Component {
 
 	render () {
 		const enroll = this.props.enroll && this.props.enroll.OpenEnrollment &&
-			this.props.enroll.StoreEnrollment && this.props.enroll.FiveMinuteEnrollment &&
-			this.props.enroll.OpenEnrollment.enrolled;
+			this.props.enroll.StoreEnrollment && this.props.enroll.OpenEnrollment.enrolled;
 
 		const status = checkStatus (this.props.startDate, this.props.endDate);
 		let statusClass = status;
