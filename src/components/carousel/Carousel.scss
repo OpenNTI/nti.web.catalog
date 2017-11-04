@@ -36,13 +36,18 @@
 			margin: 0 auto;
 			position: relative;
 
+			.carousel_left {
+				width: 50%;
+				float: left;
+			}
+
 			.img-content {
 				object-fit: cover;
 				width: 361px;
 				height: 220px;
 				position: absolute;
-				top: 59%;
-				transform: translateY(-50%);
+				top: -40%;
+				transform: translateY(9%);
 				right: 40px;
 			}
 
