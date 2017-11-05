@@ -1,10 +1,14 @@
 import EventEmitter from 'events';
 
+import {getLink} from 'nti-lib-interfaces';
+
+const CHANGE = 'change';
+
 export default class CatalogStore extends EventEmitter {
 	constructor (service) {
-		super();
+		super ();
 
-		const {href} = service.getCollection('AllCourses', 'Courses');
+		const {href} = service.getCollection ('Courses', 'Catalog');
 
 		this.service = service;
 		this.href = href;
@@ -12,10 +16,18 @@ export default class CatalogStore extends EventEmitter {
 
 
 	async load () {
-		const {Items:items} = await this.service.get(this.href);
+		const {Items: courses, Links: links} = await this.service.get (this.href);
+		const {Items: popular} = await this.service.get (getLink(links, 'popular'));
+		const {Items: carousel} = await this.service.get (getLink(links, 'Featured'));
 
-		this.items = items;
-		this.emit('change', {type: 'items'});
+		const parse = x => this.service.getObject(x);
+		this.courses = await Promise.all( courses.map(parse) );
+		this.popular = await Promise.all( popular.map(parse) );
+		this.carousel = await Promise.all( carousel.map(parse) );
+
+		this.emit (CHANGE, {type: 'courses'});
+		this.emit (CHANGE, {type: 'popular'});
+		this.emit (CHANGE, {type: 'carousel'});
 	}
 
 
@@ -25,10 +37,10 @@ export default class CatalogStore extends EventEmitter {
 
 
 	addChangeListener (fn) {
-		this.addListener('change', fn);
+		this.addListener (CHANGE, fn);
 	}
 
 	removeChangeListener (fn) {
-		this.removeListener('change', fn);
+		this.removeListener (CHANGE, fn);
 	}
 }

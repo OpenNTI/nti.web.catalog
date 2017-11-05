@@ -1,0 +1,30 @@
+@import "~nti-style-common";
+
+.course-catalog {
+	.course-card {
+		&:hover {
+			.course-block {
+				cursor: pointer;
+
+				&:hover {
+					img {
+						transform: scale(1.3);
+					}
+				}
+			}
+		}
+
+		li {
+			list-style-type: none;
+		}
+	}
+
+	.content-right {
+		width: 77%;
+		float: right;
+
+		ul {
+			overflow: visible;
+		}
+	}
+}
