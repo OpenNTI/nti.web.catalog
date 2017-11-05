@@ -58,9 +58,11 @@
 				li {
 					float: left;
 					margin-right: 20px;
+
 					&:first-child {
 						list-style: transparent;
 					}
+
 					p {
 						color: $primary-blue;
 						font-size: 14px;
@@ -115,7 +117,6 @@
 				font-size: 50px;
 				color: #ebebeb;
 				font-weight: lighter;
-
 			}
 		}
 	}
