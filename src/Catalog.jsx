@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Carousel from './components/carousel/Carousel';
+// import Carousel from './components/carousel/Carousel';
 import GridCard from './components/grid-card/GridCard';
 import MenuBar from './components/menu-bar/MenuBar';
 import Search from './components/search/Search';
+import Redeem from './components/redeem/Redeem';
 
 export default class Catalog extends React.Component {
 	static propTypes = {
@@ -57,8 +58,9 @@ export default class Catalog extends React.Component {
 		return (
 			<div>
 				<div className="course-catalog">
+
 					<section className="carousel">
-						<Carousel data={this.props.carousel}/>
+						<Redeem/>
 					</section>
 					<section className="search">
 						<Search data={this.props.search}/>
