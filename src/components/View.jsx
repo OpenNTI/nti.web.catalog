@@ -3,7 +3,8 @@ import {getService} from 'nti-web-client';
 import {Searchable, contextual} from 'nti-web-search';
 import PropTypes from 'prop-types';
 
-import {Catalog as CatalogStore} from './stores';
+import {Catalog as CatalogStore} from '../stores';
+
 import Catalog from './Catalog';
 
 @contextual('catalog')
