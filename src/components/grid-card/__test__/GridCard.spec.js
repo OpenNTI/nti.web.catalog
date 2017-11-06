@@ -2,7 +2,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import GridCard from '../components/grid-card/GridCard';
+import GridCard from '../GridCard';
 
 describe('GridCard', () => {
 	const data = [];

@@ -1,0 +1,47 @@
+@import "~nti-style-common";
+
+.course-catalog-course-info {
+	.status-course {
+		overflow: hidden;
+		padding-bottom: 25px;
+
+		p {
+			&.title {
+				float: left;
+				color: $primary-grey;
+				font-size: 18px;
+				line-height: 24px;
+			}
+
+			&.status {
+				float: right;
+				color: $primary-green;
+				font-size: 18px;
+				line-height: 24px;
+			}
+		}
+	}
+
+	.detail-course {
+		p {
+			color: $primary-grey;
+			font-size: 14px;
+			line-height: 24px;
+		}
+	}
+
+	.add-course {
+		position: absolute;
+		bottom: 0;
+		background-color: $primary-blue;
+		width: 100%;
+		padding: 15px 0;
+		text-align: center;
+
+		a {
+			color: #fff;
+			font-size: 18px;
+			line-height: 24px;
+		}
+	}
+}
