@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Carousel from './components/carousel/Carousel';
-import GridCard from './components/grid-card/GridCard';
-import MenuBar from './components/menu-bar/MenuBar';
-import Search from './components/search/Search';
+import Carousel from './carousel/Carousel';
+import GridCard from './grid-card/GridCard';
+import MenuBar from './menu-bar/MenuBar';
+import Search from './search/Search';
 
 export default class Catalog extends React.Component {
 	static propTypes = {

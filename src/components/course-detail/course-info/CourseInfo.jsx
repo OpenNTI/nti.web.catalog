@@ -11,7 +11,7 @@ CourseInfo.propTypes = {
 
 export default function CourseInfo (course) {
 	return (
-		<div>
+		<div className="course-catalog-course-info">
 			<div className="status-course">
 				<p className="title">{course.info.title}</p>
 				<p className="status">{course.info.status}</p>

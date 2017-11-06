@@ -2,7 +2,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 
-import CarouselItem from '../components/carousel/carousel-item/CarouselItem';
+import CarouselItem from '../CarouselItem';
 
 describe('Carousel', () => {
 	const data = {
