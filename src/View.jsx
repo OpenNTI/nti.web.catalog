@@ -1,9 +1,9 @@
 import React from 'react';
 import {getService} from 'nti-web-client';
+import {Searchable} from 'nti-web-search';
 
 import {Catalog as CatalogStore} from './stores';
 import Catalog from './Catalog';
-import StoreConnector from './StoreConnector';
 
 export default class CatalogView extends React.Component {
 
@@ -25,9 +25,10 @@ export default class CatalogView extends React.Component {
 		if (!store) { return null; }
 
 		return (
-			<StoreConnector store={store} >
+			<Searchable searchable-store={store}
+				searchable-propMap={{popular: 'popular',courses: 'courses',carousel: 'carousel',search: 'search'}} >
 				<Catalog />
-			</StoreConnector>
+			</Searchable>
 		);
 	}
 }

@@ -4,88 +4,62 @@ import PropTypes from 'prop-types';
 
 import CarouselItem from './carousel-item/CarouselItem';
 
+const slideShowDelay = 10000;
+const transitionEnterTimeout = 1000;
+const transitionLeaveTimeout = 1000;
 export default class Carousel extends React.Component {
-	static defaultProps = {
-		data : [],
-		selectedIndex : 0,
-		slideshowDelay : 1000000,
-		slideshowDirection : 'next',
-		transitionStatus : 'free',
-		transformDuring : 1000,
-		carouselItems: []
-	}
 
 	static propTypes = {
 		data: PropTypes.array,
-		selectedIndex: PropTypes.number,
-		slideshowDelay: PropTypes.number,
-		slideshowDirection: PropTypes.string,
-		transitionStatus: PropTypes.string,
-		transformDuring: PropTypes.number,
-		carouselItems: PropTypes.array
 	};
 
 	constructor (props) {
 		super (props);
 
-		this.state = {...this.props};
+		this.state = {
+			selectedIndex: 0,
+			transitionStyle: 'next',
+			slideLock: false
+		};
 	}
 
-	componentWillMount () {
-		const carouselItems = this.state.data.map(function (item, index) {
-			return (
-				<CarouselItem data={item} key={index}/>
-			);
-		});
-
-		this.setState({
-			carouselItems: carouselItems
-		}, function () {
-			if(this.state.slideshowDelay) {
-				this.intervalID = setInterval(this._nextSlide, this.state.slideshowDelay);
-			}
-		});
+	componentWillReceiveProps () {
+		if (this.props.data) {
+			this.intervalID = setInterval (this.nextSlide, slideShowDelay);
+		}
 	}
 
 	componentWillUnmount () {
 		clearInterval(this.intervalID);
 	}
 
-	_nextSlide = () => {
-		if(this.state.transitionStatus === 'lock') {
-			return;
-		}
-		const nextIndex = 0;//(this.state.selectedIndex < this.state.data.length - 1) ? this.state.selectedIndex + 1 : 0;
-		this.setState({
-			slideshowDirection: 'next',
-			transitionStatus: 'lock',
-			selectedIndex: nextIndex
-		}, () => {
-			this._unclockTransitionStatusAfterTransform();
-		});
-
-	}
-
-	_previousSlide = () => {
-		if(this.state.transitionStatus === 'lock') {
-			return;
-		}
-		const nextIndex = 0;//(this.state.selectedIndex > 0) ? this.state.selectedIndex - 1 : this.state.data.length - 1;
-		this.setState({
-			slideshowDirection: 'previous',
-			transitionStatus: 'lock',
-			selectedIndex: nextIndex
-		}, () => {
-			this._unclockTransitionStatusAfterTransform();
-		});
-	}
-
-	_unclockTransitionStatusAfterTransform = () => {
+	unlockSlide () {
 		setTimeout(() => {
 			this.setState({
-				transitionStatus: 'free'
+				slideLock: false
 			});
-		}, this.state.transformDuring);
+		}, transitionEnterTimeout);
+	}
+
+	nextSlide = () => {
+		if (this.state.slideLock) {
+			return;
+		}
+		const nextIndex = (this.state.selectedIndex < this.props.data.length - 1) ? this.state.selectedIndex + 1 : 0;
+		this.setState ({selectedIndex: nextIndex, transitionStyle: 'next', slideLock: true}, () => {
+			this.unlockSlide ();
+		});
+
+	}
+
+	preSlide = () => {
+		if (this.state.slideLock) {
+			return;
+		}
+		const preIndex = (this.state.selectedIndex > 0) ? this.state.selectedIndex - 1 : this.props.data.length - 1;
+		this.setState ({selectedIndex: preIndex, transitionStyle: 'previous', slideLock: true}, () => {
+			this.unlockSlide ();
+		});
 	}
 
 	render () {
@@ -93,7 +67,7 @@ export default class Carousel extends React.Component {
 			return null;
 		}
 
-		const carouselItemList = this.props.data.map(function (item, index) {
+		const carouselItemList = this.props.data.map (function (item, index) {
 			return (
 				<CarouselItem data={item} key={index}/>
 			);
@@ -101,13 +75,13 @@ export default class Carousel extends React.Component {
 		return (
 			<div className="carousel-content--image">
 				<CSSTransitionGroup
-					transitionName={'animation--' + this.state.slideshowDirection}
-					transitionEnterTimeout={this.state.transformDuring}
-					transitionLeaveTimeout={this.state.transformDuring}>
+					transitionName={'animation--' + this.state.transitionStyle}
+					transitionEnterTimeout={transitionEnterTimeout}
+					transitionLeaveTimeout={transitionLeaveTimeout}>
 					{carouselItemList[this.state.selectedIndex]}
 				</CSSTransitionGroup>
-				<button className="icon-chevronup-25" onClick={this._previousSlide} />
-				<button className="icon-chevrondown-25" onClick={this._nextSlide} />
+				<button className="icon-chevronup-25" onClick={this.nextSlide}/>
+				<button className="icon-chevrondown-25" onClick={this.preSlide}/>
 			</div>
 		);
 	}

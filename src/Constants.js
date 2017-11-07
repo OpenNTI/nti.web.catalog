@@ -1,1 +1,1 @@
-export const TEST = 'TEST';
+export const VIEW_ALL_COURSES = 'VIEW_ALL_COURSES';
