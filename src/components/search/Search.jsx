@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import GridCard from '../grid-card/GridCard';
+import _ from 'lodash';
 
+import GridCard from '../grid-card/GridCard';
 import * as Actions from '../../Actions';
 
 export default class Search extends React.Component {
@@ -10,20 +11,18 @@ export default class Search extends React.Component {
 	}
 
 	viewAllCourse = () => {
-		Actions.viewAllCourses();
+		Actions.viewAllCourses ();
 	}
 
 	render () {
 		let term = '""';
-		if(this.props.data && this.props.data.term){
-			term = '"' + this.props.data.term + '"';
-		}
-
 		let courses = [];
-		if(this.props.data && this.props.data.courses){
-			courses = this.props.data.courses;
+		if (this.props.data && this.props.data.term) {
+			term = '"' + this.props.data.term + '"';
+			if (this.props.data.courses) {
+				courses = filterCourse(this.props.data.courses, this.props.data.term);
+			}
 		}
-
 		return (
 			<div>
 				<div className="search-result">
@@ -39,4 +38,13 @@ export default class Search extends React.Component {
 		);
 
 	}
+}
+
+function filterCourse (courses, term) {
+	let results = _.filter (courses,(item) => {
+		const title = item.title.toUpperCase();
+		term = term.toUpperCase();
+		return title.indexOf (term) > -1;
+	});
+	return results;
 }

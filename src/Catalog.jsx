@@ -54,26 +54,27 @@ export default class Catalog extends React.Component {
 		if (this.props.popular && this.props.popular.length !== 0) {
 			sideBarClass = 'content-catalog ';
 		}
-		let carouselClass = 'carousel';
-		let searchClass = 'search hidden';
-		if (this.props.search && this.props.search.searching) {
-			searchClass = 'search';
-			carouselClass = 'carousel hidden';
-			sideBarClass = 'content-catalog no-sidebar hidden';
-		}
+		const search = this.props.search && this.props.search.searching ? true : false;
+
 		return (
 			<div>
 				<div className="course-catalog">
-					<section className={carouselClass}>
-						<Carousel data={this.props.carousel}/>
-					</section>
-					<section className={searchClass}>
-						<Search data={this.props.search}/>
-					</section>
-					<section className={sideBarClass}>
-						<MenuBar popular={this.props.popular} tag={this.state.menuData.tag}/>
-						<GridCard data={this.props.courses}/>
-					</section>
+					{!search && (
+						<section className="carousel">
+							<Carousel data={this.props.carousel}/>
+						</section>
+					)}
+					{search && (
+						<section className="search">
+							<Search data={this.props.search}/>
+						</section>
+					)}
+					{!search && (
+						<section className={sideBarClass}>
+							<MenuBar popular={this.props.popular} tag={this.state.menuData.tag}/>
+							<GridCard data={this.props.courses}/>
+						</section>
+					)}
 				</div>
 			</div>
 		);
