@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// import Carousel from './components/carousel/Carousel';
+import Carousel from './components/carousel/Carousel';
 import GridCard from './components/grid-card/GridCard';
 import MenuBar from './components/menu-bar/MenuBar';
 import Search from './components/search/Search';
-import Redeem from './components/redeem/Redeem';
 
 export default class Catalog extends React.Component {
 	static propTypes = {
@@ -51,21 +50,27 @@ export default class Catalog extends React.Component {
 	}
 
 	render () {
-		let contentClass = 'content-catalog no-sidebar';
+		let sideBarClass = 'content-catalog no-sidebar';
 		if (this.props.popular && this.props.popular.length !== 0) {
-			contentClass = 'content-catalog ';
+			sideBarClass = 'content-catalog ';
+		}
+		let carouselClass = 'carousel';
+		let searchClass = 'search hidden';
+		if (this.props.search && this.props.search.searching) {
+			searchClass = 'search';
+			carouselClass = 'carousel hidden';
+			sideBarClass = 'content-catalog no-sidebar hidden';
 		}
 		return (
 			<div>
 				<div className="course-catalog">
-
-					<section className="carousel">
-						<Redeem/>
+					<section className={carouselClass}>
+						<Carousel data={this.props.carousel}/>
 					</section>
-					<section className="search">
+					<section className={searchClass}>
 						<Search data={this.props.search}/>
 					</section>
-					<section className={contentClass}>
+					<section className={sideBarClass}>
 						<MenuBar popular={this.props.popular} tag={this.state.menuData.tag}/>
 						<GridCard data={this.props.courses}/>
 					</section>
