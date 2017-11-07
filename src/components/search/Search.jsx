@@ -27,7 +27,8 @@ export default class Search extends React.Component {
 		return (
 			<div>
 				<div className="search-result">
-					<a className="icon-chevron-left" onClick={this.viewAllCourse}>View all courses</a>
+					<a className="icon-chevron-left"/>
+					<a onClick={this.viewAllCourse}>View all courses</a>
 					<p>Result for {term}</p>
 				</div>
 				<div className="content-catalog no-sidebar">
