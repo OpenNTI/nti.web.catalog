@@ -24,11 +24,18 @@ export default class Carousel extends React.Component {
 	}
 
 	componentWillReceiveProps () {
+		clearInterval(this.intervalID);
 		if (this.props.data) {
 			this.intervalID = setInterval (this.nextSlide, slideShowDelay);
 		}
 	}
 
+	componentWillMount(){
+		clearInterval(this.intervalID);
+		if (this.props.data) {
+			this.intervalID = setInterval (this.nextSlide, slideShowDelay);
+		}
+	}
 	componentWillUnmount () {
 		clearInterval(this.intervalID);
 	}
