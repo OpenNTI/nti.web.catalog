@@ -45,6 +45,7 @@
     "invariant": "^2.2.2",
     "isempty": "0.0.1",
     "jstimezonedetect": "^1.0.6",
+    "lodash": "^4.17.4",
     "moment-timezone": "^0.5.13",
     "nti-lib-dispatcher": "^1.0.0",
     "nti-lib-interfaces": "^1.65.1",
