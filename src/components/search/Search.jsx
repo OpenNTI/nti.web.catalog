@@ -43,7 +43,7 @@ export default class Search extends React.Component {
 }
 
 function filterCourse (courses, term) {
-	let results = _.filter (courses, (item) => {
+	return _.filter (courses, (item) => {
 		const title = item.title ? item.title.toUpperCase () : '';
 		const id = item.ProviderUniqueID ? item.ProviderUniqueID.toUpperCase () : '';
 		const creator = item.creator ? item.creator.toUpperCase () : '';
@@ -59,5 +59,4 @@ function filterCourse (courses, term) {
 
 		return id.indexOf (term) > -1;
 	});
-	return results;
 }
