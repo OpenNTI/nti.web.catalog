@@ -20,7 +20,7 @@ export default class Search extends React.Component {
 		if (this.props.data && this.props.data.term) {
 			term = '"' + this.props.data.term + '"';
 			if (this.props.data.courses) {
-				courses = filterCourse(this.props.data.courses, this.props.data.term);
+				courses = filterCourse (this.props.data.courses, this.props.data.term);
 			}
 		}
 		return (
@@ -31,7 +31,7 @@ export default class Search extends React.Component {
 						<a onClick={this.viewAllCourse}>View all courses</a>
 						<p>Result for {term}</p>
 					</div>
-				</div>		
+				</div>
 				<div className="content-catalog no-sidebar">
 					<GridCard data={courses}/>
 				</div>
@@ -43,10 +43,21 @@ export default class Search extends React.Component {
 }
 
 function filterCourse (courses, term) {
-	let results = _.filter (courses,(item) => {
-		const title = item.title.toUpperCase();
-		term = term.toUpperCase();
-		return title.indexOf (term) > -1;
+	let results = _.filter (courses, (item) => {
+		const title = item.title ? item.title.toUpperCase () : '';
+		const id = item.ProviderUniqueID ? item.ProviderUniqueID.toUpperCase () : '';
+		const creator = item.creator ? item.creator.toUpperCase () : '';
+		term = term.toUpperCase ();
+
+		if (title.indexOf (term) > -1) {
+			return true;
+		}
+
+		if (creator.indexOf (term) > -1) {
+			return true;
+		}
+
+		return id.indexOf (term) > -1;
 	});
 	return results;
 }
