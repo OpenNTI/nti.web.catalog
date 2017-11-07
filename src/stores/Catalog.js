@@ -21,7 +21,6 @@ export default class CatalogStore extends EventEmitter {
 			const action = payload.action;
 			switch (action.type) {
 			case Constants.VIEW_ALL_COURSES:
-				console.log ('view all course nha');
 				this.search = {
 					searching: false
 				};
@@ -57,25 +56,12 @@ export default class CatalogStore extends EventEmitter {
 	}
 
 	updateSearchTerm (term) {
-		console.log ('search here', term);
-		// clearTimeout (this.searchTimeout);
-
 		this.search = {
 			searching: true,
 			term: term,
 			courses: this.courses
 		};
-
 		this.emit ('change', {type: 'search'});
-
-		// this.searchTimeout = setTimeout (async () => {
-		// 	// const items = await this.callAPIWithFilter(term);
-		// 	this.popular = [];
-		// 	this.carousel = [];
-		// 	this.emit ('change', {type: 'popular'});
-		// 	this.emit ('change', {type: 'courses'});
-		// 	this.emit ('change', {type: 'search'});
-		// }, 100);
 	}
 
 	addChangeListener (fn) {
