@@ -6,17 +6,14 @@ import {getLink} from 'nti-lib-interfaces';
 import * as Constants from '../Constants';
 
 
-
 const CHANGE = 'change';
 
 export default class CatalogStore extends EventEmitter {
 	constructor (service) {
 		super ();
 
-		const {href} = service.getCollection ('Courses', 'Catalog');
-
 		this.service = service;
-		this.href = href;
+
 		AppDispatcher.register ((payload) => {
 			const action = payload.action;
 			switch (action.type) {
@@ -31,15 +28,30 @@ export default class CatalogStore extends EventEmitter {
 	}
 
 
-	async load () {
-		const {Items: courses, Links: links} = await this.service.get (this.href);
-		const {Items: popular} = await this.service.get (getLink (links, 'popular'));
-		const {Items: carousel} = await this.service.get (getLink (links, 'Featured'));
-
+	async load (collection) {
+		if (!collection) {
+			return;
+		}
+		const {Items: courses,} = collection;
+		const links = collection.Links;
 		const parse = x => this.service.getObject (x);
 		this.courses = await Promise.all (courses.map (parse));
-		this.popular = await Promise.all (popular.map (parse));
-		this.carousel = await Promise.all (carousel.map (parse));
+		let popular = {Items: []};
+		let carousel = {Items: []};
+		try {
+			popular = await this.service.get (getLink (links, 'popular'));
+		}
+		catch (e) {
+			popular = {Items: []};
+		}
+		try {
+			carousel = await this.service.get (getLink (links, 'Featured'));
+		}
+		catch (e) {
+			carousel = {Items: []};
+		}
+		this.popular = await Promise.all (popular.Items.map (parse));
+		this.carousel = await Promise.all (carousel.Items.map (parse));
 		this.search = {
 			searching: false
 		};
