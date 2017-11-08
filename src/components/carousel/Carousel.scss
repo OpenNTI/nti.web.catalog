@@ -151,7 +151,8 @@
 				transition: transform 1s;
 
 				&.animation--next-leave-active {
-					transform: translate(-100%, 0);
+					transform: translate(-100%, 0%);
+					width: 100%;
 				}
 			}
 		}
@@ -174,7 +175,8 @@
 				transition: transform 1s;
 
 				&.animation--previous-leave-active {
-					transform: translate(100%, 0);
+					transform: translate(100%, 0%);
+					width: 100%;
 				}
 			}
 		}
