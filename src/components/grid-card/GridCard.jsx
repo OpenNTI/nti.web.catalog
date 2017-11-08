@@ -25,7 +25,7 @@ export default class GridCard extends React.Component {
 									courseTitle={course.Title}
 									courseId={course.ProviderUniqueID}
 									author={course.creator}
-									enroll={course.EnrollmentOptions.Items}
+									enroll={course.EnrollmentOptions}
 									ntiid={course.NTIID}
 									startDate={course.StartDate}
 									endDate={course.EndDate}
