@@ -16,11 +16,6 @@ export default class CourseCard extends React.Component {
 		course: PropType.object
 	}
 
-	showDetail = () => {
-		const detailLink = `./object/${encodeForURI (this.props.ntiid)}`;
-		window.open (detailLink, '_self');
-	}
-
 	render () {
 		const enroll = this.props.enroll && this.props.enroll.OpenEnrollment &&
 			this.props.enroll.StoreEnrollment && this.props.enroll.OpenEnrollment.enrolled;
@@ -32,27 +27,29 @@ export default class CourseCard extends React.Component {
 		}
 
 		return (
-			<div className="course-panel" onClick={this.showDetail}>
-				<figure>
-					<Presentation.Asset contentPackage={this.props.course} propName="src" type="landing">
-						<img />
-					</Presentation.Asset>
-				</figure>
-				<div className="info-course"><span>{this.props.courseId}</span>
-					<h3>{this.props.courseTitle}</h3>
-					<a>{this.props.author}</a>
+			<a href={`./object/${encodeForURI(this.props.ntiid)}`}>
+				<div className="course-panel">
+					<figure>
+						<Presentation.Asset contentPackage={this.props.course} propName="src" type="landing">
+							<img />
+						</Presentation.Asset>
+					</figure>
+					<div className="info-course"><span>{this.props.courseId}</span>
+						<h3>{this.props.courseTitle}</h3>
+						<a>{this.props.author}</a>
+					</div>
+					{enroll && (
+						<div className="stamp"><a className="enroll">ENROLLED</a></div>)}
+					{status === 'start' && (
+						<div className="stamp">
+							<a className={statusClass}>Starts <DateTime date={this.props.startDate} format="ll"/></a>
+						</div>)}
+					{status === 'finish' && (
+						<div className="stamp">
+							<a className={statusClass}>Finish <DateTime date={this.props.endDate} format="ll"/></a>
+						</div>)}
 				</div>
-				{enroll && (
-					<div className="stamp"><a className="enroll">ENROLLED</a></div>)}
-				{status === 'start' && (
-					<div className="stamp">
-						<a className={statusClass}>Starts <DateTime date={this.props.startDate} format="ll"/></a>
-					</div>)}
-				{status === 'finish' && (
-					<div className="stamp">
-						<a className={statusClass}>Finish <DateTime date={this.props.endDate} format="ll"/></a>
-					</div>)}
-			</div>
+			</a>
 		);
 	}
 }
