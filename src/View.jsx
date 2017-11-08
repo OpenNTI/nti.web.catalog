@@ -16,7 +16,6 @@ export default class CatalogView extends React.Component {
 	state = {}
 
 	async componentWillReceiveProps (nextProps) {
-		console.log('received props');
 		const {collection:newCollection} = nextProps;
 		const {collection:oldCollection} = this.props;
 
