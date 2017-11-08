@@ -148,10 +148,10 @@
 				position: absolute;
 				top: 0;
 				transform: translate(0, 0);
-				transition: transform 1s;
+				transition: transform 0s;
 
 				&.animation--next-leave-active {
-					transform: translate(-100%, 0);
+					transform: translate(-100%, -100%);
 				}
 			}
 		}
@@ -171,10 +171,10 @@
 				position: absolute;
 				top: 0;
 				transform: translate(0, 0);
-				transition: transform 1s;
+				transition: transform 0s;
 
 				&.animation--previous-leave-active {
-					transform: translate(100%, 0);
+					transform: translate(-100%, -100%);
 				}
 			}
 		}
