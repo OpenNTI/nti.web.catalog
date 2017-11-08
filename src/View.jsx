@@ -1,10 +1,11 @@
 import React from 'react';
 import {getService} from 'nti-web-client';
-import {Searchable} from 'nti-web-search';
+import {Searchable, contextual} from 'nti-web-search';
 
 import {Catalog as CatalogStore} from './stores';
 import Catalog from './Catalog';
 
+@contextual('catalog')
 export default class CatalogView extends React.Component {
 
 	state = {}
