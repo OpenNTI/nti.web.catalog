@@ -84,7 +84,7 @@ export default class Redeem extends React.Component {
 		return (
 			<div className="course-catalog">
 				{this.state.success && (
-					<div className='success-redeem'>
+					<div className="success-redeem">
 						<p>You have been enrolled.</p>
 						<span className="close-alert"/>
 					</div>
