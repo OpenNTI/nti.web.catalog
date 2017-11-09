@@ -4,7 +4,7 @@
 	.content-catalog.no-sidebar {
 		&.no-sidebar {
 			.course-block {
-				width: 23%;
+				width: 250px;
 
 				&:nth-child(3n+3) {
 					margin-right: 2%;
@@ -14,7 +14,7 @@
 	}
 
 	.course-block {
-		width: 31.33%;
+		width: 250px;
 		background-color: #fff;
 		box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
 		// min-height: 290px;

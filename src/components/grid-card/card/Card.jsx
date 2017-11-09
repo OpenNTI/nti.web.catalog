@@ -45,7 +45,7 @@ export default class CourseCard extends React.Component {
 						</div>)}
 					{status === 'finish' && (
 						<div className="stamp">
-							<a className={statusClass}>Finish <DateTime date={this.props.endDate} format="ll"/></a>
+							<a className={statusClass}>Finished <DateTime date={this.props.endDate} format="ll"/></a>
 						</div>)}
 				</div>
 			</a>
