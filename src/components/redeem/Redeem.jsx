@@ -22,6 +22,10 @@ export default class Redeem extends React.Component {
 	}
 
 	redeemCourse = () => {
+		if(!this.state.codeValue || this.state.codeValue === ''){
+			this.setState({error:true, errorMessage: 'Could not redeem course code'});
+			return;
+		}
 		const url = this.props.inviteLink;
 		const redeemCode = {'invitation_codes': this.state.codeValue};
 
@@ -37,7 +41,7 @@ export default class Redeem extends React.Component {
 				return results;
 			})
 			.catch (function (reason) {
-				const res = JSON.parse(reason.responseText);
+				const res = JSON.parse(reason.responseText) || {};
 				const err = res.message || 'Error with the code.';
 				me.setState ({error: true, errorMessage: err, loading:false});
 				// return Promise.reject (reason);
