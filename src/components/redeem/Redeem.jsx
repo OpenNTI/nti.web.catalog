@@ -51,7 +51,7 @@ export default class Redeem extends React.Component {
 	}
 
 	__buildXHR (url, method, success, failure) {
-		var xhr = new XMLHttpRequest ();
+		const xhr = new XMLHttpRequest ();
 		xhr.open (method || 'POST', url, true);
 
 		xhr.onreadystatechange = function () {
@@ -73,10 +73,10 @@ export default class Redeem extends React.Component {
 	}
 
 	__submitJSON (values, url, method) {
-		var me = this;
+		let me = this;
 
 		return new Promise (function (fulfill, reject) {
-			var xhr = me.__buildXHR (url, method, fulfill, reject);
+			const xhr = me.__buildXHR (url, method, fulfill, reject);
 
 			xhr.setRequestHeader ('Content-Type', 'application/json');
 			xhr.send (JSON.stringify (values));
