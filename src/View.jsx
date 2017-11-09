@@ -5,12 +5,15 @@ import PropTypes from 'prop-types';
 
 import {Catalog as CatalogStore} from './stores';
 import Catalog from './Catalog';
+import Redeem from './components/redeem/Redeem';
 
 @contextual('catalog')
 export default class CatalogView extends React.Component {
 
 	static propTypes ={
-		collection: PropTypes.object
+		collection: PropTypes.object,
+		redeem: PropTypes.bool,
+		invite: PropTypes.string
 	}
 
 	state = {}
@@ -19,7 +22,7 @@ export default class CatalogView extends React.Component {
 		const {collection:newCollection} = nextProps;
 		const {collection:oldCollection} = this.props;
 
-		if (newCollection !== oldCollection) {
+		if (newCollection !== oldCollection && newCollection) {
 			this.state.store.load(newCollection);
 		}
 
@@ -28,8 +31,9 @@ export default class CatalogView extends React.Component {
 	async componentDidMount () {
 		const service = await getService();
 		const store = new CatalogStore(service);
-
-		store.load(this.props.collection);
+		if (this.props.collection) {
+			store.load (this.props.collection);
+		}
 
 		this.setState({store});
 	}
@@ -39,6 +43,10 @@ export default class CatalogView extends React.Component {
 		const {store} = this.state;
 
 		if (!store) { return null; }
+
+		if (this.props.redeem) {
+			return (<Redeem inviteLink={this.props.invite}/>);
+		}
 
 		return (
 			<Searchable searchable-store={store}
