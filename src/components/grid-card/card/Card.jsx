@@ -1,24 +1,23 @@
 import React from 'react';
-import PropType from 'prop-types';
+import PropTypes from 'prop-types';
 import {encodeForURI} from 'nti-lib-ntiids';
 import {DateTime, Presentation} from 'nti-web-commons';
 
 export default class CourseCard extends React.Component {
 	static propTypes = {
-		imgUrl: PropType.string,
-		courseId: PropType.string,
-		courseTitle: PropType.string,
-		author: PropType.string,
-		enroll: PropType.object,
-		startDate: PropType.string,
-		endDate: PropType.string,
-		ntiid: PropType.string,
-		course: PropType.object
+		courseId: PropTypes.string,
+		courseTitle: PropTypes.string,
+		author: PropTypes.string,
+		enroll: PropTypes.object,
+		startDate: PropTypes.string,
+		endDate: PropTypes.string,
+		ntiid: PropTypes.string,
+		course: PropTypes.object
 	}
 
 	render () {
-		const enroll = this.props.enroll && this.props.enroll.OpenEnrollment &&
-			this.props.enroll.StoreEnrollment && this.props.enroll.OpenEnrollment.enrolled;
+		const enroll = this.props.enroll && this.props.enroll.Items && this.props.enroll.Items.OpenEnrollment &&
+			this.props.enroll.Items.StoreEnrollment && this.props.enroll.Items.OpenEnrollment.enrolled;
 
 		const status = checkStatus (this.props.startDate, this.props.endDate);
 		let statusClass = status;
