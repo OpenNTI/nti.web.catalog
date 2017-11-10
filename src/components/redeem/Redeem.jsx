@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 
 export default class Redeem extends React.Component {
 	static propTypes = {
-		inviteLink: PropTypes.string
+		inviteLink: PropTypes.string,
+		service: PropTypes.object
 	};
 
 	constructor (props) {
@@ -37,57 +38,21 @@ export default class Redeem extends React.Component {
 		let me = this;
 		this.setState ({loading: true});
 
-		this.__submitJSON (redeemCode, url, 'POST')
-			.then (function (results) {
-				me.setState ({loading: false, success: true});
-				setTimeout (() => {
-					me.setState ({success: false});
+		this.props.service.post(url, redeemCode)
+			.then(function (results) {
+				me.setState({loading: false, success: true});
+				setTimeout(() => {
+					me.setState({success: false});
 				}, 3000);
 				return results;
 			})
-			.catch (function (reason) {
-				const res = JSON.parse (reason.responseText) || {};
+			.catch(function (reason) {
+				const res = JSON.parse(reason.responseText) || {};
 				const err = res.message || 'Error with the code.';
-				me.setState ({error: true, errorMessage: err, loading: false, inputErrClass: 'error-input-redeem'});
+				me.setState({error: true, errorMessage: err, loading: false, inputErrClass: 'error-input-redeem'});
 				// return Promise.reject (reason);
 			});
-
-
 	}
-
-	__buildXHR (url, method, success, failure) {
-		const xhr = new XMLHttpRequest ();
-		xhr.open (method || 'POST', url, true);
-
-		xhr.onreadystatechange = function () {
-			if (xhr.readyState === 4) {
-				if (xhr.status >= 200 && xhr.status < 300) {
-					success (xhr.responseText);
-				} else {
-					failure ({
-						status: xhr.status,
-						responseText: xhr.responseText
-					});
-				}
-			}
-		};
-
-		xhr.setRequestHeader ('X-Requested-With', 'XMLHttpRequest');
-
-		return xhr;
-	}
-
-	__submitJSON (values, url, method) {
-		let me = this;
-
-		return new Promise (function (fulfill, reject) {
-			const xhr = me.__buildXHR (url, method, fulfill, reject);
-
-			xhr.setRequestHeader ('Content-Type', 'application/json');
-			xhr.send (JSON.stringify (values));
-		});
-	}
-
 
 	render () {
 		return (
