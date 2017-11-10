@@ -20,8 +20,8 @@ export default class GridCard extends React.Component {
 					{this.props.data.map ((course, index) => {
 						let enroll = {};
 						try {
-							enroll = course.getEnrollmentOptions();
-						}catch (e){
+							enroll = course.getEnrollmentOptions ();
+						} catch (e) {
 							enroll = {};
 						}
 						return (

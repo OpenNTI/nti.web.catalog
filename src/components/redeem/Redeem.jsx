@@ -13,17 +13,22 @@ export default class Redeem extends React.Component {
 			errorMessage: 'Could not redeem course code',
 			codeValue: null,
 			loading: false,
-			success: false
+			success: false,
+			inputErrClass: ''
 		};
 	}
 
 	handleChange = (e) => {
-		this.setState ({codeValue: e.target.value, error: false});
+		this.setState ({codeValue: e.target.value, error: false, inputErrClass: ''});
 	}
 
 	redeemCourse = () => {
 		if (!this.state.codeValue || this.state.codeValue === '') {
-			this.setState ({error: true, errorMessage: 'Could not redeem course code'});
+			this.setState ({
+				error: true,
+				errorMessage: 'Could not redeem course code',
+				inputErrClass: 'error-input-redeem'
+			});
 			return;
 		}
 		const url = this.props.inviteLink;
@@ -43,7 +48,7 @@ export default class Redeem extends React.Component {
 			.catch (function (reason) {
 				const res = JSON.parse (reason.responseText) || {};
 				const err = res.message || 'Error with the code.';
-				me.setState ({error: true, errorMessage: err, loading: false});
+				me.setState ({error: true, errorMessage: err, loading: false, inputErrClass: 'error-input-redeem'});
 				// return Promise.reject (reason);
 			});
 
@@ -99,7 +104,7 @@ export default class Redeem extends React.Component {
 						<p>Please provide a redemption code below to redeem your course.</p>
 					</div>
 					<div className="input-redeem">
-						<input type="text" name="txtredeem" placeholder="Enter your redemption code"
+						<input type="text" className={this.state.inputErrClass} name="txtredeem" placeholder="Enter your redemption code"
 							onChange={this.handleChange}/>
 						<button onClick={this.redeemCourse}>Redeem</button>
 					</div>
