@@ -100,7 +100,7 @@ export default class Redeem extends React.Component {
 					</div>
 					<div className="input-redeem">
 						<input type="text" name="txtredeem" placeholder="Enter your redemption code"
-							   onChange={this.handleChange}/>
+							onChange={this.handleChange}/>
 						<button onClick={this.redeemCourse}>Redeem</button>
 					</div>
 					{this.state.loading && (
