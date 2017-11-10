@@ -22,28 +22,28 @@ export default class Redeem extends React.Component {
 	}
 
 	redeemCourse = () => {
-		if(!this.state.codeValue || this.state.codeValue === ''){
-			this.setState({error:true, errorMessage: 'Could not redeem course code'});
+		if (!this.state.codeValue || this.state.codeValue === '') {
+			this.setState ({error: true, errorMessage: 'Could not redeem course code'});
 			return;
 		}
 		const url = this.props.inviteLink;
 		const redeemCode = {'invitation_codes': this.state.codeValue};
 
 		let me = this;
-		this.setState({loading: true});
+		this.setState ({loading: true});
 
 		this.__submitJSON (redeemCode, url, 'POST')
 			.then (function (results) {
-				me.setState ({loading: false, success:true});
-				setTimeout(() => {
-					me.setState({ success:false});
+				me.setState ({loading: false, success: true});
+				setTimeout (() => {
+					me.setState ({success: false});
 				}, 3000);
 				return results;
 			})
 			.catch (function (reason) {
-				const res = JSON.parse(reason.responseText) || {};
+				const res = JSON.parse (reason.responseText) || {};
 				const err = res.message || 'Error with the code.';
-				me.setState ({error: true, errorMessage: err, loading:false});
+				me.setState ({error: true, errorMessage: err, loading: false});
 				// return Promise.reject (reason);
 			});
 
@@ -100,7 +100,7 @@ export default class Redeem extends React.Component {
 					</div>
 					<div className="input-redeem">
 						<input type="text" name="txtredeem" placeholder="Enter your redemption code"
-							onChange={this.handleChange}/>
+							   onChange={this.handleChange}/>
 						<button onClick={this.redeemCourse}>Redeem</button>
 					</div>
 					{this.state.loading && (
