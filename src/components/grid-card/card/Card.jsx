@@ -35,17 +35,17 @@ export default class CourseCard extends React.Component {
 					</figure>
 					<div className="info-course"><span>{this.props.courseId}</span>
 						<h3>{this.props.courseTitle}</h3>
-						<a>{this.props.author}</a>
+						<p>{this.props.author}</p>
 					</div>
 					{enroll && (
-						<div className="stamp"><a className="enroll">ENROLLED</a></div>)}
+						<div className="stamp"><span className="enroll">ENROLLED</span></div>)}
 					{status === 'start' && (
 						<div className="stamp">
-							<a className={statusClass}>Starts <DateTime date={this.props.startDate} format="ll"/></a>
+							<span className={statusClass}>Starts <DateTime date={this.props.startDate} format="ll"/></span>
 						</div>)}
 					{status === 'finish' && (
 						<div className="stamp">
-							<a className={statusClass}>Finished <DateTime date={this.props.endDate} format="ll"/></a>
+							<span className={statusClass}>Finished <DateTime date={this.props.endDate} format="ll"/></span>
 						</div>)}
 				</div>
 			</a>
