@@ -15,7 +15,7 @@ export default class Redeem extends React.Component {
 		this.state = {
 			error: false,
 			errorMessage: 'Could not redeem course code',
-			codeValue: null,
+			codeValue: '',
 			loading: false,
 			success: false,
 			inputErrClass: ''
