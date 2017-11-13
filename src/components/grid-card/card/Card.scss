@@ -2,30 +2,34 @@
 
 .course-catalog {
 	.content-catalog.no-sidebar {
-		&.no-sidebar {
-			.course-block {
-				width: 23%;
 
-				&:nth-child(3n+3) {
-					margin-right: 2%;
-				}
+		&.no-sidebar {
+
+			.course-block {
+				width: 232px;
+				margin: 12px;
+			}
+
+			.content-right {
+				width: 100%;
 			}
 		}
 	}
 
 	.course-block {
-		width: 31.33%;
+		width: 232px;
 		background-color: #fff;
 		box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
 		// min-height: 290px;
 		padding: 5px;
-		margin-right: 2%;
 		position: relative;
-		float: left;
-		margin-bottom: 2%;
 		min-height: 290px;
 		list-style: none;
-
+		float: left;
+		margin: 0 10px 20px 10px;
+		&:nth-child(3n+3) {
+			margin-right: 0;
+		}
 		figure {
 			overflow: hidden;
 			// width: 236px;
@@ -70,7 +74,7 @@
 				margin: 0 0 15px;
 			}
 
-			a {
+			p {
 				text-transform: uppercase;
 				display: block;
 				color: $primary-blue;
@@ -81,7 +85,7 @@
 		}
 
 		.stamp {
-			a {
+			span {
 				position: absolute;
 				top: 15px;
 				left: 10px;
@@ -128,8 +132,5 @@
 			}
 		}
 
-		&:nth-child(3n+3) {
-			margin-right: 0;
-		}
 	}
 }

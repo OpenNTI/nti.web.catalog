@@ -17,7 +17,7 @@ export default class CourseCard extends React.Component {
 
 	render () {
 		const enroll = this.props.enroll && this.props.enroll.Items && this.props.enroll.Items.OpenEnrollment &&
-			this.props.enroll.Items.StoreEnrollment && this.props.enroll.Items.OpenEnrollment.enrolled;
+			this.props.enroll.Items.OpenEnrollment.enrolled;
 
 		const status = checkStatus (this.props.startDate, this.props.endDate);
 		let statusClass = status;
@@ -35,17 +35,17 @@ export default class CourseCard extends React.Component {
 					</figure>
 					<div className="info-course"><span>{this.props.courseId}</span>
 						<h3>{this.props.courseTitle}</h3>
-						<a>{this.props.author}</a>
+						<p>{this.props.author}</p>
 					</div>
 					{enroll && (
-						<div className="stamp"><a className="enroll">ENROLLED</a></div>)}
+						<div className="stamp"><span className="enroll">ENROLLED</span></div>)}
 					{status === 'start' && (
 						<div className="stamp">
-							<a className={statusClass}>Starts <DateTime date={this.props.startDate} format="ll"/></a>
+							<span className={statusClass}>Starts <DateTime date={this.props.startDate} format="ll"/></span>
 						</div>)}
 					{status === 'finish' && (
 						<div className="stamp">
-							<a className={statusClass}>Finish <DateTime date={this.props.endDate} format="ll"/></a>
+							<span className={statusClass}>Finished <DateTime date={this.props.endDate} format="ll"/></span>
 						</div>)}
 				</div>
 			</a>
