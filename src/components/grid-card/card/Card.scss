@@ -2,15 +2,22 @@
 
 .course-catalog {
 	.content-catalog.no-sidebar {
+
 		&.no-sidebar {
+
 			.course-block {
 				width: 232px;
+				margin: 12px;
+			}
+
+			.content-right {
+				width: 100%;
 			}
 		}
 	}
 
 	.course-block {
-		width: 250px;
+		width: 232px;
 		background-color: #fff;
 		box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
 		// min-height: 290px;
@@ -19,7 +26,10 @@
 		min-height: 290px;
 		list-style: none;
 		float: left;
-		margin: 12px;
+		margin: 0 10px 20px 10px;
+		&:nth-child(3n+3) {
+			margin-right: 0;
+		}
 		figure {
 			overflow: hidden;
 			// width: 236px;
