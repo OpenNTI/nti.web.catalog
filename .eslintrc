@@ -1,3 +1,11 @@
 {
-	"extends": "./node_modules/nti-cmp-scripts/config/eslintrc.js"
+	"extends": "./node_modules/nti-cmp-scripts/config/eslintrc.js",
+	"rules": {
+		"no-console": 0,
+		"no-underscore-dangle": "off",
+		"no-var": "off",
+		"strict": ["error", "never"],
+		"import/no-commonjs": "off",
+		"import/no-extraneous-dependencies": "off",
+	}
 }

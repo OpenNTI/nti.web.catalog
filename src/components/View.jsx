@@ -14,8 +14,7 @@ export default class CatalogView extends React.Component {
 	static propTypes ={
 		collection: PropTypes.object,
 		redeem: PropTypes.bool,
-		invite: PropTypes.string,
-		service: PropTypes.object
+		redeemCollection: PropTypes.object
 	}
 
 	state = {}
@@ -47,7 +46,7 @@ export default class CatalogView extends React.Component {
 		if (!store) { return null; }
 
 		if (this.props.redeem) {
-			return (<Redeem inviteLink={this.props.invite} service={this.props.service}/>);
+			return (<Redeem redeemCollection={this.props.redeemCollection}/>);
 		}
 
 		return (

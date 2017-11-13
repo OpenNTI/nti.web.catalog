@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {getService} from 'nti-web-client';
+import {getLink} from 'nti-lib-interfaces';
 
 export default class Redeem extends React.Component {
 	static propTypes = {
 		inviteLink: PropTypes.string,
+		redeemCollection: PropTypes.object,
 		service: PropTypes.object
 	};
 
@@ -32,26 +35,27 @@ export default class Redeem extends React.Component {
 			});
 			return;
 		}
-		const url = this.props.inviteLink;
 		const redeemCode = {'invitation_codes': this.state.codeValue};
 
 		let me = this;
 		this.setState ({loading: true});
 
-		this.props.service.post(url, redeemCode)
-			.then(function (results) {
-				me.setState({loading: false, success: true});
-				setTimeout(() => {
-					me.setState({success: false});
-				}, 3000);
-				return results;
-			})
-			.catch(function (reason) {
-				const res = JSON.parse(reason.responseText) || {};
-				const err = res.message || 'Error with the code.';
-				me.setState({error: true, errorMessage: err, loading: false, inputErrClass: 'error-input-redeem'});
-				// return Promise.reject (reason);
-			});
+		const link = getLink(this.props.redeemCollection, 'accept-course-invitations');
+		getService().then(service => {
+			service.postParseResponse(link, redeemCode)
+				.then(function (results) {
+					me.setState({loading: false, success: true});
+					setTimeout(() => {
+						me.setState({success: false, codeValue:''});
+					}, 3000);
+					return results;
+				})
+				.catch(function (reason) {
+					const err = reason.message || 'Error with the code.';
+					me.setState({error: true, errorMessage: err, loading: false, inputErrClass: 'error-input-redeem'});
+					// return Promise.reject (reason);
+				});
+		});
 	}
 
 	render () {
@@ -70,7 +74,7 @@ export default class Redeem extends React.Component {
 					</div>
 					<div className="input-redeem">
 						<input type="text" className={this.state.inputErrClass} name="txtredeem" placeholder="Enter your redemption code"
-							onChange={this.handleChange}/>
+							value={this.state.codeValue} onChange={this.handleChange}/>
 						<button onClick={this.redeemCourse}>Redeem</button>
 					</div>
 					{this.state.loading && (
