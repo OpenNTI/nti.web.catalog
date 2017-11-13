@@ -4,7 +4,7 @@
   "author": "nextthought",
   "description": "Shows thing that a user can get access to",
   "license": "UNLICENSED",
-  "main": "./lib/index-cjs.js",
+  "main": "./lib/index.js",
   "module": "./lib/index.js",
   "files": [
     "lib"
@@ -53,6 +53,7 @@
     "nti-lib-interfaces": "^1.65.1",
     "nti-lib-ntiids": "^1.1.0-alpha",
     "nti-lib-store-connector": "0.x.x",
+    "nti-util-logger": "^1.1.2",
     "nti-web-client": "^1.2.0",
     "nti-web-commons": "^0.15.0",
     "nti-web-search": "0.1.0-alpha.201711010941",

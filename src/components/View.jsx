@@ -4,6 +4,7 @@ import {Searchable, contextual} from 'nti-web-search';
 import PropTypes from 'prop-types';
 
 import {Catalog as CatalogStore} from '../stores';
+
 import Catalog from './Catalog';
 import Redeem from './redeem/Redeem';
 
@@ -13,7 +14,7 @@ export default class CatalogView extends React.Component {
 	static propTypes ={
 		collection: PropTypes.object,
 		redeem: PropTypes.bool,
-		invite: PropTypes.string
+		redeemCollection: PropTypes.object
 	}
 
 	state = {}
@@ -45,7 +46,7 @@ export default class CatalogView extends React.Component {
 		if (!store) { return null; }
 
 		if (this.props.redeem) {
-			return (<Redeem inviteLink={this.props.invite}/>);
+			return (<Redeem redeemCollection={this.props.redeemCollection}/>);
 		}
 
 		return (
