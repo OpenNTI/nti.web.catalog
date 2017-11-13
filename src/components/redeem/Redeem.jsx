@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {getService} from 'nti-web-client';
 import {getLink} from 'nti-lib-interfaces';
+import {encodeForURI} from 'nti-lib-ntiids';
 
 export default class Redeem extends React.Component {
 	static propTypes = {
@@ -48,7 +49,12 @@ export default class Redeem extends React.Component {
 					setTimeout(() => {
 						me.setState({success: false, codeValue:''});
 					}, 3000);
-					return results;
+
+					//open course detail and go ro course page
+					const courseUrl = window.location.href.replace('/Redeem/','');
+					const detailLink = `/object/${encodeForURI (results.CatalogEntryNTIID)}`;
+					const newUrl = courseUrl + detailLink;
+					window.open (newUrl, '_self');
 				})
 				.catch(function (reason) {
 					const err = reason.message || 'Error with the code.';
