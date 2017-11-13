@@ -6,7 +6,8 @@ import CarouselItem from '../CarouselItem';
 
 describe('Carousel', () => {
 	const data = {
-		title:'Title'
+		NTIID: 'tag:nextthought.com,2011-10:NTI-CourseInfo-Alpha_NTI_1010',
+		title: 'Preview Skeleton Test Course',
 	};
 	test('Course title is string', () => {
 		const wrapper = shallow(<CarouselItem data={data} />);
