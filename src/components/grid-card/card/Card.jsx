@@ -26,7 +26,7 @@ export default class CourseCard extends React.Component {
 		}
 
 		let instructors = '';
-		if(this.props.instructors && this.props.instructors.length !== 0){
+		if (this.props.instructors && this.props.instructors.length !== 0) {
 			this.props.instructors.map((instructor, i) => {
 				if (i !== 0) {
 					instructors = instructors + ', ';

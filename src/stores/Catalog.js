@@ -32,6 +32,9 @@ export default class CatalogStore extends EventEmitter {
 		if (!collection) {
 			return;
 		}
+		this.loading = true;
+		this.emit (CHANGE, {type: 'loading'});
+
 		const {Items: courses,} = collection;
 		const links = collection.Links;
 		const parse = x => this.service.getObject (x);
@@ -60,6 +63,8 @@ export default class CatalogStore extends EventEmitter {
 		this.emit (CHANGE, {type: 'popular'});
 		this.emit (CHANGE, {type: 'carousel'});
 		this.emit (CHANGE, {type: 'search'});
+		this.loading = false;
+		this.emit (CHANGE, {type: 'loading'});
 	}
 
 
