@@ -7,12 +7,12 @@ export default class CourseCard extends React.Component {
 	static propTypes = {
 		courseId: PropTypes.string,
 		courseTitle: PropTypes.string,
-		author: PropTypes.string,
 		enroll: PropTypes.object,
 		startDate: PropTypes.string,
 		endDate: PropTypes.string,
 		ntiid: PropTypes.string,
-		course: PropTypes.object
+		course: PropTypes.object,
+		instructors: PropTypes.array
 	}
 
 	render () {
@@ -25,6 +25,17 @@ export default class CourseCard extends React.Component {
 			statusClass = status + ' right';
 		}
 
+		let instructors = '';
+		if (this.props.instructors && this.props.instructors.length !== 0) {
+			this.props.instructors.map((instructor, i) => {
+				if (i !== 0) {
+					instructors = instructors + ', ';
+				}
+				if (instructor.Name) {
+					instructors = instructors + instructor.Name;
+				}
+			});
+		}
 		return (
 			<a href={`./object/${encodeForURI(this.props.ntiid)}`}>
 				<div className="course-panel">
@@ -35,7 +46,7 @@ export default class CourseCard extends React.Component {
 					</figure>
 					<div className="info-course"><span>{this.props.courseId}</span>
 						<h3>{this.props.courseTitle}</h3>
-						<p>{this.props.author}</p>
+						<p>{instructors}</p>
 					</div>
 					{enroll && (
 						<div className="stamp"><span className="enroll">ENROLLED</span></div>)}
