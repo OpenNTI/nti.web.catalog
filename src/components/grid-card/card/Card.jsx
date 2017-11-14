@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import {encodeForURI} from 'nti-lib-ntiids';
 import {DateTime, Presentation} from 'nti-web-commons';
 
@@ -25,17 +26,9 @@ export default class CourseCard extends React.Component {
 			statusClass = status + ' right';
 		}
 
-		let instructors = '';
-		if (this.props.instructors && this.props.instructors.length !== 0) {
-			this.props.instructors.map((instructor, i) => {
-				if (i !== 0) {
-					instructors = instructors + ', ';
-				}
-				if (instructor.Name) {
-					instructors = instructors + instructor.Name;
-				}
-			});
-		}
+		let instructors = _.map(this.props.instructors, 'Name');
+		instructors = instructors.toString().replace(',', ', ');
+
 		return (
 			<a href={`./object/${encodeForURI(this.props.ntiid)}`}>
 				<div className="course-panel">
