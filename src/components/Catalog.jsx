@@ -52,7 +52,7 @@ export default class Catalog extends React.Component {
 	}
 
 	render () {
-		if(this.props.loading){
+		if(this.props.loading) {
 			return (
 				<div>
 					<div className="course-catalog">
