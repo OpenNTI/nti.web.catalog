@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 import {encodeForURI} from 'nti-lib-ntiids';
 import {DateTime, Presentation} from 'nti-web-commons';
 
@@ -7,12 +8,12 @@ export default class CourseCard extends React.Component {
 	static propTypes = {
 		courseId: PropTypes.string,
 		courseTitle: PropTypes.string,
-		author: PropTypes.string,
 		enroll: PropTypes.object,
 		startDate: PropTypes.string,
 		endDate: PropTypes.string,
 		ntiid: PropTypes.string,
-		course: PropTypes.object
+		course: PropTypes.object,
+		instructors: PropTypes.array
 	}
 
 	render () {
@@ -25,6 +26,9 @@ export default class CourseCard extends React.Component {
 			statusClass = status + ' right';
 		}
 
+		let instructors = _.map(this.props.instructors, 'Name');
+		instructors = instructors.toString().replace(',', ', ');
+
 		return (
 			<a href={`./object/${encodeForURI(this.props.ntiid)}`}>
 				<div className="course-panel">
@@ -35,7 +39,7 @@ export default class CourseCard extends React.Component {
 					</figure>
 					<div className="info-course"><span>{this.props.courseId}</span>
 						<h3>{this.props.courseTitle}</h3>
-						<p>{this.props.author}</p>
+						<p>{instructors}</p>
 					</div>
 					{enroll && (
 						<div className="stamp"><span className="enroll">ENROLLED</span></div>)}
