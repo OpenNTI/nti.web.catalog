@@ -11,7 +11,7 @@ export default class Search extends React.Component {
 	}
 
 	viewAllCourse = () => {
-		Actions.viewAllCourses ();
+		Actions.viewAllCourses();
 	}
 
 	render () {
@@ -20,7 +20,7 @@ export default class Search extends React.Component {
 		if (this.props.data && this.props.data.term) {
 			term = '"' + this.props.data.term + '"';
 			if (this.props.data.courses) {
-				courses = filterCourse (this.props.data.courses, this.props.data.term);
+				courses = filterCourse(this.props.data.courses, this.props.data.term);
 			}
 		}
 		return (
@@ -43,20 +43,22 @@ export default class Search extends React.Component {
 }
 
 function filterCourse (courses, term) {
-	return _.filter (courses, (item) => {
-		const title = item.title ? item.title.toUpperCase () : '';
-		const id = item.ProviderUniqueID ? item.ProviderUniqueID.toUpperCase () : '';
-		const creator = item.creator ? item.creator.toUpperCase () : '';
-		term = term.toUpperCase ();
+	return _.filter(courses, (item) => {
+		const title = item.title ? item.title.toUpperCase() : '';
+		const id = item.ProviderUniqueID ? item.ProviderUniqueID.toUpperCase() : '';
+		term = term.toUpperCase();
 
-		if (title.indexOf (term) > -1) {
+		let instructors = _.map(item.Instructors, 'Name');
+		instructors = instructors.toString().toUpperCase();
+
+		if (instructors.indexOf(term) > -1) {
 			return true;
 		}
 
-		if (creator.indexOf (term) > -1) {
+		if (title.indexOf(term) > -1) {
 			return true;
 		}
 
-		return id.indexOf (term) > -1;
+		return id.indexOf(term) > -1;
 	});
 }

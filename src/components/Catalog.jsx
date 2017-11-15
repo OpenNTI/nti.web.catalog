@@ -68,8 +68,8 @@ export default class Catalog extends React.Component {
 				<div>
 					<div className="course-catalog">
 						<EmptyState
-							header="empty header"
-							subHeader="empty sub header"
+							header="You don't have any courses yet..."
+							subHeader=""
 						/>
 					</div>
 				</div>
