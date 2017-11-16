@@ -61,9 +61,12 @@ export default class Catalog extends React.Component {
 				</div>
 			);
 		}
-		//return empty if no data
-		const Empty = this.props.courses && this.props.courses.length === 0;
-		if (Empty) {
+		// return empty if no data
+		// I see Andrew suggest !courses || courses.length === 0
+		// However when the first render, the courses undefined, it will show empty component
+		// I think it not good, so I using below logic.
+		const empty = this.props.courses && this.props.courses.length === 0;
+		if (empty) {
 			return (
 				<div>
 					<div className="course-catalog">
