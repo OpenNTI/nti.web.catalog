@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 
 import GridCard from '../grid-card/GridCard';
 import * as Actions from '../../Actions';
@@ -43,13 +42,15 @@ export default class Search extends React.Component {
 }
 
 function filterCourse (courses, term) {
-	return _.filter(courses, (item) => {
+	return courses.filter(item => {
 		const title = item.title ? item.title.toUpperCase() : '';
 		const id = item.ProviderUniqueID ? item.ProviderUniqueID.toUpperCase() : '';
 		term = term.toUpperCase();
 
-		let instructors = _.map(item.Instructors, 'Name');
-		instructors = instructors.toString().toUpperCase();
+		const instructors = item.Instructors ? item.Instructors.map(instructor => {
+			return instructor.Name;
+		}).join(', ').toUpperCase() : '';
+
 
 		if (instructors.indexOf(term) > -1) {
 			return true;

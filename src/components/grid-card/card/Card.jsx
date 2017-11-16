@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 import {encodeForURI} from 'nti-lib-ntiids';
 import {DateTime, Presentation} from 'nti-web-commons';
 
@@ -17,39 +16,42 @@ export default class CourseCard extends React.Component {
 	}
 
 	render () {
-		const enroll = this.props.enroll && this.props.enroll.Items && this.props.enroll.Items.OpenEnrollment &&
-			this.props.enroll.Items.OpenEnrollment.enrolled;
+		const enrollmentOptions = this.props.course.getEnrollmentOptions();
+		const enrolled = enrollmentOptions && enrollmentOptions.Items && enrollmentOptions.Items.OpenEnrollment &&
+			enrollmentOptions.Items.OpenEnrollment.enrolled;
 
 		const status = checkStatus (this.props.startDate, this.props.endDate);
 		let statusClass = status;
-		if (enroll) {
+		if (enrolled) {
 			statusClass = status + ' right';
 		}
 
-		let instructors = _.map(this.props.instructors, 'Name');
-		instructors = instructors.toString().replace(',', ', ');
+		const instructors = this.props.course.Instructors ? this.props.course.Instructors.map(instructor => {
+			return instructor.Name;
+		}).join(', ') : '';
 
 		return (
-			<a href={`./object/${encodeForURI(this.props.ntiid)}`}>
+			<a href={`./object/${encodeForURI(this.props.course.NTIID)}`}>
 				<div className="course-panel">
 					<figure>
 						<Presentation.Asset contentPackage={this.props.course} propName="src" type="landing">
 							<img />
 						</Presentation.Asset>
 					</figure>
-					<div className="info-course"><span>{this.props.courseId}</span>
-						<h3>{this.props.courseTitle}</h3>
+					<div className="info-course">
+						<span>{this.props.course.ProviderUniqueID}</span>
+						<h3>{this.props.course.Title}</h3>
 						<p>{instructors}</p>
 					</div>
-					{enroll && (
+					{enrolled && (
 						<div className="stamp"><span className="enroll">ENROLLED</span></div>)}
 					{status === 'start' && (
 						<div className="stamp">
-							<span className={statusClass}>Starts <DateTime date={this.props.startDate} format="ll"/></span>
+							<span className={statusClass}>Starts <DateTime date={this.props.course.StartDate} format="ll"/></span>
 						</div>)}
 					{status === 'finish' && (
 						<div className="stamp">
-							<span className={statusClass}>Finished <DateTime date={this.props.endDate} format="ll"/></span>
+							<span className={statusClass}>Finished <DateTime date={this.props.course.EndDate} format="ll"/></span>
 						</div>)}
 				</div>
 			</a>
