@@ -9,6 +9,10 @@ CarouselItem.propTypes = {
 };
 
 export default function CarouselItem (props) {
+	let description =  props.data.description;
+	const count = 130;
+	description = description.slice(0, count) + (description.length > count ? '...' : '');
+
 	return (
 		<div>
 			<a href={`./object/${encodeForURI(props.data.NTIID)}`}>
@@ -17,7 +21,7 @@ export default function CarouselItem (props) {
 						<div className="content-carousel">
 							<div className="carousel_left">
 								<h3 className="title-carousel">{props.data.title}</h3>
-								<p className="detail-txt">{props.data.description}</p>
+								<p className="detail-txt">{description}</p>
 								<div className="statistic">
 									<ul>
 										<li>
