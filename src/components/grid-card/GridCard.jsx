@@ -18,23 +18,10 @@ export default class GridCard extends React.Component {
 			<div className="content-right">
 				<ul className="course-card">
 					{this.props.data.map ((course, index) => {
-						let enroll = {};
-						try {
-							enroll = course.getEnrollmentOptions ();
-						} catch (e) {
-							enroll = {};
-						}
 						return (
 							<li key={index} className="course-block">
 								<CourseCard
 									course={course}
-									courseTitle={course.Title}
-									courseId={course.ProviderUniqueID}
-									instructors={course.Instructors}
-									enroll={enroll}
-									ntiid={course.NTIID}
-									startDate={course.StartDate}
-									endDate={course.EndDate}
 									key={index}
 								/>
 							</li>
