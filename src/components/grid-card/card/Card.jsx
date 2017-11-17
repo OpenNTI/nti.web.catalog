@@ -20,7 +20,7 @@ export default class CourseCard extends React.Component {
 		const enrolled = enrollmentOptions && enrollmentOptions.Items && enrollmentOptions.Items.OpenEnrollment &&
 			enrollmentOptions.Items.OpenEnrollment.enrolled;
 
-		const status = checkStatus (this.props.startDate, this.props.endDate);
+		const status = checkStatus (this.props.course.StartDate, this.props.course.EndDate);
 		let statusClass = status;
 		if (enrolled) {
 			statusClass = status + ' right';
@@ -40,7 +40,7 @@ export default class CourseCard extends React.Component {
 					</figure>
 					<div className="info-course">
 						<span>{this.props.course.ProviderUniqueID}</span>
-						<h3>{this.props.course.Title}</h3>
+						<div className="course-title">{this.props.course.Title}</div>
 						<p>{instructors}</p>
 					</div>
 					{enrolled && (
