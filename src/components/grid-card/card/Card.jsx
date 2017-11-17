@@ -40,7 +40,7 @@ export default class CourseCard extends React.Component {
 					</figure>
 					<div className="info-course">
 						<span>{this.props.course.ProviderUniqueID}</span>
-						<h3>{this.props.course.Title}</h3>
+						<div className="course-title">{this.props.course.Title}</div>
 						<p>{instructors}</p>
 					</div>
 					{enrolled && (

@@ -53,6 +53,13 @@
 		.info-course {
 			padding: 0 5px;
 
+			.course-title {
+				font: normal 700 1em/1.1em "Open Sans Condensed";
+				max-height: 2.2em;
+				overflow: hidden;
+				text-transform: uppercase;
+			}
+
 			span {
 				color: $tertiary-grey;
 				font-size: 10px;
