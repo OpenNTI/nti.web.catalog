@@ -51,10 +51,8 @@ export default class Redeem extends React.Component {
 					}, 3000);
 
 					//open course detail and go ro course page
-					const courseUrl = window.location.href.replace('/Redeem/','');
-					const detailLink = `/object/${encodeForURI (results.CatalogEntryNTIID)}`;
-					const newUrl = courseUrl + detailLink;
-					window.open (newUrl, '_self');
+					const detailLink = `./object/${encodeForURI (results.CatalogEntryNTIID)}`;
+					window.open (detailLink, '_self');
 				})
 				.catch(function (reason) {
 					const err = reason.message || 'Error with the code.';
