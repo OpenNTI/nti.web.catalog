@@ -2,10 +2,11 @@
 
 .course-catalog {
 	.side-bar-left {
-		width: 26%;
-		max-width: 243px;
+		width: 25%;
+		max-width: 236px;
 		float: left;
-		margin-left: 10px;
+		// margin-left: 10px;
+		margin-top: 9px;
 
 		.item {
 			padding: 20px;
@@ -51,11 +52,13 @@
 		p, a {
 			color: $primary-grey;
 			font-size: 14px;
-			font-weight: 600;
 			line-height: 19px;
 			display: inline;
 			padding-left: 10px;
 			//font-weight: normal;
+		}
+		p {
+			font-weight: 600;
 		}
 	}
 }
