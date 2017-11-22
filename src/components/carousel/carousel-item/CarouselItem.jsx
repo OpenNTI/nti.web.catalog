@@ -11,7 +11,7 @@ CarouselItem.propTypes = {
 export default function CarouselItem (props) {
 	let description =  props.data.description;
 	const count = 130;
-	const backgroundStyle = {'background-size': 'cover'};
+	const backgroundStyle = {'backgroundSize': 'cover'};
 	description = description.slice(0, count) + (description.length > count ? '...' : '');
 
 	return (

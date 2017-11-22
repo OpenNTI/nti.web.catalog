@@ -1,0 +1,23 @@
+@import "~nti-style-common";
+
+.course-catalog {
+	.category-header {
+		.category-title {
+			text-transform: capitalize;
+			height: 24px;
+			width: 155px;
+			color: #494949;
+			font-family: "Open Sans";
+			font-size: 18px;
+			line-height: 24px;
+		}
+
+		.category-view-all {
+			a {
+				color: #757474;
+				font-size: 14px;
+				line-height: 19px;
+			}
+		}
+	}
+}

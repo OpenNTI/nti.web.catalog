@@ -1,0 +1,31 @@
+@import "~nti-style-common";
+
+.course-catalog {
+	.categories-banner {
+		height: 300px;
+
+		.categories-back {
+			cursor: pointer;
+			margin-left: 0;
+			border-radius: 100px;
+			background-color: rgba(255, 255, 255, 0.2);
+			font-size: 14px;
+			font-weight: 600;
+			line-height: 19px;
+			color: #fff;
+			text-align: center;
+			padding: 5px 15px 7px;
+			margin-top: 12px;
+		}
+
+		.categories-title {
+			height: 49px;
+			width: 187px;
+			color: #fff;
+			font-family: "Open Sans";
+			font-size: 36px;
+			font-weight: 300;
+			line-height: 49px;
+		}
+	}
+}

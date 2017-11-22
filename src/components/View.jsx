@@ -63,7 +63,8 @@ export default class CatalogView extends React.Component {
 
 		return (
 			<Searchable searchable-store={store}
-				searchable-propMap={{popular: 'popular',courses: 'courses',carousel: 'carousel',search: 'search', loading: 'loading'}} >
+				searchable-propMap={{popular: 'popular',courses: 'courses',carousel: 'carousel',
+					search: 'search', loading: 'loading', categories: 'categories', category: 'category'}} >
 				<Catalog />
 			</Searchable>
 		);

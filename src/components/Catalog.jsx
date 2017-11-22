@@ -2,54 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {EmptyState, Loading} from 'nti-web-commons';
 
+import * as Constants from '../Constants';
+
 import Carousel from './carousel/Carousel';
 import GridCard from './grid-card/GridCard';
-import MenuBar from './menu-bar/MenuBar';
 import Search from './search/Search';
 
 export default class Catalog extends React.Component {
 	static propTypes = {
-		popular: PropTypes.array,
+		categories: PropTypes.array,
+		category: PropTypes.object,
 		courses: PropTypes.array,
 		carousel: PropTypes.array,
 		search: PropTypes.object,
 		loading: PropTypes.bool
 	}
 
-	constructor (props) {
-		super (props);
-
-		this.state = {
-			menuData: {
-				tag: [
-					{
-						title: 'Free Courses',
-						id: 'Free Courses'
-					},
-					{
-						title: 'Physics',
-						id: 'Physics'
-					},
-					{
-						title: 'Computer Science',
-						id: 'Computer Science'
-					},
-					{
-						title: 'Health',
-						id: 'Health'
-					},
-					{
-						title: 'Economics',
-						id: 'Economics'
-					},
-					{
-						title: 'Free Courses',
-						id: 'Free Courses'
-					}
-				]
-			}
-		};
-	}
 
 	render () {
 		if(this.props.loading) {
@@ -79,13 +47,19 @@ export default class Catalog extends React.Component {
 			);
 		}
 
-
-		let sideBarClass = 'content-catalog no-sidebar';
-		if (this.props.popular && this.props.popular.length !== 0) {
-			sideBarClass = 'content-catalog ';
-		}
 		const search = this.props.search && this.props.search.searching ? true : false;
+		// let type = this.props.category && this.props.category.show ? Constants.CATEGORY : Constants.CATEGORIES;
 
+		if(this.props.category && this.props.category.show) {
+			return(
+				<div className="course-catalog">
+					<section className="carousel">
+						<GridCard category={this.props.category} type={Constants.CATEGORY}/>
+					</section>
+
+				</div>
+			);
+		}
 		return (
 			<div>
 				<div className="course-catalog">
@@ -100,9 +74,8 @@ export default class Catalog extends React.Component {
 						</section>
 					)}
 					{!search && (
-						<section className={sideBarClass}>
-							<MenuBar popular={this.props.popular} tag={this.state.menuData.tag}/>
-							<GridCard data={this.props.courses}/>
+						<section className="content-catalog no-sidebar">
+							<GridCard categories={this.props.categories} type={Constants.CATEGORIES}/>
 						</section>
 					)}
 				</div>

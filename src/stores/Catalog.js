@@ -23,6 +23,24 @@ export default class CatalogStore extends EventEmitter {
 				};
 				this.emit (CHANGE, {type: 'search'});
 				break;
+
+			case Constants.VIEW_CATEGORY:
+				this.service.get(action.link).then(items =>{
+					this.category = {
+						show :true,
+						data: items
+					};
+					this.emit(CHANGE, {type: 'category'});
+				});
+
+				break;
+
+			case Constants.BACK_TO_CATEGORIES:
+				this.category = {
+					show :false,
+				};
+				this.emit(CHANGE, {type: 'category'});
+				break;
 			}
 		});
 	}
@@ -39,29 +57,38 @@ export default class CatalogStore extends EventEmitter {
 		const links = collection.Links;
 		const parse = x => this.service.getObject (x);
 		this.courses = await Promise.all (courses.map (parse));
-		let popular = {Items: []};
+
 		let carousel = {Items: []};
-		try {
-			popular = await this.service.get (getLink (links, 'popular'));
-		}
-		catch (e) {
-			popular = {Items: []};
-		}
 		try {
 			carousel = await this.service.get (getLink (links, 'Featured'));
 		}
 		catch (e) {
 			carousel = {Items: []};
 		}
-		this.popular = await Promise.all (popular.Items.map (parse));
-		this.carousel = await Promise.all (carousel.Items.map (parse));
+
+		let categories = {Items: []};
+
+		try {
+			categories = await this.service.get (getLink (links, 'ByTag'));
+		}
+		catch (e) {
+			categories = {Items: []};
+		}
+
+
+		this.carousel = await Promise.all(carousel.Items.map(parse));
+		this.categories = categories.Items;
 		this.search = {
 			searching: false
 		};
+		this.category = {
+			show :false
+		};
 
 		this.emit (CHANGE, {type: 'courses'});
-		this.emit (CHANGE, {type: 'popular'});
 		this.emit (CHANGE, {type: 'carousel'});
+		this.emit (CHANGE, {type: 'categories'});
+		this.emit (CHANGE, {type: 'category'});
 		this.emit (CHANGE, {type: 'search'});
 		this.loading = false;
 		this.emit (CHANGE, {type: 'loading'});
