@@ -1,0 +1,20 @@
+@import "~nti-style-common";
+
+.course-catalog {
+	.category-header {
+		.category-title {
+			float: left;
+			text-transform: capitalize;
+		}
+
+		.category-view-all {
+			float: right;
+		}
+	}
+
+	.category-content {
+		li {
+			list-style-type: none;
+		}
+	}
+}

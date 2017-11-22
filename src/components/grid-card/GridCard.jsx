@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import CourseCard from './card/Card';
+import Category from './category/Category';
 
 export default class GridCard extends React.Component {
 	static propTypes = {
@@ -16,17 +16,17 @@ export default class GridCard extends React.Component {
 
 		return (
 			<div className="content-right">
-				<ul className="course-card">
-					{this.props.data.map ((course, index) => {
-						return (
-							<li key={index} className="course-block">
-								<CourseCard
-									course={course}
-									key={index}
-								/>
-							</li>
-						);
-					})}
+				<ul className="category">
+					<li className="category-block">
+						<Category
+							category={this.props.data}
+						/>
+					</li>
+					<li className="category-block">
+						<Category
+							category={this.props.data}
+						/>
+					</li>
 				</ul>
 			</div>
 		);
