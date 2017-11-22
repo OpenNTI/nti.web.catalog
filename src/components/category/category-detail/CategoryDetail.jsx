@@ -32,7 +32,7 @@ export default class CategoryDetail extends React.Component {
 			return null;
 		}
 
-		const backgroundStyle = {'backgroundSize': 'cover', 'height': '300px;'};
+		const backgroundStyle = {'backgroundSize': 'cover', 'height': '300px'};
 		return (
 			<div>
 				<div className="categories-banner">

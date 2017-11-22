@@ -36,7 +36,7 @@ export default class GridCard extends React.Component {
 					<ul>
 						{categories.map ((category, index) => {
 							return (
-								<li key={index}>
+								<li key={index} className="category-block">
 									<Category
 										category={category}
 										key={index}

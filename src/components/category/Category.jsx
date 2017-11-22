@@ -33,11 +33,11 @@ export default class Category extends React.Component {
 		const title = this.props.category.Name === '.nti_other' ? 'Other' : this.props.category.Name;
 		return (
 			<div>
-				<div className="">
-					<div className="">{title}</div>
-					<div className="">
+				<div className="title-viewAll">
+					<div className="title-category">{title}</div>
+					<div className="view-all">
 						<a onClick={this.viewCategory}>View All</a>
-						<a className="icon-chevron-right"/>
+						<span className="icon-chevronup-25"/>
 					</div>
 				</div>
 				<div>

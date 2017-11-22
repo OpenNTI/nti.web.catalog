@@ -1,23 +1,44 @@
 @import "~nti-style-common";
 
 .course-catalog {
-	.category-header {
-		.category-title {
-			text-transform: capitalize;
-			height: 24px;
-			width: 155px;
-			color: #494949;
-			font-family: "Open Sans";
+	.category-block {
+		clear: both;
+		padding-top: 30px;
+	}
+
+	.title-viewAll {
+		overflow: hidden;
+
+		.title-category {
 			font-size: 18px;
-			line-height: 24px;
+			color: $primary-grey;
+			display: inline-block;
+			width: 50%;
+			margin: 0;
+			font-weight: normal;
+			text-transform: capitalize;
 		}
 
-		.category-view-all {
+		.view-all {
+			width: 50%;
+			display: inline-block;
+			text-align: right;
+
 			a {
-				color: #757474;
+				color: $secondary-grey;
 				font-size: 14px;
-				line-height: 19px;
+				text-align: right;
 			}
+
+			span {
+				color: $secondary-grey;
+				display: inline-block;
+				transform: rotate(90deg);
+				font-size: 14px;
+			}
+
 		}
+
 	}
 }
+
