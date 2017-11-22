@@ -16,13 +16,13 @@ export default class GridCard extends React.Component {
 
 		return (
 			<div className="content-right">
-				<ul className="category">
-					<li className="category-block">
+				<ul className="">
+					<li className="">
 						<Category
 							category={this.props.data}
 						/>
 					</li>
-					<li className="category-block">
+					<li className="">
 						<Category
 							category={this.props.data}
 						/>
