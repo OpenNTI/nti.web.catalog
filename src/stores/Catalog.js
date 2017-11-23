@@ -7,6 +7,7 @@ import * as Constants from '../Constants';
 
 
 const CHANGE = 'change';
+let categoryLink = '';
 
 export default class CatalogStore extends EventEmitter {
 	constructor (service) {
@@ -21,7 +22,12 @@ export default class CatalogStore extends EventEmitter {
 				this.search = {
 					searching: false
 				};
+				this.category = {
+					show :false,
+					link: categoryLink
+				};
 				this.emit (CHANGE, {type: 'search'});
+				this.emit (CHANGE, {type: 'category'});
 				break;
 
 			case Constants.VIEW_CATEGORY:
@@ -38,6 +44,7 @@ export default class CatalogStore extends EventEmitter {
 			case Constants.BACK_TO_CATEGORIES:
 				this.category = {
 					show :false,
+					link: categoryLink
 				};
 				this.emit(CHANGE, {type: 'category'});
 				break;
@@ -85,6 +92,7 @@ export default class CatalogStore extends EventEmitter {
 			show :false,
 			link: getLink(links, 'ByTag')
 		};
+		categoryLink = getLink(links, 'ByTag');
 
 		this.purchased = false;
 		if (collection.Title === 'Purchased') {
