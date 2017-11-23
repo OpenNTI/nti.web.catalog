@@ -6,6 +6,7 @@ import {getService} from 'nti-web-client';
 import * as Actions from '../../../Actions';
 import CourseCard from '../../grid-card/card/Card';
 
+const numItems = 8;
 export default class CategoryDetail extends React.Component {
 	static propTypes = {
 		category: PropTypes.object
@@ -15,15 +16,36 @@ export default class CategoryDetail extends React.Component {
 		Actions.backToCategories();
 	}
 
+	async converEntry (item) {
+		const parse = x => this.service.getObject (x);
+		const courses = await Promise.all (item.map (parse));
+		const oldItems = this.state.courses;
+		this.setState({courses: oldItems.concat(courses)});
+		if(this.props.category.data.Total === this.state.courses.length) {
+			this.setState({noMore: true});
+		}
+	}
+	
+	loadMore = () =>{
+		const currentItems = this.state.courses.length;
+		let link = this.props.category.data.href.split('?')[0];
+		link = link + '?batchStart=' + currentItems + '&batchSize=' + numItems;
+		this.service.get(link).then(item =>{
+			this.converEntry(item.Items);
+		});
+	}
+
 	async componentDidMount () {
 		window.scrollTo(0, 0);
-		const service = await getService();
-		const parse = x => service.getObject (x);
+		this.service = await getService();
+		const parse = x => this.service.getObject (x);
 		const items = this.props.category.data.Items || [];
 		const title = this.props.category.data.Name || '';
 		const courses = await Promise.all (items.map (parse));
-
 		this.setState({courses :courses, title: title});
+		if(this.props.category.data.Total === courses.length) {
+			this.setState({noMore: true});
+		}
 	}
 
 	render () {
@@ -38,11 +60,13 @@ export default class CategoryDetail extends React.Component {
 			<div>
 				<div className="categories-banner">
 					<Presentation.AssetBackground type="background" contentPackage={this.props.category} style={backgroundStyle}>
-						<div className="categories-back" onClick={this.backToCategories}>
-							<a className="icon-chevron-left"/>
-							<a>Back</a>
+						<div className="category-text-wrapper">
+							<div className="categories-back" onClick={this.backToCategories}>
+								<a className="icon-chevron-left"/>
+								<a className="back-btn">Back</a>
+							</div>
+							<p className="categories-title">{category.title}</p>
 						</div>
-						<p className="categories-title">{category.title}</p>
 					</Presentation.AssetBackground>
 				</div>
 				<div className="content-catalog no-sidebar">
@@ -59,6 +83,11 @@ export default class CategoryDetail extends React.Component {
 						})}
 					</ul>
 				</div>
+				{!category.noMore && (
+					<div className="categories-more">
+						<a onClick={this.loadMore}>View More</a>
+					</div>
+				)}
 			</div>
 		);
 	}
