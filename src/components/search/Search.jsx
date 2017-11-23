@@ -20,7 +20,7 @@ export default class Search extends React.Component {
 		if(this.props.data.courses && this.props.data.courses.Items){
 			const service = await getService();
 			const parse = x => service.getObject (x);
-			const items = this.props.data.courses.Items[0].Items || [];
+			const items = this.props.data.courses.Items || [];
 			const courses = await Promise.all (items.map (parse));
 
 			this.setState({courses :courses});
