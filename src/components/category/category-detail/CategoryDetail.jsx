@@ -19,8 +19,8 @@ export default class CategoryDetail extends React.Component {
 		window.scrollTo(0, 0);
 		const service = await getService();
 		const parse = x => service.getObject (x);
-		const items = this.props.category.data.Items[0].Items || [];
-		const title = this.props.category.data.Items[0].Name || '';
+		const items = this.props.category.data.Items || [];
+		const title = this.props.category.data.Name || '';
 		const courses = await Promise.all (items.map (parse));
 
 		this.setState({courses :courses, title: title});
