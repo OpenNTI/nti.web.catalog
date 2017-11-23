@@ -5,44 +5,37 @@ import Category from '../category/Category';
 import CategoryDetail from '../category/category-detail/CategoryDetail';
 import * as Constants from '../../Constants';
 
+import CourseCard from './card/Card';
+
+
 export default class GridCard extends React.Component {
 	static propTypes = {
-		categories: PropTypes.array,
+		courses: PropTypes.array,
 		category: PropTypes.object,
-		type: PropTypes.string
+		type: PropTypes.string,
+		link: PropTypes.string
 	}
 
 	render () {
 
 		if (this.props.type === Constants.CATEGORIES) {
-			let categories = [], otherTag = {}, emptyTag = [];
-			this.props.categories.map(category => {
-				if (category.Items.length === 0) {
-					emptyTag.push(category);
-				}
-				else if (category.Name === '.nti_other') {
-					otherTag = category;
-				}
-				else {
-					categories.push(category);
-				}
-			});
-
-			categories.push(otherTag);
-			categories = categories.concat(emptyTag);
-
+			const link = this.props.link;
 			return (
 				<div className="content-right">
 					<ul>
-						{categories.map ((category, index) => {
-							return (
-								<li key={index} className="category-block">
-									<Category
-										category={category}
-										key={index}
-									/>
-								</li>
-							);
+						{this.props.courses.map((category, index) => {
+							if (category.Name !== '.nti_other') {
+								return (
+									<li key={index} className="category-block">
+										<Category
+											category={category}
+											key={index}
+											link={link}
+										/>
+									</li>
+								);
+							}
+
 						})}
 					</ul>
 				</div>
@@ -52,6 +45,24 @@ export default class GridCard extends React.Component {
 			return (
 				<div>
 					<CategoryDetail category={this.props.category}/>
+				</div>
+			);
+		}
+
+		else if (this.props.type === Constants.PURCHASED || this.props.type === Constants.SEARCH) {
+			return (
+				<div className="content-right">
+					<ul className="course-card">
+						{this.props.courses.map ((course, index) => {
+							return (
+								<li key={index} className="course-block">
+									<CourseCard
+										course={course}
+									/>
+								</li>
+							);
+						})}
+					</ul>
 				</div>
 			);
 		}

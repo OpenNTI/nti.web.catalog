@@ -7,7 +7,8 @@ import * as Actions from '../../Actions';
 
 export default class Category extends React.Component {
 	static propTypes = {
-		category: PropTypes.object
+		category: PropTypes.object,
+		link :PropTypes.string
 	}
 
 	async componentDidMount () {
@@ -19,7 +20,8 @@ export default class Category extends React.Component {
 	}
 
 	viewCategory = () =>{
-		Actions.viewCategory(this.props.category.Name);
+		const link = this.props.link + '/' + this.props.category.Name;
+		Actions.viewCategory(link);
 	}
 
 	render () {
@@ -30,11 +32,10 @@ export default class Category extends React.Component {
 		}
 
 		const courses = category.courses.slice(0, 4) || [];
-		const title = this.props.category.Name === '.nti_other' ? 'Other' : this.props.category.Name;
 		return (
 			<div>
 				<div className="title-viewAll">
-					<div className="title-category">{title}</div>
+					<div className="title-category">{this.props.category.Name}</div>
 					<div className="view-all">
 						<a onClick={this.viewCategory}>View All</a>
 						<span className="icon-chevronup-25"/>

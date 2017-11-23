@@ -15,7 +15,8 @@ export default class Catalog extends React.Component {
 		courses: PropTypes.array,
 		carousel: PropTypes.array,
 		search: PropTypes.object,
-		loading: PropTypes.bool
+		loading: PropTypes.bool,
+		purchased: PropTypes.bool
 	}
 
 
@@ -48,18 +49,27 @@ export default class Catalog extends React.Component {
 		}
 
 		const search = this.props.search && this.props.search.searching ? true : false;
-		// let type = this.props.category && this.props.category.show ? Constants.CATEGORY : Constants.CATEGORIES;
 
 		if(this.props.category && this.props.category.show) {
 			return(
 				<div className="course-catalog">
-					<section className="carousel">
-						<GridCard category={this.props.category} type={Constants.CATEGORY}/>
-					</section>
+					{!search && (
+						<section className="">
+							<GridCard category={this.props.category} type={Constants.CATEGORY}/>
+						</section>
+					)}
+					{search && (
+						<section className="search">
+							<Search data={this.props.search}/>
+						</section>
+					)}
 
 				</div>
 			);
 		}
+
+		const type = this.props.purchased ? Constants.PURCHASED : Constants.CATEGORIES;
+		const courses = this.props.purchased ? this.props.courses : this.props.categories;
 		return (
 			<div>
 				<div className="course-catalog">
@@ -75,7 +85,7 @@ export default class Catalog extends React.Component {
 					)}
 					{!search && (
 						<section className="content-catalog no-sidebar">
-							<GridCard categories={this.props.categories} type={Constants.CATEGORIES}/>
+							<GridCard courses={courses} type={type} link={this.props.category.link}/>
 						</section>
 					)}
 				</div>

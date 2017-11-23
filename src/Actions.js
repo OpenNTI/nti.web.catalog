@@ -2,7 +2,6 @@ import AppDispatcher from 'nti-lib-dispatcher';
 
 import * as Constants from './Constants';
 
-const testLink = '/dataserver2/users/admin@nextthought.com/Catalog/Courses/@@ByTag';
 
 export function viewAllCourses () {
 	AppDispatcher.handleViewAction ({
@@ -10,10 +9,10 @@ export function viewAllCourses () {
 	});
 }
 
-export function viewCategory (categoryName) {
+export function viewCategory (link) {
 	AppDispatcher.handleViewAction ({
 		type: Constants.VIEW_CATEGORY,
-		link: testLink + '/' + categoryName
+		link: link
 	});
 }
 

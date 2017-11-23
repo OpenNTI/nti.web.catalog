@@ -16,7 +16,8 @@ export default class CatalogView extends React.Component {
 		collection: PropTypes.object,
 		redeem: PropTypes.bool,
 		redeemCollection: PropTypes.object,
-		loading: PropTypes.bool
+		loading: PropTypes.bool,
+		active: PropTypes.string
 	}
 
 	state = {}
@@ -64,7 +65,8 @@ export default class CatalogView extends React.Component {
 		return (
 			<Searchable searchable-store={store}
 				searchable-propMap={{popular: 'popular',courses: 'courses',carousel: 'carousel',
-					search: 'search', loading: 'loading', categories: 'categories', category: 'category'}} >
+					search: 'search', loading: 'loading', categories: 'categories', category: 'category',
+					purchased: 'purchased'}} >
 				<Catalog />
 			</Searchable>
 		);

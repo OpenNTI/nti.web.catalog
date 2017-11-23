@@ -82,11 +82,18 @@ export default class CatalogStore extends EventEmitter {
 			searching: false
 		};
 		this.category = {
-			show :false
+			show :false,
+			link: getLink(links, 'ByTag')
 		};
+
+		this.purchased = false;
+		if (collection.Title === 'Purchased') {
+			this.purchased = true;
+		}
 
 		this.emit (CHANGE, {type: 'courses'});
 		this.emit (CHANGE, {type: 'carousel'});
+		this.emit (CHANGE, {type: 'purchased'});
 		this.emit (CHANGE, {type: 'categories'});
 		this.emit (CHANGE, {type: 'category'});
 		this.emit (CHANGE, {type: 'search'});
@@ -100,10 +107,11 @@ export default class CatalogStore extends EventEmitter {
 	}
 
 	updateSearchTerm (term) {
+		const courses = this.category.show ? this.category.data : this.courses;
 		this.search = {
 			searching: true,
 			term: term,
-			courses: this.courses
+			courses: courses
 		};
 		this.emit ('change', {type: 'search'});
 	}

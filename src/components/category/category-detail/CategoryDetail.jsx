@@ -20,9 +20,10 @@ export default class CategoryDetail extends React.Component {
 		const service = await getService();
 		const parse = x => service.getObject (x);
 		const items = this.props.category.data.Items[0].Items || [];
+		const title = this.props.category.data.Items[0].Name || '';
 		const courses = await Promise.all (items.map (parse));
 
-		this.setState({courses :courses});
+		this.setState({courses :courses, title: title});
 	}
 
 	render () {
@@ -41,7 +42,7 @@ export default class CategoryDetail extends React.Component {
 							<a className="icon-chevron-left"/>
 							<a>Back</a>
 						</div>
-						<p className="categories-title">Title</p>
+						<p className="categories-title">{category.title}</p>
 					</Presentation.AssetBackground>
 				</div>
 				<div className="content-catalog no-sidebar">
