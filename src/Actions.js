@@ -2,6 +2,7 @@ import AppDispatcher from 'nti-lib-dispatcher';
 
 import * as Constants from './Constants';
 
+const numItems = 8;
 
 export function viewAllCourses () {
 	AppDispatcher.handleViewAction ({
@@ -10,9 +11,10 @@ export function viewAllCourses () {
 }
 
 export function viewCategory (link) {
+	const categoryLink = link + '?batchStart=0&batchSize=' + numItems;
 	AppDispatcher.handleViewAction ({
 		type: Constants.VIEW_CATEGORY,
-		link: link
+		link: categoryLink
 	});
 }
 
