@@ -32,7 +32,7 @@ export default class Category extends React.Component {
 		}
 
 		const courses = category.courses.slice(0, 4) || [];
-		const title = this.props.category.Name === '.nti_other' ? 'Other' : this.props.category.Name;
+		const title = this.props.category.Name === '.nti_other' ? 'Others' : this.props.category.Name;
 		return (
 			<div>
 				<div className="title-viewAll">

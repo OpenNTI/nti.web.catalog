@@ -41,6 +41,16 @@ export default class GridCard extends React.Component {
 					<div>
 						<CategoryCollapse categories={categories.collapseItems} link={link}/>
 					</div>
+					{categories.otherItems && categories.otherItems.ItemCount >= 4 && (
+						<ul>
+							<li className="category-block">
+								<Category
+									category={categories.otherItems}
+									link={link}
+								/>
+							</li>
+						</ul>
+					)}
 				</div>
 			);
 		}
@@ -99,7 +109,7 @@ function convertItems (items) {
 	});
 
 	if (otherItems) {
-		result.expanseItems.push(otherItems);
+		result.otherItems = otherItems;
 	}
 
 	return result;

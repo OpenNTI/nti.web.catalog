@@ -28,7 +28,7 @@ export default class CategoryDetail extends React.Component {
 							<li key={index} className="categories-block" onClick={this.viewCategory(course.Name)}>
 								<Presentation.AssetBackground type="background" contentPackage={course} style={backgroundStyle}>
 									<div
-										className="category-collapse">{course.Name === '.nti_other' ? 'Other' : course.Name}</div>
+										className="category-collapse">{course.Name === '.nti_other' ? 'Others' : course.Name}</div>
 								</Presentation.AssetBackground>
 							</li>
 						);
