@@ -39,7 +39,7 @@ export default class GridCard extends React.Component {
 						})}
 					</ul>
 					<div>
-						<CategoryCollapse categories={categories.collapseItems}/>
+						<CategoryCollapse categories={categories.collapseItems} link={link}/>
 					</div>
 				</div>
 			);

@@ -152,6 +152,17 @@
 					padding: 4px 10px;
 					background-color: $secondary-grey;
 				}
+
+				&.admin {
+					&::before {
+						position: absolute;
+						color: #fff;
+						width: 6px;
+						height: 6px;
+						top: 5px;
+						left: 8px;
+					}
+				}
 			}
 		}
 	}

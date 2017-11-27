@@ -25,7 +25,7 @@ export default class CategoryDetail extends React.Component {
 			this.setState({noMore: true});
 		}
 	}
-	
+
 	loadMore = () =>{
 		const currentItems = this.state.courses.length;
 		let link = this.props.category.data.href.split('?')[0];
@@ -65,7 +65,7 @@ export default class CategoryDetail extends React.Component {
 								<a className="icon-chevron-left"/>
 								<a className="back-btn">Back</a>
 							</div>
-							<p className="categories-title">{category.title}</p>
+							<p className="categories-title">{category.title === '.nti_other' ? 'Other' : category.title}</p>
 						</div>
 					</Presentation.AssetBackground>
 				</div>
