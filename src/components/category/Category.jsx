@@ -32,10 +32,11 @@ export default class Category extends React.Component {
 		}
 
 		const courses = category.courses.slice(0, 4) || [];
+		const title = this.props.category.Name === '.nti_other' ? 'Other' : this.props.category.Name;
 		return (
 			<div>
 				<div className="title-viewAll">
-					<div className="title-category">{this.props.category.Name}</div>
+					<div className="title-category">{title}</div>
 					<div className="view-all">
 						<a onClick={this.viewCategory}>View All</a>
 						<span className="icon-chevronup-25"/>

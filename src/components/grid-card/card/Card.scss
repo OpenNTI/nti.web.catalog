@@ -155,4 +155,32 @@
 			}
 		}
 	}
+
+	.categories-block {
+		width: 242px;
+		position: relative;
+		height: 80px;
+		list-style: none;
+		float: left;
+		margin: 9px;
+		text-align: center;
+		border: 1px solid rgba(0, 0, 0, 0.2);
+		border-radius: 10px;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+		cursor: pointer;
+
+		&:nth-child(3n+3) {
+			margin-right: 0;
+		}
+
+		.category-collapse {
+			font-size: 18px;
+			font-weight: 600;
+			padding-top: 22px;
+			color: #fff;
+			text-transform: capitalize;
+		}
+	}
 }

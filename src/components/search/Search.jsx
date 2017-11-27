@@ -17,7 +17,7 @@ export default class Search extends React.Component {
 
 	async componentDidMount () {
 		window.scrollTo(0, 0);
-		if(this.props.data.courses && this.props.data.courses.Items){
+		if (this.props.data.courses && this.props.data.courses.Items) {
 			const service = await getService();
 			const parse = x => service.getObject (x);
 			const items = this.props.data.courses.Items || [];
@@ -33,7 +33,7 @@ export default class Search extends React.Component {
 
 	render () {
 		const search = this.state;
-		if(!search){
+		if (!search) {
 			return null;
 		}
 

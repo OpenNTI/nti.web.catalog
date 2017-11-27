@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Category from '../category/Category';
 import CategoryDetail from '../category/category-detail/CategoryDetail';
+import CategoryCollapse from '../category/category-collapse/CategoryCollapse';
 import * as Constants from '../../Constants';
 
 import CourseCard from './card/Card';
@@ -20,24 +21,26 @@ export default class GridCard extends React.Component {
 
 		if (this.props.type === Constants.CATEGORIES) {
 			const link = this.props.link;
+			const categories = convertItems(this.props.courses);
 			return (
 				<div className="content-right">
 					<ul>
-						{this.props.courses.map((category, index) => {
-							if (category.Name !== '.nti_other') {
-								return (
-									<li key={index} className="category-block">
-										<Category
-											category={category}
-											key={index}
-											link={link}
-										/>
-									</li>
-								);
-							}
+						{categories.expanseItems.map((category, index) => {
+							return (
+								<li key={index} className="category-block">
+									<Category
+										category={category}
+										key={index}
+										link={link}
+									/>
+								</li>
+							);
 
 						})}
 					</ul>
+					<div>
+						<CategoryCollapse categories={categories.collapseItems}/>
+					</div>
 				</div>
 			);
 		}
@@ -70,4 +73,34 @@ export default class GridCard extends React.Component {
 		return null;
 
 	}
+}
+
+function convertItems (items) {
+	let result = {
+		collapseItems: [],
+		expanseItems: []
+	};
+
+	let otherItems = null;
+
+	items.map(item => {
+		if (item.ItemCount < 4) {
+			result.collapseItems.push(item);
+
+		}
+		else {
+			if (item.Name === '.nti_other') {
+				otherItems = item;
+			}
+			else {
+				result.expanseItems.push(item);
+			}
+		}
+	});
+
+	if (otherItems) {
+		result.expanseItems.push(otherItems);
+	}
+
+	return result;
 }
