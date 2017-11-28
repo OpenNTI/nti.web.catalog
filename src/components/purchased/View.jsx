@@ -55,9 +55,11 @@ export default class Category extends React.Component {
 			return this.renderEmptyState();
 		}
 		return (
-			<section className="content-catalog no-sidebar">
-				<GridCard courses={this.props.purchased} type={Constants.PURCHASED}/>
-			</section>
+			<div className="course-catalog">
+				<section className="content-catalog no-sidebar">
+					<GridCard courses={this.props.purchased} type={Constants.PURCHASED}/>
+				</section>
+			</div>
 		);
 	}
 
