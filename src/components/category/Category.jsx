@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {getService} from 'nti-web-client';
+import {LinkTo} from 'nti-web-routing';
 
 import CourseCard from '../grid-card/card/Card';
 import * as Actions from '../../Actions';
@@ -38,8 +39,10 @@ export default class Category extends React.Component {
 				<div className="title-viewAll">
 					<div className="title-category">{title}</div>
 					<div className="view-all">
-						<a onClick={this.viewCategory}>View All</a>
-						<span className="icon-chevronup-25"/>
+						<LinkTo.Object object={this.props.category} context="catalog.categories">
+							<a onClick={this.viewCategory}>View All</a>
+							<span className="icon-chevronup-25"/>
+						</LinkTo.Object>
 					</div>
 				</div>
 				<div>

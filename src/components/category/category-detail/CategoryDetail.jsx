@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Presentation} from 'nti-web-commons';
 import {getService} from 'nti-web-client';
 
-import * as Actions from '../../../Actions';
+// import * as Actions from '../../../Actions';
 import CourseCard from '../../grid-card/card/Card';
 
 const numItems = 8;
@@ -13,7 +13,7 @@ export default class CategoryDetail extends React.Component {
 	}
 
 	backToCategories = () =>{
-		Actions.backToCategories();
+		window.history.back();
 	}
 
 	async converEntry (item) {
@@ -21,14 +21,14 @@ export default class CategoryDetail extends React.Component {
 		const courses = await Promise.all (item.map (parse));
 		const oldItems = this.state.courses;
 		this.setState({courses: oldItems.concat(courses)});
-		if(this.props.category.data.Total === this.state.courses.length) {
+		if(this.props.category.Total === this.state.courses.length) {
 			this.setState({noMore: true});
 		}
 	}
 
 	loadMore = () =>{
 		const currentItems = this.state.courses.length;
-		let link = this.props.category.data.href.split('?')[0];
+		let link = this.props.category.href.split('?')[0];
 		link = link + '?batchStart=' + currentItems + '&batchSize=' + numItems;
 		this.service.get(link).then(item =>{
 			this.converEntry(item.Items);
@@ -39,11 +39,11 @@ export default class CategoryDetail extends React.Component {
 		window.scrollTo(0, 0);
 		this.service = await getService();
 		const parse = x => this.service.getObject (x);
-		const items = this.props.category.data.Items || [];
-		const title = this.props.category.data.Name || '';
+		const items = this.props.category.Items || [];
+		const title = this.props.category.Name || '';
 		const courses = await Promise.all (items.map (parse));
 		this.setState({courses :courses, title: title});
-		if(this.props.category.data.Total === courses.length) {
+		if(this.props.category.Total === courses.length) {
 			this.setState({noMore: true});
 		}
 	}
@@ -83,11 +83,9 @@ export default class CategoryDetail extends React.Component {
 						})}
 					</ul>
 				</div>
-				{!category.noMore && (
-					<div className="categories-more">
-						<a onClick={this.loadMore}>View More</a>
-					</div>
-				)}
+				<div className="categories-more">
+					<a onClick={this.loadMore}>View More</a>
+				</div>
 			</div>
 		);
 	}

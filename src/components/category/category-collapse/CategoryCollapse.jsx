@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Presentation} from 'nti-web-commons';
+import {LinkTo} from 'nti-web-routing';
 
 import * as Actions from '../../../Actions';
 
@@ -25,11 +26,14 @@ export default class CategoryDetail extends React.Component {
 				<ul className="course-card">
 					{this.props.categories.map ((course, index) => {
 						return (
-							<li key={index} className="categories-block" onClick={this.viewCategory(course.Name)}>
-								<Presentation.AssetBackground type="background" contentPackage={course} style={backgroundStyle}>
-									<div
-										className="category-collapse">{course.Name === '.nti_other' ? 'Others' : course.Name}</div>
-								</Presentation.AssetBackground>
+							<li key={index} className="categories-block">
+								<LinkTo.Object object={course} context="catalog.categories">
+									<Presentation.AssetBackground type="background" contentPackage={course} style={backgroundStyle}>
+										<div
+											className="category-collapse">{course.Name === '.nti_other' ? 'Others' : course.Name}</div>
+									</Presentation.AssetBackground>
+								</LinkTo.Object>
+
 							</li>
 						);
 					})}

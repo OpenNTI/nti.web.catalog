@@ -1,13 +1,12 @@
 /* eslint-env jest */
-import React from 'react';
-import {shallow} from 'enzyme';
 
-import GridCard from '../GridCard';
+//example test:
+describe('Unit Test Example', () => {
 
-describe('GridCard', () => {
-	const data = [];
-	test('no data for grid card', () => {
-		const wrapper = shallow(<GridCard data={data} />);
-		expect(wrapper.find('data').length === 0);
+	test('should show a test', () => {
+
+		expect(true).toBeTruthy();
+
 	});
+
 });

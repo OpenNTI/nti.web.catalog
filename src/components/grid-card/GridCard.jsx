@@ -94,7 +94,7 @@ function convertItems (items) {
 	let otherItems = null;
 
 	items.map(item => {
-		if (item.ItemCount < 4) {
+		if (item.ItemCount < 4 && item.Name !== '.nti_other') {
 			result.collapseItems.push(item);
 
 		}
