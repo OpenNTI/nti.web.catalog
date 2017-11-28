@@ -14,7 +14,6 @@ export default class CategoryStore extends SearchablePagedStore {
 
 		try {
 			const categoryLink = getLink (links, 'ByTag') + '/' + id + '?batchStart=0&batchSize=' + Constants.BATCH_SIZE;
-			console.log(categoryLink);
 			category = await service.get (categoryLink);
 			category.link = getLink (links, 'ByTag');
 		}

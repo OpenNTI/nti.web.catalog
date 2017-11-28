@@ -53,7 +53,6 @@ export default class Category extends React.Component {
 		if (!this.props.category) {
 			return null;
 		}
-		console.log(this.props);
 		return (
 			<div className="course-catalog">
 				<section className="">

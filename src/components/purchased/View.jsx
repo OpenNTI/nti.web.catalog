@@ -51,10 +51,9 @@ export default class Category extends React.Component {
 		if (!this.props.purchased) {
 			return null;
 		}
-		if (this.props.purchased || this.props.purchased.length === 0) {
+		if (this.props.purchased && this.props.purchased.length === 0) {
 			return this.renderEmptyState();
 		}
-		console.log(this.props);
 		return (
 			<section className="content-catalog no-sidebar">
 				<GridCard courses={this.props.purchased} type={Constants.PURCHASED}/>
