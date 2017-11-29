@@ -4,7 +4,7 @@ import {Presentation, Loading} from 'nti-web-commons';
 import {getService} from 'nti-web-client';
 
 import CourseCard from '../../grid-card/card/Card';
-import Constants from '../../../Constants';
+import * as Constants from '../../../Constants';
 
 export default class CategoryDetail extends React.Component {
 	static propTypes = {
