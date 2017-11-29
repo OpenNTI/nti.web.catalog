@@ -1,9 +1,9 @@
 @import "~nti-style-common";
 
 .course-catalog {
-	.content-catalog.no-sidebar {
+	.content-catalog {
 		&.no-sidebar {
-			.course-block {
+			.course-block, .categories-block {
 				&:nth-child(3n+3) {
 					margin-right: 9px;
 				}
