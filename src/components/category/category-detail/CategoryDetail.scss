@@ -44,7 +44,7 @@
 
 	.categories-more {
 		width: 1024px;
-		text-align: right;
+		text-align: center;
 		margin: 0 auto;
 		margin-bottom: 20px;
 		margin-top: -20px;
@@ -59,8 +59,15 @@
 			font-weight: 600;
 			line-height: 19px;
 			text-align: center;
-			padding: 6px 13px;
+			padding: 6px 46%;
 			width: 80px;
 		}
+	}
+
+	.category-loading {
+		position: relative;
+		height: 80px;
+		width: 100%;
+		top: -55px;
 	}
 }

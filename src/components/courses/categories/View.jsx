@@ -4,7 +4,6 @@ import {searchable} from 'nti-web-search';
 import {Loading, EmptyState} from 'nti-web-commons';
 
 import * as Constant from '../../../Constants';
-
 import Carousel from '../../carousel/Carousel';
 import GridCard from '../../grid-card/GridCard';
 
@@ -58,14 +57,25 @@ export default class Categories extends React.Component {
 		if (!categories || categories.length === 0) {
 			return this.renderEmptyState();
 		}
+
+		const onlyOther = categories.length === 1 && categories[0].Name === '.nti_other';
 		return (
 			<div className="course-catalog">
 				<section className="carousel">
 					<Carousel data={carousel}/>
 				</section>
-				<section className="content-catalog no-sidebar">
-					<GridCard courses={categories} type={Constant.CATEGORIES} link=""/>
-				</section>
+				{onlyOther && (
+					<div className="course-catalog">
+						<section className="">
+							<GridCard category={categories[0]} type={Constant.CATEGORY} other={onlyOther} link={this.props.categories.link}/>
+						</section>
+					</div>
+				)}
+				{!onlyOther && (
+					<section className="content-catalog no-sidebar">
+						<GridCard courses={categories} type={Constant.CATEGORIES}/>
+					</section>
+				)}
 			</div>
 		);
 	}

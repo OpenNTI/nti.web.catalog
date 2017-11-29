@@ -31,6 +31,7 @@ export default class CourseListStore extends SearchablePagedStore {
 
 		try {
 			categories = await service.get (getLink (links, 'ByTag'));
+			categories.link = getLink(links, 'ByTag');
 		}
 		catch (e) {
 			categories = {Items: []};

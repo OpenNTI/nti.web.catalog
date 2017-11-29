@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Presentation} from 'nti-web-commons';
+import {Presentation, Loading} from 'nti-web-commons';
 import {getService} from 'nti-web-client';
 
-// import * as Actions from '../../../Actions';
 import CourseCard from '../../grid-card/card/Card';
+import Constants from '../../../Constants';
 
-const numItems = 8;
 export default class CategoryDetail extends React.Component {
 	static propTypes = {
-		category: PropTypes.object
+		category: PropTypes.object,
+		other: PropTypes.bool,
+		link: PropTypes.string
 	}
 
 	backToCategories = () =>{
@@ -20,16 +21,17 @@ export default class CategoryDetail extends React.Component {
 		const parse = x => this.service.getObject (x);
 		const courses = await Promise.all (item.map (parse));
 		const oldItems = this.state.courses;
-		this.setState({courses: oldItems.concat(courses)});
+		this.setState({courses: oldItems.concat(courses), loading:false});
 		if(this.props.category.Total === this.state.courses.length) {
 			this.setState({noMore: true});
 		}
 	}
 
 	loadMore = () =>{
+		this.setState({loading:true});
 		const currentItems = this.state.courses.length;
-		let link = this.props.category.href.split('?')[0];
-		link = link + '?batchStart=' + currentItems + '&batchSize=' + numItems;
+		let link = this.props.link || this.props.category.link;
+		link = link + '/' + this.props.category.Name + '?batchStart=' + currentItems + '&batchSize=' + Constants.BATCH_SIZE;
 		this.service.get(link).then(item =>{
 			this.converEntry(item.Items);
 		});
@@ -41,7 +43,10 @@ export default class CategoryDetail extends React.Component {
 		const parse = x => this.service.getObject (x);
 		const items = this.props.category.Items || [];
 		const title = this.props.category.Name || '';
-		const courses = await Promise.all (items.map (parse));
+		let courses = await Promise.all (items.map (parse));
+		if (this.props.other) {
+			courses = courses.slice(0, 8);
+		}
 		this.setState({courses :courses, title: title});
 		if(this.props.category.Total === courses.length) {
 			this.setState({noMore: true});
@@ -58,17 +63,19 @@ export default class CategoryDetail extends React.Component {
 		const backgroundStyle = {'backgroundSize': 'cover', 'height': '300px'};
 		return (
 			<div>
-				<div className="categories-banner">
-					<Presentation.AssetBackground type="background" contentPackage={this.props.category} style={backgroundStyle}>
-						<div className="category-text-wrapper">
-							<div className="categories-back" onClick={this.backToCategories}>
-								<a className="icon-chevron-left"/>
-								<a className="back-btn">Back</a>
+				{!this.props.other && (
+					<div className="categories-banner">
+						<Presentation.AssetBackground type="background" contentPackage={this.props.category} style={backgroundStyle}>
+							<div className="category-text-wrapper">
+								<div className="categories-back" onClick={this.backToCategories}>
+									<a className="icon-chevron-left"/>
+									<a className="back-btn">Back</a>
+								</div>
+								<p className="categories-title">{category.title === '.nti_other' ? 'Others' : category.title}</p>
 							</div>
-							<p className="categories-title">{category.title === '.nti_other' ? 'Others' : category.title}</p>
-						</div>
-					</Presentation.AssetBackground>
-				</div>
+						</Presentation.AssetBackground>
+					</div>
+				)}
 				<div className="content-catalog no-sidebar">
 					<ul className="course-card">
 						{category.courses.map ((course, index) => {
@@ -83,9 +90,17 @@ export default class CategoryDetail extends React.Component {
 						})}
 					</ul>
 				</div>
-				<div className="categories-more">
-					<a onClick={this.loadMore}>View More</a>
-				</div>
+
+				{!category.noMore  && (
+					<div className="categories-more">
+						{category.loading && (
+							<div className="category-loading">
+								<Loading.Mask/>
+							</div>
+						)}
+						<a onClick={this.loadMore}>View More</a>
+					</div>
+				)}
 			</div>
 		);
 	}

@@ -14,6 +14,7 @@ export default class GridCard extends React.Component {
 		courses: PropTypes.array,
 		category: PropTypes.object,
 		type: PropTypes.string,
+		other: PropTypes.bool,
 		link: PropTypes.string
 	}
 
@@ -57,7 +58,7 @@ export default class GridCard extends React.Component {
 		else if (this.props.type === Constants.CATEGORY) {
 			return (
 				<div>
-					<CategoryDetail category={this.props.category}/>
+					<CategoryDetail category={this.props.category} other={this.props.other} link={this.props.link}/>
 				</div>
 			);
 		}

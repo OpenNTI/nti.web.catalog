@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Loading} from 'nti-web-commons';
 import {getService} from 'nti-web-client';
 import {getLink} from 'nti-lib-interfaces';
 import {encodeForURI} from 'nti-lib-ntiids';
@@ -23,6 +24,12 @@ export default class Redeem extends React.Component {
 		};
 	}
 
+	async componentDidMount () {
+		const service = await getService();
+		const links = service.getCollection('Invitations', 'Invitations');
+		this.setState({links: links});
+	}
+
 	handleChange = (e) => {
 		this.setState ({codeValue: e.target.value, error: false, inputErrClass: ''});
 	}
@@ -41,9 +48,9 @@ export default class Redeem extends React.Component {
 		let me = this;
 		this.setState ({loading: true});
 
-		const link = getLink(this.props.redeemCollection, 'accept-course-invitations');
+		const link = getLink(this.state.links, 'accept-course-invitations');
 		getService().then(service => {
-			service.postParseResponse(link, redeemCode)
+			service.post(link, redeemCode)
 				.then(function (results) {
 					me.setState({loading: false, success: true});
 					setTimeout(() => {
@@ -63,6 +70,11 @@ export default class Redeem extends React.Component {
 	}
 
 	render () {
+		const redeem = this.state;
+
+		if (!redeem) {
+			return null;
+		}
 		return (
 			<div className="course-catalog">
 				{this.state.success && (
@@ -83,7 +95,7 @@ export default class Redeem extends React.Component {
 					</div>
 					{this.state.loading && (
 						<div className="loading-redeem">
-							<p>loading...</p>
+							<Loading.Mask/>
 						</div>
 					)}
 					{this.state.error && (
