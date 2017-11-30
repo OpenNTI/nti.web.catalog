@@ -21,12 +21,13 @@
 	}
 
 	.content-right {
-		width: 74%;
+		width: 76%;
 		float: right;
-		margin-left: 10px;
+		margin-left: 9px;
 
 		ul {
 			overflow: visible;
+			list-style: none;
 		}
 	}
 }
