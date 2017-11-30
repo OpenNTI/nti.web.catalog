@@ -21,9 +21,14 @@ export default class CategoryDetail extends React.Component {
 
 		const service = await getService();
 		const items = await service.get(categoryLink);
+
+
+		const parse = x => service.getObject (x);
+		const courses = await Promise.all (items.Items.map (parse));
+
 		const oldItems = this.state.courses;
 
-		this.setState({courses: oldItems.concat(items), loading:false});
+		this.setState({courses: oldItems.concat(courses), loading:false});
 		if(this.props.category.Total === this.state.courses.length) {
 			this.setState({noMore: true});
 		}
