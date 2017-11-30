@@ -3,19 +3,13 @@ import PropTypes from 'prop-types';
 import {Presentation} from 'nti-web-commons';
 import {LinkTo} from 'nti-web-routing';
 
-import * as Actions from '../../../Actions';
+
 
 export default class CategoryDetail extends React.Component {
 	static propTypes = {
 		categories: PropTypes.array,
 		link: PropTypes.string
 	}
-
-	viewCategory = (name) => () =>{
-		const link = this.props.link + '/' + name;
-		Actions.viewCategory(link);
-	}
-
 	render () {
 		if (!this.props.categories) {
 			return null;

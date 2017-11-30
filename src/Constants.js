@@ -5,4 +5,4 @@ export const CATEGORIES = 'CATEGORIES';
 export const CATEGORY =  'CATEGORY';
 export const PURCHASED = 'PURCHASED';
 export const SEARCH = 'SEARCH';
-export const BATCH_SIZE = 8;
+export const BATCH_SIZE = 32;

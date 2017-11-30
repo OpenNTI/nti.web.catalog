@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {LinkTo} from 'nti-web-routing';
 import {Presentation, Loading} from 'nti-web-commons';
 import {getService} from 'nti-web-client';
 
@@ -13,11 +14,7 @@ export default class CategoryDetail extends React.Component {
 		link: PropTypes.string
 	}
 
-	backToCategories = () =>{
-		window.history.back();
-	}
-
-	async converEntry (item) {
+	async convertEntry (item) {
 		const parse = x => this.service.getObject (x);
 		const courses = await Promise.all (item.map (parse));
 		const oldItems = this.state.courses;
@@ -33,7 +30,7 @@ export default class CategoryDetail extends React.Component {
 		let link = this.props.link || this.props.category.link;
 		link = link + '/' + this.props.category.Name + '?batchStart=' + currentItems + '&batchSize=' + Constants.BATCH_SIZE;
 		this.service.get(link).then(item =>{
-			this.converEntry(item.Items);
+			this.convertEntry(item.Items);
 		});
 	}
 
@@ -45,7 +42,7 @@ export default class CategoryDetail extends React.Component {
 		const title = this.props.category.Name || '';
 		let courses = await Promise.all (items.map (parse));
 		if (this.props.other) {
-			courses = courses.slice(0, 8);
+			courses = courses.slice(0, Constants.BATCH_SIZE);
 		}
 		this.setState({courses :courses, title: title});
 		if(this.props.category.Total === courses.length) {
@@ -61,15 +58,19 @@ export default class CategoryDetail extends React.Component {
 		}
 
 		const backgroundStyle = {'backgroundSize': 'cover', 'height': '300px'};
+		const link = {action: 'back'};
 		return (
 			<div>
 				{!this.props.other && (
 					<div className="categories-banner">
 						<Presentation.AssetBackground type="background" contentPackage={this.props.category} style={backgroundStyle}>
 							<div className="category-text-wrapper">
-								<div className="categories-back" onClick={this.backToCategories}>
-									<a className="icon-chevron-left"/>
-									<a className="back-btn">Back</a>
+
+								<div className="categories-back">
+									<LinkTo.Object object={link} context="catalog">
+										<a className="icon-chevron-left"/>
+										<a className="back-btn">Back</a>
+									</LinkTo.Object>
 								</div>
 								<p className="categories-title">{category.title === '.nti_other' ? 'Others' : category.title}</p>
 							</div>

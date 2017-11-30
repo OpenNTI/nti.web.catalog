@@ -4,7 +4,6 @@ import {getService} from 'nti-web-client';
 import {LinkTo} from 'nti-web-routing';
 
 import CourseCard from '../grid-card/card/Card';
-import * as Actions from '../../Actions';
 
 export default class Category extends React.Component {
 	static propTypes = {
@@ -18,11 +17,6 @@ export default class Category extends React.Component {
 		const courses = await Promise.all (this.props.category.Items.map (parse));
 
 		this.setState({courses :courses});
-	}
-
-	viewCategory = () =>{
-		const link = this.props.link + '/' + this.props.category.Name;
-		Actions.viewCategory(link);
 	}
 
 	render () {
@@ -40,7 +34,7 @@ export default class Category extends React.Component {
 					<div className="title-category">{title}</div>
 					<div className="view-all">
 						<LinkTo.Object object={this.props.category} context="catalog.categories">
-							<a onClick={this.viewCategory}>View All</a>
+							<a>View All</a>
 							<span className="icon-chevronup-25"/>
 						</LinkTo.Object>
 					</div>

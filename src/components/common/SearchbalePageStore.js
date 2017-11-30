@@ -21,11 +21,35 @@ export default class SearchablePagedStore extends BasicStore {
 		};
 	}
 
+	static fillerItems (courses, term) {
+		return courses.filter(item => {
+			const title = item.title ? item.title.toUpperCase() : '';
+			const id = item.ProviderUniqueID ? item.ProviderUniqueID.toUpperCase() : '';
+			term = term.toUpperCase();
+
+			const instructors = item.Instructors ? item.Instructors.map(instructor => {
+				return instructor.Name;
+			}).join(', ').toUpperCase() : '';
+
+
+			if (instructors.indexOf(term) > -1) {
+				return true;
+			}
+
+			if (title.indexOf(term) > -1) {
+				return true;
+			}
+
+			return id.indexOf(term) > -1;
+		});
+	}
+
+
 	constructor () {
 		super();
 
 		this._searchTerm = null;
-
+		this._searchItems = null;
 		this._categories = {};
 		this._carousel = {};
 		this._purchased = [];
@@ -37,6 +61,10 @@ export default class SearchablePagedStore extends BasicStore {
 
 	get error () {
 		return this._error;
+	}
+
+	get searchItems () {
+		return this._searchItems;
 	}
 
 	get searchTerm () {
@@ -63,6 +91,15 @@ export default class SearchablePagedStore extends BasicStore {
 	async load (type, id) {
 		this._loading = true;
 		this.emitChange('loading');
+
+		if (this.searchTerm) {
+			const searchItems = await this.loadSearchTerm(this.searchTerm, this.category);
+			this._searchItems = searchItems;
+			this._loading = false;
+			this.emitChange('searchItems');
+			this.emitChange('loading');
+			return;
+		}
 
 		try {
 			if (type === Constant.CATEGORIES) {

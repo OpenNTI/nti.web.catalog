@@ -24,6 +24,10 @@
 			text-align: center;
 			padding: 6px 20px 8px 13px;
 			width: 80px;
+
+			a {
+				color: #fff;
+			}
 		}
 
 		.categories-title {
@@ -47,15 +51,14 @@
 		text-align: center;
 		margin: 0 auto;
 		margin-bottom: 20px;
-		margin-top: -20px;
 
 		a {
-			color: $secondary-grey;
+			color: #fff;
 			font-size: 14px;
 			cursor: pointer;
 			margin-left: 0;
 			border-radius: 100px;
-			background-color: rgba(189, 188, 188, 0.2);
+			background-color: #3fb3f6;
 			font-weight: 600;
 			line-height: 19px;
 			text-align: center;

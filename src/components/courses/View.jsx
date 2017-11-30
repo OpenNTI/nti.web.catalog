@@ -12,6 +12,10 @@ export default Router.for([
 				return `/${(obj.Name)}`;
 			}
 
+			else if(obj.action === 'back' && context === 'catalog'){
+				return `/`;
+			}
+
 			return null;
 		}
 	}),

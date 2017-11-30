@@ -5,7 +5,19 @@ import SearchablePagedStore from '../../common/SearchbalePageStore';
 import * as Constants from '../../../Constants';
 
 export default class CategoryStore extends SearchablePagedStore {
-
+	async loadSearchTerm (term, category) {
+		const link = category ? category.link + '/' + category.Name : '';
+		const service = await getService();
+		let searchItems = [];
+		try {
+			const {Items: items} = await service.get (link);
+			searchItems = SearchablePagedStore.fillerItems(items, term);
+		}
+		catch (e) {
+			searchItems = [];
+		}
+		return searchItems;
+	}
 
 	async loadCategory (id) {
 		const service = await getService();

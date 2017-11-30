@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {searchable} from 'nti-web-search';
+import {searchable, contextual} from 'nti-web-search';
 import {Loading, EmptyState} from 'nti-web-commons';
 
 import * as Constant from '../../../Constants';
 import Carousel from '../../carousel/Carousel';
 import GridCard from '../../grid-card/GridCard';
+import Search from '../../search';
 
 import Store from './Store';
 
@@ -13,6 +14,7 @@ const store = new Store();
 const propMap = {
 	categories: 'categories',
 	carousel: 'carousel',
+	searchItems: 'searchItems',
 	searchTerm: 'searchTerm',
 	loading: 'loading',
 	hasNextPage: 'hasNextPage',
@@ -20,6 +22,7 @@ const propMap = {
 	error: 'error'
 };
 
+@contextual('Catalog')
 @searchable(store, propMap)
 export default class Categories extends React.Component {
 	static propTypes = {
@@ -27,6 +30,7 @@ export default class Categories extends React.Component {
 		categories: PropTypes.object,
 		carousel: PropTypes.object,
 		searchTerm: PropTypes.string,
+		searchItems: PropTypes.array,
 		loading: PropTypes.bool,
 		renderData: PropTypes.func
 	}
@@ -38,6 +42,16 @@ export default class Categories extends React.Component {
 
 	render () {
 		const {loading} = this.props;
+		if (this.props.searchItems && this.props.searchTerm) {
+			return (
+				<div className="course-catalog">
+					<section className="">
+						<Search term={this.props.searchTerm} courses={this.props.searchItems} loading={this.props.loading}/>
+					</section>
+				</div>
+
+			);
+		}
 		return (
 			<div >
 				{loading && (
