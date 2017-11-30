@@ -1,0 +1,42 @@
+@import "~nti-style-common";
+
+.course-catalog {
+	.category-block {
+		clear: both;
+		padding-top: 30px;
+	}
+
+	.title-viewAll {
+		overflow: hidden;
+
+		.title-category {
+			font-size: 18px;
+			color: $primary-grey;
+			display: inline-block;
+			width: 50%;
+			margin: 0;
+			font-weight: normal;
+			text-transform: capitalize;
+		}
+
+		.view-all {
+			width: 50%;
+			display: inline-block;
+			text-align: right;
+
+			a {
+				color: $secondary-grey;
+				font-size: 14px;
+				text-align: right;
+			}
+
+			span {
+				color: $secondary-grey;
+				display: inline-block;
+				transform: rotate(90deg);
+				font-size: 14px;
+			}
+		}
+	}
+}
+
