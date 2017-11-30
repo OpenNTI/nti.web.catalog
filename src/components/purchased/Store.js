@@ -1,8 +1,6 @@
 import {getService} from 'nti-web-client';
-// import {getLink} from 'nti-lib-interfaces';
 
 import SearchablePagedStore from '../common/SearchbalePageStore';
-// import * as Constants from '../../Constants';
 
 export default class CategoryStore extends SearchablePagedStore {
 

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {LinkTo} from 'nti-web-routing';
 import {Presentation, Loading} from 'nti-web-commons';
 import {getService} from 'nti-web-client';
+import {URL} from 'nti-commons';
 
 import CourseCard from '../../grid-card/card/Card';
 import * as Constants from '../../../Constants';
@@ -14,11 +15,15 @@ export default class CategoryDetail extends React.Component {
 		link: PropTypes.string
 	}
 
-	async convertEntry (item) {
-		const parse = x => this.service.getObject (x);
-		const courses = await Promise.all (item.map (parse));
+	async getCourses (link) {
+		const currentItems = this.state.courses.length || 0;
+		const categoryLink = URL.appendQueryParams(link, {batchStart: currentItems, batchSize: Constants.BATCH_SIZE});
+
+		const service = await getService();
+		const items = await service.get(categoryLink);
 		const oldItems = this.state.courses;
-		this.setState({courses: oldItems.concat(courses), loading:false});
+
+		this.setState({courses: oldItems.concat(items), loading:false});
 		if(this.props.category.Total === this.state.courses.length) {
 			this.setState({noMore: true});
 		}
@@ -26,12 +31,9 @@ export default class CategoryDetail extends React.Component {
 
 	loadMore = () =>{
 		this.setState({loading:true});
-		const currentItems = this.state.courses.length;
 		let link = this.props.link || this.props.category.link;
-		link = link + '/' + this.props.category.Name + '?batchStart=' + currentItems + '&batchSize=' + Constants.BATCH_SIZE;
-		this.service.get(link).then(item =>{
-			this.convertEntry(item.Items);
-		});
+		link = link + '/' + this.props.category.Name;
+		this.getCourses(link);
 	}
 
 	async componentDidMount () {

@@ -1,11 +1,11 @@
-import EventEmitter from 'events';
-
 import React from 'react';
 import Connector from 'nti-lib-store-connector';
 
 const Instance = Symbol('Instance');
+const Data = Symbol('Data');
+const Listeners = Symbol('Listeners');
 
-export default class BasicStore extends EventEmitter {
+export default class SimpleStore {
 	static getInstance () {
 		const Store = this;
 
@@ -33,21 +33,51 @@ export default class BasicStore extends EventEmitter {
 		};
 	}
 
-	get (key) {
-		return this[key];
+
+	constructor () {
+		this[Listeners] = [];
+		this[Data] = {};
 	}
 
+
+	get (key) {
+		const data = this[Data][key];
+
+		return data !== undefined ? data : this[key];
+	}
+
+
+	set (key, value) {
+		this[Data][key] = value;
+	}
+
+
 	emitChange (type) {
-		this.emit('change', {type});
+		for (let listener of this[Listeners]) {
+			listener({type});
+		}
 	}
 
 
 	addChangeListener (fn) {
-		this.addListener('change', fn);
+		if (!hasListener(fn, this[Listeners])) {
+			this[Listeners].push(fn);
+		}
 	}
 
 
 	removeChangeListener (fn) {
-		this.removeListener('change', fn);
+		this[Listeners] = this[Listeners].filter(listener => listener !== fn);
 	}
+}
+
+
+function hasListener (fn, listeners) {
+	for (let listener of listeners) {
+		if (listener === fn) {
+			return true;
+		}
+	}
+
+	return false;
 }

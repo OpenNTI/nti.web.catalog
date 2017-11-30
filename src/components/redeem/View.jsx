@@ -34,6 +34,21 @@ export default class Redeem extends React.Component {
 		this.setState ({codeValue: e.target.value, error: false, inputErrClass: ''});
 	}
 
+	async redeem (link, param) {
+		try {
+			const service = await getService();
+			const result = await service.post(link, param);
+			const detailLink = `./object/${encodeForURI (result.CatalogEntryNTIID)}` + '?redeem=1';
+			window.open (detailLink, '_self');
+			this.setState({codeValue: '', loading: false});
+		}
+		catch (reason) {
+			const err = reason.message || 'Error with the code.';
+			this.setState({error: true, errorMessage: err, loading: false, inputErrClass: 'error-input-redeem'});
+
+		}
+	}
+
 	redeemCourse = () => {
 		if (!this.state.codeValue || this.state.codeValue === '') {
 			this.setState ({
@@ -44,29 +59,10 @@ export default class Redeem extends React.Component {
 			return;
 		}
 		const redeemCode = {'invitation_codes': this.state.codeValue};
-
-		let me = this;
 		this.setState ({loading: true});
 
 		const link = getLink(this.state.links, 'accept-course-invitations');
-		getService().then(service => {
-			service.post(link, redeemCode)
-				.then(function (results) {
-					me.setState({loading: false, success: true});
-					setTimeout(() => {
-						me.setState({success: false, codeValue:''});
-					}, 3000);
-
-					//open course detail and go ro course page
-					const detailLink = `./object/${encodeForURI (results.CatalogEntryNTIID)}` + '?redeem=1';
-					window.open (detailLink, '_self');
-				})
-				.catch(function (reason) {
-					const err = reason.message || 'Error with the code.';
-					me.setState({error: true, errorMessage: err, loading: false, inputErrClass: 'error-input-redeem'});
-					// return Promise.reject (reason);
-				});
-		});
+		this.redeem(link, redeemCode);
 	}
 
 	render () {
