@@ -1,0 +1,82 @@
+@import "~nti-style-common";
+
+.course-catalog {
+	.redeem-class {
+		max-width: 400px;
+		margin: 135px auto 0;
+	}
+
+	.redeem-txt {
+		max-width: 335px;
+		margin: 0 auto;
+
+		h3 {
+			color: #000;
+			font-size: 36px;
+			font-weight: 300;
+			line-height: 49px;
+			text-align: center;
+		}
+
+		p {
+			color: #757474;
+			font-size: 16px;
+			line-height: 24px;
+			margin: 30px 0;
+			text-align: center;
+		}
+	}
+
+	.input-redeem {
+		width: 100%;
+
+		input, button {
+			height: 50px;
+			display: block;
+			float: left;
+		}
+
+		input {
+			color: #b8b8b8;
+			font-size: 16px;
+			width: 296px;
+			padding: 0 20px;
+		}
+
+		button {
+			width: 104px;
+			border-radius: 0 4px 4px 0;
+			background-color: #3fb3f6;
+			border-color: transparent;
+			font-size: 16px;
+			color: #fff;
+			margin-left: -1px;
+			cursor: pointer;
+
+			&:hover {
+				opacity: 0.7;
+			}
+		}
+	}
+
+	.error-redeem {
+		color: red;
+	}
+
+	.error-input-redeem {
+		border: 1px solid red;
+	}
+
+	.success-redeem {
+		background-color: #3fb34f;
+		height: 60px;
+		text-align: center;
+		padding-top: 1px;
+		color: #fff;
+	}
+
+	.loading-redeem {
+		position: relative;
+		text-align: center;
+	}
+}

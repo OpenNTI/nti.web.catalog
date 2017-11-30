@@ -1,0 +1,76 @@
+@import "~nti-style-common";
+
+.course-catalog {
+	.categories-banner {
+		height: 300px;
+		position: relative;
+
+		.category-text-wrapper {
+			width: 1024px;
+			margin-left: auto;
+			margin-right: auto;
+			padding-top: 34px;
+		}
+
+		.categories-back {
+			cursor: pointer;
+			margin-left: 0;
+			border-radius: 100px;
+			background-color: rgba(255, 255, 255, 0.2);
+			font-size: 14px;
+			font-weight: 600;
+			line-height: 19px;
+			color: #fff;
+			text-align: center;
+			padding: 6px 20px 8px 13px;
+			width: 80px;
+
+			a {
+				color: #fff;
+			}
+		}
+
+		.categories-title {
+			color: #fff;
+			font-family: "Open Sans";
+			font-size: 36px;
+			font-weight: 300;
+			line-height: 49px;
+			text-transform: capitalize;
+			text-align: center;
+			margin: 0;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
+
+	.categories-more {
+		width: 1024px;
+		text-align: center;
+		margin: 0 auto;
+		margin-bottom: 20px;
+
+		a {
+			color: #fff;
+			font-size: 14px;
+			cursor: pointer;
+			margin-left: 0;
+			border-radius: 100px;
+			background-color: #3fb3f6;
+			font-weight: 600;
+			line-height: 19px;
+			text-align: center;
+			padding: 6px 46%;
+			width: 80px;
+		}
+	}
+
+	.category-loading {
+		position: relative;
+		height: 80px;
+		width: 100%;
+		top: -55px;
+	}
+}

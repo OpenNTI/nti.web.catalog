@@ -16,15 +16,15 @@ export default class CourseCard extends React.Component {
 	}
 
 	render () {
-		const enrollmentOptions = this.props.course.getEnrollmentOptions();
-		const enrolled = enrollmentOptions && enrollmentOptions.Items && enrollmentOptions.Items.OpenEnrollment &&
-			enrollmentOptions.Items.OpenEnrollment.enrolled;
+		const enrolled = this.props.course.IsEnrolled;
 
 		const status = checkStatus (this.props.course.StartDate, this.props.course.EndDate);
 		let statusClass = status;
 		if (enrolled) {
 			statusClass = status + ' right';
 		}
+
+		const isAdmin = this.props.course.IsAdmin;
 
 		const instructors = this.props.course.Instructors ? this.props.course.Instructors.map(instructor => {
 			return instructor.Name;
@@ -43,13 +43,15 @@ export default class CourseCard extends React.Component {
 						<div className="course-title">{this.props.course.Title}</div>
 						<p>{instructors}</p>
 					</div>
-					{enrolled && (
+					{isAdmin && (
+						<div className="stamp"><span className="admin">Administering</span></div>)}
+					{enrolled && !isAdmin && (
 						<div className="stamp"><span className="enroll">ENROLLED</span></div>)}
-					{status === 'start' && (
+					{status === 'start' && !isAdmin && (
 						<div className="stamp">
 							<span className={statusClass}>Starts <DateTime date={this.props.course.StartDate} format="ll"/></span>
 						</div>)}
-					{status === 'finish' && (
+					{status === 'finish' && !isAdmin && (
 						<div className="stamp">
 							<span className={statusClass}>Finished <DateTime date={this.props.course.EndDate} format="ll"/></span>
 						</div>)}

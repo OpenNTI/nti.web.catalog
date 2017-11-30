@@ -1,11 +1,20 @@
 @import "~nti-style-common";
 
 .course-catalog {
-	.content-catalog.no-sidebar {
+	.content-catalog {
 		&.no-sidebar {
-			.course-block {
-				width: 232px;
-				margin: 12px;
+			.course-block, .categories-block {
+				&:nth-child(3n+3) {
+					margin-right: 9px;
+				}
+
+				&:nth-child(4n+4) {
+					margin-right: 0;
+				}
+			}
+
+			.course-card {
+				margin-left: -9px;
 			}
 
 			.content-right {
@@ -15,16 +24,15 @@
 	}
 
 	.course-block {
-		width: 232px;
+		width: 242px;
 		background-color: #fff;
 		box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-		// min-height: 290px;
 		padding: 5px;
 		position: relative;
 		min-height: 290px;
 		list-style: none;
 		float: left;
-		margin: 0 10px 20px;
+		margin: 9px;
 
 		&:nth-child(3n+3) {
 			margin-right: 0;
@@ -32,7 +40,6 @@
 
 		figure {
 			overflow: hidden;
-			// width: 236px;
 			height: 176px;
 		}
 
@@ -143,7 +150,46 @@
 					padding: 4px 10px;
 					background-color: $secondary-grey;
 				}
+
+				&.admin {
+					&::before {
+						position: absolute;
+						color: #fff;
+						width: 6px;
+						height: 6px;
+						top: 5px;
+						left: 8px;
+					}
+				}
 			}
+		}
+	}
+
+	.categories-block {
+		width: 242px;
+		position: relative;
+		height: 80px;
+		list-style: none;
+		float: left;
+		margin: 9px;
+		text-align: center;
+		border: 1px solid rgba(0, 0, 0, 0.2);
+		border-radius: 10px;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
+		cursor: pointer;
+
+		&:nth-child(3n+3) {
+			margin-right: 0;
+		}
+
+		.category-collapse {
+			font-size: 18px;
+			font-weight: 600;
+			padding-top: 22px;
+			color: #fff;
+			text-transform: capitalize;
 		}
 	}
 }
