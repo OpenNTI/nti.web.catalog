@@ -1,27 +1,24 @@
+import {getService} from 'nti-web-client';
+
 import SimpleStore from '../BasicStore';
 import * as Constant from '../../Constants';
 
 export default class SearchablePagedStore extends SimpleStore {
-	static fillerItems (courses, term) {
-		return courses.filter(item => {
-			const title = item.title ? item.title.toUpperCase() : '';
-			const id = item.ProviderUniqueID ? item.ProviderUniqueID.toUpperCase() : '';
-			term = term.toUpperCase();
+	static convertBatch (batch) {
+		const nextLink = batch.getLink('batch-next');
+		const loadNext = !nextLink ?
+			null :
+			async () => {
+				const service = await getService();
+				const nextBatch = await service.getBatch(nextLink);
 
-			const instructors = item.Instructors ? item.Instructors.map(instructor => {
-				return instructor.Name;
-			}).join(', ').toUpperCase() : '';
+				return SearchablePagedStore.convertBatch(nextBatch);
+			};
 
-			if (instructors.indexOf(term) > -1) {
-				return true;
-			}
-
-			if (title.indexOf(term) > -1) {
-				return true;
-			}
-
-			return id.indexOf(term) > -1;
-		});
+		return {
+			items: batch.Items,
+			loadNext
+		};
 	}
 
 	constructor () {
@@ -42,7 +39,7 @@ export default class SearchablePagedStore extends SimpleStore {
 		this.emitChange('loading');
 
 		if (this.get('searchTerm')) {
-			const searchItems = await this.loadSearchTerm(this.get('searchTerm'), this.get('category'));
+			const searchItems = await this.loadSearchTerm(this.get('searchTerm'));
 			this.set('searchItems', searchItems);
 			this.set('loading', false);
 			this.emitChange('searchItems','loading');

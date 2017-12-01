@@ -6,17 +6,11 @@ import SearchablePagedStore from '../../common/SearchbalePageStore';
 import * as Constants from '../../../Constants';
 
 export default class CategoryStore extends SearchablePagedStore {
-	async loadSearchTerm (term, category) {
-		const link = category ? category.link + '/' + category.Name : '';
+	async loadSearchTerm (term) {
 		const service = await getService();
-		let searchItems = [];
-		try {
-			const {Items: items} = await service.get (link);
-			searchItems = SearchablePagedStore.fillerItems(items, term);
-		}
-		catch (e) {
-			searchItems = [];
-		}
+		const collection = service.getCollection('Courses', 'Catalog');
+		const {Items: searchItems} = await service.getBatch(collection.href, {batchSize: Constants.BATCH_SIZE, batchStart: 0, filter: term});
+
 		return searchItems;
 	}
 

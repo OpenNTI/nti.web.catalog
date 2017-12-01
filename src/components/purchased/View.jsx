@@ -5,15 +5,15 @@ import {Loading, EmptyState} from 'nti-web-commons';
 
 import * as Constants from '../../Constants';
 import  GridCard from '../grid-card/GridCard';
+import Search from '../search';
 
 import Store from './Store';
 const store = new Store();
 const propMap = {
 	purchased: 'purchased',
 	searchTerm: 'searchTerm',
+	searchItems: 'searchItems',
 	loading: 'loading',
-	hasNextPage: 'hasNextPage',
-	loadingNextPage: 'loadingNextPage',
 	error: 'error'
 };
 
@@ -22,6 +22,7 @@ export default class Category extends React.Component {
 	static propTypes = {
 		purchased: PropTypes.array,
 		searchTerm: PropTypes.string,
+		searchItems: PropTypes.array,
 		loading: PropTypes.bool,
 		match: PropTypes.object,
 		renderData: PropTypes.func
@@ -34,6 +35,17 @@ export default class Category extends React.Component {
 
 	render () {
 		const {loading} = this.props;
+
+		if (this.props.searchItems && this.props.searchTerm) {
+			return (
+				<div className="course-catalog">
+					<section className="">
+						<Search term={this.props.searchTerm} courses={this.props.searchItems} loading={this.props.loading}/>
+					</section>
+				</div>
+
+			);
+		}
 
 		return (
 			<div >
