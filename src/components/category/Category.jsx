@@ -30,7 +30,7 @@ export default class Category extends React.Component {
 		const title = this.props.category.Name === '.nti_other' ? 'Others' : this.props.category.Name;
 		return (
 			<div>
-				<div className="title-viewAll">
+				<div className="title-view-all">
 					<div className="title-category">{title}</div>
 					<div className="view-all">
 						<LinkTo.Object object={this.props.category} context="catalog.categories">
