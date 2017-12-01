@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {getService} from 'nti-web-client';
 import {LinkTo} from 'nti-web-routing';
 
 import CourseCard from '../grid-card/card/Card';
@@ -11,22 +10,14 @@ export default class Category extends React.Component {
 		link :PropTypes.string
 	}
 
-	async componentDidMount () {
-		const service = await getService();
-		const parse = x => service.getObject (x);
-		const courses = await Promise.all (this.props.category.Items.map (parse));
-
-		this.setState({courses :courses});
-	}
-
 	render () {
-		const category = this.state;
+		const category = this.props.category;
 
 		if (!category) {
 			return null;
 		}
 
-		const courses = category.courses.slice(0, 4) || [];
+		const courses = category.Items.slice(0, 4) || [];
 		const title = this.props.category.Name === '.nti_other' ? 'Others' : this.props.category.Name;
 		return (
 			<div>
