@@ -9,7 +9,8 @@ export default Router.for([
 		component: Category,
 		getRouteFor: (obj, context) => {
 			if (obj.Name) {
-				return `/${(obj.Name)}`;
+				const url = decodeURIComponent(obj.Name);
+				return `/${(url)}`;
 			}
 
 			else if(obj.action === 'back' && context === 'catalog') {

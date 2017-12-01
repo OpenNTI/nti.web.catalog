@@ -2,15 +2,15 @@ import {getService} from 'nti-web-client';
 import {getLink} from 'nti-lib-interfaces';
 
 import SearchablePagedStore from '../../common/SearchbalePageStore';
+import * as Constants from '../../../Constants';
 
 const INITIAL_LOAD_CACHE = Symbol('Initial Load Cache');
 
 export default class CourseListStore extends SearchablePagedStore {
 	async loadSearchTerm (term) {
 		const service = await getService();
-		const {href} = service.getCollection('Courses', 'Catalog');
-		const categories = await service.get (href);
-		const searchItems = SearchablePagedStore.fillerItems(categories.Items, term) || [];
+		const collection = service.getCollection('Courses', 'Catalog');
+		const {Items: searchItems} = await service.getBatch(collection.href, {batchSize: Constants.BATCH_SIZE, batchStart: 0, filter: term});
 
 		return searchItems;
 	}
