@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Presentation, DateTime} from 'nti-web-commons';
+import {encodeForURI} from 'nti-lib-ntiids';
 
 
 CarouselItem.propTypes = {
@@ -15,7 +16,7 @@ export default function CarouselItem (props) {
 
 	return (
 		<div>
-			<a >
+			<a href={`./object/${encodeForURI(props.data.NTIID)}`}>
 				<Presentation.AssetBackground type="background" contentPackage={props.data} style={backgroundStyle}>
 					<div className="carousel-block">
 						<div className="content-carousel">

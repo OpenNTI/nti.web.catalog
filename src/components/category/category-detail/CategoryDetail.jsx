@@ -20,15 +20,11 @@ export default class CategoryDetail extends React.Component {
 		const categoryLink = URL.appendQueryParams(link, {batchStart: currentItems, batchSize: Constants.BATCH_SIZE});
 
 		const service = await getService();
-		const items = await service.get(categoryLink);
-
-
-		const parse = x => service.getObject (x);
-		const courses = await Promise.all (items.Items.map (parse));
+		const {Items: items} = await service.get(categoryLink);
 
 		const oldItems = this.state.courses;
 
-		this.setState({courses: oldItems.concat(courses), loading:false});
+		this.setState({courses: oldItems.concat(items), loading:false});
 		if(this.props.category.Total === this.state.courses.length) {
 			this.setState({noMore: true});
 		}
@@ -41,18 +37,9 @@ export default class CategoryDetail extends React.Component {
 		this.getCourses(link);
 	}
 
-	async componentDidMount () {
-		window.scrollTo(0, 0);
-		this.service = await getService();
-		const parse = x => this.service.getObject (x);
-		const items = this.props.category.Items || [];
-		const title = this.props.category.Name || '';
-		let courses = await Promise.all (items.map (parse));
-		if (this.props.other) {
-			courses = courses.slice(0, Constants.BATCH_SIZE);
-		}
-		this.setState({courses :courses, title: title});
-		if(this.props.category.Total === courses.length) {
+	componentDidMount () {
+		this.setState({courses :this.props.category.Items, title: this.props.category.Name});
+		if(this.props.category.Total < Constants.BATCH_SIZE) {
 			this.setState({noMore: true});
 		}
 	}
