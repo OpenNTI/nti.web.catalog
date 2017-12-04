@@ -1,6 +1,6 @@
 import {getService} from 'nti-web-client';
+import SimpleStore from 'nti-lib-store';
 
-import SimpleStore from '../BasicStore';
 import * as Constant from '../../Constants';
 
 export default class SearchablePagedStore extends SimpleStore {
