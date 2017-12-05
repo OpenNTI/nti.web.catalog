@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {LinkTo} from 'nti-web-routing';
-import {Presentation, Loading} from 'nti-web-commons';
+import {Loading} from 'nti-web-commons';
 import {getService} from 'nti-web-client';
 import {URL} from 'nti-commons';
 
 import CourseCard from '../../grid-card/card/Card';
 import * as Constants from '../../../Constants';
+import * as Utils from '../../../utils';
 
 export default class CategoryDetail extends React.Component {
 	static propTypes = {
@@ -38,6 +39,7 @@ export default class CategoryDetail extends React.Component {
 	}
 
 	componentDidMount () {
+		window.scrollTo(0, 0);
 		this.setState({courses :this.props.category.Items, title: this.props.category.Name});
 		if(this.props.category.Total < Constants.BATCH_SIZE) {
 			this.setState({noMore: true});
@@ -51,24 +53,21 @@ export default class CategoryDetail extends React.Component {
 			return null;
 		}
 
-		const backgroundStyle = {'backgroundSize': 'cover', 'height': '300px'};
 		const link = {action: 'back'};
+		const categoryClassName = 'categories-banner ' + Utils.getGradientClass(category.title);
 		return (
 			<div>
 				{!this.props.other && (
-					<div className="categories-banner">
-						<Presentation.AssetBackground type="background" contentPackage={this.props.category} style={backgroundStyle}>
-							<div className="category-text-wrapper">
-
-								<div className="categories-back">
-									<LinkTo.Object object={link} context="catalog">
-										<a className="icon-chevron-left"/>
-										<a className="back-btn">Back</a>
-									</LinkTo.Object>
-								</div>
-								<p className="categories-title">{category.title === '.nti_other' ? 'Others' : category.title}</p>
+					<div className={categoryClassName}>
+						<div className="category-text-wrapper">
+							<div className="categories-back">
+								<LinkTo.Object object={link} context="catalog">
+									<a className="icon-chevron-left"/>
+									<a className="back-btn">Back</a>
+								</LinkTo.Object>
 							</div>
-						</Presentation.AssetBackground>
+							<p className="categories-title">{category.title === '.nti_other' ? 'Others' : category.title}</p>
+						</div>
 					</div>
 				)}
 				<div className="content-catalog no-sidebar">

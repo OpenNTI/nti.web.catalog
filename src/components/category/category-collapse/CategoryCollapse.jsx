@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Presentation} from 'nti-web-commons';
 import {LinkTo} from 'nti-web-routing';
 
-
+import * as Utils from '../../../utils';
 
 export default class CategoryDetail extends React.Component {
 	static propTypes = {
@@ -14,18 +13,18 @@ export default class CategoryDetail extends React.Component {
 		if (!this.props.categories) {
 			return null;
 		}
-		const backgroundStyle = {'backgroundSize': 'cover', 'height' :'80px'};
+
 		return (
 			<div>
 				<ul className="course-card">
 					{this.props.categories.map ((course, index) => {
+						const categoryClassName = 'categories-block ' + Utils.getGradientClass(course.Name);
 						return (
-							<li key={index} className="categories-block">
+							<li key={index} className={categoryClassName}>
 								<LinkTo.Object object={course} context="catalog.categories">
-									<Presentation.AssetBackground type="background" contentPackage={course} style={backgroundStyle}>
-										<div
-											className="category-collapse">{course.Name === '.nti_other' ? 'Others' : course.Name}</div>
-									</Presentation.AssetBackground>
+									<div
+										className="category-collapse">{course.Name === '.nti_other' ? 'OTHERS' : course.Name}
+									</div>
 								</LinkTo.Object>
 
 							</li>

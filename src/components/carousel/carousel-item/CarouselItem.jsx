@@ -9,10 +9,13 @@ CarouselItem.propTypes = {
 };
 
 export default function CarouselItem (props) {
-	let description =  props.data.description;
-	const count = 130;
+	let description =  props.data.description || props.data.RichDescription;
+	let title = props.data.title;
+	const descriptionLimit = 130;
+	const titleLimit = 47;
 	const backgroundStyle = {'backgroundSize': 'cover'};
-	description = description.slice(0, count) + (description.length > count ? '...' : '');
+	description = description.slice(0, descriptionLimit) + (description.length > descriptionLimit ? '...' : '');
+	title = title.slice(0, titleLimit) + (title.length > titleLimit ? '...' : '');
 
 	return (
 		<div>
@@ -21,7 +24,7 @@ export default function CarouselItem (props) {
 					<div className="carousel-block">
 						<div className="content-carousel">
 							<div className="carousel_left">
-								<h3 className="title-carousel">{props.data.title}</h3>
+								<h3 className="title-carousel">{title}</h3>
 								<p className="detail-txt">{description}</p>
 								<div className="statistic">
 									<ul>
