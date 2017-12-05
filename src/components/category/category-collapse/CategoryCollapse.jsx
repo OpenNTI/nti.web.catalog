@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {LinkTo} from 'nti-web-routing';
 
-
+import * as Utils from '../../../utils';
 
 export default class CategoryDetail extends React.Component {
 	static propTypes = {
@@ -18,11 +18,13 @@ export default class CategoryDetail extends React.Component {
 			<div>
 				<ul className="course-card">
 					{this.props.categories.map ((course, index) => {
+						const categoryClassName = 'categories-block ' + Utils.getGradientClass(course.Name);
 						return (
-
-							<li key={index} className="categories-block red">
+							<li key={index} className={categoryClassName}>
 								<LinkTo.Object object={course} context="catalog.categories">
-									<span className="category-collapse">{course.Name === '.nti_other' ? 'Others' : course.Name}</span>
+									<div
+										className="category-collapse">{course.Name === '.nti_other' ? 'OTHERS' : course.Name}
+									</div>
 								</LinkTo.Object>
 
 							</li>

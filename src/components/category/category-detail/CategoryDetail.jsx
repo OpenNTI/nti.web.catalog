@@ -7,6 +7,7 @@ import {URL} from 'nti-commons';
 
 import CourseCard from '../../grid-card/card/Card';
 import * as Constants from '../../../Constants';
+import * as Utils from '../../../utils';
 
 export default class CategoryDetail extends React.Component {
 	static propTypes = {
@@ -53,10 +54,11 @@ export default class CategoryDetail extends React.Component {
 		}
 
 		const link = {action: 'back'};
+		const categoryClassName = 'categories-banner ' + Utils.getGradientClass(category.title);
 		return (
 			<div>
 				{!this.props.other && (
-					<div className="categories-banner red">
+					<div className={categoryClassName}>
 						<div className="category-text-wrapper">
 							<div className="categories-back">
 								<LinkTo.Object object={link} context="catalog">
