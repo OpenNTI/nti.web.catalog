@@ -9,11 +9,14 @@ export default Router.for([
 		component: Category,
 		getRouteFor: (obj, context) => {
 			if (obj.Name) {
-				const url = decodeURIComponent(obj.Name);
-				return `/${(url)}`;
+				if (obj.Name === '.') {
+					return '/%2E';
+				}
+
+				return `/${(encodeURIComponent(obj.Name).replace('(', '%28').replace(')','%29'))}`;
 			}
 
-			else if(obj.action === 'back' && context === 'catalog') {
+			else if (obj.action === 'back' && context === 'catalog') {
 				return '/';
 			}
 

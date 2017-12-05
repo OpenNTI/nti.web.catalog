@@ -43,11 +43,11 @@
 	.animation {
 		&--next {
 			&-enter {
-				transform: translate(100%, 0);
-				transition: transform 1s;
+				opacity: 0.01;
 
 				&.animation--next-enter-active {
-					transform: translate(0, 0);
+					opacity: 1;
+					transition: opacity 1s ease-in;
 				}
 			}
 
@@ -55,23 +55,23 @@
 				left: 0;
 				position: absolute;
 				top: 0;
-				transform: translate(0, 0);
-				transition: transform 1s;
+				opacity: 1;
 
 				&.animation--next-leave-active {
-					transform: translate(-100%, 0%);
 					width: 100%;
+					opacity: 0.01;
+					transition: opacity 0.5s ease-in;
 				}
 			}
 		}
 
 		&--previous {
 			&-enter {
-				transform: translate(-100%, 0);
-				transition: transform 1s;
+				opacity: 0.01;
 
 				&.animation--previous-enter-active {
-					transform: translate(0, 0);
+					opacity: 1;
+					transition: opacity 1s ease-in;
 				}
 			}
 
@@ -79,12 +79,12 @@
 				left: 0;
 				position: absolute;
 				top: 0;
-				transform: translate(0, 0);
-				transition: transform 1s;
+				opacity: 1;
 
 				&.animation--previous-leave-active {
-					transform: translate(100%, 0%);
 					width: 100%;
+					opacity: 0.01;
+					transition: opacity 0.5s ease-in;
 				}
 			}
 		}

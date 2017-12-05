@@ -4,7 +4,6 @@ import Connector from 'nti-lib-store-connector';
 const Instance = Symbol('Instance');
 const Data = Symbol('Data');
 const Listeners = Symbol('Listeners');
-
 export default class SimpleStore {
 	static getInstance () {
 		const Store = this;
@@ -71,7 +70,6 @@ export default class SimpleStore {
 	}
 }
 
-
 function hasListener (fn, listeners) {
 	for (let listener of listeners) {
 		if (listener === fn) {
@@ -80,4 +78,4 @@ function hasListener (fn, listeners) {
 	}
 
 	return false;
-}
+}	
