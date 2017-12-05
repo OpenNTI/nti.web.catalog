@@ -38,6 +38,7 @@ export default class CategoryDetail extends React.Component {
 	}
 
 	componentDidMount () {
+		window.scrollTo(0, 0);
 		this.setState({courses :this.props.category.Items, title: this.props.category.Name});
 		if(this.props.category.Total < Constants.BATCH_SIZE) {
 			this.setState({noMore: true});
