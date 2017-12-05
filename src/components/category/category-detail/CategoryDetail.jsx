@@ -66,7 +66,7 @@ export default class CategoryDetail extends React.Component {
 										<a className="back-btn">Back</a>
 									</LinkTo.Object>
 								</div>
-								<p className="categories-title">{category.title === '.nti_other' ? 'Others' : category.title}</p>
+								<p className="categories-title">{category.title === '.nti_other' ? 'OTHERS' : category.title}</p>
 							</div>
 						</Presentation.AssetBackground>
 					</div>
