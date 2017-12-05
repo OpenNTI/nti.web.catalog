@@ -5,6 +5,56 @@
 		height: 300px;
 		position: relative;
 
+		&.orange {
+			background: linear-gradient(45deg, #fc7126, #fcae26);
+			background-size: cover;
+		}
+
+		&.yellow {
+			background: linear-gradient(45deg, #ffae00, #ffdd00);
+			background-size: cover;
+		}
+
+		&.green {
+			background: linear-gradient(45deg, #14b349, #72f290);
+			background-size: cover;
+		}
+
+		&.blue {
+			background: linear-gradient(45deg, #198ffc, #63ccfd);
+			background-size: cover;
+		}
+
+		&.dark-blue {
+			background: linear-gradient(45deg, #0a3db4, #1f85fc);
+			background-size: cover;
+		}
+
+		&.purple {
+			background: linear-gradient(45deg, #7f38d6, #d638c4);
+			background-size: cover;
+		}
+
+		&.pink {
+			background: linear-gradient(45deg, #ec5163, #ff94b3);
+			background-size: cover;
+		}
+
+		&.red {
+			background: linear-gradient(45deg, #d11538, #ff476a);
+			background-size: cover;
+		}
+
+		&.black {
+			background: linear-gradient(45deg, #252626, #646566);
+			background-size: cover;
+		}
+
+		&.grey {
+			background: linear-gradient(45deg, #5f7e8d, #99c0d4);
+			background-size: cover;
+		}
+
 		.category-text-wrapper {
 			width: 1024px;
 			margin-left: auto;

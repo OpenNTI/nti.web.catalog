@@ -174,11 +174,52 @@
 		margin: 9px;
 		text-align: center;
 		border: 1px solid rgba(0, 0, 0, 0.2);
+		box-shadow: 0px 2px 5px 0 rgba(0,0,0,0.15);
 		border-radius: 10px;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		overflow: hidden;
 		cursor: pointer;
+
+		&.orange {
+			background: linear-gradient(45deg, #fc7126, #fcae26);
+		}
+
+		&.yellow {
+			background: linear-gradient(45deg, #ffae00, #ffdd00);
+		}
+
+		&.green {
+			background: linear-gradient(45deg, #14b349, #72f290);
+		}
+
+		&.blue {
+			background: linear-gradient(45deg, #198ffc, #63ccfd);
+		}
+
+		&.dark-blue {
+			background: linear-gradient(45deg, #0a3db4, #1f85fc);
+		}
+
+		&.purple {
+			background: linear-gradient(45deg, #7f38d6, #d638c4);
+		}
+
+		&.pink {
+			background: linear-gradient(45deg, #ec5163, #ff94b3);
+		}
+
+		&.red {
+			background: linear-gradient(45deg, #d11538, #ff476a);
+		}
+
+		&.black {
+			background: linear-gradient(45deg, #252626, #646566);
+		}
+
+		&.grey {
+			background: linear-gradient(45deg, #5f7e8d, #99c0d4);
+		}
 
 		&:nth-child(3n+3) {
 			margin-right: 0;
@@ -187,9 +228,14 @@
 		.category-collapse {
 			font-size: 18px;
 			font-weight: 600;
-			padding-top: 22px;
+			margin: 0;
 			color: #fff;
 			text-transform: capitalize;
+			box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
 		}
 	}
 }
