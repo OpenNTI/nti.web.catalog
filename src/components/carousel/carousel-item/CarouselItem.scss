@@ -17,6 +17,8 @@
 				font-family: $header-font-family;
 				line-height: 34px;
 				text-transform: uppercase;
+				overflow: hidden;
+				text-overflow: ellipsis;
 			}
 
 			.detail-txt {
@@ -27,6 +29,8 @@
 				font-style: italic;
 				line-height: 22px;
 				margin-top: 10px;
+				overflow: hidden;
+				text-overflow: ellipsis;
 			}
 
 			.content-carousel {
