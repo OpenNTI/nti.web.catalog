@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {encodeForURI} from 'nti-lib-ntiids';
 import {DateTime, Presentation} from 'nti-web-commons';
 
 export default class CourseCard extends React.Component {
@@ -29,9 +28,10 @@ export default class CourseCard extends React.Component {
 		const instructors = this.props.course.Instructors ? this.props.course.Instructors.map(instructor => {
 			return instructor.Name;
 		}).join(', ') : '';
+		const href = `uri:${this.props.course.href}`;
 
 		return (
-			<a href={`./object/${encodeForURI(this.props.course.NTIID)}`}>
+			<a href={`./object/${encodeURIComponent(href)}`}>
 				<div className="course-panel">
 					<figure>
 						<Presentation.Asset contentPackage={this.props.course} propName="src" type="landing">
