@@ -9,7 +9,7 @@ CarouselItem.propTypes = {
 };
 
 export default function CarouselItem (props) {
-	let description =  props.data.description || props.data.RichDescription;
+	let description =  props.data.RichDescription || props.data.description;
 	let title = props.data.title;
 	const descriptionLimit = 130;
 	const titleLimit = 47;
