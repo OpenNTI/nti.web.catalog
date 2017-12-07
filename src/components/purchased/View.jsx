@@ -26,12 +26,19 @@ export default class Category extends React.Component {
 		searchItems: PropTypes.array,
 		loading: PropTypes.bool,
 		match: PropTypes.object,
-		renderData: PropTypes.func
+		renderData: PropTypes.func,
+		location: PropTypes.object
 	}
 
 
 	componentDidMount () {
 		store.load(Constants.PURCHASED);
+	}
+
+	componentWillReceiveProps (nextProps) {
+		if (nextProps.location.pathname !== this.props.location.pathname && this.props.location.pathname !== this.props.match.url) {
+			store.load(Constants.PURCHASED);
+		}
 	}
 
 	render () {

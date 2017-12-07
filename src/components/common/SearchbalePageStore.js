@@ -32,6 +32,10 @@ export default class SearchablePagedStore extends SimpleStore {
 		this.set('category', {});
 		this.set('loading', null);
 		this.set('error', null);
+		this.set('carouselIndex', 0);
+		this.set('selectCarousel', (index) =>{
+			this.set('carouselIndex', index);
+		});
 	}
 
 	async load (type, id) {

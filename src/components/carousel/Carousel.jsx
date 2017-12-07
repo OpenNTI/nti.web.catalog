@@ -11,13 +11,15 @@ export default class Carousel extends React.Component {
 
 	static propTypes = {
 		data: PropTypes.array,
+		carouselSelected: PropTypes.number,
+		selectCarousel: PropTypes.func
 	};
 
 	constructor (props) {
 		super (props);
 
 		this.state = {
-			selectedIndex: 0,
+			selectedIndex: this.props.carouselSelected,
 			transitionStyle: 'next',
 			slideLock: false
 		};
@@ -48,6 +50,7 @@ export default class Carousel extends React.Component {
 			return;
 		}
 		const nextIndex = (this.state.selectedIndex < this.props.data.length - 1) ? this.state.selectedIndex + 1 : 0;
+		this.props.selectCarousel(nextIndex);
 		this.setState ({selectedIndex: nextIndex, transitionStyle: 'next', slideLock: true}, () => {
 			this.unlockSlide ();
 		});
@@ -59,6 +62,7 @@ export default class Carousel extends React.Component {
 			return;
 		}
 		const preIndex = (this.state.selectedIndex > 0) ? this.state.selectedIndex - 1 : this.props.data.length - 1;
+		this.props.selectCarousel(preIndex);
 		this.setState ({selectedIndex: preIndex, transitionStyle: 'previous', slideLock: true}, () => {
 			this.unlockSlide ();
 		});
