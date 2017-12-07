@@ -5,7 +5,7 @@ import Purchased from './purchased';
 import Redeem from './redeem';
 
 export default Router.for([
-	Route({path: '/redeem', component: Redeem}),
+	Route({path: '/redeem/:code?', component: Redeem}),
 	Route({path: '/purchased', component: Purchased}),
 	Route({path: '/', component: Courses})
 ]);
