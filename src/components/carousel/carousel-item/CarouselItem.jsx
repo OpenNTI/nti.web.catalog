@@ -11,8 +11,8 @@ CarouselItem.propTypes = {
 export default function CarouselItem (props) {
 	let description =  props.data.RichDescription || props.data.description;
 	let title = props.data.title;
-	const descriptionLimit = 130;
-	const titleLimit = 47;
+	const descriptionLimit = 150;
+	const titleLimit = 55;
 	const backgroundStyle = {'backgroundSize': 'cover'};
 	description = description.slice(0, descriptionLimit) + (description.length > descriptionLimit ? '...' : '');
 	title = title.slice(0, titleLimit) + (title.length > titleLimit ? '...' : '');
