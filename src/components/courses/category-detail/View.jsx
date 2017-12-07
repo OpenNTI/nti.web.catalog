@@ -26,7 +26,8 @@ export default class Category extends React.Component {
 		searchItems: PropTypes.array,
 		loading: PropTypes.bool,
 		match: PropTypes.object,
-		renderData: PropTypes.func
+		renderData: PropTypes.func,
+		location: PropTypes.object
 	}
 
 
@@ -34,6 +35,12 @@ export default class Category extends React.Component {
 		const id = this.props.match && this.props.match.params && this.props.match.params.id ?
 			this.props.match.params.id : '';
 		store.load(Constants.CATEGORY, id);
+	}
+
+	componentWillReceiveProps (nextProps) {
+		if (nextProps.location.pathname !== this.props.location.pathname && this.props.location.pathname !== this.props.match.url) {
+			store.load(Constants.CATEGORY, this.props.match.params.id);
+		}
 	}
 
 	render () {
