@@ -13,7 +13,7 @@ export default Router.for([
 					return '/%2E';
 				}
 
-				return `/${(encodeURIComponent(obj.Name).replace('(', '%28').replace(')','%29'))}`;
+				return `/${encodeURIComponent(obj.Name)}`;
 			}
 
 			else if (obj.action === 'back' && context === 'catalog') {

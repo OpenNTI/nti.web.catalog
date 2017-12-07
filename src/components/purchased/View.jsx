@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {searchable} from 'nti-web-search';
+import {searchable, contextual} from 'nti-web-search';
 import {Loading, EmptyState} from 'nti-web-commons';
 
 import * as Constants from '../../Constants';
@@ -17,6 +17,7 @@ const propMap = {
 	error: 'error'
 };
 
+@contextual('Catalog')
 @searchable(store, propMap)
 export default class Category extends React.Component {
 	static propTypes = {
