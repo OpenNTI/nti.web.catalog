@@ -236,6 +236,10 @@
 			left: 50%;
 			transform: translate(-50%, -50%);
 			text-transform: uppercase;
+			width: 242px;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    padding: 12px;
 
 		}
 	}
