@@ -19,6 +19,8 @@ const propMap = {
 	loading: 'loading',
 	hasNextPage: 'hasNextPage',
 	loadingNextPage: 'loadingNextPage',
+	selectCarousel: 'selectCarousel',
+	carouselIndex: 'carouselIndex',
 	error: 'error'
 };
 
@@ -32,7 +34,9 @@ export default class Categories extends React.Component {
 		searchTerm: PropTypes.string,
 		searchItems: PropTypes.array,
 		loading: PropTypes.bool,
-		renderData: PropTypes.func
+		renderData: PropTypes.func,
+		selectCarousel: PropTypes.func,
+		carouselIndex: PropTypes.number
 	}
 
 
@@ -76,7 +80,7 @@ export default class Categories extends React.Component {
 		return (
 			<div className="course-catalog">
 				<section className="carousel">
-					<Carousel data={carousel}/>
+					<Carousel data={carousel} carouselSelected={this.props.carouselIndex} selectCarousel={this.props.selectCarousel}/>
 				</section>
 				{onlyOther && (
 					<div className="course-catalog">
