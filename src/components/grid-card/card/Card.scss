@@ -156,14 +156,7 @@
 				}
 
 				&.admin {
-					&::before {
-						position: absolute;
-						color: #fff;
-						width: 6px;
-						height: 6px;
-						top: 5px;
-						left: 8px;
-					}
+					padding: 4px 10px;
 				}
 			}
 		}
@@ -186,45 +179,44 @@
 		cursor: pointer;
 
 		&.orange {
-            @include bg-gradient(#fc7126 , #fcae26 );
-            
-     }
+			@include bg-gradient(#fc7126, #fcae26);
+		}
 
-    &.yellow {
-        @include bg-gradient(#ffae00 , #fd0);
-    }
+		&.yellow {
+			@include bg-gradient(#ffae00, #fd0);
+		}
 
-    &.green {
-        @include bg-gradient(#14b349 , #72f290 );
-    }
+		&.green {
+			@include bg-gradient(#14b349, #72f290);
+		}
 
-    &.blue {
-        @include bg-gradient(#198ffc , #63ccfd );
-    }
+		&.blue {
+			@include bg-gradient(#198ffc, #63ccfd);
+		}
 
-    &.dark-blue {
-        @include bg-gradient(#0a3db4 , #1f85fc );
-    }
+		&.dark-blue {
+			@include bg-gradient(#0a3db4, #1f85fc);
+		}
 
-    &.purple {
-        @include bg-gradient(#7f38d6 , #d638c4 );
-    }
+		&.purple {
+			@include bg-gradient(#7f38d6, #d638c4);
+		}
 
-    &.pink {
-        @include bg-gradient(#ec5163 , #ff94b3 );
-    }
+		&.pink {
+			@include bg-gradient(#ec5163, #ff94b3);
+		}
 
-    &.red {
-        @include bg-gradient(#d11538 , #ff476a );
-    }
+		&.red {
+			@include bg-gradient(#d11538, #ff476a);
+		}
 
-    &.black {
-        @include bg-gradient(#252626 , #646566 );
-    }
+		&.black {
+			@include bg-gradient(#252626, #646566);
+		}
 
-    &.grey {
-        @include bg-gradient(#5f7e8d , #99c0d4 );
-    }
+		&.grey {
+			@include bg-gradient(#5f7e8d, #99c0d4);
+		}
 
 		&:nth-child(3n+3) {
 			margin-right: 0;
