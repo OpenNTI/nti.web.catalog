@@ -56,7 +56,7 @@
 				position: absolute;
 				top: 0;
 				opacity: 1;
-
+				width: 100%;
 				&.animation--next-leave-active {
 					width: 100%;
 					opacity: 0.01;
@@ -80,6 +80,7 @@
 				position: absolute;
 				top: 0;
 				opacity: 1;
+				width: 100%;
 
 				&.animation--previous-leave-active {
 					width: 100%;
