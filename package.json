@@ -1,6 +1,6 @@
 {
   "name": "nti-web-catalog",
-  "version": "0.2.0-alpha",
+  "version": "0.3.0-alpha",
   "author": "nextthought",
   "description": "Shows thing that a user can get access to",
   "license": "UNLICENSED",
@@ -52,13 +52,13 @@
     "nti-lib-dispatcher": "^1.0.0",
     "nti-lib-interfaces": "^1.65.1",
     "nti-lib-locale": "^1.0.9",
-    "nti-lib-ntiids": "^1.1.0-alpha",
-    "nti-lib-store": "^1.1.0-alpha",
+    "nti-lib-ntiids": "^1.0.0",
+    "nti-lib-store": "^1.0.0",
     "nti-lib-store-connector": "0.x.x",
     "nti-web-client": "^1.2.0",
-    "nti-web-commons": "^0.15.0",
+    "nti-web-commons": "0.x.x",
     "nti-web-routing": "0.x.x",
-    "nti-web-search": "0.1.0-alpha.201711010941",
+    "nti-web-search": "0.x.x",
     "prop-types": "^15.5.10",
     "react-transition-group": "^1.2.1"
   }
