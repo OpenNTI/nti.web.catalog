@@ -171,7 +171,7 @@
 		margin: 9px;
 		text-align: center;
 		border: 1px solid rgba(0, 0, 0, 0.2);
-		box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15);
+		box-shadow: 0px 2px 5px 0 rgba(0,0,0,0.15);
 		border-radius: 10px;
 		text-overflow: ellipsis;
 		white-space: nowrap;
@@ -179,43 +179,43 @@
 		cursor: pointer;
 
 		&.orange {
-			@include bg-gradient(#fc7126, #fcae26);
+			background: linear-gradient(45deg, #fc7126, #fcae26);
 		}
 
 		&.yellow {
-			@include bg-gradient(#ffae00, #fd0);
+			background: linear-gradient(45deg, #ffae00, #ffdd00);
 		}
 
 		&.green {
-			@include bg-gradient(#14b349, #72f290);
+			background: linear-gradient(45deg, #14b349, #72f290);
 		}
 
 		&.blue {
-			@include bg-gradient(#198ffc, #63ccfd);
+			background: linear-gradient(45deg, #198ffc, #63ccfd);
 		}
 
 		&.dark-blue {
-			@include bg-gradient(#0a3db4, #1f85fc);
+			background: linear-gradient(45deg, #0a3db4, #1f85fc);
 		}
 
 		&.purple {
-			@include bg-gradient(#7f38d6, #d638c4);
+			background: linear-gradient(45deg, #7f38d6, #d638c4);
 		}
 
 		&.pink {
-			@include bg-gradient(#ec5163, #ff94b3);
+			background: linear-gradient(45deg, #ec5163, #ff94b3);
 		}
 
 		&.red {
-			@include bg-gradient(#d11538, #ff476a);
+			background: linear-gradient(45deg, #d11538, #ff476a);
 		}
 
 		&.black {
-			@include bg-gradient(#252626, #646566);
+			background: linear-gradient(45deg, #252626, #646566);
 		}
 
 		&.grey {
-			@include bg-gradient(#5f7e8d, #99c0d4);
+			background: linear-gradient(45deg, #5f7e8d, #99c0d4);
 		}
 
 		&:nth-child(3n+3) {
@@ -227,15 +227,16 @@
 			font-weight: 600;
 			margin: 0;
 			color: #fff;
-			text-shadow: 1px 2px 0 rgba(0, 0, 0, 0.2);
+			text-shadow: 1px 2px 0px rgba(0, 0, 0, 0.2);
 			position: absolute;
-			width: 100%;
-			height: 80px;
 			top: 50%;
-			padding: 25px;
 			left: 50%;
 			transform: translate(-50%, -50%);
 			text-transform: uppercase;
+			width: 242px;
+	    overflow: hidden;
+	    text-overflow: ellipsis;
+	    padding: 12px;
 		}
 	}
 }
