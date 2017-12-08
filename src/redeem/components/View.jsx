@@ -4,6 +4,7 @@ import {Loading} from 'nti-web-commons';
 import {getService} from 'nti-web-client';
 import {getLink} from 'nti-lib-interfaces';
 import {encodeForURI} from 'nti-lib-ntiids';
+import {getHistory} from 'nti-web-routing';
 
 export default class Redeem extends React.Component {
 	static propTypes = {
@@ -38,8 +39,10 @@ export default class Redeem extends React.Component {
 		try {
 			const service = await getService();
 			const result = await service.post(link, param);
-			const detailLink = `./object/${encodeForURI (result.CatalogEntryNTIID)}` + '?redeem=1';
-			window.open (detailLink, '_self');
+
+			const history = getHistory();
+			const detailLink = `./object/${encodeForURI(result.CatalogEntryNTIID)}` + '?redeem=1';
+			history.replace(detailLink);
 			this.setState({codeValue: '', loading: false});
 		}
 		catch (reason) {
