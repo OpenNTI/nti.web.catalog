@@ -1,9 +1,9 @@
 import {getService} from 'nti-web-client';
+import {Stores} from 'nti-lib-store';
 
-import SimpleStore from '../BasicStore';
 import * as Constant from '../../Constants';
 
-export default class SearchablePagedStore extends SimpleStore {
+export default class SearchablePagedStore extends Stores.SimpleStore {
 	static convertBatch (batch) {
 		const nextLink = batch.getLink('batch-next');
 		const loadNext = !nextLink ?
