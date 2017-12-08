@@ -4,7 +4,7 @@ import {Stores} from 'nti-lib-store';
 import * as Constant from '../../Constants';
 
 //FIXME: Use the SearchablePagedStore from web-lib-store... don't muddy base classes with Catalog Specific things.
-export default class SearchablePagedStore extends Store.SimpleStore {
+export default class SearchablePagedStore extends Stores.SimpleStore {
 	static convertBatch (batch) {
 		const nextLink = batch.getLink('batch-next');
 		const loadNext = !nextLink ?
