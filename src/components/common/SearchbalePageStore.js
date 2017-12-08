@@ -1,9 +1,10 @@
 import {getService} from 'nti-web-client';
+import {Stores} from 'nti-lib-store';
 
-import SimpleStore from '../BasicStore';
 import * as Constant from '../../Constants';
 
-export default class SearchablePagedStore extends SimpleStore {
+//FIXME: Use the SearchablePagedStore from web-lib-store... don't muddy base classes with Catalog Specific things.
+export default class SearchablePagedStore extends Stores.SimpleStore {
 	static convertBatch (batch) {
 		const nextLink = batch.getLink('batch-next');
 		const loadNext = !nextLink ?
@@ -32,6 +33,11 @@ export default class SearchablePagedStore extends SimpleStore {
 		this.set('category', {});
 		this.set('loading', null);
 		this.set('error', null);
+<<<<<<< HEAD
+=======
+
+		//FIXME: This should be local-state of the Carousel component.
+>>>>>>> 8049c277ad4359040187be8ecafca3e55bb1bb9a
 		this.set('carouselIndex', 0);
 		this.set('selectCarousel', (index) =>{
 			this.set('carouselIndex', index);
@@ -51,6 +57,7 @@ export default class SearchablePagedStore extends SimpleStore {
 		}
 
 		try {
+			//FIXME: These should be moved to the individual subclasses. Let each Subclass handle their own type.
 			if (type === Constant.CATEGORIES) {
 				const categories = await this.loadInitial();
 				this.set('categories', categories.categories);

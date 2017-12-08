@@ -9,15 +9,19 @@ export default class Redeem extends React.Component {
 	static propTypes = {
 		inviteLink: PropTypes.string,
 		redeemCollection: PropTypes.object,
-		service: PropTypes.object
+		service: PropTypes.object,
+		match: PropTypes.object
 	};
 
 	constructor (props) {
 		super (props);
+
+		const initialCode = props.match.params.code;
+
 		this.state = {
 			error: false,
 			errorMessage: 'Could not redeem course code',
-			codeValue: '',
+			codeValue: initialCode || '',
 			loading: false,
 			success: false,
 			inputErrClass: ''
