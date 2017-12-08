@@ -1,5 +1,6 @@
 import {getService} from 'nti-web-client';
 import {getLink} from 'nti-lib-interfaces';
+import {URL as UrlUtils} from 'nti-commons';
 
 import SearchablePagedStore from '../../common/SearchbalePageStore';
 import * as Constants from '../../../Constants';
@@ -24,8 +25,16 @@ export default class CourseListStore extends SearchablePagedStore {
 		let carousel = {Items: []};
 
 		try {
-			categories = await service.get (getLink (links, 'ByTag'));
+			let otherGroup = '.nti_other';
+			let href = getLink (links, 'ByTag');
+			categories = await service.get (UrlUtils.appendQueryParams(href, {'bucketSize': 4}));
 			categories.link = getLink(links, 'ByTag');
+
+			if (categories.Items.length === 1 && categories.Items[0].Name === otherGroup) {
+				href = href + '/' + otherGroup;
+				categories = await service.getBatch(href, {batchSize: Constants.BATCH_SIZE, batchStart: 0});
+				categories = {Items: [categories], link: getLink(links, 'ByTag')};
+			}
 		}
 		catch (e) {
 			categories = {Items: []};
