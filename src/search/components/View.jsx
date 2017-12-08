@@ -31,7 +31,7 @@ export default function Search (props) {
 			)}
 			{!props.loading && props.courses.length > 0 && (
 				<div className="content-catalog no-sidebar">
-					<GridCard courses={props.courses} type={Constants.SEARCH}/>
+					<GridCard courses={props.courses} type={Constants.SEARCH} search={props.term}/>
 				</div>
 			)}
 		</div>

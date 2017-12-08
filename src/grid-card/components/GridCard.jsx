@@ -15,7 +15,8 @@ export default class GridCard extends React.Component {
 		category: PropTypes.object,
 		type: PropTypes.string,
 		other: PropTypes.bool,
-		link: PropTypes.string
+		link: PropTypes.string,
+		search: PropTypes.string
 	}
 
 	render () {
@@ -63,7 +64,19 @@ export default class GridCard extends React.Component {
 			);
 		}
 
-		else if (this.props.type === Constants.PURCHASED || this.props.type === Constants.SEARCH) {
+		else if(this.props.type === Constants.SEARCH) {
+			const courses = {
+				Items: this.props.courses,
+				Total: this.props.courses.length
+			};
+			return (
+				<div>
+					<CategoryDetail category={courses} search={this.props.search}/>
+				</div>
+			);
+		}
+
+		else if (this.props.type === Constants.PURCHASED) {
 			return (
 				<div className="content-right">
 					<ul className="course-card">

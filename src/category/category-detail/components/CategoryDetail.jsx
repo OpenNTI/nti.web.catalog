@@ -13,20 +13,28 @@ export default class CategoryDetail extends React.Component {
 	static propTypes = {
 		category: PropTypes.object,
 		other: PropTypes.bool,
-		link: PropTypes.string
+		link: PropTypes.string,
+		search: PropTypes.string
 	}
 
 	async getCourses (link) {
 		const currentItems = this.state.courses.length || 0;
-		const categoryLink = URL.appendQueryParams(link, {batchStart: currentItems, batchSize: Constants.BATCH_SIZE});
-
 		const service = await getService();
-		const {Items: items} = await service.get(categoryLink);
+		let items = {Items: []};
+
+		if(this.props.search) {
+			const collection = service.getCollection('Courses', 'Catalog');
+			items = await service.getBatch(collection.href, {batchSize: Constants.BATCH_SIZE, batchStart: currentItems, filter: this.props.search});
+		}
+		else {
+			const categoryLink = URL.appendQueryParams(link, {batchStart: currentItems, batchSize: Constants.BATCH_SIZE});
+			items = await service.get(categoryLink);
+		}
 
 		const oldItems = this.state.courses;
 
-		this.setState({courses: oldItems.concat(items), loading:false});
-		if(this.props.category.Total === this.state.courses.length) {
+		this.setState({courses: oldItems.concat(items.Items), loading:false});
+		if(items.Total === this.state.courses.length) {
 			this.setState({noMore: true});
 		}
 	}
@@ -56,7 +64,7 @@ export default class CategoryDetail extends React.Component {
 		const categoryClassName = 'categories-banner ' + Utils.getGradientClass(category.title);
 		return (
 			<div>
-				{!this.props.other && (
+				{!this.props.other && !this.props.search && (
 					<div className={categoryClassName}>
 						<div className="category-text-wrapper">
 							<div className="categories-back">
