@@ -6,8 +6,8 @@ import {Loading, EmptyState} from 'nti-web-commons';
 import * as Constants from '../../Constants';
 import  GridCard from '../../grid-card/components/GridCard';
 import Search from '../../search/components/index';
-
 import Store from '../Store';
+
 const store = new Store();
 const propMap = {
 	purchased: 'purchased',

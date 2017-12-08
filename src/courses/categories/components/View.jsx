@@ -7,7 +7,6 @@ import * as Constant from '../../../Constants';
 import Carousel from '../../../carousel/components/Carousel';
 import GridCard from '../../../grid-card/components/GridCard';
 import Search from '../../../search/components/index';
-
 import Store from '../Store';
 
 const store = new Store();

@@ -18,7 +18,9 @@
 				line-height: 34px;
 				text-transform: uppercase;
 				overflow: hidden;
-				text-overflow: ellipsis;
+				display: -webkit-box;
+				-webkit-line-clamp: 2;
+				-webkit-box-orient: vertical;
 			}
 
 			.detail-txt {
@@ -30,7 +32,9 @@
 				line-height: 22px;
 				margin-top: 10px;
 				overflow: hidden;
-				text-overflow: ellipsis;
+				display: -webkit-box;
+				-webkit-line-clamp: 4;
+				-webkit-box-orient: vertical;
 			}
 
 			.content-carousel {
