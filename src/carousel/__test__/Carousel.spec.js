@@ -33,9 +33,9 @@ describe('Carousel', () => {
 	test('Test click next carousel', (done) => {
 		const cmp = getCmp();
 
-		const closeButton = cmp.find('.icon-chevronup-25').first();
+		const nextButton = cmp.find('.icon-chevronup-25').first();
 
-		closeButton.simulate('click');
+		nextButton.simulate('click');
 
 		const verifyCalled = () => {
 			expect(selectCarousel).toHaveBeenCalled();
@@ -48,9 +48,9 @@ describe('Carousel', () => {
 	test('Test click pre carousel', (done) => {
 		const cmp = getCmp();
 
-		const closeButton = cmp.find('.icon-chevrondown-25').first();
+		const preButton = cmp.find('.icon-chevrondown-25').first();
 
-		closeButton.simulate('click');
+		preButton.simulate('click');
 
 		const verifyCalled = () => {
 			expect(selectCarousel).toHaveBeenCalled();
