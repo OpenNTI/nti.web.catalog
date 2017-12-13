@@ -16,18 +16,18 @@ describe('CategoryDetail', () => {
 		Total: 50,
 		ItemCount: 2
 	};
-
+	const other = true;
 	const getCategoryWithNoMore = () => mount(
 		<CategoryDetail
 			category={category}
-			other={true}
+			other={other}
 		/>
 	);
 
 	const getCategoryWithMore = () => mount(
 		<CategoryDetail
 			category={categoryWithMore}
-			other={true}
+			other={other}
 		/>
 	);
 
