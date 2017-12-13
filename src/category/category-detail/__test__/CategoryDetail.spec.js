@@ -6,13 +6,13 @@ import CategoryDetail from '../components/CategoryDetail';
 
 describe('CategoryDetail', () => {
 	const category = {
-		Items: [{title: 'title 1'}, {title: 'title 2'}],
+		Items: [{title: 'title 1', getDefaultAssetRoot: () =>{}}, {title: 'title 2', getDefaultAssetRoot: () => {}}],
 		Total: 30,
 		ItemCount: 2
 	};
 
 	const categoryWithMore = {
-		Items: [{title: 'title 1'}, {title: 'title 2'}],
+		Items: [{title: 'title 1', getDefaultAssetRoot: () =>{}}, {title: 'title 2', getDefaultAssetRoot: () => {}}],
 		Total: 50,
 		ItemCount: 2
 	};

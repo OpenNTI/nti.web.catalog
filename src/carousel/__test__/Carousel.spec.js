@@ -9,13 +9,16 @@ describe('Carousel', () => {
 	const index = 0;
 	const data = [
 		{
-			NTIID: 'tag:nextthought.com,2011-10:NTI-CourseInfo-Alpha_NTI_1010'
+			NTIID: 'tag:nextthought.com,2011-10:NTI-CourseInfo-Alpha_NTI_1010',
+			getDefaultAssetRoot: ()=>{}
 		},
 		{
-			NTIID: 'tag:nextthought.com,2011-10:NTI-CourseInfo-Alpha_NTI_1010'
+			NTIID: 'tag:nextthought.com,2011-10:NTI-CourseInfo-Alpha_NTI_1010',
+			getDefaultAssetRoot: ()=>{}
 		},
 		{
-			NTIID: 'tag:nextthought.com,2011-10:NTI-CourseInfo-Alpha_NTI_1010'
+			NTIID: 'tag:nextthought.com,2011-10:NTI-CourseInfo-Alpha_NTI_1010',
+			getDefaultAssetRoot: ()=>{}
 		}
 	];
 
