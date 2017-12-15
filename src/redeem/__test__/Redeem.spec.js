@@ -15,7 +15,8 @@ const mockService = () => ({
 			return Promise.resolve(
 				{
 					CatalogEntryNTIID: 'tag:nextthought.com,2011-10:NTI-CourseInfo-Alpha_NTI_1010',
-					getDefaultAssetRoot: ()=>{}
+					getDefaultAssetRoot: () => {
+					}
 				}
 			);
 		}
@@ -76,7 +77,7 @@ describe('Redeem', () => {
 		await new Promise(resolve => {
 			setTimeout(() => {
 				resolve();
-			}, 1000);
+			}, 300);
 		});
 
 		expect(cmp.state().errorMessage).toEqual(errorMessage.invalid);
@@ -89,7 +90,7 @@ describe('Redeem', () => {
 		await new Promise(resolve => {
 			setTimeout(() => {
 				resolve();
-			}, 1000);
+			}, 300);
 		});
 
 		expect(cmp.state().errorMessage).toEqual(errorMessage.enrolled);
