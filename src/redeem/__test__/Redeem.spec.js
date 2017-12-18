@@ -22,12 +22,12 @@ const mockService = () => ({
 		}
 		else if (code.invitation_codes === 'Enrolled') {
 			return Promise.reject({
-				message: "You are already enrolled in this course."
+				message: 'You are already enrolled in this course.'
 			});
 		}
 		else {
 			return Promise.reject({
-				message: "Invalid invitation code."
+				message: 'Invalid invitation code.'
 			});
 		}
 	}
