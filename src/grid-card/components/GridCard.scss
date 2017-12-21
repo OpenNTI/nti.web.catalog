@@ -1,5 +1,6 @@
 @import "~nti-style-common";
 
+
 .course-catalog {
 	.course-card {
 		&:hover {
@@ -22,12 +23,16 @@
 
 	.content-right {
 		width: 76%;
-		float: right;
-		margin-left: 9px;
+
+		@include responsive-range(desktop) {
+			float: right;
+			margin-left: 9px;
+		}
 
 		ul {
 			overflow: visible;
 			list-style: none;
+			clear: both;
 		}
 	}
 }
