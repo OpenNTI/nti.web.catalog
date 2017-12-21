@@ -1,14 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {searchable, contextual} from 'nti-web-search';
-import {Loading, EmptyState} from 'nti-web-commons';
+import {Loading, EmptyState, Layouts} from 'nti-web-commons';
 
 import * as Constant from '../../../Constants';
 import Carousel from '../../../carousel/components/Carousel';
+import CarouselMobile from '../../../carousel/carousel-mobile/Carousel';
 import GridCard from '../../../grid-card/components/GridCard';
 import Search from '../../../search/components';
 import Store from '../Store';
 
+const {Responsive} = Layouts;
 const store = new Store();//FIXME: I would prefer if the store could be constructed on first use/mount... instead of statically.
 const propMap = {
 	categories: 'categories',
@@ -79,7 +81,10 @@ export default class Categories extends React.Component {
 		return (
 			<div className="course-catalog">
 				<section className="carousel">
-					<Carousel data={carousel} carouselSelected={this.props.carouselIndex} selectCarousel={this.props.selectCarousel}/>
+					<div>
+						<Responsive.Item query={Responsive.isMobile} component={CarouselMobile}  data={carousel}/>
+						<Responsive.Item query={Responsive.isDesktop} component={Carousel} data={carousel} carouselSelected={this.props.carouselIndex} selectCarousel={this.props.selectCarousel}/>
+					</div>
 				</section>
 				{onlyOther && (
 					<div className="course-catalog">
