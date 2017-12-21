@@ -33,26 +33,26 @@ export default class CourseCard extends React.Component {
 		return (
 			<a href={`./object/${encodeURIComponent(href)}`}>
 				<div className="course-panel">
-					<figure>
+					<figure className="flex-item">
 						<Presentation.Asset contentPackage={this.props.course} propName="src" type="landing">
 							<img />
 						</Presentation.Asset>
 					</figure>
-					<div className="info-course">
+					<div className="info-course flex-item">
 						<span>{this.props.course.ProviderUniqueID}</span>
 						<div className="course-title">{this.props.course.Title}</div>
 						<p>{instructors}</p>
 					</div>
 					{isAdmin && (
-						<div className="stamp"><span className="admin">Administering</span></div>)}
+						<div className="stamp flex-item"><span className="admin">Administering</span></div>)}
 					{enrolled && !isAdmin && (
 						<div className="stamp"><span className="enroll">ENROLLED</span></div>)}
 					{status === 'start' && !isAdmin && (
-						<div className="stamp">
+						<div className="stamp flex-item">
 							<span className={statusClass}>Starts <DateTime date={this.props.course.StartDate} format="ll"/></span>
 						</div>)}
 					{status === 'finish' && !isAdmin && (
-						<div className="stamp">
+						<div className="stamp flex-item">
 							<span className={statusClass}>Finished <DateTime date={this.props.course.EndDate} format="ll"/></span>
 						</div>)}
 				</div>

@@ -1,0 +1,61 @@
+@import "~nti-style-common";
+
+.course-catalog {
+	.carousel {
+		.carousel-mobile-block {
+			white-space: nowrap;
+			position: relative;
+			overflow-x: scroll;
+			overflow-y: hidden;
+			padding: 10px;
+
+			.feature-course {
+				display: inline-grid;
+				margin-right: 10px;
+
+				.image-content {
+					object-fit: cover;
+					width: 325px;
+					height: 198.05px;
+				}
+
+				.course-id {
+					color: $tertiary-grey;
+					font-size: 10px;
+					font-weight: bold;
+					line-height: 14px;
+					display: block;
+					margin: 5px 0;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					overflow: hidden;
+					text-transform: uppercase;
+				}
+
+				.course-title {
+					font: normal 700 1em/1.1em "Open Sans Condensed";
+					max-height: 2.2em;
+					overflow: hidden;
+					text-transform: uppercase;
+				}
+
+				.course-instructor {
+					text-transform: uppercase;
+					display: block;
+					color: $primary-blue;
+					font-size: 10px;
+					font-weight: bold;
+					line-height: 14px;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					overflow: hidden;
+				}
+			}
+
+			div {
+				float: none;
+				display: inline-block;
+			}
+		}
+	}
+}
