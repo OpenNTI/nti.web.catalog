@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 import CarouselItem from '../carousel-item/components/CarouselItem';
 
-const slideShowDelay = 10000;
 const transitionEnterTimeout = 1000;
 const transitionLeaveTimeout = 1000;
 export default class Carousel extends React.Component {
@@ -25,17 +24,6 @@ export default class Carousel extends React.Component {
 		};
 	}
 
-	componentWillReceiveProps () {
-		clearInterval(this.intervalID);
-		if (this.props.data) {
-			this.intervalID = setInterval (this.nextSlide, slideShowDelay);
-		}
-	}
-
-
-	componentWillUnmount () {
-		clearInterval(this.intervalID);
-	}
 
 	unlockSlide () {
 		setTimeout(() => {
