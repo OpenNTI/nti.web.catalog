@@ -36,6 +36,9 @@
 					font: normal 700 1em/1.1em "Open Sans Condensed";
 					max-height: 2.2em;
 					overflow: hidden;
+					max-width: 325px;
+					text-overflow: ellipsis;
+					white-space: nowrap;
 					text-transform: uppercase;
 				}
 
