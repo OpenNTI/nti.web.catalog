@@ -88,6 +88,10 @@
 		width: 1024px;
 		margin: 40px auto;
 
+		@include responsive-range(mobile) {
+			margin-bottom: 0;
+		}
+
 		&.no-sidebar {
 			.side-bar-left {
 				display: none;
