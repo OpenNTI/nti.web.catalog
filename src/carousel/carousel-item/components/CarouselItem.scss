@@ -62,6 +62,10 @@
 					float: left;
 					width: 100%;
 
+					ul {
+						list-style-type: none;
+					}
+
 					li {
 						float: left;
 						margin-right: 20px;
@@ -71,25 +75,15 @@
 						}
 
 						p {
-							color: $primary-blue;
+							border-radius: 100px;
+							background-color: rgba(255, 255, 255, 0.2);
 							font-size: 14px;
 							font-weight: 600;
 							line-height: 19px;
-							margin: 10px;
-							margin-top: 18px;
-
-							&.date {
-								margin-left: 0;
-								border-radius: 100px;
-								background-color: rgba(255, 255, 255, 0.2);
-								font-size: 14px;
-								font-weight: 600;
-								line-height: 19px;
-								color: #fff;
-								text-align: center;
-								padding: 5px 15px 7px;
-								margin-top: 12px;
-							}
+							color: #fff;
+							text-align: center;
+							padding: 5px 15px 7px;
+							margin-top: 12px;
 
 							&.visiter {
 								margin-left: 0;

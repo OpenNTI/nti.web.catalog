@@ -24,7 +24,10 @@ export default function CarouselItem (props) {
 								<div className="statistic">
 									<ul>
 										<li>
-											<p className="date">Starts <DateTime date={props.data.StartDate}/></p>
+											<p className="course-id">{props.data.ProviderUniqueID}</p>
+										</li>
+										<li>
+											<p className="course-start-date">Starts <DateTime date={props.data.StartDate}/></p>
 										</li>
 									</ul>
 								</div>
