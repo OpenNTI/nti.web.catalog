@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {LinkTo} from 'nti-web-routing';
+import {Layouts} from 'nti-web-commons';
 
-import CourseCard from '../../grid-card/components/card/Card';
+import CoursesList from './CourseList';
 
+const {Responsive} = Layouts;
 export default class Category extends React.Component {
 	static propTypes = {
 		category: PropTypes.object,
@@ -18,6 +20,7 @@ export default class Category extends React.Component {
 		}
 
 		const courses = category.Items.slice(0, 4) || [];
+		const coursesMobile = category.Items.slice(0, 3) || [];
 		const title = this.props.category.Name === '.nti_other' ? 'Others' : this.props.category.Name;
 		return (
 			<div>
@@ -31,18 +34,8 @@ export default class Category extends React.Component {
 					</div>
 				</div>
 				<div>
-					<ul className="course-card">
-						{courses.map ((course, index) => {
-							return (
-								<li key={index} className="course-block">
-									<CourseCard
-										course={course}
-										key={index}
-									/>
-								</li>
-							);
-						})}
-					</ul>
+					<Responsive.Item query={Responsive.isMobile} component={CoursesList}  courses={coursesMobile}/>
+					<Responsive.Item query={Responsive.isDesktop} component={CoursesList} courses={courses}/>
 				</div>
 			</div>
 		);
