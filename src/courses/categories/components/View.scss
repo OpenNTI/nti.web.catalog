@@ -103,4 +103,19 @@
 	figure {
 		margin: 0;
 	}
+
+	.bottom-menu {
+		@include responsive-range(desktop) {
+			display: none;
+		}
+
+		@include responsive-range(mobile) {
+			display: block;
+			text-align: center;
+
+			a {
+				color: $primary-blue;
+			}
+		}
+	}
 }

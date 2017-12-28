@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {searchable, contextual} from 'nti-web-search';
 import {Loading, EmptyState, Layouts} from 'nti-web-commons';
+import {getHistory} from 'nti-web-routing';
 
 import * as Constant from '../../../Constants';
 import Carousel from '../../../carousel/components/Carousel';
@@ -43,6 +44,12 @@ export default class Categories extends React.Component {
 
 	componentDidMount () {
 		store.load(Constant.CATEGORIES);
+	}
+
+	redeemCourse () {
+		console.log('redeem');
+		const history = getHistory();
+		history.replace('redeem');
 	}
 
 	render () {
@@ -98,6 +105,14 @@ export default class Categories extends React.Component {
 						<GridCard courses={categories} type={Constant.CATEGORIES}/>
 					</section>
 				)}
+				<section className="bottom-menu">
+					<div>
+						<a onClick={this.redeemCourse}>Redeem a Course</a>
+					</div>
+					<div>
+						<a>Contact Us</a>
+					</div>
+				</section>
 			</div>
 		);
 	}
