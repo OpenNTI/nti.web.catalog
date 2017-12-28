@@ -5,6 +5,10 @@
 		height: 300px;
 		position: relative;
 
+		@include responsive-range(mobile) {
+			height: 229px;
+		}
+
 		&.orange {
 			background: linear-gradient(45deg, #fc7126, #fcae26);
 			background-size: cover;
