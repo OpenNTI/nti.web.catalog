@@ -16,6 +16,7 @@ export default class CategoryDetail extends React.Component {
 
 		return (
 			<div>
+				<div className="categories-block-title">Top Categories</div>
 				<ul className="course-card">
 					{this.props.categories.map ((course, index) => {
 						const categoryClassName = 'categories-block ' + Utils.getGradientClass(course.Name);

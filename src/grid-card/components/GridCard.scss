@@ -34,4 +34,18 @@
 			clear: both;
 		}
 	}
+
+	.categories-block-title {
+		@include responsive-range(desktop) {
+			display: none;
+		}
+
+		@include responsive-range(mobile) {
+			display: block;
+			font-size: 18px;
+			color: #494949;
+			text-transform: uppercase;
+			margin-bottom: 13px;
+		}
+	}
 }
