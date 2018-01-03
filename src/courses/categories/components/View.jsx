@@ -107,9 +107,6 @@ export default class Categories extends React.Component {
 					<div>
 						<a onClick={this.redeemCourse}>Redeem a Course</a>
 					</div>
-					<div>
-						<a>Contact Us</a>
-					</div>
 				</section>
 			</div>
 		);
