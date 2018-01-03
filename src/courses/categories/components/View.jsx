@@ -117,7 +117,7 @@ export default class Categories extends React.Component {
 	}
 
 	renderEmptyState () {
-		const header = 'You don\'t have any courses yet...';
+		const header = 'There are no courses available.';
 
 		return (
 			<EmptyState header={header} />
