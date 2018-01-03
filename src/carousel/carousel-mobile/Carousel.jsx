@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import {Presentation} from 'nti-web-commons';
 import {encodeForURI} from 'nti-lib-ntiids';
@@ -12,6 +11,8 @@ export default class Carousel extends React.Component {
 		data: PropTypes.array,
 	};
 
+	attachRef = el => this.el = el
+
 	scrollCarousel = (e) => {
 		e.persist();
 		const currentPos = e.currentTarget.scrollLeft;
@@ -21,7 +22,7 @@ export default class Carousel extends React.Component {
 		this.timeout = setTimeout(() => {
 			this.timeout = null;
 			const swipePosition = this.getSwipePosition(currentPos);
-			ReactDOM.findDOMNode(this).scrollLeft = swipePosition; //eslint-disable-line
+			this.el.scrollLeft = swipePosition;
 		}, 300);
 	}
 
@@ -42,7 +43,7 @@ export default class Carousel extends React.Component {
 		}
 
 		return (
-			<div className="carousel-mobile-block" onScroll={this.scrollCarousel}>
+			<div className="carousel-mobile-block" onScroll={this.scrollCarousel} ref={this.attachRef}>
 				{items.map((course, index) =>{
 					const instructors = course.Instructors ? course.Instructors.map(instructor => {
 						return instructor.Name;
