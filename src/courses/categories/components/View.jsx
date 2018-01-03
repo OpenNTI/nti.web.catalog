@@ -47,8 +47,7 @@ export default class Categories extends React.Component {
 	}
 
 	redeemCourse () {
-		const history = getHistory();
-		history.replace('redeem');
+		getHistory().replace('redeem');
 	}
 
 	render () {
