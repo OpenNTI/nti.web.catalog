@@ -14,7 +14,9 @@ export default class CategoryDetail extends React.Component {
 		category: PropTypes.object,
 		other: PropTypes.bool,
 		link: PropTypes.string,
-		search: PropTypes.string
+		search: PropTypes.string,
+		purchased: PropTypes.bool,
+		isSearchPurchased: PropTypes.bool
 	}
 
 	async getCourses (link) {
@@ -23,8 +25,15 @@ export default class CategoryDetail extends React.Component {
 		let items = {Items: []};
 
 		if(this.props.search) {
-			const collection = service.getCollection('Courses', 'Catalog');
+			let collection = service.getCollection('Courses', 'Catalog');
+			if (this.props.isSearchPurchased) {
+				collection = service.getCollection('Purchased', 'Catalog');
+			}
 			items = await service.getBatch(collection.href, {batchSize: Constants.BATCH_SIZE, batchStart: currentItems, filter: this.props.search});
+		}
+		else if(this.props.purchased) {
+			const collection = service.getCollection('Purchased', 'Catalog');
+			items = await service.getBatch(collection.href, {batchSize: Constants.BATCH_SIZE, batchStart: currentItems});
 		}
 		else {
 			const categoryLink = URL.appendQueryParams(link, {batchStart: currentItems, batchSize: Constants.BATCH_SIZE});
@@ -33,8 +42,8 @@ export default class CategoryDetail extends React.Component {
 
 		const oldItems = this.state.courses;
 
-		this.setState({courses: oldItems.concat(items.Items), loading:false});
-		if(items.Total === this.state.courses.length) {
+		this.setState({courses: oldItems.concat(items.Items), loading: false});
+		if (items.Total === this.state.courses.length || items.Total < Constants.BATCH_SIZE) {
 			this.setState({noMore: true});
 		}
 	}
@@ -62,9 +71,10 @@ export default class CategoryDetail extends React.Component {
 
 		const link = {action: 'back'};
 		const categoryClassName = 'categories-banner ' + Utils.getGradientClass(category.title);
+		const banner = !this.props.purchased && !this.props.other && !this.props.search;
 		return (
 			<div>
-				{!this.props.other && !this.props.search && (
+				{banner && (
 					<div className={categoryClassName}>
 						<div className="category-text-wrapper">
 							<div className="categories-back">

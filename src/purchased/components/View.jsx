@@ -45,10 +45,11 @@ export default class Category extends React.Component {
 		const {loading} = this.props;
 
 		if (this.props.searchItems && this.props.searchTerm) {
+			const isPurchased = true;
 			return (
 				<div className="course-catalog">
 					<section className="">
-						<Search term={this.props.searchTerm} courses={this.props.searchItems} loading={this.props.loading}/>
+						<Search term={this.props.searchTerm} courses={this.props.searchItems} loading={this.props.loading} isSearchPurchased={isPurchased}/>
 					</section>
 				</div>
 

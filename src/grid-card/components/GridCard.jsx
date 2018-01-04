@@ -6,9 +6,6 @@ import CategoryDetail from '../../category/category-detail/components/CategoryDe
 import CategoryCollapse from '../../category/components/category-collapse/CategoryCollapse';
 import * as Constants from '../../Constants';
 
-import CourseCard from './card/Card';
-
-
 export default class GridCard extends React.Component {
 	static propTypes = {
 		courses: PropTypes.array,
@@ -16,7 +13,8 @@ export default class GridCard extends React.Component {
 		type: PropTypes.string,
 		other: PropTypes.bool,
 		link: PropTypes.string,
-		search: PropTypes.string
+		search: PropTypes.string,
+		isSearchPurchased: PropTypes.bool
 	}
 
 	render () {
@@ -71,25 +69,20 @@ export default class GridCard extends React.Component {
 			};
 			return (
 				<div>
-					<CategoryDetail category={courses} search={this.props.search}/>
+					<CategoryDetail category={courses} search={this.props.search} isSearchPurchased={this.props.isSearchPurchased}/>
 				</div>
 			);
 		}
 
 		else if (this.props.type === Constants.PURCHASED) {
+			const courses = {
+				Items: this.props.courses,
+				Total: this.props.courses.length
+			};
+			const purchased = true;
 			return (
-				<div className="content-right">
-					<ul className="course-card">
-						{this.props.courses.map ((course, index) => {
-							return (
-								<li key={index} className="course-block">
-									<CourseCard
-										course={course}
-									/>
-								</li>
-							);
-						})}
-					</ul>
+				<div>
+					<CategoryDetail category={courses} purchased={purchased} link={this.props.link}/>
 				</div>
 			);
 		}
