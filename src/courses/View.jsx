@@ -8,7 +8,7 @@ export default Router.for([
 		path: '/:id',
 		component: Category,
 		getRouteFor: (obj, context) => {
-			if (obj.Name) {
+			if (obj.Name && context === 'catalog.categories') {
 				if (obj.Name === '.') {
 					return '/%2E';
 				}
