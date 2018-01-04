@@ -9,7 +9,8 @@ import * as Constants from '../../Constants';
 Search.propTypes = {
 	term: PropTypes.string,
 	courses: PropTypes.array,
-	loading: PropTypes.bool
+	loading: PropTypes.bool,
+	isSearchPurchased :PropTypes.bool
 };
 
 export default function Search (props) {
@@ -31,7 +32,7 @@ export default function Search (props) {
 			)}
 			{!props.loading && props.courses.length > 0 && (
 				<div className="content-catalog no-sidebar">
-					<GridCard courses={props.courses} type={Constants.SEARCH} search={props.term}/>
+					<GridCard courses={props.courses} type={Constants.SEARCH} search={props.term} isSearchPurchased={props.isSearchPurchased}/>
 				</div>
 			)}
 		</div>
