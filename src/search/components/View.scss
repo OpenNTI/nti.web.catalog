@@ -6,6 +6,11 @@
 		margin: 0 auto;
 		padding: 45px 0;
 
+		@include responsive-range(mobile) {
+			width: 100%;
+			padding: 10px 0 0 10px;
+		}
+
 		.back {
 			cursor: default;
 
