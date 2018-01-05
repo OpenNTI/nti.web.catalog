@@ -64,6 +64,11 @@
 			margin-left: auto;
 			margin-right: auto;
 			padding-top: 34px;
+
+			@include responsive-range(mobile) {
+				padding-top: 13px;
+				padding-left: 10px;
+			}
 		}
 
 		.categories-back {
