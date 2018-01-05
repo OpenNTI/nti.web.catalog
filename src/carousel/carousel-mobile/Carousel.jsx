@@ -32,6 +32,12 @@ export default class Carousel extends React.Component {
 		if (nextIndex > 120 && index < 2) {
 			index += 1;
 		}
+
+		if (index === 1) {
+			const middle = (window.innerWidth - courseWidth) / 2;
+			return middle > 0 ? courseWidth - middle + 20 : courseWidth - 20; //20 is total padding left & right
+		}
+
 		return (index * courseWidth) + (index * 10);
 	}
 
@@ -50,7 +56,7 @@ export default class Carousel extends React.Component {
 					}).join(', ') : '';
 					return(
 						<div key={index} className="feature-course">
-							<a href={`./object/${encodeForURI(course.NTIID)}`}>
+							<a href={`./course/${encodeForURI(course.CourseNTIID)}/info`}>
 								<Presentation.Asset contentPackage={course} propName="src" type="landing">
 									<img className="image-content"/>
 								</Presentation.Asset>
