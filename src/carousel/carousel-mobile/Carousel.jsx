@@ -56,7 +56,7 @@ export default class Carousel extends React.Component {
 					}).join(', ') : '';
 					return(
 						<div key={index} className="feature-course">
-							<a href={`./object/${encodeForURI(course.NTIID)}`}>
+							<a href={`./course/${encodeForURI(course.CourseNTIID)}/info`}>
 								<Presentation.Asset contentPackage={course} propName="src" type="landing">
 									<img className="image-content"/>
 								</Presentation.Asset>
