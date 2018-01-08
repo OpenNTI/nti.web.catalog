@@ -1,9 +1,9 @@
 /* eslint-env jest */
-import React from 'react';
-import { mount } from 'enzyme';
+// import React from 'react';
+// import { mount } from 'enzyme';
 
-import GridCard from '../components/GridCard';
-import * as Constants from '../../Constants';
+// import GridCard from '../components/GridCard';
+// import * as Constants from '../../Constants';
 
 describe('GridCard', () => {
 	// const purchasedCourses = [
