@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {DateTime, Presentation, Layouts} from 'nti-web-commons';
-import {encodeForURI} from 'nti-lib-ntiids';
+import {DateTime, Presentation} from 'nti-web-commons';
 import {LinkTo} from 'nti-web-routing';
 
-const {Responsive} = Layouts;
 
 export default class CourseCard extends React.Component {
 	static propTypes = {
@@ -19,7 +17,6 @@ export default class CourseCard extends React.Component {
 	}
 
 	render () {
-		const isMobile = Responsive.isMobile();
 		const enrolled = this.props.course.IsEnrolled;
 
 		const status = checkStatus (this.props.course.StartDate, this.props.course.EndDate);
@@ -33,8 +30,6 @@ export default class CourseCard extends React.Component {
 		const instructors = this.props.course.Instructors ? this.props.course.Instructors.map(instructor => {
 			return instructor.Name;
 		}).join(', ') : '';
-
-		const href = `uri:${this.props.course.href}`;
 
 		return (
 			<LinkTo.Object object={this.props.course}>
