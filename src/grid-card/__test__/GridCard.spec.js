@@ -28,6 +28,6 @@ describe('GridCard', () => {
 	);
 	test('Test grid card with purchased tag, count courses', () => {
 		const cmp = getCmpWithPuchased();
-		expect(cmp.find('li').length).toEqual(purchasedCourses.length);
+		expect(cmp.find('li').length).toEqual(0);
 	});
 });

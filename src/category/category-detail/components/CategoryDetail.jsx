@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {LinkTo} from 'nti-web-routing';
 import {Loading} from 'nti-web-commons';
 import {getService} from 'nti-web-client';
-import {URL} from 'nti-commons';
 
 import CourseCard from '../../../grid-card/components/card/Card';
 import * as Constants from '../../../Constants';
@@ -25,19 +24,11 @@ export default class CategoryDetail extends React.Component {
 		let items = {Items: []};
 
 		if(this.props.search) {
-			let collection = service.getCollection('Courses', 'Catalog');
-			if (this.props.isSearchPurchased) {
-				collection = service.getCollection('Purchased', 'Catalog');
-			}
-			items = await service.getBatch(collection.href, {batchSize: Constants.BATCH_SIZE, batchStart: currentItems, filter: this.props.search});
+			items = await service.getBatch(link, {batchSize: Constants.BATCH_SIZE, batchStart: currentItems, filter: this.props.search});
 		}
-		else if(this.props.purchased) {
-			const collection = service.getCollection('Purchased', 'Catalog');
-			items = await service.getBatch(collection.href, {batchSize: Constants.BATCH_SIZE, batchStart: currentItems});
-		}
+
 		else {
-			const categoryLink = URL.appendQueryParams(link, {batchStart: currentItems, batchSize: Constants.BATCH_SIZE});
-			items = await service.get(categoryLink);
+			items = await service.getBatch(link, {batchSize: Constants.BATCH_SIZE, batchStart: currentItems,});
 		}
 
 		const oldItems = this.state.courses;
@@ -48,10 +39,12 @@ export default class CategoryDetail extends React.Component {
 		}
 	}
 
-	loadMore = () =>{
-		this.setState({loading:true});
+	loadMore = () => {
+		this.setState({loading: true});
 		let link = this.props.link || this.props.category.link;
-		link = link + '/' + this.props.category.Name;
+		if (this.props.category.Name) {
+			link = link + '/' + this.props.category.Name;
+		}
 		this.getCourses(link);
 	}
 

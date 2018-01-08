@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {getService} from 'nti-web-client';
 
 import Category from '../../category/components/Category';
 import CategoryDetail from '../../category/category-detail/components/CategoryDetail';
@@ -17,7 +18,19 @@ export default class GridCard extends React.Component {
 		isSearchPurchased: PropTypes.bool
 	}
 
+	async componentDidMount () {
+		const service = await getService();
+		const coursesLink = service.getCollection('Courses', 'Catalog');
+		const purchasedLink = service.getCollection('Purchased', 'Catalog');
+		this.setState({coursesLink, purchasedLink});
+	}
+
 	render () {
+		if (!this.state) {
+			return null;
+		}
+
+		const {coursesLink, purchasedLink} = this.state;
 
 		if (this.props.type === Constants.CATEGORIES) {
 			const link = this.props.link;
@@ -62,14 +75,15 @@ export default class GridCard extends React.Component {
 			);
 		}
 
-		else if(this.props.type === Constants.SEARCH) {
+		else if (this.props.type === Constants.SEARCH) {
 			const courses = {
 				Items: this.props.courses,
 				Total: this.props.courses.length
 			};
+			const link = this.props.isSearchPurchased ? purchasedLink.href : coursesLink.href;
 			return (
 				<div>
-					<CategoryDetail category={courses} search={this.props.search} isSearchPurchased={this.props.isSearchPurchased}/>
+					<CategoryDetail category={courses} search={this.props.search} link={link}/>
 				</div>
 			);
 		}
@@ -82,7 +96,7 @@ export default class GridCard extends React.Component {
 			const purchased = true;
 			return (
 				<div>
-					<CategoryDetail category={courses} purchased={purchased} link={this.props.link}/>
+					<CategoryDetail category={courses} purchased={purchased} link={purchasedLink.href}/>
 				</div>
 			);
 		}
