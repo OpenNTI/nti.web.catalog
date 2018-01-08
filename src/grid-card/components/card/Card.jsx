@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {DateTime, Presentation, Layouts} from 'nti-web-commons';
 import {encodeForURI} from 'nti-lib-ntiids';
+import {LinkTo} from 'nti-web-routing';
 
 const {Responsive} = Layouts;
 
@@ -34,13 +35,9 @@ export default class CourseCard extends React.Component {
 		}).join(', ') : '';
 
 		const href = `uri:${this.props.course.href}`;
-		let courseLink = `./object/${encodeURIComponent(href)}`;
 
-		if (isMobile) {
-			courseLink = `./course/${encodeForURI(this.props.course.CourseNTIID)}/info`;
-		}
 		return (
-			<a href={courseLink}>
+			<LinkTo.Object object={this.props.course}>
 				<div className="course-panel">
 					<figure className="flex-item">
 						<Presentation.Asset contentPackage={this.props.course} propName="src" type="landing">
@@ -65,7 +62,7 @@ export default class CourseCard extends React.Component {
 							<span className={statusClass}>Finished <DateTime date={this.props.course.EndDate} format="ll"/></span>
 						</div>)}
 				</div>
-			</a>
+			</LinkTo.Object>
 		);
 	}
 }
