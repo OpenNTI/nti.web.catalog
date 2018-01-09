@@ -59,6 +59,13 @@
 
 			@include responsive-range(mobile) {
 				width: 30%;
+				padding-top: 12px;
+				padding-left: 7%;
+			}
+
+			@include responsive-range(tablet) {
+				padding-top: 12px;
+				padding-left: 23px;
 			}
 
 			&:hover {
