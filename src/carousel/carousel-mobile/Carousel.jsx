@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Presentation} from 'nti-web-commons';
-import {encodeForURI} from 'nti-lib-ntiids';
+import {LinkTo} from 'nti-web-routing';
 
 const courseWidth = 325;
 
@@ -56,11 +56,11 @@ export default class Carousel extends React.Component {
 					}).join(', ') : '';
 					return(
 						<div key={index} className="feature-course">
-							<a href={`./course/${encodeForURI(course.CourseNTIID)}/info`}>
+							<LinkTo.Object object={course}>
 								<Presentation.Asset contentPackage={course} propName="src" type="landing">
 									<img className="image-content"/>
 								</Presentation.Asset>
-							</a>
+							</LinkTo.Object>
 							<div className="course-id">{course.ProviderUniqueID}</div>
 							<div className="course-title">{course.Title}</div>
 							<div className="course-instructor">{instructors}</div>
