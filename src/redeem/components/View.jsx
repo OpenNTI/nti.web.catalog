@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Loading} from 'nti-web-commons';
+import {Loading, Layouts} from 'nti-web-commons';
 import {getService} from 'nti-web-client';
 import {getLink} from 'nti-lib-interfaces';
 import {encodeForURI} from 'nti-lib-ntiids';
@@ -45,7 +45,10 @@ export default class Redeem extends React.Component {
 			const result = await service.post(link, param);
 
 			const history = getHistory();
-			const detailLink = `./object/${encodeForURI(result.CatalogEntryNTIID)}` + '?redeem=1';
+			let detailLink = `./object/${encodeForURI(result.CatalogEntryNTIID)}` + '?redeem=1';
+			if (!Layouts.Responsive.isDesktop()) {
+				detailLink = `./item/${encodeForURI(result.CatalogEntryNTIID)}` + '?redeem=1';
+			}
 			history.replace(detailLink);
 			this.setState({codeValue: '', loading: false});
 		}
