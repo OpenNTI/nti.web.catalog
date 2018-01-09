@@ -11,7 +11,7 @@ export default class CourseListStore extends SearchablePagedStore {
 	async loadSearchTerm (term) {
 		const service = await getService();
 		const collection = service.getCollection('Courses', 'Catalog');
-		const {Items: searchItems} = await service.getBatch(collection.href, {batchSize: Constants.BATCH_SIZE, batchStart: 0, filter: term});
+		const searchItems = await service.getBatch(collection.href, {batchSize: Constants.BATCH_SIZE, batchStart: 0, filter: term});
 
 		return searchItems;
 	}

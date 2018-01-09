@@ -29,7 +29,7 @@ export default class SearchablePagedStore extends Stores.SimpleStore {
 		this.set('searchItems', null);
 		this.set('categories', {});
 		this.set('carousel', {});
-		this.set('purchased', []);
+		this.set('purchased', null);
 		this.set('category', {});
 		this.set('loading', null);
 		this.set('error', null);
