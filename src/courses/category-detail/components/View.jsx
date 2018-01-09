@@ -23,7 +23,7 @@ export default class Category extends React.Component {
 	static propTypes = {
 		category: PropTypes.object,
 		searchTerm: PropTypes.string,
-		searchItems: PropTypes.array,
+		searchItems: PropTypes.object,
 		loading: PropTypes.bool,
 		match: PropTypes.object,
 		renderData: PropTypes.func,

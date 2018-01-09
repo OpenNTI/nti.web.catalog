@@ -76,27 +76,19 @@ export default class GridCard extends React.Component {
 		}
 
 		else if (this.props.type === Constants.SEARCH) {
-			const courses = {
-				Items: this.props.courses,
-				Total: this.props.courses.length
-			};
 			const link = this.props.isSearchPurchased ? purchasedLink.href : coursesLink.href;
 			return (
 				<div>
-					<CategoryDetail category={courses} search={this.props.search} link={link}/>
+					<CategoryDetail category={this.props.category} search={this.props.search} link={link}/>
 				</div>
 			);
 		}
 
 		else if (this.props.type === Constants.PURCHASED) {
-			const courses = {
-				Items: this.props.courses,
-				Total: this.props.courses.length
-			};
 			const purchased = true;
 			return (
 				<div>
-					<CategoryDetail category={courses} purchased={purchased} link={purchasedLink.href}/>
+					<CategoryDetail category={this.props.category} purchased={purchased} link={purchasedLink.href}/>
 				</div>
 			);
 		}

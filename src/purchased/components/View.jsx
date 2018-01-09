@@ -21,9 +21,9 @@ const propMap = {
 @searchable(store, propMap)
 export default class Category extends React.Component {
 	static propTypes = {
-		purchased: PropTypes.array,
+		purchased: PropTypes.object,
 		searchTerm: PropTypes.string,
-		searchItems: PropTypes.array,
+		searchItems: PropTypes.object,
 		loading: PropTypes.bool,
 		match: PropTypes.object,
 		renderData: PropTypes.func,
@@ -72,13 +72,13 @@ export default class Category extends React.Component {
 		if (!this.props.purchased) {
 			return null;
 		}
-		if (this.props.purchased && this.props.purchased.length === 0) {
+		if (this.props.purchased.Items && this.props.purchased.Items.length === 0) {
 			return this.renderEmptyState();
 		}
 		return (
 			<div className="course-catalog">
 				<section className="content-catalog no-sidebar">
-					<GridCard courses={this.props.purchased} type={Constants.PURCHASED}/>
+					<GridCard category={this.props.purchased} type={Constants.PURCHASED}/>
 				</section>
 			</div>
 		);

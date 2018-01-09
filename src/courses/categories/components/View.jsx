@@ -34,7 +34,7 @@ export default class Categories extends React.Component {
 		categories: PropTypes.object,
 		carousel: PropTypes.object,
 		searchTerm: PropTypes.string,
-		searchItems: PropTypes.array,
+		searchItems: PropTypes.object,
 		loading: PropTypes.bool,
 		renderData: PropTypes.func,
 		selectCarousel: PropTypes.func,

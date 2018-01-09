@@ -7,7 +7,7 @@ export default class CategoryStore extends SearchablePagedStore {
 	async loadSearchTerm (term) {
 		const service = await getService();
 		const {href : href } = service.getCollection('Purchased', 'Catalog');
-		const {Items: searchItems} = await service.getBatch(href, {batchSize: Constants.BATCH_SIZE, batchStart: 0, filter: term});
+		const searchItems = await service.getBatch(href, {batchSize: Constants.BATCH_SIZE, batchStart: 0, filter: term});
 
 		return searchItems;
 	}
@@ -15,13 +15,12 @@ export default class CategoryStore extends SearchablePagedStore {
 	async loadPurchased () {
 		const service = await getService();
 		const {href : href } = service.getCollection('Purchased', 'Catalog');
-		let purchased;
 		try {
-			purchased = await service.getBatch(href, {batchSize: Constants.BATCH_SIZE, batchStart: 0});
+			const purchased = await service.getBatch(href, {batchSize: Constants.BATCH_SIZE, batchStart: 0});
+			return purchased;
 		}
 		catch (e) {
-			return [];
+			return null;
 		}
-		return purchased.Items;
 	}
 }

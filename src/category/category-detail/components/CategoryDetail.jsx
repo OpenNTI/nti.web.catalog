@@ -34,7 +34,7 @@ export default class CategoryDetail extends React.Component {
 		const oldItems = this.state.courses;
 
 		this.setState({courses: oldItems.concat(items.Items), loading: false});
-		if (items.Total === this.state.courses.length || items.Total < Constants.BATCH_SIZE) {
+		if (items.Total === this.state.courses.length || items.Total <= Constants.BATCH_SIZE) {
 			this.setState({noMore: true});
 		}
 	}
@@ -50,7 +50,7 @@ export default class CategoryDetail extends React.Component {
 
 	componentDidMount () {
 		this.setState({courses :this.props.category.Items, title: this.props.category.Name});
-		if(this.props.category.Total < Constants.BATCH_SIZE) {
+		if(this.props.category.Total <= Constants.BATCH_SIZE) {
 			this.setState({noMore: true});
 		}
 	}

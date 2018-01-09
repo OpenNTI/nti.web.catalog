@@ -8,7 +8,7 @@ import * as Constants from '../../Constants';
 
 Search.propTypes = {
 	term: PropTypes.string,
-	courses: PropTypes.array,
+	courses: PropTypes.object,
 	loading: PropTypes.bool,
 	isSearchPurchased :PropTypes.bool
 };
@@ -25,14 +25,14 @@ export default function Search (props) {
 					<Loading.Mask/>
 				</div>
 			)}
-			{!props.loading && props.courses.length === 0 && (
+			{!props.loading && props.courses.Total === 0 && (
 				<div className="content-catalog no-sidebar">
 					<EmptyState header= {noResult}/>
 				</div>
 			)}
-			{!props.loading && props.courses.length > 0 && (
+			{!props.loading && props.courses.Total > 0 && (
 				<div className="content-catalog no-sidebar">
-					<GridCard courses={props.courses} type={Constants.SEARCH} search={props.term} isSearchPurchased={props.isSearchPurchased}/>
+					<GridCard category={props.courses} type={Constants.SEARCH} search={props.term} isSearchPurchased={props.isSearchPurchased}/>
 				</div>
 			)}
 		</div>
