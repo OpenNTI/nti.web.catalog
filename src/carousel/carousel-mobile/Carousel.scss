@@ -15,8 +15,15 @@
 
 				.image-content {
 					object-fit: cover;
-					width: 325px;
-					height: 198.05px;
+					width: calc(76vw);
+
+					@include responsive-range(mobile) {
+						height: 198.05px;
+					}
+
+					@include responsive-range(tablet) {
+						height: 250px;
+					}
 				}
 
 				.course-id {
@@ -30,13 +37,14 @@
 					white-space: nowrap;
 					overflow: hidden;
 					text-transform: uppercase;
+					max-width: calc(76vw);
 				}
 
 				.course-title {
 					font: normal 700 1em/1.1em "Open Sans Condensed";
 					max-height: 2.2em;
 					overflow: hidden;
-					max-width: 325px;
+					max-width: calc(76vw);
 					text-overflow: ellipsis;
 					white-space: nowrap;
 					text-transform: uppercase;
@@ -52,6 +60,7 @@
 					text-overflow: ellipsis;
 					white-space: nowrap;
 					overflow: hidden;
+					max-width: calc(76vw);
 				}
 			}
 
