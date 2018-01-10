@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {searchable, contextual} from 'nti-web-search';
 import {Loading, EmptyState, Layouts} from 'nti-web-commons';
-import {getHistory} from 'nti-web-routing';
+import {LinkTo} from 'nti-web-routing';
 
 import * as Constant from '../../../Constants';
 import Carousel from '../../../carousel/components/Carousel';
@@ -46,9 +46,6 @@ export default class Categories extends React.Component {
 		store.load(Constant.CATEGORIES);
 	}
 
-	redeemCourse () {
-		getHistory().replace('redeem');
-	}
 
 	render () {
 		const {loading} = this.props;
@@ -105,7 +102,7 @@ export default class Categories extends React.Component {
 				)}
 				<section className="bottom-menu">
 					<div>
-						<a onClick={this.redeemCourse}>Redeem a Course</a>
+						<LinkTo.Name name="catalog.redeem">Redeem a Course</LinkTo.Name>
 					</div>
 				</section>
 			</div>
