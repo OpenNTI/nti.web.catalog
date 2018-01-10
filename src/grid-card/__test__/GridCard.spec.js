@@ -72,7 +72,7 @@ describe('GridCard', () => {
 					getDefaultAssetRoot: ()=>{}
 				}
 			],
-			ItemCount:4
+			ItemCount:3
 		}
 	];
 

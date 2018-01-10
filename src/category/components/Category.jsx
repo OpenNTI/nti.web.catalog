@@ -36,6 +36,7 @@ export default class Category extends React.Component {
 				<div>
 					<Responsive.Item query={Responsive.isMobile} component={CoursesList}  courses={coursesMobile}/>
 					<Responsive.Item query={Responsive.isDesktop} component={CoursesList} courses={courses}/>
+					<Responsive.Item query={Responsive.isTablet} component={CoursesList} courses={courses}/>
 				</div>
 			</div>
 		);
