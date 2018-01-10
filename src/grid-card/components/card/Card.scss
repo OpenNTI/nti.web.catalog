@@ -1,5 +1,9 @@
 @import "~nti-style-common";
 
+$CUSTOM_RANGES: (
+	tabletAndMobile: (null, 768px)
+);
+
 @mixin bg-gradient($color1, $color2) {
 	background: linear-gradient(45deg, $color1, $color2);
 }
@@ -11,7 +15,7 @@
 				&:nth-child(3n+3) {
 					margin-right: 9px;
 
-					@include responsive-range(mobile) {
+					@include responsive-range(tabletAndMobile, $CUSTOM_RANGES) {
 						margin-right: 2%;
 					}
 				}
@@ -24,7 +28,7 @@
 			.course-card {
 				margin-left: -9px;
 
-				@include responsive-range(mobile) {
+				@include responsive-range(tabletAndMobile, $CUSTOM_RANGES) {
 					margin: 0 0 50px;
 				}
 			}
@@ -32,13 +36,13 @@
 			.content-right {
 				width: 100%;
 
-				@include responsive-range(mobile) {
+				@include responsive-range(tabletAndMobile, $CUSTOM_RANGES) {
 					padding: 0 10px;
 					float: none;
 				}
 
 				.course-card {
-					@include responsive-range(mobile) {
+					@include responsive-range(tabletAndMobile, $CUSTOM_RANGES) {
 						margin: 0 -1% 50px -1%;
 						overflow: hidden;
 					}
@@ -46,7 +50,7 @@
 			}
 		}
 
-		@include responsive-range(mobile) {
+		@include responsive-range(tabletAndMobile, $CUSTOM_RANGES) {
 			width: 100%;
 			overflow: hidden;
 		}
@@ -62,7 +66,7 @@
 		margin: 9px;
 		width: 242px;
 
-		@include responsive-range(mobile) {
+		@include responsive-range(tabletAndMobile, $CUSTOM_RANGES) {
 			width: 100%;
 			float: none;
 			box-shadow: none;
@@ -89,6 +93,12 @@
 				min-width: 100px;
 			}
 
+			@include responsive-range(tablet) {
+				height: 150px;
+				width: 280px;
+				min-width: 280px;
+			}
+
 			@include responsive-range(desktop) {
 				height: 176px;
 			}
@@ -107,7 +117,7 @@
 			height: 100%;
 			background-color: #fff;
 
-			@include responsive-range(mobile) {
+			@include responsive-range(tabletAndMobile, $CUSTOM_RANGES) {
 				background: transparent;
 				display: flex;
 			}
@@ -166,7 +176,7 @@
 				margin-bottom: 0;
 			}
 
-			@include responsive-range(mobile) {
+			@include responsive-range(tabletAndMobile, $CUSTOM_RANGES) {
 				padding: 0 10px;
 			}
 		}
@@ -185,7 +195,7 @@
 				background-color: $primary-green;
 				text-transform: uppercase;
 
-				@include responsive-range(mobile) {
+				@include responsive-range(tabletAndMobile, $CUSTOM_RANGES) {
 					display: none;
 				}
 
@@ -287,7 +297,7 @@
 		&:nth-child(3n+3) {
 			margin-right: 0;
 
-			@include responsive-range(mobile) {
+			@include responsive-range(tabletAndMobile, $CUSTOM_RANGES) {
 				margin-right: 0;
 			}
 		}
@@ -308,12 +318,12 @@
 			text-overflow: ellipsis;
 			padding: 12px;
 
-			@include responsive-range(mobile) {
+			@include responsive-range(tabletAndMobile, $CUSTOM_RANGES) {
 				font-size: 16px;
 			}
 		}
 
-		@include responsive-range(mobile) {
+		@include responsive-range(tabletAndMobile, $CUSTOM_RANGES) {
 			width: 46%;
 			float: left;
 			margin: 2%;
