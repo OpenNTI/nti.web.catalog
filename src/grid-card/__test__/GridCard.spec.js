@@ -1,34 +1,98 @@
 /* eslint-env jest */
-// import React from 'react';
-// import { mount } from 'enzyme';
+import React from 'react';
+import { mount } from 'enzyme';
+import PropTypes from 'prop-types';
 
-// import GridCard from '../components/GridCard';
-// import * as Constants from '../../Constants';
+import GridCard from '../components/GridCard';
+import * as Constants from '../../Constants';
+
+const mockService = () => ({
+	getCollection: () => {
+		return Promise.resolve({
+			Links: [{rel: 'accept-course-invitations'}]
+		});
+	}
+});
+
+const onBefore = () => {
+	global.$AppConfig = {
+		...(global.$AppConfig || {}),
+		nodeService: mockService(),
+	};
+};
+
+const onAfter = () => {
+	//unmock getService()
+	const {$AppConfig} = global;
+	delete $AppConfig.nodeInterface;
+	delete $AppConfig.nodeService;
+};
+
+class ContextProvider extends React.Component {
+	static propTypes = {
+		children: PropTypes.any
+	}
+
+	static childContextTypes = {
+		router: PropTypes.object
+	}
+
+
+	getChildContext () {
+		return {
+			router: {
+				history: {
+					createHref: x => x,
+					push: () => {},
+					replace: () => {}
+				}
+			}
+		};
+	}
+
+	render () {
+		return React.Children.only(this.props.children);
+	}
+}
 
 describe('GridCard', () => {
-	// const purchasedCourses = [
-	// 	{
-	// 		NTIID: 'tag:nextthought.com,2011-10:NTI-CourseInfo-Alpha_NTI_1010',
-	// 		getDefaultAssetRoot: ()=>{}
-	// 	},
-	// 	{
-	// 		NTIID: 'tag:nextthought.com,2011-10:NTI-CourseInfo-Alpha_NTI_1010',
-	// 		getDefaultAssetRoot: ()=>{}
-	// 	},
-	// 	{
-	// 		NTIID: 'tag:nextthought.com,2011-10:NTI-CourseInfo-Alpha_NTI_1010',
-	// 		getDefaultAssetRoot: ()=>{}
-	// 	}
-	// ];
-	// const getCmpWithPuchased = () => mount(
-	// 	<GridCard
-	// 		courses={purchasedCourses}
-	// 		type={Constants.PURCHASED}
-	// 	/>
-	// );
-	test('Test grid card with purchased tag, count courses', () => {
-		// const cmp = getCmpWithPuchased();
-		// expect(cmp.find('li').length).toEqual(0);
-		expect(true).toBeTruthy();//You can't test this component since its calling getService, you need to fake out the service or change the component to not use getService
-	});
+	const purchasedCourses = [
+		{
+			Items: [
+				{
+					NTIID: 'tag:nextthought.com,2011-10:NTI-CourseInfo-Alpha_NTI_1010',
+					getDefaultAssetRoot: ()=>{}
+				},
+				{
+					NTIID: 'tag:nextthought.com,2011-10:NTI-CourseInfo-Alpha_NTI_1010',
+					getDefaultAssetRoot: ()=>{}
+				},
+				{
+					NTIID: 'tag:nextthought.com,2011-10:NTI-CourseInfo-Alpha_NTI_1010',
+					getDefaultAssetRoot: ()=>{}
+				}
+			],
+			ItemCount:4
+		}
+	];
+
+	beforeEach(onBefore);
+	afterEach(onAfter);
+
+	const getCmpWithCategory = () => mount(
+		<ContextProvider>
+			<GridCard
+				courses={purchasedCourses}
+				type={Constants.CATEGORIES}
+			/>
+		</ContextProvider>
+	);
+	test('Test grid card with category have over 4 courses, count courses',  async () => {
+		const cmp = getCmpWithCategory();
+		await new Promise(resolve => {
+			setTimeout(() => {
+				resolve();
+			}, 500);
+		});
+		expect(cmp.find('ul li').length).toEqual(1);});
 });
