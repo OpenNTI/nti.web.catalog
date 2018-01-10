@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {Presentation} from 'nti-web-commons';
 import {LinkTo} from 'nti-web-routing';
 
-const courseWidth = window.innerWidth * 0.8;
 
 export default class Carousel extends React.Component {
 
@@ -27,6 +26,7 @@ export default class Carousel extends React.Component {
 	}
 
 	getSwipePosition (pos) {
+		const courseWidth = window.innerWidth * 0.8;
 		let index = parseInt((pos / courseWidth), 10);
 		const nextIndex = parseInt((pos % courseWidth), 10);
 		if (nextIndex > (courseWidth * 0.25) && index < 2) { // if over 1/4 next item, auto swap next item
