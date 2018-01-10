@@ -106,17 +106,15 @@
 	}
 
 	.bottom-menu {
-		@include responsive-range(desktop) {
-			display: none;
+		display: block;
+		text-align: center;
+
+		a {
+			color: $primary-blue;
 		}
 
-		@include responsive-range(mobile) {
-			display: block;
-			text-align: center;
-
-			a {
-				color: $primary-blue;
-			}
+		@include responsive-range(desktop) {
+			display: none;
 		}
 	}
 }
