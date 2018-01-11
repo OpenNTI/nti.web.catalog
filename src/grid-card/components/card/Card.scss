@@ -247,7 +247,7 @@ $CUSTOM_RANGES: (
 				}
 
 				&.enroll {
-					&.before {
+					&::before {
 						position: absolute;
 						content: '✔';
 						color: #fff;
@@ -265,6 +265,10 @@ $CUSTOM_RANGES: (
 							top: 5px;
 							left: 8px;
 						}
+					}
+
+					&::placeholder {
+						color: #fff;
 					}
 				}
 
