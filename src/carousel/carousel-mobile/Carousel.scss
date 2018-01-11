@@ -1,5 +1,9 @@
 @import "~nti-style-common";
 
+$CUSTOM_RANGES: (
+	mobileLandscape: (600px, 767px)
+);
+
 .course-catalog {
 	.carousel {
 		.carousel-mobile-block {
@@ -15,13 +19,19 @@
 
 				.image-content {
 					object-fit: cover;
-					width: calc(76vw);
 
 					@include responsive-range(mobile) {
 						height: 198.05px;
+						width: calc(76vw);
 					}
 
 					@include responsive-range(tablet) {
+						width: calc(40vw);
+						height: 250px;
+					}
+
+					@include responsive-range(mobileLandscape, $CUSTOM_RANGES) {
+						width: calc(55vw);
 						height: 250px;
 					}
 				}
@@ -38,16 +48,39 @@
 					overflow: hidden;
 					text-transform: uppercase;
 					max-width: calc(76vw);
+
+					@include responsive-range(mobile) {
+						max-width: calc(76vw);
+					}
+
+					@include responsive-range(tablet) {
+						max-width: calc(40vw);
+					}
+
+					@include responsive-range(mobileLandscape, $CUSTOM_RANGES) {
+						max-width: calc(55vw);
+					}
 				}
 
 				.course-title {
 					font: normal 700 1em/1.1em "Open Sans Condensed";
 					max-height: 2.2em;
 					overflow: hidden;
-					max-width: calc(76vw);
 					text-overflow: ellipsis;
 					white-space: nowrap;
 					text-transform: uppercase;
+
+					@include responsive-range(mobile) {
+						max-width: calc(76vw);
+					}
+
+					@include responsive-range(tablet) {
+						max-width: calc(40vw);
+					}
+
+					@include responsive-range(mobileLandscape, $CUSTOM_RANGES) {
+						max-width: calc(55vw);
+					}
 				}
 
 				.course-instructor {
@@ -60,7 +93,18 @@
 					text-overflow: ellipsis;
 					white-space: nowrap;
 					overflow: hidden;
-					max-width: calc(76vw);
+
+					@include responsive-range(mobile) {
+						max-width: calc(76vw);
+					}
+
+					@include responsive-range(tablet) {
+						max-width: calc(40vw);
+					}
+
+					@include responsive-range(mobileLandscape, $CUSTOM_RANGES) {
+						max-width: calc(55vw);
+					}
 				}
 			}
 
