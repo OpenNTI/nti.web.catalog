@@ -1,5 +1,9 @@
 @import "~nti-style-common";
 
+$CUSTOM_RANGES: (
+	portraitTablet: (737px, 1023px)
+);
+
 .course-catalog {
 	.category-block {
 		clear: both;
@@ -21,6 +25,10 @@
 			margin: 0;
 			font-weight: normal;
 			text-transform: uppercase;
+
+			@include responsive-range(portraitTablet, $CUSTOM_RANGES) {
+				width: 25%;
+			}
 		}
 
 		.view-all {

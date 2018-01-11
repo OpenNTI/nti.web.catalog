@@ -1,7 +1,8 @@
 @import "~nti-style-common";
 
 $CUSTOM_RANGES: (
-	mobile: (null, 736px)
+	mobile: (null, 736px),
+	portraitTablet: (737px, 1023px)
 );
 
 @mixin bg-gradient($color1, $color2) {
@@ -33,6 +34,14 @@ $CUSTOM_RANGES: (
 				}
 			}
 
+			.course-block {
+				&:nth-child(4n+4) {
+					@include responsive-range(portraitTablet, $CUSTOM_RANGES) {
+						display: none;
+					}
+				}
+			}
+
 			.course-card {
 				margin-left: -9px;
 
@@ -42,6 +51,10 @@ $CUSTOM_RANGES: (
 
 				@include responsive-range(tablet) {
 					margin-left: 2px;
+				}
+
+				@include responsive-range(portraitTablet, $CUSTOM_RANGES) {
+					padding-right: 13px;
 				}
 			}
 
@@ -352,6 +365,12 @@ $CUSTOM_RANGES: (
 			width: 46%;
 			float: left;
 			margin: 2%;
+			max-height: 60px;
+		}
+
+		@include responsive-range(portraitTablet, $CUSTOM_RANGES) {
+			width: 24%;
+			float: left;
 			max-height: 60px;
 		}
 	}
