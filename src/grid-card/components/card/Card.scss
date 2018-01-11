@@ -48,6 +48,12 @@ $CUSTOM_RANGES: (
 						margin-right: 25px;
 					}
 				}
+
+				&:nth-child(4n+4) {
+					@include responsive-range(portraitTablet, $CUSTOM_RANGES) {
+						margin-right: 5px;
+					}
+				}
 			}
 
 			.course-card {
