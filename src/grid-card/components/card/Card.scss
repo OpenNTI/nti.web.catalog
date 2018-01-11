@@ -212,6 +212,16 @@ $CUSTOM_RANGES: (
 						height: 6px;
 						top: 5px;
 						left: 8px;
+
+						@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) {
+							position: absolute;
+							content: '✔';
+							color: #fff;
+							width: 6px;
+							height: 6px;
+							top: 5px;
+							left: 8px;
+						}
 					}
 				}
 
@@ -314,6 +324,7 @@ $CUSTOM_RANGES: (
 
 			@include responsive-range(mobile, $CUSTOM_RANGES) {
 				font-size: 16px;
+				width: 100%;
 			}
 		}
 
