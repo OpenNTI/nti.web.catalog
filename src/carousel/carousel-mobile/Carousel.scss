@@ -27,7 +27,7 @@ $CUSTOM_RANGES: (
 
 					@include responsive-range(tablet) {
 						width: calc(40vw);
-						height: 250px;
+						height: 210px;
 					}
 
 					@include responsive-range(mobileLandscape, $CUSTOM_RANGES) {
