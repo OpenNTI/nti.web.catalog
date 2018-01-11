@@ -4,6 +4,10 @@
 	.category-block {
 		clear: both;
 		padding-top: 30px;
+
+		@include responsive-range(tablet) {
+			padding: 0 8px;
+		}
 	}
 
 	.title-view-all {

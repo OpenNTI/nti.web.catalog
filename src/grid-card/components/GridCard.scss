@@ -47,5 +47,10 @@
 			text-transform: uppercase;
 			margin-bottom: 13px;
 		}
+
+		@include responsive-range(tablet) {
+			margin-left: 13px;
+			text-transform: uppercase;
+		}
 	}
 }

@@ -18,10 +18,18 @@ $CUSTOM_RANGES: (
 					@include responsive-range(mobile, $CUSTOM_RANGES) {
 						margin-right: 2%;
 					}
+
+					@include responsive-range(tablet) {
+						margin-right: 2px;
+					}
 				}
 
 				&:nth-child(4n+4) {
 					margin-right: 0;
+
+					@include responsive-range(tablet) {
+						margin-right: 0;
+					}
 				}
 			}
 
@@ -30,6 +38,10 @@ $CUSTOM_RANGES: (
 
 				@include responsive-range(mobile, $CUSTOM_RANGES) {
 					margin: 0 0 50px;
+				}
+
+				@include responsive-range(tablet) {
+					margin-left: 2px;
 				}
 			}
 
@@ -78,6 +90,10 @@ $CUSTOM_RANGES: (
 
 		@include responsive-range(desktop) {
 			background-color: #fff;
+		}
+
+		@include responsive-range(tablet) {
+			margin: 5px;
 		}
 
 		&:nth-child(3n+3) {
@@ -257,6 +273,10 @@ $CUSTOM_RANGES: (
 		white-space: nowrap;
 		overflow: hidden;
 		cursor: pointer;
+
+		@include responsive-range(tablet) {
+			margin-right: 2px;
+		}
 
 		&.orange {
 			background: linear-gradient(45deg, #fc7126, #fcae26);
