@@ -84,7 +84,7 @@ export default class CategoryDetail extends React.Component {
 					<ul className="course-card">
 						{category.courses.map ((course, index) => {
 							return (
-								<li key={index} className="course-block">
+								<li key={index} className="course-block category-detail">
 									<CourseCard
 										course={course}
 										key={index}
