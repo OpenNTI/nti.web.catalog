@@ -250,7 +250,7 @@ $CUSTOM_RANGES: (
 				&.enroll {
 					&::before {
 						position: absolute;
-						content: '✔';
+						content: '✔\fe0e';
 						color: #fff;
 						width: 6px;
 						height: 6px;
@@ -259,7 +259,7 @@ $CUSTOM_RANGES: (
 
 						@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) {
 							position: absolute;
-							content: '✔';
+							content: '✔\fe0e';
 							color: #fff;
 							width: 6px;
 							height: 6px;
