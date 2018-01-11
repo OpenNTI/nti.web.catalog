@@ -1,5 +1,9 @@
 @import "~nti-style-common";
 
+$CUSTOM_RANGES: (
+	portraitTablet: (737px, 1023px)
+);
+
 .course-catalog {
 	.course-card {
 		&:hover {
@@ -36,6 +40,8 @@
 	}
 
 	.categories-block-title {
+		text-transform: uppercase;
+
 		@include responsive-range(desktop) {
 			display: none;
 		}
@@ -44,13 +50,18 @@
 			display: block;
 			font-size: 18px;
 			color: #494949;
-			text-transform: uppercase;
 			margin-bottom: 13px;
 		}
 
 		@include responsive-range(tablet) {
 			margin-left: 13px;
-			text-transform: uppercase;
+		}
+
+		@include responsive-range(portraitTablet, $CUSTOM_RANGES) {
+			height: 10px;
+			width: 100%;
+			float: left;
+			margin: 13px;
 		}
 	}
 }
