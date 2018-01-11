@@ -1,5 +1,9 @@
 @import "~nti-style-common";
 
+$CUSTOM_RANGES: (
+	ipadPro: (1023px, 1366px)
+);
+
 .course-catalog {
 	.redeem-class {
 		max-width: 400px;
@@ -37,7 +41,7 @@
 		}
 
 		input {
-			color: #b8b8b8;
+			color: $primary-grey;
 			font-size: 16px;
 			width: 296px;
 			padding: 0 20px;
@@ -64,6 +68,11 @@
 			}
 
 			@include responsive-range(tablet) {
+				padding-top: 12px;
+				padding-left: 23px;
+			}
+
+			@include responsive-range(ipadPro, $CUSTOM_RANGES) {
 				padding-top: 12px;
 				padding-left: 23px;
 			}
