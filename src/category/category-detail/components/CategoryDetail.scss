@@ -65,13 +65,13 @@ $CUSTOM_RANGES: (
 
 		.category-text-wrapper {
 			width: 1024px;
-			margin-left: auto;
 			margin-right: auto;
-			padding-top: 34px;
+			padding-top: 13px;
+			padding-left: 10px;
 
-			@include responsive-range(mobile, $CUSTOM_RANGES) {
-				padding-top: 13px;
-				padding-left: 10px;
+			@include responsive-range(desktop) {
+				margin-left: auto;
+				padding-top: 34px;
 			}
 		}
 
