@@ -11,7 +11,8 @@ export default class Redeem extends React.Component {
 		inviteLink: PropTypes.string,
 		redeemCollection: PropTypes.object,
 		service: PropTypes.object,
-		match: PropTypes.object
+		match: PropTypes.object,
+		markDirty: PropTypes.func
 	};
 
 	constructor (props) {
@@ -43,6 +44,12 @@ export default class Redeem extends React.Component {
 		try {
 			const service = await getService();
 			const result = await service.post(link, param);
+
+			const {markDirty} = this.props;
+
+			if (markDirty) {
+				markDirty();
+			}
 
 			const history = getHistory();
 			let detailLink = `./object/${encodeForURI(result.CatalogEntryNTIID)}` + '?redeem=1';
