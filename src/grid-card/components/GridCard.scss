@@ -1,334 +1,67 @@
 @import "~nti-style-common";
 
-@mixin bg-gradient($color1, $color2) {
-	background: linear-gradient(45deg, $color1, $color2);
-}
+$CUSTOM_RANGES: (
+	portraitTablet: (737px, 1023px)
+);
 
 .course-catalog {
-	.content-catalog {
-		&.no-sidebar {
-			.course-block, .categories-block {
-				&:nth-child(3n+3) {
-					margin-right: 9px;
+	.course-card {
+		&:hover {
+			.course-block {
+				cursor: pointer;
 
-					@include responsive-range(mobile) {
-						margin-right: 2%;
-					}
-				}
-
-				&:nth-child(4n+4) {
-					margin-right: 0;
-				}
-			}
-
-			.course-card {
-				margin-left: -9px;
-
-				@include responsive-range(mobile) {
-					margin: 0 0 50px;
-				}
-			}
-
-			.content-right {
-				width: 100%;
-
-				@include responsive-range(mobile) {
-					padding: 0 10px;
-					float: none;
-				}
-
-				.course-card {
-					@include responsive-range(mobile) {
-						margin: 0 -1% 50px -1%;
-						overflow: hidden;
+				&:hover {
+					img {
+						transform: scale(1.03);
+						opacity: 0.7;
 					}
 				}
 			}
 		}
 
-		@include responsive-range(mobile) {
-			width: 100%;
-			overflow: hidden;
+		li {
+			list-style-type: none;
 		}
 	}
 
-	.course-block {
-		box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-		padding: 5px;
-		position: relative;
-		min-height: 290px;
-		list-style: none;
-		float: left;
-		margin: 9px;
-		width: 242px;
-
-		@include responsive-range(mobile) {
-			width: 100%;
-			float: none;
-			box-shadow: none;
-			padding: 20px 0;
-			min-height: unset;
-			border-bottom: 1px solid $border-grey-light;
-			margin: 0 2%;
-		}
+	.content-right {
+		width: 76%;
 
 		@include responsive-range(desktop) {
-			background-color: #fff;
+			float: right;
+			margin-left: 9px;
 		}
 
-		&:nth-child(3n+3) {
-			margin-right: 0;
-		}
-
-		figure {
-			overflow: hidden;
-
-			@include responsive-range(mobile) {
-				height: 63px;
-				width: 100px;
-				min-width: 100px;
-			}
-
-			@include responsive-range(desktop) {
-				height: 176px;
-			}
-		}
-
-		img {
-			width: 100%;
-			cursor: pointer;
-			transform: scale(1);
-			transition: 0.3s ease-in-out;
-			height: 100%;
-		}
-
-		.course-panel {
-			width: 100%;
-			height: 100%;
-			background-color: #fff;
-
-			@include responsive-range(mobile) {
-				background: transparent;
-				display: flex;
-			}
-		}
-
-		.info-course {
-			padding: 0 5px;
-
-			.course-title {
-				font: normal 700 1em/1.1em "Open Sans Condensed";
-				max-height: 2.2em;
-				overflow: hidden;
-				text-transform: uppercase;
-
-				@include responsive-range(mobile) {
-					font-size: 14px;
-					font-weight: normal;
-				}
-			}
-
-			span {
-				color: $tertiary-grey;
-				font-size: 10px;
-				font-weight: bold;
-				line-height: 14px;
-				display: block;
-				margin: 5px 0;
-				text-overflow: ellipsis;
-				white-space: nowrap;
-				overflow: hidden;
-				text-transform: uppercase;
-			}
-
-			h3 {
-				color: $primary-grey;
-				font-size: 16px;
-				line-height: 18px;
-				font-family: $header-font-family;
-				text-overflow: ellipsis;
-				white-space: nowrap;
-				overflow: hidden;
-				text-transform: uppercase;
-				margin: 0 0 15px;
-			}
-
-			p {
-				text-transform: uppercase;
-				display: block;
-				color: $primary-blue;
-				font-size: 10px;
-				font-weight: bold;
-				line-height: 14px;
-				text-overflow: ellipsis;
-				white-space: nowrap;
-				overflow: hidden;
-				margin-bottom: 0;
-			}
-
-			@include responsive-range(mobile) {
-				padding: 0 10px;
-			}
-		}
-
-		.stamp {
-			span {
-				position: absolute;
-				top: 15px;
-				left: 10px;
-				color: #fff;
-				font-size: 10px;
-				font-weight: bold;
-				line-height: 14px;
-				padding: 4px 10px 4px 20px;
-				border-radius: 2px;
-				background-color: $primary-green;
-				text-transform: uppercase;
-
-				@include responsive-range(mobile) {
-					display: none;
-				}
-
-				&.start {
-					padding: 4px 10px;
-					background-color: $primary-blue;
-
-					&.right {
-						right: 10px;
-						left: unset;
-					}
-				}
-
-				&.enroll {
-					&::before {
-						position: absolute;
-						content: '✔';
-						color: #fff;
-						width: 6px;
-						height: 6px;
-						top: 5px;
-						left: 8px;
-						@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) {
-  							position: absolute;
-							content: '✔';
-							color: #fff;
-							width: 6px;
-							height: 6px;
-							top: 5px;
-							left: 8px;
-						}
-					}
-
-				}
-
-				&.finish {
-					&.right {
-						right: 10px;
-						left: unset;
-					}
-
-					padding: 4px 10px;
-					background-color: $secondary-grey;
-				}
-
-				&.admin {
-					padding: 4px 10px;
-				}
-			}
+		ul {
+			overflow: visible;
+			list-style: none;
+			clear: both;
 		}
 	}
 
-	.categories-block {
-		width: 242px;
-		position: relative;
-		height: 80px;
-		list-style: none;
-		float: left;
-		margin: 9px;
-		text-align: center;
-		border: 1px solid rgba(0, 0, 0, 0.2);
-		box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15);
-		border-radius: 10px;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-		overflow: hidden;
-		cursor: pointer;
+	.categories-block-title {
+		text-transform: uppercase;
 
-		&.orange {
-			background: linear-gradient(45deg, #fc7126, #fcae26);
-		}
-
-		&.yellow {
-			background: linear-gradient(45deg, #ffae00, #fd0);
-		}
-
-		&.green {
-			background: linear-gradient(45deg, #14b349, #72f290);
-		}
-
-		&.blue {
-			background: linear-gradient(45deg, #198ffc, #63ccfd);
-		}
-
-		&.dark-blue {
-			background: linear-gradient(45deg, #0a3db4, #1f85fc);
-		}
-
-		&.purple {
-			background: linear-gradient(45deg, #7f38d6, #d638c4);
-		}
-
-		&.pink {
-			background: linear-gradient(45deg, #ec5163, #ff94b3);
-		}
-
-		&.red {
-			background: linear-gradient(45deg, #d11538, #ff476a);
-		}
-
-		&.black {
-			background: linear-gradient(45deg, #252626, #646566);
-		}
-
-		&.grey {
-			background: linear-gradient(45deg, #5f7e8d, #99c0d4);
-		}
-
-		&:nth-child(3n+3) {
-			margin-right: 0;
-
-			@include responsive-range(mobile) {
-				margin-right: 0;
-			}
-		}
-
-		.category-collapse {
-			font-size: 18px;
-			font-weight: 600;
-			margin: 0;
-			color: #fff;
-			text-shadow: 1px 2px 0 rgba(0, 0, 0, 0.2);
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			text-transform: uppercase;
-			width: 242px;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			padding: 12px;
-
-			@include responsive-range(mobile) {
-				font-size: 16px;
-				width: 100%;
-			}
+		@include responsive-range(desktop) {
+			display: none;
 		}
 
 		@include responsive-range(mobile) {
-			width: 46%;
+			display: block;
+			font-size: 18px;
+			color: #494949;
+			margin-bottom: 13px;
+		}
+
+		@include responsive-range(tablet) {
+			margin-left: 8px;
+		}
+
+		@include responsive-range(portraitTablet, $CUSTOM_RANGES) {
+			height: 10px;
+			width: 100%;
 			float: left;
-			margin: 2%;
-			max-height: 60px;
+			margin: 8px;
 		}
 	}
 }

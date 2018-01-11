@@ -1,7 +1,8 @@
 @import "~nti-style-common";
 
 $CUSTOM_RANGES: (
-	mobile: (null, 736px)
+	mobile: (null, 736px),
+	portraitTablet: (737px, 1023px)
 );
 
 @mixin bg-gradient($color1, $color2) {
@@ -18,10 +19,40 @@ $CUSTOM_RANGES: (
 					@include responsive-range(mobile, $CUSTOM_RANGES) {
 						margin-right: 2%;
 					}
+
+					@include responsive-range(tablet) {
+						margin-right: 2px;
+					}
 				}
 
 				&:nth-child(4n+4) {
 					margin-right: 0;
+
+					@include responsive-range(tablet) {
+						margin-right: 0;
+					}
+				}
+			}
+
+			.expanse-block {
+				&:nth-child(4n+4) {
+					@include responsive-range(portraitTablet, $CUSTOM_RANGES) {
+						display: none;
+					}
+				}
+			}
+
+			.category-detail {
+				&:nth-child(4n+4) {
+					@include responsive-range(portraitTablet, $CUSTOM_RANGES) {
+						margin-right: 5px;
+					}
+				}
+
+				&:nth-child(3n+3) {
+					@include responsive-range(portraitTablet, $CUSTOM_RANGES) {
+						margin-right: 25px;
+					}
 				}
 			}
 
@@ -30,6 +61,14 @@ $CUSTOM_RANGES: (
 
 				@include responsive-range(mobile, $CUSTOM_RANGES) {
 					margin: 0 0 50px;
+				}
+
+				@include responsive-range(tablet) {
+					margin-left: 2px;
+				}
+
+				@include responsive-range(portraitTablet, $CUSTOM_RANGES) {
+					padding-right: 13px;
 				}
 			}
 
@@ -78,6 +117,10 @@ $CUSTOM_RANGES: (
 
 		@include responsive-range(desktop) {
 			background-color: #fff;
+		}
+
+		@include responsive-range(tablet) {
+			margin: 5px;
 		}
 
 		&:nth-child(3n+3) {
@@ -212,6 +255,20 @@ $CUSTOM_RANGES: (
 						height: 6px;
 						top: 5px;
 						left: 8px;
+
+						@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) {
+							position: absolute;
+							content: '✔';
+							color: #fff;
+							width: 6px;
+							height: 6px;
+							top: 5px;
+							left: 8px;
+						}
+					}
+
+					&::placeholder {
+						color: #fff;
 					}
 				}
 
@@ -247,6 +304,10 @@ $CUSTOM_RANGES: (
 		white-space: nowrap;
 		overflow: hidden;
 		cursor: pointer;
+
+		@include responsive-range(tablet) {
+			margin-right: 2px;
+		}
 
 		&.orange {
 			background: linear-gradient(45deg, #fc7126, #fcae26);
@@ -314,6 +375,7 @@ $CUSTOM_RANGES: (
 
 			@include responsive-range(mobile, $CUSTOM_RANGES) {
 				font-size: 16px;
+				width: 100%;
 			}
 		}
 
@@ -321,6 +383,12 @@ $CUSTOM_RANGES: (
 			width: 46%;
 			float: left;
 			margin: 2%;
+			max-height: 60px;
+		}
+
+		@include responsive-range(portraitTablet, $CUSTOM_RANGES) {
+			width: 24%;
+			float: left;
 			max-height: 60px;
 		}
 	}
