@@ -13,7 +13,7 @@ export default function CoursesList (props) {
 			<ul className="course-card">
 				{props.courses.map ((course, index) => {
 					return (
-						<li key={index} className="course-block">
+						<li key={index} className="course-block expanse-block">
 							<CourseCard
 								course={course}
 								key={index}

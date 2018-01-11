@@ -34,10 +34,18 @@ $CUSTOM_RANGES: (
 				}
 			}
 
-			.course-block {
+			.expanse-block {
 				&:nth-child(4n+4) {
 					@include responsive-range(portraitTablet, $CUSTOM_RANGES) {
 						display: none;
+					}
+				}
+			}
+
+			.category-detail {
+				&:nth-child(3n+3) {
+					@include responsive-range(portraitTablet, $CUSTOM_RANGES) {
+						margin-right: 25px;
 					}
 				}
 			}
