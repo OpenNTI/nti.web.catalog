@@ -3,44 +3,11 @@ import PropTypes from 'prop-types';
 import {Presentation} from 'nti-web-commons';
 import {LinkTo} from 'nti-web-routing';
 
-
 export default class Carousel extends React.Component {
 
 	static propTypes = {
 		data: PropTypes.array,
 	};
-
-	attachRef = el => this.el = el
-
-	scrollCarousel = (e) => {
-		e.persist();
-		const currentPos = e.currentTarget.scrollLeft;
-		if (this.timeout) {
-			clearTimeout(this.timeout);
-		}
-		this.timeout = setTimeout(() => {
-			this.timeout = null;
-			const swipePosition = this.getSwipePosition(currentPos);
-			this.el.scrollLeft = swipePosition;
-		}, 300);
-	}
-
-	getSwipePosition (pos) {
-		const courseWidth = window.innerWidth * 0.8;
-		let index = parseInt((pos / courseWidth), 10);
-		const nextIndex = parseInt((pos % courseWidth), 10);
-		if (nextIndex > (courseWidth * 0.25) && index < 2) { // if over 1/4 next item, auto swap next item
-			index += 1;
-		}
-
-		if (index === 1) {
-			const ratio = courseWidth > 400 ? 0.96 : 0.98;
-			const middle = (window.innerWidth - courseWidth) / 2;
-			return (courseWidth * ratio) - middle;
-		}
-
-		return (index * courseWidth) + (index * 10);
-	}
 
 	render () {
 		const items = this.props.data;
@@ -50,7 +17,7 @@ export default class Carousel extends React.Component {
 		}
 
 		return (
-			<div className="carousel-mobile-block" onScroll={this.scrollCarousel} ref={this.attachRef}>
+			<div className="carousel-mobile-block">
 				{items.map((course, index) =>{
 					const instructors = course.Instructors ? course.Instructors.map(instructor => {
 						return instructor.Name;
