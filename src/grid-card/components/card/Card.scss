@@ -248,7 +248,7 @@ $CUSTOM_RANGES: (
 				}
 
 				&.enroll {
-					&::before {
+					&.before {
 						position: absolute;
 						content: '\221a';
 						color: #fff;
