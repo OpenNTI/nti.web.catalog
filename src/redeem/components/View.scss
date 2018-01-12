@@ -46,6 +46,10 @@ $CUSTOM_RANGES: (
 			width: 296px;
 			padding: 0 20px;
 
+			&::placeholder {
+				color: $tertiary-grey;
+			}
+
 			@include responsive-range(mobile) {
 				width: 70%;
 			}

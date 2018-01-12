@@ -162,6 +162,7 @@ $CUSTOM_RANGES: (
 
 		.info-course {
 			padding: 0 5px;
+			overflow: hidden;
 
 			.course-title {
 				font: normal 700 1em/1.1em "Open Sans Condensed";
@@ -249,7 +250,7 @@ $CUSTOM_RANGES: (
 				&.enroll {
 					&::before {
 						position: absolute;
-						content: '✔';
+						content: '✔\fe0e';
 						color: #fff;
 						width: 6px;
 						height: 6px;
@@ -258,7 +259,7 @@ $CUSTOM_RANGES: (
 
 						@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) {
 							position: absolute;
-							content: '✔';
+							content: '✔\fe0e';
 							color: #fff;
 							width: 6px;
 							height: 6px;
