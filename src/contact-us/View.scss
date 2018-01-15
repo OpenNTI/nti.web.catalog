@@ -1,0 +1,61 @@
+@import "~nti-style-common";
+
+.contact-popup-open {
+	overflow-y: hidden;
+	background: rgba(0, 0, 0, 0.3);
+	bottom: 0;
+	display: block;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.course-catalog {
+	.contact-us {
+		width: calc(100vw);
+		height: calc(85vh);
+		position: fixed;
+		bottom: 0;
+		z-index: 1000;
+		background-color: #f8f8f8;
+		box-shadow: 0 0 5px 0 black;
+		-webkit-overflow-scrolling: touch;
+		animation: fadeSlideInLeft 0.25s 1 ease-in;
+
+		.body {
+			overflow: auto;
+			height: 90%;
+			color: #b8b8b8;
+			padding: 10px;
+
+			.title {
+				font-size: 1.2rem;
+				font-style: italic;
+				margin: 0;
+			}
+		}
+
+		.footer {
+			box-shadow: inset 0 1px 0 0 #fafafa;
+			border-top: 1px solid #e2e2e2;
+			background-color: #f3f3f3;
+			overflow: hidden;
+			position: fixed;
+			bottom: 0;
+			width: 100%;
+
+			button {
+				margin: 0;
+				float: right;
+				padding: 10px 15px;
+			}
+
+			.cancel-btn {
+				color: $primary-grey;
+				background-color: #f3f3f3;
+			}
+		}
+	}
+}
+

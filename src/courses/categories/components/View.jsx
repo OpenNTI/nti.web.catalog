@@ -10,8 +10,10 @@ import CarouselMobile from '../../../carousel/carousel-mobile/Carousel';
 import GridCard from '../../../grid-card/components/GridCard';
 import Search from '../../../search/components';
 import Store from '../Store';
+import Contact from '../../../contact-us/View';
 
 const {Responsive} = Layouts;
+const contactOpenBodyClass = 'contact-popup-open';
 const store = new Store();//FIXME: I would prefer if the store could be constructed on first use/mount... instead of statically.
 const propMap = {
 	categories: 'categories',
@@ -41,11 +43,32 @@ export default class Categories extends React.Component {
 		carouselIndex: PropTypes.number
 	}
 
+	constructor (props) {
+		super(props);
+
+		this.state = {
+			showContact: false
+		};
+	}
+
 
 	componentDidMount () {
 		store.load(Constant.CATEGORIES);
 	}
 
+	componentWillUnmount () {
+		document.body.classList.remove(contactOpenBodyClass);
+	}
+
+	showContact = () => {
+		document.body.classList.add(contactOpenBodyClass);
+		this.setState({showContact: true});
+	}
+
+	cancelContact = () =>{
+		document.body.classList.remove(contactOpenBodyClass);
+		this.setState({showContact: false});
+	}
 
 	render () {
 		const {loading} = this.props;
@@ -105,7 +128,11 @@ export default class Categories extends React.Component {
 					<div>
 						<LinkTo.Name name="catalog.redeem">Redeem a Course</LinkTo.Name>
 					</div>
+					<div>
+						<a onClick={this.showContact}>Contact Us</a>
+					</div>
 				</section>
+				<section><Contact showContact={this.state.showContact} cancel={this.cancelContact}/></section>
 			</div>
 		);
 	}
