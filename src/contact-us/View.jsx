@@ -41,7 +41,7 @@ export default class Contact extends React.Component {
 	}
 
 	contactUsBodyForMessage (data) {
-		var body = data.email || '[NO EMAIL SUPPLIED]';
+		let body = data.email || '[NO EMAIL SUPPLIED]';
 
 		body += (' wrote: ' + data.message);
 		return {body: body};
@@ -78,10 +78,10 @@ export default class Contact extends React.Component {
 	}
 
 	submitContact = () => {
-		if(!this.checkValidation()){
+		if (!this.checkValidation()) {
 			return;
 		}
-		this.setState ({loading: true});
+		this.setState({loading: true});
 		const body = this.contactUsBodyForMessage(this.state);
 		this.sendFeed(body);
 	}
