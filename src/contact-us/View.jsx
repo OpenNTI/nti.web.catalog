@@ -1,6 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Loading} from 'nti-web-commons';
+import {getService} from 'nti-web-client';
+import {getLink} from 'nti-lib-interfaces';
+
+const errorMessage = {
+	message :{
+		title: 'Message: ',
+		desc: ' Message cannot be empty.'
+	},
+	email :{
+		title: 'Email:',
+		desc: ' Invalid email address.'
+	}
+};
 
 export default class Contact extends React.Component {
 	static propTypes = {
@@ -13,8 +26,9 @@ export default class Contact extends React.Component {
 
 		this.state = {
 			email: global.$AppConfig.username,
-			feedback: '',
-			loading: false
+			message: '',
+			loading: false,
+			error: false
 		};
 	}
 
@@ -23,16 +37,60 @@ export default class Contact extends React.Component {
 	}
 
 	changeFeedback =(e) =>{
-		this.setState ({feedback: e.target.value});
+		this.setState ({message: e.target.value});
+	}
+
+	contactUsBodyForMessage (data) {
+		var body = data.email || '[NO EMAIL SUPPLIED]';
+
+		body += (' wrote: ' + data.message);
+		return {body: body};
+	}
+
+	async sendFeed (body) {
+		const service = await getService();
+		const {Links: links} = await service.getAppUser();
+		const link = getLink(links, 'send-feedback');
+		try {
+			await service.post(link, body);
+
+			this.setState({loading: false, error:false, message:''});
+			this.props.cancel();
+		}
+		catch (reason) {
+			this.setState({loading: false, error:false});
+		}
+	}
+
+	checkValidation () {
+		if (!this.state.email || this.state.email === '' || this.state.email === undefined) {
+			this.setState({error: true, errorMessage: errorMessage.email});
+			return false;
+		}
+
+		if (!this.state.message || this.state.message === '' || this.state.message === undefined) {
+			this.setState({error: true, errorMessage: errorMessage.message});
+			return false;
+		}
+
+		return true;
+
 	}
 
 	submitContact = () => {
+		if(!this.checkValidation()){
+			return;
+		}
+		this.setState ({loading: true});
+		const body = this.contactUsBodyForMessage(this.state);
+		this.sendFeed(body);
+	}
+
+	cancel = () => {
+		this.setState ({loading: false, error:false, message:''});
 		this.props.cancel();
 	}
 
-	componentDidMount () {
-		this.setState ({loading: false});
-	}
 
 	render () {
 		if (!this.props.showContact) {
@@ -48,15 +106,21 @@ export default class Contact extends React.Component {
 						<a className="link" target="blank" href="http://help.nextthought.com"> NextThought Help Site</a>
 						. We may already have content there to help you.
 					</p>
+					{this.state.error && (
+						<div className="error-message">
+							<span className="err-field">{this.state.errorMessage.title}</span>
+							<span className="err-desc">{this.state.errorMessage.desc}</span>
+						</div>
+					)}
 					<div className="content">
 						<input className="email" placeholder="Email" value={this.state.email} onChange={this.changeEmail}/>
-						<textarea className="message" placeholder="Your message..." rows="7" value={this.state.feedback}
+						<textarea className="message" placeholder="Your message..." rows="7" value={this.state.message}
 							onChange={this.changeFeedback}/>
 					</div>
 				</div>
 				<div className="footer">
 					<button className="submit-btn" onClick={this.submitContact} disabled={this.state.loading}>Submit</button>
-					<button className="cancel-btn" onClick={this.props.cancel}>Cancel</button>
+					<button className="cancel-btn" onClick={this.cancel}>Cancel</button>
 				</div>
 				{this.state.loading && (
 					<div>
