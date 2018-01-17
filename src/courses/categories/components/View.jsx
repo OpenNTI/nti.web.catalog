@@ -10,7 +10,6 @@ import CarouselMobile from '../../../carousel/carousel-mobile/Carousel';
 import GridCard from '../../../grid-card/components/GridCard';
 import Search from '../../../search/components';
 import Store from '../Store';
-import Contact from '../../../contact-us/View';
 
 const {Responsive} = Layouts;
 const contactOpenBodyClass = 'contact-popup-open';
@@ -58,11 +57,6 @@ export default class Categories extends React.Component {
 
 	componentWillUnmount () {
 		document.body.classList.remove(contactOpenBodyClass);
-	}
-
-	showContact = () => {
-		document.body.classList.add(contactOpenBodyClass);
-		this.setState({showContact: true});
 	}
 
 	cancelContact = () =>{
@@ -129,10 +123,9 @@ export default class Categories extends React.Component {
 						<LinkTo.Name name="catalog.redeem">Redeem a Course</LinkTo.Name>
 					</div>
 					<div>
-						<a onClick={this.showContact}>Contact Us</a>
+						<LinkTo.Name name="catalog.contact">Contact us</LinkTo.Name>
 					</div>
 				</section>
-				<section><Contact showContact={this.state.showContact} cancel={this.cancelContact}/></section>
 			</div>
 		);
 	}

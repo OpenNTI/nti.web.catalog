@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {Loading} from 'nti-web-commons';
 import {getService} from 'nti-web-client';
 import {getLink} from 'nti-lib-interfaces';
+import {getHistory} from 'nti-web-routing';
 
 const errorMessage = {
 	message :{
@@ -28,7 +29,8 @@ export default class Contact extends React.Component {
 			email: global.$AppConfig.username,
 			message: '',
 			loading: false,
-			error: false
+			error: false,
+			success:false,
 		};
 	}
 
@@ -54,8 +56,7 @@ export default class Contact extends React.Component {
 		try {
 			await service.post(link, body);
 
-			this.setState({loading: false, error:false, message:''});
-			this.props.cancel();
+			this.setState({loading: false, error:false, message:'', success: true});
 		}
 		catch (reason) {
 			this.setState({loading: false, error:false});
@@ -81,21 +82,22 @@ export default class Contact extends React.Component {
 		if (!this.checkValidation()) {
 			return;
 		}
-		this.setState({loading: true});
+		this.setState({loading: true, success: false});
 		const body = this.contactUsBodyForMessage(this.state);
 		this.sendFeed(body);
 	}
 
-	cancel = () => {
-		this.setState ({loading: false, error:false, message:''});
-		this.props.cancel();
+	cancel =() =>{
+		const history = getHistory();
+		history.goBack();
+	}
+
+	componentDidMount () {
+		this.setState({loading: false, error:false, message:'', success: false});
 	}
 
 
 	render () {
-		if (!this.props.showContact) {
-			return null;
-		}
 		return (
 			<div className="contact-us">
 				<div className="body">
@@ -110,6 +112,11 @@ export default class Contact extends React.Component {
 						<div className="error-message">
 							<span className="err-field">{this.state.errorMessage.title}</span>
 							<span className="err-desc">{this.state.errorMessage.desc}</span>
+						</div>
+					)}
+					{this.state.success && (
+						<div className="success-message">
+							<span>Success!</span>
 						</div>
 					)}
 					<div className="content">
