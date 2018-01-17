@@ -93,6 +93,7 @@ $CUSTOM_RANGES: (
 					text-overflow: ellipsis;
 					white-space: nowrap;
 					overflow: hidden;
+					min-height: 15px;
 
 					@include responsive-range(mobile) {
 						max-width: calc(76vw);
