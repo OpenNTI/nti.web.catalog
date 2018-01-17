@@ -27,19 +27,24 @@ export default class Category extends React.Component {
 		loading: PropTypes.bool,
 		match: PropTypes.object,
 		renderData: PropTypes.func,
-		location: PropTypes.object
+		location: PropTypes.object,
+		id: PropTypes.string
 	}
 
 
 	componentDidMount () {
 		const id = this.props.match && this.props.match.params && this.props.match.params.id ?
 			this.props.match.params.id : '';
+
+		if(id === 'item') {
+			return;
+		}
 		store.load(Constants.CATEGORY, id);
 	}
 
 	componentWillReceiveProps (nextProps) {
-		if (nextProps.location.pathname !== this.props.location.pathname && this.props.location.pathname !== this.props.match.url) {
-			store.load(Constants.CATEGORY, this.props.match.params.id);
+		if (nextProps.location.pathname !== this.props.location.pathname) {
+			store.load(Constants.CATEGORY, nextProps.id);
 		}
 	}
 
