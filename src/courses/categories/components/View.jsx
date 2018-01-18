@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {searchable, contextual} from 'nti-web-search';
 import {Loading, EmptyState, Layouts} from 'nti-web-commons';
 import {LinkTo} from 'nti-web-routing';
-import {Contact} from 'nti-we';
+import {Contact} from 'nti-web-help';
 
 import * as Constant from '../../../Constants';
 import Carousel from '../../../carousel/components/Carousel';
