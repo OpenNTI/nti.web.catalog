@@ -118,14 +118,16 @@ export default class Categories extends React.Component {
 						<GridCard courses={categories} type={Constant.CATEGORIES}/>
 					</section>
 				)}
-				<section className="bottom-menu">
-					<div>
-						<LinkTo.Name name="catalog.redeem">Redeem a Course</LinkTo.Name>
-					</div>
-					<div>
-						<LinkTo.Name name="catalog.contact">Contact us</LinkTo.Name>
-					</div>
-				</section>
+				{!Responsive.isDesktop() && (
+					<section className="bottom-menu">
+						<div>
+							<LinkTo.Name name="catalog.redeem">Redeem a Course</LinkTo.Name>
+						</div>
+						<div>
+							<LinkTo.Name name="catalog.contact">Contact us</LinkTo.Name>
+						</div>
+					</section>
+				)}
 			</div>
 		);
 	}
