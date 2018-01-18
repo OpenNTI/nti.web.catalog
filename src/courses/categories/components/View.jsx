@@ -100,7 +100,7 @@ export default class Categories extends React.Component {
 		return (
 			<div className="course-catalog">
 				<section className="carousel">
-					<div>
+					<div className="carousel-wrapper">
 						<Responsive.Item query={Responsive.isMobile} component={CarouselMobile}  data={carousel}/>
 						<Responsive.Item query={Responsive.isTablet} component={CarouselMobile}  data={carousel}/>
 						<Responsive.Item query={Responsive.isDesktop} component={Carousel} data={carousel} carouselSelected={this.props.carouselIndex} selectCarousel={this.props.selectCarousel}/>
