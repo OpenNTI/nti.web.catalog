@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {searchable, contextual} from 'nti-web-search';
 import {Loading, EmptyState, Layouts} from 'nti-web-commons';
 import {LinkTo} from 'nti-web-routing';
+import {Contact} from 'nti-we';
 
 import * as Constant from '../../../Constants';
 import Carousel from '../../../carousel/components/Carousel';
@@ -59,9 +60,8 @@ export default class Categories extends React.Component {
 		document.body.classList.remove(contactOpenBodyClass);
 	}
 
-	cancelContact = () =>{
-		document.body.classList.remove(contactOpenBodyClass);
-		this.setState({showContact: false});
+	showContact = () => {
+		Contact.show();
 	}
 
 	render () {
@@ -123,9 +123,7 @@ export default class Categories extends React.Component {
 						<div>
 							<LinkTo.Name name="catalog.redeem">Redeem a Course</LinkTo.Name>
 						</div>
-						<div>
-							<LinkTo.Name name="catalog.contact">Contact us</LinkTo.Name>
-						</div>
+						<a onClick={this.showContact}>Contact us</a>
 					</section>
 				)}
 			</div>
