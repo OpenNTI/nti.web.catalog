@@ -12,9 +12,11 @@ $CUSTOM_RANGES: (
 			overflow-x: scroll;
 			overflow-y: hidden;
 			padding: 10px;
+			display: table;
+			width: 100%;
 
 			.feature-course {
-				display: inline-grid;
+				display: inline-table;
 				margin-right: 10px;
 
 				.image-content {
@@ -113,6 +115,10 @@ $CUSTOM_RANGES: (
 				float: none;
 				display: inline-block;
 			}
+		}
+		.carousel-wrapper {
+			width: 100%;
+			overflow: auto;
 		}
 	}
 }
