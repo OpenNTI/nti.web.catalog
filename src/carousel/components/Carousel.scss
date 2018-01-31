@@ -51,14 +51,14 @@
 				}
 			}
 
-			&-leave {
+			&-exit {
 				left: 0;
 				position: absolute;
 				top: 0;
 				opacity: 1;
 				width: 100%;
 
-				&.animation--next-leave-active {
+				&.animation--next-exit-active {
 					width: 100%;
 					opacity: 0.01;
 					transition: opacity 0.5s ease-in;
@@ -76,14 +76,14 @@
 				}
 			}
 
-			&-leave {
+			&-exit {
 				left: 0;
 				position: absolute;
 				top: 0;
 				opacity: 1;
 				width: 100%;
 
-				&.animation--previous-leave-active {
+				&.animation--previous-exit-active {
 					width: 100%;
 					opacity: 0.01;
 					transition: opacity 0.5s ease-in;
