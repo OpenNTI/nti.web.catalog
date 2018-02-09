@@ -71,16 +71,6 @@ $CUSTOM_RANGES: (
 				padding-left: 7%;
 			}
 
-			@include responsive-range(tablet) {
-				padding-top: 12px;
-				padding-left: 23px;
-			}
-
-			@include responsive-range(ipadPro, $CUSTOM_RANGES) {
-				padding-top: 12px;
-				padding-left: 23px;
-			}
-
 			&:hover {
 				opacity: 0.7;
 			}
