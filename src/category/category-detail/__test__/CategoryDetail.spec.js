@@ -35,13 +35,19 @@ class ContextProvider extends React.Component {
 
 describe('CategoryDetail', () => {
 	const category = {
-		Items: [{title: 'title 1', getDefaultAssetRoot: () =>{}}, {title: 'title 2', getDefaultAssetRoot: () => {}}],
+		Items: [
+			{title: 'title 1', getDefaultAssetRoot () {}, getStartDate: () => new Date(), getEndDate: () => new Date()},
+			{title: 'title 2', getDefaultAssetRoot () {}, getStartDate: () => new Date(), getEndDate: () => new Date()},
+		],
 		Total: 30,
 		ItemCount: 2
 	};
 
 	const categoryWithMore = {
-		Items: [{title: 'title 1', getDefaultAssetRoot: () =>{}}, {title: 'title 2', getDefaultAssetRoot: () => {}}],
+		Items: [
+			{title: 'title 1', getDefaultAssetRoot () {}, getStartDate: () => new Date(), getEndDate: () => new Date()},
+			{title: 'title 2', getDefaultAssetRoot () {}, getStartDate: () => new Date(), getEndDate: () => new Date()},
+		],
 		Total: 50,
 		ItemCount: 2
 	};

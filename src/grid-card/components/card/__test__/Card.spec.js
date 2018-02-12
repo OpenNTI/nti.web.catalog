@@ -45,7 +45,9 @@ describe('Card', () => {
 			{
 				Name: 'Instructors 2'
 			}
-		]
+		],
+		getStartDate: () => new Date(),
+		getEndDate: () => new Date()
 	};
 
 	test('Test card title', () => {
