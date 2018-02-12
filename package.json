@@ -35,7 +35,7 @@
   "devDependencies": {
     "autoprefixer": "^7.1.6",
     "enzyme": "^2.9.1",
-    "nti-cmp-scripts": "alpha",
+    "nti-cmp-scripts": "^1.11.3",
     "nti-style-common": "^1.4.0",
     "react": "^15.6.1",
     "react-addons-test-utils": "^15.6.0",
@@ -45,7 +45,7 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "invariant": "^2.2.2",
-    "isempty": "0.0.1",
+    "isempty": "0.x.x",
     "jstimezonedetect": "^1.0.6",
     "moment-timezone": "^0.5.13",
     "nti-commons": "^2.10.0",
