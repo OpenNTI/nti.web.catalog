@@ -17,31 +17,34 @@ export default class CourseCard extends React.Component {
 	}
 
 	render () {
-		const enrolled = this.props.course.IsEnrolled;
+		const {course} = this.props;
 
-		const status = checkStatus (this.props.course.StartDate, this.props.course.EndDate);
+		const {
+			IsAdmin: isAdmin,
+			IsEnrolled: enrolled,
+			Instructors
+		} = course;
+
+		const status = checkStatus (course.getStartDate(), course.getEndDate());
 		let statusClass = status;
 		if (enrolled) {
 			statusClass = status + ' right';
 		}
 
-		const isAdmin = this.props.course.IsAdmin;
 
-		const instructors = this.props.course.Instructors ? this.props.course.Instructors.map(instructor => {
-			return instructor.Name;
-		}).join(', ') : '';
+		const instructors = Instructors ? Instructors.map(instructor => instructor.Name).join(', ') : '';
 
 		return (
-			<LinkTo.Object object={this.props.course}>
+			<LinkTo.Object object={course}>
 				<div className="course-panel">
 					<figure className="flex-item">
-						<Presentation.Asset contentPackage={this.props.course} propName="src" type="landing">
+						<Presentation.Asset contentPackage={course} propName="src" type="landing">
 							<img />
 						</Presentation.Asset>
 					</figure>
 					<div className="info-course flex-item">
-						<span>{this.props.course.ProviderUniqueID}</span>
-						<div className="course-title">{this.props.course.Title}</div>
+						<span>{course.ProviderUniqueID}</span>
+						<div className="course-title">{course.Title}</div>
 						<p>{instructors}</p>
 					</div>
 					{isAdmin && (
@@ -50,11 +53,11 @@ export default class CourseCard extends React.Component {
 						<div className="stamp"><span className="enroll">ENROLLED</span></div>)}
 					{status === 'start' && !isAdmin && (
 						<div className="stamp flex-item">
-							<span className={statusClass}>Starts <DateTime date={this.props.course.StartDate} format="ll"/></span>
+							<span className={statusClass}>Starts <DateTime date={course.getStartDate()} format="ll"/></span>
 						</div>)}
 					{status === 'finish' && !isAdmin && (
 						<div className="stamp flex-item">
-							<span className={statusClass}>Finished <DateTime date={this.props.course.EndDate} format="ll"/></span>
+							<span className={statusClass}>Finished <DateTime date={course.getEndDate()} format="ll"/></span>
 						</div>)}
 				</div>
 			</LinkTo.Object>
@@ -64,9 +67,9 @@ export default class CourseCard extends React.Component {
 
 function checkStatus (startDate, endDate) {
 	let status = '';
-	const currentTime = new Date ().getTime ();
-	const startTime = new Date (startDate).getTime ();
-	const endTime = new Date (endDate).getTime ();
+	const currentTime = Date.now();
+	const startTime = startDate.getTime();
+	const endTime = endDate.getTime();
 	if (currentTime < startTime) {
 		status = 'start';
 	}
