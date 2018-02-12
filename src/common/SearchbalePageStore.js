@@ -95,6 +95,22 @@ export default class SearchablePagedStore extends Stores.SimpleStore {
 		}
 	}
 
+
+	async parseRaw (data) {
+		const service = await getService();
+
+		if (data.MimeType) {
+			return service.getObject(data);
+		}
+
+		if (data.Items) {
+			data.Items = await Promise.all(data.Items.map(o => this.parseRaw(o)));
+		}
+
+		return data;
+	}
+
+
 	/**
 	 * Return the items and loadNext function for a given search term
 	 * @override

@@ -27,8 +27,8 @@ export default class CourseListStore extends SearchablePagedStore {
 		try {
 			let otherGroup = '.nti_other';
 			let href = getLink (links, 'ByTag');
-			categories = await service.get (UrlUtils.appendQueryParams(href, {'bucketSize': 4}));
-			categories.link = getLink(links, 'ByTag');
+			categories = await this.parseRaw(await service.get(UrlUtils.appendQueryParams(href, {'bucketSize': 4})));
+			categories.link = href;
 
 			if (categories.Items.length === 1 && categories.Items[0].Name === otherGroup) {
 				href = href + '/' + otherGroup;
@@ -40,7 +40,7 @@ export default class CourseListStore extends SearchablePagedStore {
 			categories = {Items: []};
 		}
 		try {
-			carousel = await service.get (getLink (links, 'Featured'));
+			carousel = await this.parseRaw(await service.get(getLink (links, 'Featured')));
 		}
 		catch (e) {
 			carousel = {Items: []};
