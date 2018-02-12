@@ -89,10 +89,9 @@ describe('GridCard', () => {
 	);
 	test('Test grid card with category have over 4 courses, count courses',  async () => {
 		const cmp = getCmpWithCategory();
-		await new Promise(resolve => {
-			setTimeout(() => {
-				resolve();
-			}, 500);
-		});
+
+		await new Promise(t => setTimeout(t, 100));
+
+		cmp.update();
 		expect(cmp.find('ul li').length).toEqual(1);});
 });
