@@ -28,9 +28,10 @@ const propMap = {
 	error: 'error'
 };
 
+export default
 @contextual('Catalog')
 @searchable(store, propMap)
-export default class Categories extends React.Component {
+class Categories extends React.Component {
 	static propTypes = {
 		items: PropTypes.array,
 		categories: PropTypes.object,
