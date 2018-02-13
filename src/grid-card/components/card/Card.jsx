@@ -68,14 +68,16 @@ export default class CourseCard extends React.Component {
 function checkStatus (startDate, endDate) {
 	let status = '';
 	const currentTime = Date.now();
-	const startTime = startDate.getTime();
-	const endTime = endDate.getTime();
+	const startTime = startDate && startDate.getTime();
+	const endTime = endDate && endDate.getTime();
+
 	if (currentTime < startTime) {
 		status = 'start';
 	}
-	if (startTime <= endTime && endTime < currentTime && endTime !== 0) {
-		status = 'finish';
 
+	if (startTime <= endTime && endTime < currentTime && !!endTime) {
+		status = 'finish';
 	}
+
 	return status;
 }
