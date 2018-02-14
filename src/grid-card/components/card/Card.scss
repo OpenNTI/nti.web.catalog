@@ -243,7 +243,7 @@ $CUSTOM_RANGES: (
 
 					&.right {
 						right: 10px;
-						left: unset;
+						left: auto;
 					}
 				}
 
@@ -272,7 +272,7 @@ $CUSTOM_RANGES: (
 				&.finish {
 					&.right {
 						right: 10px;
-						left: unset;
+						left: auto;
 					}
 
 					padding: 4px 10px;
