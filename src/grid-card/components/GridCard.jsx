@@ -18,8 +18,21 @@ export default class GridCard extends React.Component {
 		isSearchPurchased: PropTypes.bool
 	}
 
-	async componentDidMount () {
+	componentDidMount () {
+		this.resolveLinks();
+	}
+
+	componentWillUnmount () {
+		this.unmounted = true;
+		this.setState = () => {};
+	}
+
+	async resolveLinks () {
 		const service = await getService();
+		if (this.unmounted) {
+			return;
+		}
+
 		const coursesLink = service.getCollection('Courses', 'Catalog');
 		const purchasedLink = service.getCollection('Purchased', 'Catalog');
 		this.setState({coursesLink, purchasedLink});
