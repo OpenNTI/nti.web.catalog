@@ -64,6 +64,7 @@ $CUSTOM_RANGES: (
 			color: #fff;
 			margin-left: -1px;
 			cursor: pointer;
+			padding: 0;
 
 			@include responsive-range(mobile) {
 				width: 30%;
