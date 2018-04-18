@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import PropTypes from 'prop-types';
-import {Router, Route, LinkTo} from 'nti-web-routing';
+import {Router, Route, LinkTo} from '@nti/web-routing';
 
 import View from '../../src';
 
-import 'nti-style-common/all.scss';
-import 'nti-web-commons/lib/index.css';
+import '@nti/style-common/all.scss';
+import '@nti/web-commons/lib/index.css';
 
 window.$AppConfig = window.$AppConfig || {server: '/dataserver2/'};
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {LinkTo} from 'nti-web-routing';
-import {Loading} from 'nti-web-commons';
-import {getService} from 'nti-web-client';
+import {LinkTo} from '@nti/web-routing';
+import {Loading} from '@nti/web-commons';
+import {getService} from '@nti/web-client';
 
 import CourseCard from '../../../grid-card/components/card/Card';
 import * as Constants from '../../../Constants';

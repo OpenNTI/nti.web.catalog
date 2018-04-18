@@ -1,4 +1,4 @@
-import {Router, Route} from 'nti-web-routing';
+import {Router, Route} from '@nti/web-routing';
 
 import Courses from './courses';
 import Purchased from './purchased/components';

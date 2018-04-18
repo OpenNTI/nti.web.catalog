@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Presentation, DateTime} from 'nti-web-commons';
-import {encodeForURI} from 'nti-lib-ntiids';
+import {Presentation, DateTime} from '@nti/web-commons';
+import {encodeForURI} from '@nti/lib-ntiids';
 
 
 CarouselItem.propTypes = {

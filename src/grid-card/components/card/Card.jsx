@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {DateTime, Presentation} from 'nti-web-commons';
-import {LinkTo} from 'nti-web-routing';
+import {DateTime, Presentation} from '@nti/web-commons';
+import {LinkTo} from '@nti/web-routing';
 
 
 export default class CourseCard extends React.Component {

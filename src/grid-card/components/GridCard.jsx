@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {getService} from 'nti-web-client';
+import {getService} from '@nti/web-client';
 
 import Category from '../../category/components/Category';
 import CategoryDetail from '../../category/category-detail/components/CategoryDetail';

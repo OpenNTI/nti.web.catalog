@@ -1,6 +1,6 @@
-import {getService} from 'nti-web-client';
-import {getLink} from 'nti-lib-interfaces';
-import {URL} from 'nti-commons';
+import {getService} from '@nti/web-client';
+import {getLink} from '@nti/lib-interfaces';
+import {URL} from '@nti/lib-commons';
 
 import SearchablePagedStore from '../../common/SearchbalePageStore';
 import * as Constants from '../../Constants';

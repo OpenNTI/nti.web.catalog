@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Loading, Layouts} from 'nti-web-commons';
-import {getService} from 'nti-web-client';
-import {getLink} from 'nti-lib-interfaces';
-import {encodeForURI} from 'nti-lib-ntiids';
-import {getHistory} from 'nti-web-routing';
+import {Loading, Layouts} from '@nti/web-commons';
+import {getService} from '@nti/web-client';
+import {getLink} from '@nti/lib-interfaces';
+import {encodeForURI} from '@nti/lib-ntiids';
+import {getHistory} from '@nti/web-routing';
 
 export default class Redeem extends React.Component {
 	static propTypes = {

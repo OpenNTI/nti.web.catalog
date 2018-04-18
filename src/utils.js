@@ -1,4 +1,4 @@
-import {String} from 'nti-commons';
+import {String} from '@nti/lib-commons';
 
 import * as Constants from './Constants';
 

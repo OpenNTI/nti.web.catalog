@@ -1,5 +1,5 @@
-import {getService} from 'nti-web-client';
-import {Stores} from 'nti-lib-store';
+import {getService} from '@nti/web-client';
+import {Stores} from '@nti/lib-store';
 
 import * as Constant from '../Constants';
 

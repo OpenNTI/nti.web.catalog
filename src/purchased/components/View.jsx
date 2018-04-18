@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {searchable, contextual} from 'nti-web-search';
-import {Loading, EmptyState} from 'nti-web-commons';
+import {searchable, contextual} from '@nti/web-search';
+import {Loading, EmptyState} from '@nti/web-commons';
 
 import * as Constants from '../../Constants';
 import  GridCard from '../../grid-card/components/GridCard';

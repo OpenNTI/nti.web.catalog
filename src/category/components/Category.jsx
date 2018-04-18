@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {LinkTo} from 'nti-web-routing';
-import {Layouts} from 'nti-web-commons';
+import {LinkTo} from '@nti/web-routing';
+import {Layouts} from '@nti/web-commons';
 
 import CoursesList from './CourseList';
 
