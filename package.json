@@ -4,20 +4,20 @@
   "author": "nextthought",
   "description": "Shows thing that a user can get access to",
   "license": "UNLICENSED",
-  "main": "./lib/index-cjs.js",
-  "module": "./lib/index.js",
+  "main": "lib/index-cjs.js",
+  "module": "lib/index.js",
   "files": [
     "lib"
   ],
   "scripts": {
-    "test": "nti-cmp-scripts test",
-    "start": "nti-cmp-scripts start",
-    "prepack": "nti-cmp-scripts build",
-    "build": "nti-cmp-scripts build",
-    "clean": "nti-cmp-scripts clean",
-    "check": "nti-cmp-scripts check",
-    "release": "nti-cmp-scripts release",
-    "install-snapshots": "nti-cmp-scripts install-snapshots"
+    "test": "cmp-scripts test",
+    "start": "cmp-scripts start",
+    "prepack": "cmp-scripts build",
+    "build": "cmp-scripts build",
+    "clean": "cmp-scripts clean",
+    "check": "cmp-scripts check",
+    "release": "cmp-scripts release",
+    "install-snapshots": "cmp-scripts install-snapshots"
   },
   "repository": {
     "type": "git",
@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/NextThought/nti.web.component.catalog#readme",
   "devDependencies": {
-    "nti-cmp-scripts": "^1.11.3",
+    "@nti/cmp-scripts": "^1.16.0",
     "@nti/style-common": "^1.4.0",
     "autoprefixer": "^7.1.6",
     "enzyme": "^3.3.0",
