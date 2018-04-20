@@ -8,6 +8,18 @@ import * as Constants from '../../Constants';
 const INITIAL_LOAD_CACHE = Symbol('Initial Load Cache');
 
 export default class CourseListStore extends SearchablePagedStore {
+	getBucketSize () {
+		const fullLocation = global.location;
+
+		// a really large bucket size ensures that we get no course results, only showing the
+		// tag pills
+		if(fullLocation.match(Constants.TAG_PILL_ONLY_HOSTS)) {
+			return '10000';
+		}
+
+		return '4';
+	}
+
 	async loadSearchTerm (term) {
 		const service = await getService();
 		const collection = service.getCollection('Courses', 'Catalog');
@@ -27,7 +39,7 @@ export default class CourseListStore extends SearchablePagedStore {
 		try {
 			let otherGroup = '.nti_other';
 			let href = getLink (links, 'ByTag');
-			categories = await this.parseRaw(await service.get(UrlUtils.appendQueryParams(href, {'bucketSize': 4})));
+			categories = await this.parseRaw(await service.get(UrlUtils.appendQueryParams(href, {'bucketSize': this.getBucketSize()})));
 			categories.link = href;
 
 			if (categories.Items.length === 1 && categories.Items[0].Name === otherGroup) {
