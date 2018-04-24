@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Presentation, DateTime} from '@nti/web-commons';
-import {encodeForURI} from '@nti/lib-ntiids';
+import {LinkTo} from '@nti/web-routing';
 
 
 CarouselItem.propTypes = {
@@ -14,7 +14,7 @@ export default function CarouselItem (props) {
 	const backgroundStyle = {'backgroundSize': 'cover'};
 	return (
 		<div>
-			<a href={`./object/${encodeForURI(props.data.NTIID)}`}>
+			<LinkTo.Object object={props.data}>
 				<Presentation.AssetBackground type="background" contentPackage={props.data} style={backgroundStyle}>
 					<div className="carousel-block">
 						<div className="content-carousel">
@@ -38,7 +38,7 @@ export default function CarouselItem (props) {
 						</div>
 					</div>
 				</Presentation.AssetBackground>
-			</a>
+			</LinkTo.Object>
 		</div>
 	);
 }
