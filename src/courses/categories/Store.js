@@ -9,7 +9,7 @@ const INITIAL_LOAD_CACHE = Symbol('Initial Load Cache');
 
 export default class CourseListStore extends SearchablePagedStore {
 	getBucketSize () {
-		const fullLocation = global.location;
+		const fullLocation = global.location.origin;
 
 		// a really large bucket size ensures that we get no course results, only showing the
 		// tag pills
