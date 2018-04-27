@@ -1,6 +1,6 @@
 {
   "name": "@nti/web-catalog",
-  "version": "0.13.0-alpha",
+  "version": "0.13.0",
   "author": "nextthought",
   "description": "Shows thing that a user can get access to",
   "license": "UNLICENSED",
