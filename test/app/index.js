@@ -15,7 +15,7 @@ class Root extends React.Component {
 	render () {
 		return (
 			<div>
-				<LinkTo.Path to="/widget/">courses</LinkTo.Path> | <LinkTo.Path to="/widget/purchased/">purchased</LinkTo.Path> | <LinkTo.Path to="/widget/redeem/">redeem</LinkTo.Path>
+				<LinkTo.Path to="/">courses</LinkTo.Path> | <LinkTo.Path to="/purchased/">purchased</LinkTo.Path> | <LinkTo.Path to="/redeem/">redeem</LinkTo.Path>
 				<View/>
 			</div>
 		);
@@ -23,10 +23,10 @@ class Root extends React.Component {
 }
 
 const TestRouter = Router.for([
-	Route({path: '/widget', component: Root, name: 'root'})
+	Route({path: '/', component: Root, name: 'root'})
 ], null, 'root');
 
 ReactDOM.render(
-	React.createElement(TestRouter, {basename: '/widget'}),
+	React.createElement(TestRouter, {basename: '/'}),
 	document.getElementById('content')
 );
