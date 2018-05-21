@@ -93,6 +93,7 @@ export default class Carousel extends React.Component {
 					<CSSTransition key={selectedIndex}
 						classNames={'animation--' + transitionStyle}
 						timeout={transitionTimeout}
+						unmountOnExit
 					>
 						<CarouselItem data={data[selectedIndex]} />
 					</CSSTransition>
