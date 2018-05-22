@@ -2,7 +2,7 @@
 import React from 'react';
 import {mount} from 'enzyme';
 
-import Redeem from '../components/View';
+import Redeem from '../View';
 
 const mockService = () => ({
 	getCollection: (o) => {
