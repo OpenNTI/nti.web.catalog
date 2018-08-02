@@ -53,7 +53,7 @@ export default class Redeem extends React.Component {
 
 			const history = getHistory();
 			let detailLink = `./object/${encodeForURI(result.CatalogEntryNTIID)}` + '?redeem=1';
-			if (!Layouts.Responsive.isDesktop()) {
+			if (Layouts.Responsive.isMobileContext()) {
 				detailLink = `./item/${encodeForURI(result.CatalogEntryNTIID)}` + '?redeem=1';
 			}
 			history.replace(detailLink);
