@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Loading} from '@nti/web-commons';
+import {Loading, Layouts} from '@nti/web-commons';
 import {getService} from '@nti/web-client';
 import {getLink} from '@nti/lib-interfaces';
 import {encodeForURI} from '@nti/lib-ntiids';
@@ -12,8 +12,7 @@ export default class Redeem extends React.Component {
 		redeemCollection: PropTypes.object,
 		service: PropTypes.object,
 		match: PropTypes.object,
-		markDirty: PropTypes.func,
-		isMobile: PropTypes.bool
+		markDirty: PropTypes.func
 	};
 
 	constructor (props) {
@@ -46,7 +45,7 @@ export default class Redeem extends React.Component {
 			const service = await getService();
 			const result = await service.post(link, param);
 
-			const {markDirty, isMobile} = this.props;
+			const {markDirty} = this.props;
 
 			if (markDirty) {
 				markDirty();
@@ -54,7 +53,7 @@ export default class Redeem extends React.Component {
 
 			const history = getHistory();
 			let detailLink = `./object/${encodeForURI(result.CatalogEntryNTIID)}` + '?redeem=1';
-			if (isMobile) {
+			if (Layouts.Responsive.isMobileContext()) {
 				detailLink = `./item/${encodeForURI(result.CatalogEntryNTIID)}` + '?redeem=1';
 			}
 			history.replace(detailLink);
