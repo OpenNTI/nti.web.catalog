@@ -5,6 +5,15 @@ import {getService} from '@nti/web-client';
 import {getLink} from '@nti/lib-interfaces';
 import {encodeForURI} from '@nti/lib-ntiids';
 import {getHistory} from '@nti/web-routing';
+import {scoped} from '@nti/lib-locale';
+
+const REDEEM_TEXT = {
+	header: 'Redeem a Course',
+	details: 'Please provide a redemption code below to redeem your course.',
+	errorMessage: 'Could not redeem course code'
+};
+
+const t = scoped('catalog.redeem.components.View', REDEEM_TEXT);
 
 export default class Redeem extends React.Component {
 	static propTypes = {
@@ -22,7 +31,7 @@ export default class Redeem extends React.Component {
 
 		this.state = {
 			error: false,
-			errorMessage: 'Could not redeem course code',
+			errorMessage: t('errorMessage'),
 			codeValue: initialCode || '',
 			loading: false,
 			success: false,
@@ -70,7 +79,7 @@ export default class Redeem extends React.Component {
 		if (!this.state.codeValue || this.state.codeValue === '') {
 			this.setState ({
 				error: true,
-				errorMessage: 'Could not redeem course code',
+				errorMessage: t('errorMessage'),
 				inputErrClass: 'error-input-redeem'
 			});
 			return;
@@ -98,8 +107,8 @@ export default class Redeem extends React.Component {
 				)}
 				<div className="redeem-class">
 					<div className="redeem-txt">
-						<h3>Redeem a Course</h3>
-						<p>Please provide a redemption code below to redeem your course.</p>
+						<h3>{t('header')}</h3>
+						<p>{t('details')}</p>
 					</div>
 					<div className="input-redeem">
 						<input type="text" className={this.state.inputErrClass} name="txtredeem" placeholder="Enter your redemption code"
