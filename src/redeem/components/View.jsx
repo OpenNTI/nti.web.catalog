@@ -37,7 +37,7 @@ export default class Redeem extends React.Component {
 	}
 
 	handleChange = (e) => {
-		this.setState ({codeValue: e.target.value, error: false, inputErrClass: ''});
+		this.setState ({codeValue: e.target.value.trim(), error: false, inputErrClass: ''});
 	}
 
 	async redeem (link, param) {
