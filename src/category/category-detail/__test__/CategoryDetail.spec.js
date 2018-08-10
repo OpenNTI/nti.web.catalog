@@ -5,6 +5,17 @@ import { mount } from 'enzyme';
 
 import CategoryDetail from '../components/CategoryDetail';
 
+function buildCourse (title) {
+	return {
+		title,
+		getDefaultAssetRoot: () => {},
+		getStartDate: () => new Date(),
+		getEndDate: () => new Date(),
+		MimeType: 'application/vnd.nextthought.courses.coursecataloglegacyentry',
+		getAuthorLine: () => ''
+	}
+}
+
 
 class ContextProvider extends React.Component {
 	static propTypes = {
@@ -36,8 +47,8 @@ class ContextProvider extends React.Component {
 describe('CategoryDetail', () => {
 	const category = {
 		Items: [
-			{title: 'title 1', getDefaultAssetRoot () {}, getStartDate: () => new Date(), getEndDate: () => new Date()},
-			{title: 'title 2', getDefaultAssetRoot () {}, getStartDate: () => new Date(), getEndDate: () => new Date()},
+			buildCourse('title1'),
+			buildCourse('title2')
 		],
 		Total: 30,
 		ItemCount: 2
@@ -45,8 +56,8 @@ describe('CategoryDetail', () => {
 
 	const categoryWithMore = {
 		Items: [
-			{title: 'title 1', getDefaultAssetRoot () {}, getStartDate: () => new Date(), getEndDate: () => new Date()},
-			{title: 'title 2', getDefaultAssetRoot () {}, getStartDate: () => new Date(), getEndDate: () => new Date()},
+			buildCourse('title1'),
+			buildCourse('title2')
 		],
 		Total: 50,
 		ItemCount: 2
