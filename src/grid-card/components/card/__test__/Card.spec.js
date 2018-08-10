@@ -1,9 +1,10 @@
 /* eslint-env jest */
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Card} from '@nti/web-course';
 import { mount } from 'enzyme';
 
-import Card from '../Card';
+import CatalogCard from '../Card';
 
 class ContextProvider extends React.Component {
 	static propTypes = {
@@ -35,6 +36,7 @@ class ContextProvider extends React.Component {
 describe('Card', () => {
 	let course = {
 		NTIID: 'tag:nextthought.com,2011-10:NTI-CourseInfo-Alpha_NTI_1010',
+		MimeType: 'application/vnd.nextthought.courses.coursecataloglegacyentry',
 		getDefaultAssetRoot: ()=>{},
 		Title: 'Test Title',
 		ProviderUniqueID: 'ID HERE',
@@ -47,34 +49,12 @@ describe('Card', () => {
 			}
 		],
 		getStartDate: () => new Date(),
-		getEndDate: () => new Date()
+		getEndDate: () => new Date(),
+		getAuthorLine: () => ''
 	};
 
-	test('Test card title', () => {
-		const wrapper = mount(<ContextProvider><Card course={course} /></ContextProvider>);
-		expect(wrapper.find('.course-title').first().text()).toEqual('Test Title');
-	});
-
-	test('Test card provider unique ID', () => {
-		const wrapper = mount(<ContextProvider><Card course={course} /></ContextProvider>);
-		expect(wrapper.find('.info-course span').first().text()).toEqual('ID HERE');
-	});
-
-	test('Test card instructors', () => {
-		const wrapper = mount(<ContextProvider><Card course={course} /></ContextProvider>);
-		expect(wrapper.find('.info-course p').first().text()).toEqual('Instructors 1, Instructors 2');
-	});
-
-	test('Test card status is admin', () => {
-		course.IsAdmin = true;
-		const wrapper = mount(<ContextProvider><Card course={course} /></ContextProvider>);
-		expect(wrapper.find('.admin').first().text()).toEqual('Administering');
-	});
-
-	test('Test card status is enrolled', () => {
-		course.IsEnrolled = true;
-		course.IsAdmin = false;
-		const wrapper = mount(<ContextProvider><Card course={course} /></ContextProvider>);
-		expect(wrapper.find('.enroll').first().text()).toEqual('ENROLLED');
+	test('Renders Course Card', () => {
+		const wrapper = mount(<ContextProvider><CatalogCard course={course} /></ContextProvider>);
+		expect(wrapper.find(Card).first()).toBeTruthy();
 	});
 });
