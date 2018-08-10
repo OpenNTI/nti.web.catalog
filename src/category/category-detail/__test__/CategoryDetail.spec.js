@@ -13,7 +13,7 @@ function buildCourse (title) {
 		getEndDate: () => new Date(),
 		MimeType: 'application/vnd.nextthought.courses.coursecataloglegacyentry',
 		getAuthorLine: () => ''
-	}
+	};
 }
 
 
