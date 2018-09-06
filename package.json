@@ -4,10 +4,11 @@
   "author": "nextthought",
   "description": "Shows thing that a user can get access to",
   "license": "UNLICENSED",
-  "main": "lib/index-cjs.js",
-  "module": "lib/index.js",
+  "main": "lib/index.js",
+  "module": "src/index.js",
   "files": [
-    "lib"
+    "lib",
+    "src"
   ],
   "scripts": {
     "test": "cmp-scripts test",
@@ -36,7 +37,7 @@
   },
   "homepage": "https://github.com/NextThought/nti.web.component.catalog#readme",
   "devDependencies": {
-    "@nti/cmp-scripts": "^1.17.16",
+    "@nti/cmp-scripts": "^2.0.0",
     "@nti/style-common": "^1.4.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
