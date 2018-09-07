@@ -5,9 +5,6 @@ import {Router, Route, LinkTo} from '@nti/web-routing';
 
 import View from '../../src';
 
-import '@nti/style-common/all.scss';
-import '@nti/web-commons/lib/index.css';
-
 window.$AppConfig = window.$AppConfig || {server: '/dataserver2/'};
 
 class Root extends React.Component {
