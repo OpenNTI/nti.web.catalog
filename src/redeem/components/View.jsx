@@ -6,6 +6,7 @@ import {getLink} from '@nti/lib-interfaces';
 import {encodeForURI} from '@nti/lib-ntiids';
 import {getHistory} from '@nti/web-routing';
 import {scoped} from '@nti/lib-locale';
+import {dispatch} from '@nti/lib-dispatcher';
 
 const REDEEM_TEXT = {
 	header: 'Redeem a Course',
@@ -65,6 +66,9 @@ export default class Redeem extends React.Component {
 			if (Layouts.Responsive.isMobileContext()) {
 				detailLink = `./item/${encodeForURI(result.CatalogEntryNTIID)}` + '?redeem=1';
 			}
+
+			dispatch('catalog:redeem');
+
 			history.replace(detailLink);
 			this.setState({codeValue: '', loading: false});
 		}
