@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {searchable, contextual} from '@nti/web-search';
 import {Loading, EmptyState} from '@nti/web-commons';
+import {scoped} from '@nti/lib-locale';
 
 import * as Constants from '../../Constants';
 import  GridCard from '../../grid-card/components/GridCard';
@@ -17,8 +18,15 @@ const propMap = {
 	error: 'error'
 };
 
+const PURCHASED_TEXT = {
+	empty: 'You don\'t have any courses yet...',
+	search: 'Courses'
+};
+
+const t = scoped('catalog.purchased.components.View', PURCHASED_TEXT);
+
 export default
-@contextual('Courses')
+@contextual(t('search'))
 @searchable(store, propMap)
 class Category extends React.Component {
 	static propTypes = {
@@ -86,7 +94,7 @@ class Category extends React.Component {
 	}
 
 	renderEmptyState () {
-		const header = 'You don\'t have any courses yet...';
+		const header = t('empty');
 
 		return (
 			<EmptyState header={header} />

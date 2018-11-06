@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Loading, EmptyState} from '@nti/web-commons';
 import {ContextIndicator} from '@nti/web-search';
+import {scoped} from '@nti/lib-locale';
 
 import GridCard from '../../grid-card/components/GridCard';
 import * as Constants from '../../Constants';
@@ -13,12 +14,19 @@ Search.propTypes = {
 	isSearchPurchased :PropTypes.bool
 };
 
+const SEARCH_TEXT = {
+	empty: 'No courses found. Please refine your search.',
+	back: 'View All Courses'
+};
+
+const t = scoped('catalog.search.components.View', SEARCH_TEXT);
+
 export default function Search (props) {
-	const noResult = 'No courses found. Please refine your search.';
+	const noResult = t('empty');
 	return (
 		<div>
 			<div className="search-result">
-				<ContextIndicator className="context-indicator" backLabel="View All Courses"/>
+				<ContextIndicator className="context-indicator" backLabel={t('back')}/>
 			</div>
 			{props.loading && (
 				<div className="search-loading">
