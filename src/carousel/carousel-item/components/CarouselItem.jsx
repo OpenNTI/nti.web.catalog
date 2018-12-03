@@ -20,7 +20,7 @@ export default function CarouselItem (props) {
 						<div className="content-carousel">
 							<div className="carousel_left">
 								<h3 className="title-carousel">{title}</h3>
-								<p className="detail-txt">{description}</p>
+								<p className="detail-txt" dangerouslySetInnerHTML={{ __html: description }}/ >
 								<div className="statistic">
 									<ul>
 										<li>
