@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Presentation, DateTime} from '@nti/web-commons';
 import {LinkTo} from '@nti/web-routing';
+import {rawContent} from '@nti/lib-commons';
 
 
 CarouselItem.propTypes = {
@@ -20,7 +21,7 @@ export default function CarouselItem (props) {
 						<div className="content-carousel">
 							<div className="carousel_left">
 								<h3 className="title-carousel">{title}</h3>
-								<p className="detail-txt" dangerouslySetInnerHTML={{ __html: description }}/ >
+								<p className="detail-txt" {...rawContent(description)} />
 								<div className="statistic">
 									<ul>
 										<li>
