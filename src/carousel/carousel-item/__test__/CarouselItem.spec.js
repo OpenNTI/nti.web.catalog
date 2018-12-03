@@ -28,11 +28,11 @@ describe('Carousel', () => {
 
 	test('Course description when RichDescription define', () => {
 		const wrapper = shallow(<CarouselItem data={data} />);
-		expect(wrapper.find('.detail-txt').first().text()).toEqual(richDescription);
+		expect(wrapper.find('.detail-txt').first().render().text()).toEqual(richDescription);
 	});
 
 	test('Course description when RichDescription undefined', () => {
 		const wrapper = shallow(<CarouselItem data={dataTemp} />);
-		expect(wrapper.find('.detail-txt').first().text()).toEqual(description);
+		expect(wrapper.find('.detail-txt').first().render().text()).toEqual(description);
 	});
 });
