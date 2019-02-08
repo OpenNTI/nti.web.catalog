@@ -23,24 +23,27 @@ const t = scoped('catalog.search.components.View', SEARCH_TEXT);
 
 export default function Search (props) {
 	const noResult = t('empty');
+	const {courses, loading, term, isSearchPurchased} = props;
+	const count = courses.FilteredTotalItemCount != null ? courses.FilteredTotalItemCount : courses.Total;
+
 	return (
 		<div>
 			<div className="search-result">
 				<ContextIndicator className="context-indicator" backLabel={t('back')}/>
 			</div>
-			{props.loading && (
+			{loading && (
 				<div className="search-loading">
 					<Loading.Mask/>
 				</div>
 			)}
-			{!props.loading && props.courses.Total === 0 && (
+			{!loading && count === 0 && (
 				<div className="content-catalog no-sidebar">
 					<EmptyState header= {noResult}/>
 				</div>
 			)}
-			{!props.loading && props.courses.Total > 0 && (
+			{!loading && count > 0 && (
 				<div className="content-catalog no-sidebar">
-					<GridCard category={props.courses} type={Constants.SEARCH} search={props.term} isSearchPurchased={props.isSearchPurchased}/>
+					<GridCard category={courses} type={Constants.SEARCH} search={term} isSearchPurchased={isSearchPurchased}/>
 				</div>
 			)}
 		</div>

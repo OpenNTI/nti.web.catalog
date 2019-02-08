@@ -50,7 +50,11 @@ export default class CategoryDetail extends React.Component {
 
 	componentDidMount () {
 		this.setState({courses :this.props.category.Items, title: this.props.category.Name});
-		if(this.props.category.Total <= Constants.BATCH_SIZE) {
+
+		const {category} = this.props;
+		const count = category.FilteredTotalItemCount != null ? category.FilteredTotalItemCount : category.Total;
+
+		if(count <= Constants.BATCH_SIZE || !category.hasLink('batch-next')) {
 			this.setState({noMore: true});
 		}
 	}
