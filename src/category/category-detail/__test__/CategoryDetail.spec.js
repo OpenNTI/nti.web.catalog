@@ -51,7 +51,8 @@ describe('CategoryDetail', () => {
 			buildCourse('title2')
 		],
 		Total: 30,
-		ItemCount: 2
+		ItemCount: 2,
+		hasLink: () => false
 	};
 
 	const categoryWithMore = {
@@ -60,7 +61,8 @@ describe('CategoryDetail', () => {
 			buildCourse('title2')
 		],
 		Total: 50,
-		ItemCount: 2
+		ItemCount: 2,
+		hasLink: rel => rel === 'batch-next'
 	};
 	const other = true;
 	const getCategoryWithNoMore = () => mount(
