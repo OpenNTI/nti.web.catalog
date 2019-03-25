@@ -83,6 +83,19 @@ describe('CategoryDetail', () => {
 		</ContextProvider>
 	);
 
+	test('Test category without hasLink', () => {
+		const cat = {Items: []};
+		const render = () => mount(
+			<ContextProvider>
+				<CategoryDetail
+					category={cat}
+					other={other}
+				/>
+			</ContextProvider>
+		);
+		expect(render).not.toThrow();
+	});
+
 	test('Test category with no more button', () => {
 		const cmp = getCategoryWithNoMore();
 		const categoryCmp = cmp.find(CategoryDetail);
