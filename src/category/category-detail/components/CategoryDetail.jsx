@@ -49,13 +49,26 @@ export default class CategoryDetail extends React.Component {
 	}
 
 	componentDidMount () {
-		this.setState({courses :this.props.category.Items, title: this.props.category.Name});
+		const {
+			category,
+			category: {
+				Items: courses,
+				Name: title,
+				FilteredTotalItemCount: filteredCount,
+				Total: total
+			} = {}
+		} = this.props;
 
-		const {category} = this.props;
-		const count = category.FilteredTotalItemCount != null ? category.FilteredTotalItemCount : category.Total;
+		this.setState({
+			courses,
+			title
+		});
 
-		if(count <= Constants.BATCH_SIZE || !category.hasLink || !category.hasLink('batch-next')) {
-			this.setState({noMore: true});
+		const count = filteredCount != null ? filteredCount : total;
+		const noMore = count <= Constants.BATCH_SIZE || !category.hasLink || !category.hasLink('batch-next');
+
+		if (noMore) {
+			this.setState({noMore});
 		}
 	}
 
