@@ -13,15 +13,16 @@ export default class Category extends React.Component {
 	}
 
 	render () {
-		const category = this.props.category;
+		const {category: {Items: items, Name: name} = {}} = this.props;
 
-		if (!category) {
+		if (!items) {
 			return null;
 		}
 
-		const courses = category.Items.slice(0, 4) || [];
-		const coursesMobile = category.Items.slice(0, 3) || [];
-		const title = this.props.category.Name === '.nti_other' ? 'Others' : this.props.category.Name;
+		const courses = items.slice(0, 4);
+		const coursesMobile = items.slice(0, 3);
+		const title = name === '.nti_other' ? 'Others' : name;
+		
 		return (
 			<div>
 				<div className="title-view-all">
