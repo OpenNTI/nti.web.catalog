@@ -28,7 +28,7 @@ export default class Category extends React.Component {
 					<div className="title-category">{title}</div>
 					<div className="view-all">
 						<LinkTo.Object object={this.props.category} context="catalog.categories">
-							<a>View All</a>
+							<span>View All</span>
 							<span className="icon-chevronup-25"/>
 						</LinkTo.Object>
 					</div>

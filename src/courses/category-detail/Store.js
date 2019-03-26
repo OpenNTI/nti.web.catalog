@@ -1,6 +1,6 @@
 import {getService} from '@nti/web-client';
 import {getLink} from '@nti/lib-interfaces';
-import {URL} from '@nti/lib-commons';
+// import {URL} from '@nti/lib-commons';
 
 import SearchablePagedStore from '../../common/SearchbalePageStore';
 import * as Constants from '../../Constants';
@@ -20,10 +20,8 @@ export default class CategoryStore extends SearchablePagedStore {
 		let category = {};
 
 		try {
-			const link = getLink (links, 'ByTag') + '/' + id;
-			const categoryLink = URL.appendQueryParams(link, {batchStart: 0, batchSize: Constants.BATCH_SIZE});
-			category = await this.parseRaw(await service.get(categoryLink));
-			category.link = getLink (links, 'ByTag');
+			const link = getLink(links, 'ByTag') + '/' + id;
+			category = await service.getBatch(link, {batchStart: 0, batchSize: Constants.BATCH_SIZE});
 		}
 		catch (e) {
 			category = {};

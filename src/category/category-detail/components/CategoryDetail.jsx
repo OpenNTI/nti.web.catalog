@@ -18,44 +18,73 @@ export default class CategoryDetail extends React.Component {
 		isSearchPurchased: PropTypes.bool
 	}
 
-	async getCourses (link) {
-		const currentItems = this.state.courses.length || 0;
-		const service = await getService();
-		let items = {Items: []};
+	state = {}
 
-		if(this.props.search) {
-			items = await service.getBatch(link, {batchSize: Constants.BATCH_SIZE, batchStart: currentItems, filter: this.props.search});
+	loadMore = async () => {
+		const {
+			props: {category},
+			state: {courses: coursesFromState = [], batch = category}
+		} = this;
+
+		if (!batch || !batch.hasLink || !batch.hasLink('batch-next')) {
+			return;
 		}
 
-		else {
-			items = await service.getBatch(link, {batchSize: Constants.BATCH_SIZE, batchStart: currentItems,});
+		let error,
+			next = batch,
+			courses = coursesFromState;
+
+		this.setState({
+			loading: true,
+			error
+		});
+
+		try {
+			next = await (
+				getService()
+					.then(service => service.getBatch(batch.getLink('batch-next')))
+			);
+
+			courses = [...courses, ...next.Items];
+			
+		}
+		catch (e) {
+			error = e;
 		}
 
-		const oldItems = this.state.courses;
-
-		this.setState({courses: oldItems.concat(items.Items), loading: false});
-		if (items.Total === this.state.courses.length || items.Total <= Constants.BATCH_SIZE) {
-			this.setState({noMore: true});
-		}
+		this.setState({
+			loading: false,
+			error,
+			batch: next,
+			courses
+		});
 	}
 
-	loadMore = () => {
-		this.setState({loading: true});
-		let link = this.props.link || this.props.category.link;
-		if (this.props.category.Name) {
-			link = link + '/' + this.props.category.Name;
-		}
-		this.getCourses(link);
+	hasMore () {
+		const {
+			props: {category = {}},
+			state: {
+				batch = category,
+				courses = []
+			}
+		} = this;
+
+		const {
+			Total: total,
+			FilteredTotalItemCount: count = total,
+		} = batch;
+		
+		return count > Constants.BATCH_SIZE
+			&& count > courses.length
+			&& batch.hasLink
+			&& batch.hasLink('batch-next');
 	}
 
 	componentDidMount () {
 		const {
-			category,
 			category: {
 				Items: courses,
 				Name: title,
-				FilteredTotalItemCount: filteredCount,
-				Total: total
 			} = {}
 		} = this.props;
 
@@ -63,24 +92,17 @@ export default class CategoryDetail extends React.Component {
 			courses,
 			title
 		});
-
-		const count = filteredCount != null ? filteredCount : total;
-		const noMore = count <= Constants.BATCH_SIZE || !category.hasLink || !category.hasLink('batch-next');
-
-		if (noMore) {
-			this.setState({noMore});
-		}
 	}
 
 	render () {
-		const category = this.state;
+		const {title, courses, loading, error} = this.state;
 
-		if (!category) {
+		if (!courses && !error) {
 			return null;
 		}
 
 		const link = {action: 'back'};
-		const categoryClassName = 'categories-banner ' + Utils.getGradientClass(category.title);
+		const categoryClassName = 'categories-banner ' + Utils.getGradientClass(title);
 		const banner = !this.props.purchased && !this.props.other && !this.props.search;
 		return (
 			<div>
@@ -89,17 +111,17 @@ export default class CategoryDetail extends React.Component {
 						<div className="category-text-wrapper">
 							<div className="categories-back">
 								<LinkTo.Object object={link} context="catalog">
-									<a className="icon-chevron-left"/>
-									<a className="back-btn">Back</a>
+									<span className="icon-chevron-left"/>
+									<span className="back-btn">Back</span>
 								</LinkTo.Object>
 							</div>
-							<p className="categories-title">{category.title === '.nti_other' ? 'Others' : category.title}</p>
+							<p className="categories-title">{title === '.nti_other' ? 'Others' : title}</p>
 						</div>
 					</div>
 				)}
 				<div className="content-catalog no-sidebar">
 					<ul className="course-card">
-						{category.courses.map ((course, index) => {
+						{courses.map ((course, index) => {
 							return (
 								<li key={index} className="course-block category-detail">
 									<CourseCard
@@ -112,9 +134,9 @@ export default class CategoryDetail extends React.Component {
 					</ul>
 				</div>
 
-				{!category.noMore  && (
+				{this.hasMore() && (
 					<div className="categories-more">
-						{category.loading && (
+						{loading && (
 							<div className="category-loading">
 								<Loading.Mask/>
 							</div>
