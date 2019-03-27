@@ -1,6 +1,6 @@
 import {getService} from '@nti/web-client';
 
-import SearchablePagedStore from '../common/SearchbalePageStore';
+import SearchablePagedStore from '../common/SearchablePageStore';
 import * as Constants from '../Constants';
 
 export default class CategoryStore extends SearchablePagedStore {

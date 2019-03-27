@@ -2,7 +2,7 @@ import {getService} from '@nti/web-client';
 import {getLink} from '@nti/lib-interfaces';
 import {URL as UrlUtils} from '@nti/lib-commons';
 
-import SearchablePagedStore from '../../common/SearchbalePageStore';
+import SearchablePagedStore from '../../common/SearchablePageStore';
 import * as Constants from '../../Constants';
 
 const INITIAL_LOAD_CACHE = Symbol('Initial Load Cache');
