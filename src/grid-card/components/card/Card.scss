@@ -122,19 +122,16 @@ $CUSTOM_RANGES: (
 
 	.categories-block {
 		width: 242px;
-		position: relative;
 		height: 80px;
 		list-style: none;
 		float: left;
 		margin: 9px;
-		text-align: center;
 		border: 1px solid rgba(0, 0, 0, 0.2);
 		box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15);
 		border-radius: 10px;
-		text-overflow: ellipsis;
-		white-space: nowrap;
 		overflow: hidden;
 		cursor: pointer;
+		position: relative;
 
 		@include responsive-range(tablet) {
 			margin-right: 2px;
@@ -188,25 +185,28 @@ $CUSTOM_RANGES: (
 			}
 		}
 
+		.category-link {
+			position: absolute;
+			top: 0; bottom: 0;
+			left: 0; right: 0;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			padding: 12px;
+			text-align: center;
+		}
+
 		.category-collapse {
 			font-size: 18px;
 			font-weight: 600;
 			margin: 0;
 			color: #fff;
 			text-shadow: 1px 2px 0 rgba(0, 0, 0, 0.2);
-			position: absolute;
-			top: 50%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-			text-transform: uppercase;
-			width: 242px;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			padding: 12px;
 
 			@include responsive-range(mobile, $CUSTOM_RANGES) {
 				font-size: 16px;
-				width: 100%;
 			}
 		}
 

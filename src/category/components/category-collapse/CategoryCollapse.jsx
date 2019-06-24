@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {LinkTo} from '@nti/web-routing';
+import {Text} from '@nti/web-commons';
 
 import * as Utils from '../../../utils';
 
@@ -22,10 +23,10 @@ export default class CategoryDetail extends React.Component {
 						const categoryClassName = 'categories-block ' + Utils.getGradientClass(course.Name);
 						return (
 							<li key={index} className={categoryClassName}>
-								<LinkTo.Object object={course} context="catalog.categories">
-									<div
-										className="category-collapse">{course.Name === '.nti_other' ? 'OTHERS' : course.Name}
-									</div>
+								<LinkTo.Object object={course} className="category-link" context="catalog.categories">
+									<Text className="category-collapse" limitLines={2} overflow={Text.Ellipsis} >
+										{course.Name === '.nti_other' ? 'OTHERS' : course.Name}
+									</Text>
 								</LinkTo.Object>
 
 							</li>
