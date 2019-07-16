@@ -24,7 +24,7 @@ export default class CategoryDetail extends React.Component {
 						return (
 							<li key={index} className={categoryClassName}>
 								<LinkTo.Object object={course} className="category-link" context="catalog.categories">
-									<Text className="category-collapse" limitLines={2} overflow={Text.Ellipsis} >
+									<Text className="category-collapse" limitLines={2} overflow={Text.Overflow.Ellipsis} >
 										{course.Name === '.nti_other' ? 'OTHERS' : course.Name}
 									</Text>
 								</LinkTo.Object>
