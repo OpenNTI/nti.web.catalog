@@ -96,7 +96,8 @@ export default class SearchablePagedStore extends Stores.SimpleStore {
 	}
 
 
-	async parseRaw (data) {
+	async parseRaw (d) {
+		const data = d;
 		const service = await getService();
 
 		if (data.MimeType) {
