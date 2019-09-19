@@ -61,6 +61,6 @@
     "@nti/web-search": "0.x.x",
     "classnames": "*",
     "prop-types": "*",
-    "react-transition-group": "^2.2.1"
+    "react-transition-group": "^4.3.0"
   }
 }
