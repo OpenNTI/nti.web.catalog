@@ -1,0 +1,29 @@
+.category-preview {
+	padding-top: var(--catalog-gap, 18px);
+
+	& .header {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		padding: 12px 0 6px;
+
+		& .title {
+			font-size: 1.125rem;
+			font-weight: normal;
+			text-transform: uppercase;
+			color: var(--primary-grey);
+		}
+
+		& .view-all {
+			font-size: 14px;
+			color: var(--secondary-grey);
+			text-align: right;
+
+			& i {
+				display: inline-block;
+				transform: rotate(90deg);
+			}
+		}
+	}
+}

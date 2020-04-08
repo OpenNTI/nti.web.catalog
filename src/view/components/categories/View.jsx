@@ -4,6 +4,7 @@ import classnames from 'classnames/bind';
 
 import {NTIOtherCategory} from '../../Constants';
 import Content from '../Content';
+import Grid from '../Grid';
 import Preview from '../category/Preview';
 import Pill from '../category/Pill';
 
@@ -33,24 +34,28 @@ export default function Categories ({categories}) {
 
 	return (
 		<Content className={cx('catalog-categories')}>
-			<ul className={cx('expanded')}>
-				{expanded.map((category, index) => {
-					return (
-						<li key={index}>
-							<Preview category={category} />
-						</li>
-					);
-				})}
-			</ul>
-			<ul className={cx('collapsed')}>
-				{collapsed.map((category, index) => {
-					return (
-						<li key={index}>
-							<Pill category={category} />
-						</li>
-					);
-				})}
-			</ul>
+			{expanded.length > 0 && (
+				<ul className={cx('expanded')}>
+					{expanded.map((category, index) => {
+						return (
+							<li key={index}>
+								<Preview category={category} />
+							</li>
+						);
+					})}
+				</ul>
+			)}
+			{collapsed.length > 0 && (
+				<Grid as="ul" className={cx('collapsed')}>
+					{collapsed.map((category, index) => {
+						return (
+							<li key={index}>
+								<Pill category={category} />
+							</li>
+						);
+					})}
+				</Grid>
+			)}
 			{other && (
 				<Preview category={other} />
 			)}
