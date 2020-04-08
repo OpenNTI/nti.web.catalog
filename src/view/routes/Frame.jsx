@@ -5,14 +5,15 @@ import {Navigation} from '@nti/web-commons';
 import {Router} from '@nti/web-routing';
 import {scoped} from '@nti/lib-locale';
 
+import {Routes} from '../Constants';
+
 import Styles from './Frame.css';
-import {Routes} from './Constants';
 
 const cx = classnames.bind(Styles);
 const t = scoped('nti-catalog.view.Frame', {
 	tabs: {
-		available: 'Course',
-		purchased: 'Purchased',
+		available: 'Courses',
+		purchased: 'History',
 		redeem: 'Redeem'
 	}
 });
@@ -20,7 +21,7 @@ const t = scoped('nti-catalog.view.Frame', {
 const trimTrailingSlash = route => route.replace(/\/$/, '');
 
 function isActiveRoute (route, pathname, baseroute) {
-	if (trimTrailingSlash(route) === trimTrailingSlash(baseroute)) { return route === pathname; }
+	if (trimTrailingSlash(route) === trimTrailingSlash(baseroute)) { return trimTrailingSlash(route) === trimTrailingSlash(pathname); }
 
 	return pathname.indexOf(route) === 0;
 }

@@ -1,0 +1,41 @@
+:global(.category-gradient) {
+	&:global(.orange) {
+		background: linear-gradient(45deg, #fc7126, #fcae26);
+	}
+
+	&:global(.yellow) {
+		background: linear-gradient(45deg, #ffae00, #fd0);
+	}
+
+	&:global(.green) {
+		background: linear-gradient(45deg, #14b349, #72f290);
+	}
+
+	&:global(.blue) {
+		background: linear-gradient(45deg, #198ffc, #63ccfd);
+	}
+
+	&:global(.dark-blue) {
+		background: linear-gradient(45deg, #0a3db4, #1f85fc);
+	}
+
+	&:global(.purple) {
+		background: linear-gradient(45deg, #7f38d6, #d638c4);
+	}
+
+	&:global(.pink) {
+		background: linear-gradient(45deg, #ec5163, #ff94b3);
+	}
+
+	&:global(.red) {
+		background: linear-gradient(45deg, #d11538, #ff476a);
+	}
+
+	&:global(.black) {
+		background: linear-gradient(45deg, #252626, #646566);
+	}
+
+	&:global(.grey) {
+		background: linear-gradient(45deg, #5f7e8d, #99c0d4);
+	}
+}

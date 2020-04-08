@@ -1,6 +1,7 @@
 import {Router, Route} from '@nti/web-routing';
 
-import {Routes} from './Constants';
+import {Routes} from '../Constants';
+
 import Frame from './Frame';
 import Available from './available';
 import Purchased from './purchased';
