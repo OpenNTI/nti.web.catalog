@@ -4,6 +4,8 @@ import classnames from 'classnames/bind';
 import {LinkTo} from '@nti/web-routing';
 import {Text} from '@nti/web-commons';
 
+import {RouteContexts} from '../../Constants';
+
 import Styles from './Pill.css';
 import {getGradientClass} from './Gradient';
 import {getName} from './Name';
@@ -16,7 +18,7 @@ CategoryPill.propTypes = {
 };
 export default function CategoryPill ({category, className}) {
 	return (
-		<LinkTo.Object object={category} className={cx('category-pill', className, getGradientClass(category))}>
+		<LinkTo.Object object={category} context={RouteContexts.CategoryPill} className={cx('category-pill', className, getGradientClass(category))}>
 			<Text.Base limitLines={2} overflow={Text.Overflow.Ellipsis}>
 				{getName(category)}
 			</Text.Base>

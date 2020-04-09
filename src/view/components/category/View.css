@@ -1,0 +1,19 @@
+.category-view {
+	& .category-more {
+		text-align: center;
+		margin: var(--catalog-gap, 18px) auto;
+
+		& .view-more {
+			display: block;
+			background: var(--primary-blue);
+			border-radius: 100px;
+			cursor: pointer;
+			color: white;
+			font-size: 14px;
+			font-weight: 600;
+			line-height: 19px;
+			text-align: center;
+			padding: 6px 0 8px;
+		}
+	}
+}

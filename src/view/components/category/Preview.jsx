@@ -5,6 +5,7 @@ import {scoped} from '@nti/lib-locale';
 import {LinkTo} from '@nti/web-routing';
 import {Layouts, Text} from '@nti/web-commons';
 
+import {RouteContexts} from '../../Constants';
 import ItemList from '../item-list';
 
 import Styles from './Preview.css';
@@ -35,7 +36,7 @@ export default function CategoryPreview ({className, category}) {
 				<Text.Base as="div" className={cx('title')}>
 					{getName(category)}
 				</Text.Base>
-				<LinkTo.Object className={cx('view-all')} object={category} context="category.preview">
+				<LinkTo.Object className={cx('view-all')} object={category} context={RouteContexts.CategoryPreview}>
 					<Text.Base>{t('viewAll')}</Text.Base>
 					<i className="icon-chevronup-25" />
 				</LinkTo.Object>

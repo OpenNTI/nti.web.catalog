@@ -40,23 +40,27 @@ export default function CatalogFrame ({children}) {
 	const purchasedRoute = router.getRouteFor(Routes.Purchased);
 	const redeemRoute = router.getRouteFor(Routes.Redeem);
 
+	const purchasedActive = isActiveRoute(purchasedRoute, pathname, baseroute);
+	const redeemActive = isActiveRoute(redeemRoute, pathname, baseroute);
+	const availableActive = !purchasedActive && !redeemActive;
+
 	return (
 		<>
 			<Navigation.Tabs>
 				<Navigation.Tabs.Tab
 					route={availableRoute}
 					label={t('tabs.available')}
-					active={isActiveRoute(availableRoute, pathname, baseroute)}
+					active={availableActive}
 				/>
 				<Navigation.Tabs.Tab
 					route={purchasedRoute}
 					label={t('tabs.purchased')}
-					active={isActiveRoute(purchasedRoute, pathname, baseroute)}
+					active={purchasedActive}
 				/>
 				<Navigation.Tabs.Tab
 					route={redeemRoute}
 					label={t('tabs.redeem')}
-					active={isActiveRoute(redeemRoute, pathname, baseroute)}
+					active={redeemActive}
 				/>
 			</Navigation.Tabs>
 			<div className={cx('catalog-frame')}>

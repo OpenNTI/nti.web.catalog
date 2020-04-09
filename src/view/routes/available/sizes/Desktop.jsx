@@ -5,15 +5,15 @@ import AllCategories from '../components/AllCategories';
 import Category from '../components/Category';
 
 CatalogAvailableDesktop.propTypes = {
-	categoryId: PropTypes.string,
+	category: PropTypes.string,
 	entryId: PropTypes.string
 };
-export default function CatalogAvailableDesktop ({categoryId, entryId, ...otherProps}) {
+export default function CatalogAvailableDesktop ({category, entryId, ...otherProps}) {
 	return (
 		<>
 			{
-				categoryId ?
-					(<Category categoryId={categoryId} {...otherProps} />) :
+				category ?
+					(<Category category={category} {...otherProps} />) :
 					(<AllCategories {...otherProps} />)
 			}
 		</>
