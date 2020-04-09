@@ -1,17 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// import AllCategories from '../components/AllCategories';
-// import Category from '../components/Category';
+import AllCategories from '../components/AllCategories';
+import Category from '../components/Category';
 
 CatalogAvailableMobile.propTypes = {
-	categoryId: PropTypes.string,
+	category: PropTypes.string,
 	entryId: PropTypes.string
 };
-export default function CatalogAvailableMobile ({categoryId, entryId, ...otherProps}) {
+export default function CatalogAvailableMobile ({category, entryId, ...otherProps}) {
 	return (
-		<div>
-			Catalog Available Mobile
-		</div>
+		<>
+			{
+				category ?
+					(<Category category={category} {...otherProps} />) :
+					(<AllCategories {...otherProps} />)
+			}
+		</>
 	);
 }

@@ -63,7 +63,7 @@ export default function CatalogFrame ({children}) {
 					active={redeemActive}
 				/>
 			</Navigation.Tabs>
-			<div className={cx('catalog-frame')}>
+			<div className={cx('catalog-frame', 'course-catalog')}>
 				{child}
 			</div>
 		</>

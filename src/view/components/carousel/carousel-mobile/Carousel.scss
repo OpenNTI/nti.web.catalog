@@ -1,0 +1,124 @@
+@import "~@nti/style-common";
+
+$CUSTOM_RANGES: (
+	mobileLandscape: (600px, 767px)
+);
+
+.course-catalog {
+	.carousel {
+		.carousel-mobile-block {
+			white-space: nowrap;
+			position: relative;
+			overflow-x: scroll;
+			overflow-y: hidden;
+			padding: 10px;
+			display: table;
+			width: 100%;
+
+			.feature-course {
+				display: inline-table;
+				margin-right: 10px;
+
+				.image-content {
+					object-fit: cover;
+
+					@include responsive-range(mobile) {
+						height: 198.05px;
+						width: calc(76vw);
+					}
+
+					@include responsive-range(tablet) {
+						width: calc(40vw);
+						height: 210px;
+					}
+
+					@include responsive-range(mobileLandscape, $CUSTOM_RANGES) {
+						width: calc(55vw);
+						height: 250px;
+					}
+				}
+
+				.course-id {
+					color: $tertiary-grey;
+					font-size: 10px;
+					font-weight: bold;
+					line-height: 14px;
+					display: block;
+					margin: 5px 0;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					overflow: hidden;
+					text-transform: uppercase;
+					max-width: calc(76vw);
+
+					@include responsive-range(mobile) {
+						max-width: calc(76vw);
+					}
+
+					@include responsive-range(tablet) {
+						max-width: calc(40vw);
+					}
+
+					@include responsive-range(mobileLandscape, $CUSTOM_RANGES) {
+						max-width: calc(55vw);
+					}
+				}
+
+				.course-title {
+					font: normal 700 1em/1.1em "Open Sans Condensed";
+					max-height: 2.2em;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					text-transform: uppercase;
+
+					@include responsive-range(mobile) {
+						max-width: calc(76vw);
+					}
+
+					@include responsive-range(tablet) {
+						max-width: calc(40vw);
+					}
+
+					@include responsive-range(mobileLandscape, $CUSTOM_RANGES) {
+						max-width: calc(55vw);
+					}
+				}
+
+				.course-instructor {
+					text-transform: uppercase;
+					display: block;
+					color: $primary-blue;
+					font-size: 10px;
+					font-weight: bold;
+					line-height: 14px;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					overflow: hidden;
+					min-height: 15px;
+
+					@include responsive-range(mobile) {
+						max-width: calc(76vw);
+					}
+
+					@include responsive-range(tablet) {
+						max-width: calc(40vw);
+					}
+
+					@include responsive-range(mobileLandscape, $CUSTOM_RANGES) {
+						max-width: calc(55vw);
+					}
+				}
+			}
+
+			div {
+				float: none;
+				display: inline-block;
+			}
+		}
+		.carousel-wrapper {
+			width: 100%;
+			overflow: auto;
+		}
+	}
+}

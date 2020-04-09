@@ -23,7 +23,7 @@ Category.propTypes = {
 	category: PropTypes.object,
 	noHeader: PropTypes.bool
 };
-export default function Category ({category}) {
+export default function Category ({category, noHeader}) {
 	const [batches, setBatches] = React.useState([category]);
 	const [loadingMore, setLoadingMore] = React.useState(false);
 	const [loadMoreError, setLoadMoreError] = React.useState(null);
@@ -50,7 +50,7 @@ export default function Category ({category}) {
 
 	return (
 		<>
-			<Header category={category} />
+			{!noHeader && (<Header category={category} />)}
 			<Content className={cx('category-view')}>
 				<ItemList items={items} />
 				{loadMore && (

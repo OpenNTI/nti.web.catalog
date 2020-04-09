@@ -17,13 +17,13 @@ CatalogItemList.propTypes = {
 		})
 	)
 };
-export default function CatalogItemList ({className, items}) {
+export default function CatalogItemList ({className, items, ...otherProps}) {
 	return (
-		<Grid as="ul" className={cx('catalog-item-list', className)}>
+		<Grid as="ul" className={cx('catalog-item-list', className)} {...otherProps} >
 			{(items || []).map((item) => {
 				return (
 					<li key={item.getID()}>
-						<Card course={item} collapsedToList />
+						<Card course={item} collapseToList />
 					</li>
 				);
 			})}

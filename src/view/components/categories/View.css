@@ -1,6 +1,14 @@
 .catalog-categories {
 	padding-top: var(--catalog-gap);
 
+	& .categories-header {
+		font-size: 1.125rem;
+		font-weight: normal;
+		text-transform: uppercase;
+		color: var(--primary-grey);
+		padding: 12px 0 6px;
+	}
+
 	& .expanded {
 		list-style: none;
 		margin: 0 0 var(--catalog-gap);
@@ -11,5 +19,13 @@
 		list-style: none;
 		margin: 0 0 var(--catalog-gap);
 		padding: 0;
+	}
+}
+
+@media (min-width: 1024px) {
+	.catalog-categories {
+		& .categories-header {
+			display: none;
+		}
 	}
 }

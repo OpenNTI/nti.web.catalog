@@ -41,8 +41,8 @@ export default function CategoryPreview ({className, category}) {
 					<i className="icon-chevronup-25" />
 				</LinkTo.Object>
 			</div>
-			<Responsive.Item query={Responsive.isMobile} component={ItemList} items={items.slice(0, 3)} />
-			<Responsive.Item query={Responsive.not(Responsive.isMobile)} component={ItemList} items={items.slice(0, 4)} />
+			<Responsive.Item query={Responsive.isMobile} component={ItemList} className={cx('preview-item-list')} items={items.slice(0, 3)} />
+			<Responsive.Item query={Responsive.not(Responsive.isMobile)} component={ItemList} className={cx('preview-item-list')} items={items.slice(0, 4)} />
 		</div>
 	);
 }

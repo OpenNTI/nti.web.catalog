@@ -16,6 +16,8 @@
 		}
 
 		& .view-all {
+			display: inline-block;
+			min-width: 85px;
 			font-size: 14px;
 			color: var(--secondary-grey);
 			text-align: right;
@@ -25,5 +27,13 @@
 				transform: rotate(90deg);
 			}
 		}
+	}
+}
+
+@media (max-width: 1044px) {
+	.preview-item-list {
+		 & > *:nth-child(4n) {
+		 	display: none;
+		 }
 	}
 }

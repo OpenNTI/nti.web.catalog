@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
+import {Text} from '@nti/web-commons';
+import {scoped} from '@nti/lib-locale';
 
 import {NTIOtherCategory} from '../../Constants';
 import Content from '../Content';
@@ -11,6 +13,9 @@ import Pill from '../category/Pill';
 import Styles from './View.css';
 
 const cx = classnames.bind(Styles);
+const t = scoped('nti-catalog.view.components.categories', {
+	topCategories: 'Top Categories'
+});
 
 function getCategoryParts (categories) {
 	return categories.reduce((acc, category) => {
@@ -46,7 +51,12 @@ export default function Categories ({categories}) {
 				</ul>
 			)}
 			{collapsed.length > 0 && (
-				<Grid as="ul" className={cx('collapsed')}>
+				<Text.Base as="div" className={cx('categories-header')}>
+					{t('topCategories')}
+				</Text.Base>
+			)}
+			{collapsed.length > 0 && (
+				<Grid as="ul" className={cx('collapsed')} allowTwoColumns >
 					{collapsed.map((category, index) => {
 						return (
 							<li key={index}>

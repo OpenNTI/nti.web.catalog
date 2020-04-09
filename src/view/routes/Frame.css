@@ -2,12 +2,12 @@
 	--catalog-gap: 18px;
 }
 
-.course-catalog-body {
+:global(.course-catalog-body) {
 	min-width: 100%;
 	max-width: 100%;
 	min-height: calc(100vh - 92px);
 
-	html.msg-bar-open & {
+	html:global(.msg-bar-open) & {
 		min-height: calc(100vh - 140px);
 	}
 }
