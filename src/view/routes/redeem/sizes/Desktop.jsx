@@ -7,8 +7,8 @@ CatalogRedeemDesktop.propTypes = {
 	code: PropTypes.string,
 	entryId: PropTypes.string
 };
-export default function CatalogRedeemDesktop ({code, entryId}) {
+export default function CatalogRedeemDesktop ({code, entryId, ...otherProps}) {
 	return (
-		<Form code={code} />
+		<Form code={code} {...otherProps} />
 	);
 }

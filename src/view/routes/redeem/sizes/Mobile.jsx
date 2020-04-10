@@ -7,8 +7,8 @@ CatalogRedeemMobile.propTypes = {
 	code: PropTypes.string,
 	entryId: PropTypes.string
 };
-export default function CatalogRedeemMobile ({code, entryId}) {
+export default function CatalogRedeemMobile ({code, entryId, ...otherProps}) {
 	return (
-		<Form code={code} />
+		<Form code={code} {...otherProps} />
 	);
 }

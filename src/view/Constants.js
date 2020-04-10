@@ -3,7 +3,8 @@ export const NTIOtherCategory = '.nti_other';
 
 export const RouteContexts = {
 	CategoryPill: 'category.pill',
-	CategoryPreview: 'category.preview'
+	CategoryPreview: 'category.preview',
+	Redeem: 'redeem'
 };
 
 export const Routes = {

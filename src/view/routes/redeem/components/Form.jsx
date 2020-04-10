@@ -4,7 +4,9 @@ import classnames from 'classnames/bind';
 import {getService} from '@nti/web-client';
 import {scoped} from '@nti/lib-locale';
 import {Form, Text, Loading} from '@nti/web-commons';
+import {Router} from '@nti/web-routing';
 
+import {RouteContexts} from '../../../Constants';
 import Content from '../../../components/Content';
 
 import Styles from './Form.css';
@@ -19,9 +21,11 @@ const t = scoped('nti-catalog.view.routes.redeem.component.Form', {
 });
 
 CatalogRedeemForm.propTypes = {
-	code: PropTypes.string
+	code: PropTypes.string,
+	markDirty: PropTypes.func
 };
 export default function CatalogRedeemForm ({code: defaultValue}) {
+	const router = Router.useRouter();
 	const [redeeming, setRedeeming] = React.useState(false);
 
 	const onSubmit = async ({json}) => {
@@ -33,7 +37,18 @@ export default function CatalogRedeemForm ({code: defaultValue}) {
 		
 			const result = await invitations.postToLink('accept-course-invitations', json);
 
-			//TODO: open the newly redeemed course
+			if (this.props.markDirty) {
+				this.props.markDirty();
+			}
+
+			router?.routeTo?.object?.(
+				{
+					redeemed: true,
+					isCourseCatalogEntry: true,
+					getID: () => result.CatalogEntryNTIID
+				},
+				RouteContexts.Redeem
+			);
 		} catch (e) {
 			throw new Error(e.message);
 		} finally {
