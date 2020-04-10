@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import CatalogEntry from '../../catalog-entry/Modal';
 import AllCategories from '../components/AllCategories';
 import Category from '../components/Category';
 import SearchWrapper from '../components/SearchWrapper';
@@ -17,6 +18,7 @@ export default function CatalogAvailableDesktop ({category, entryId, ...otherPro
 					(<Category category={category} {...otherProps} />) :
 					(<AllCategories {...otherProps} />)
 			}
+			{entryId && (<CatalogEntry entryId={entryId} />)}
 		</SearchWrapper>
 	);
 }
