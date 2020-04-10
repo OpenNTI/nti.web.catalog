@@ -1,0 +1,17 @@
+.catalog-search {
+	& .context-indicator {
+		width: 80%;
+		margin: 0 auto;
+		padding: 45px 0;
+	}
+
+}
+
+@media (max-width: 480px) {
+	.catalog-search {
+		& .context-indicator {
+			width: 100%;
+			padding: 10px 0 0 10px;
+		}
+	}
+}
