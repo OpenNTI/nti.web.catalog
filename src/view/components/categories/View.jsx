@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
-import {Text} from '@nti/web-commons';
+import {Text, EmptyState} from '@nti/web-commons';
 import {scoped} from '@nti/lib-locale';
 
 import {NTIOtherCategory} from '../../Constants';
@@ -14,7 +14,8 @@ import Styles from './View.css';
 
 const cx = classnames.bind(Styles);
 const t = scoped('nti-catalog.view.components.categories', {
-	topCategories: 'Top Categories'
+	topCategories: 'Top Categories',
+	empty: 'There are no courses available.'
 });
 
 function getCategoryParts (categories) {
@@ -35,6 +36,14 @@ Categories.propTypes = {
 	categories: PropTypes.array
 };
 export default function Categories ({categories}) {
+	if (!categories || !categories.length) {
+		return (
+			<Content className={cx('catalog-categories')}>
+				<EmptyState header={t('empty')} />
+			</Content>
+		);
+	}
+
 	const {collapsed, expanded, other} = getCategoryParts(categories);
 
 	return (
