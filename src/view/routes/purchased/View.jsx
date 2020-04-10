@@ -1,9 +1,16 @@
 import React from 'react';
+import {Layouts} from '@nti/web-commons';
 
-export default function CatalogPurchased () {
+import Desktop from './sizes/Desktop';
+import Mobile from './sizes/Mobile';
+
+const {Responsive} = Layouts;
+
+export default function CatalogPurchased (props) {
 	return (
-		<div>
-			Catalog Purchased
-		</div>
+		<>
+			<Responsive.Item query={Responsive.not(Responsive.isDesktop)} component={Mobile} {...props} />
+			<Responsive.Item query={Responsive.isDesktop} component={Desktop} {...props} />
+		</>
 	);
 }

@@ -26,6 +26,8 @@ export default function CatalogSearch ({searchTerm, loadResults}) {
 	React.useEffect(() => {
 		setResults(null);
 
+		if (!searchTerm) { return; }
+
 		const buffer = setTimeout(async () => {
 			try {
 				const newResults = await loadResults(searchTerm);
