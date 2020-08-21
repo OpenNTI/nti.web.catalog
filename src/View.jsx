@@ -1,3 +1,4 @@
+import './View.scss';
 import {Router, Route} from '@nti/web-routing';
 
 import Courses from './courses';
