@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NextThought/nti.web.component.catalog.git"
+    "url": "git+https://github.com/NextThought/nti.web.catalog.git"
   },
   "publishConfig": {
     "registry": "https://npm.nextthought.com"
@@ -30,9 +30,9 @@
     "component"
   ],
   "bugs": {
-    "url": "https://github.com/NextThought/nti.web.component.catalog/issues"
+    "url": "https://github.com/NextThought/nti.web.catalog/issues"
   },
-  "homepage": "https://github.com/NextThought/nti.web.component.catalog#readme",
+  "homepage": "https://github.com/NextThought/nti.web.catalog#readme",
   "devDependencies": {
     "@nti/cmp-scripts": "^2.0.0",
     "@nti/style-common": "NextThought/nti.style.common",
@@ -52,10 +52,10 @@
     "@nti/lib-store-connector": "NextThought/nti.lib.store.connector",
     "@nti/web-client": "NextThought/nti.web.client",
     "@nti/web-commons": "NextThought/nti.web.commons",
-    "@nti/web-course": "NextThought/nti.web.component.course",
-    "@nti/web-help": "NextThought/nti.web.component.help",
+    "@nti/web-course": "NextThought/nti.web.course",
+    "@nti/web-help": "NextThought/nti.web.help",
     "@nti/web-routing": "NextThought/nti.web.routing",
-    "@nti/web-search": "NextThought/nti.web.component.search",
+    "@nti/web-search": "NextThought/nti.web.search",
     "classnames": "*",
     "prop-types": "*",
     "react-transition-group": "^4.3.0"
