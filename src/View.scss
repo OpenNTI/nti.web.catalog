@@ -19,7 +19,7 @@
 
 	.list-style {
 		list-style: inherit;
-		color: $primary-blue;
+		color: var(--primary-blue);
 	}
 
 	.container {
@@ -82,9 +82,9 @@
 						padding-bottom: 3px;
 
 						&:hover {
-							color: $primary-blue;
+							color: var(--primary-blue);
 							font-weight: 600;
-							border-bottom: 2px solid $primary-blue;
+							border-bottom: 2px solid var(--primary-blue);
 						}
 					}
 				}

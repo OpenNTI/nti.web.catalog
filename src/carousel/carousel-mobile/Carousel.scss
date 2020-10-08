@@ -88,7 +88,7 @@ $CUSTOM_RANGES: (
 				.course-instructor {
 					text-transform: uppercase;
 					display: block;
-					color: $primary-blue;
+					color: var(--primary-blue);
 					font-size: 10px;
 					font-weight: bold;
 					line-height: 14px;
