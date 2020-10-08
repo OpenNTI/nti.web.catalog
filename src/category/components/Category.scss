@@ -36,10 +36,10 @@ $CUSTOM_RANGES: (
 			display: inline-block;
 			text-align: right;
 			font-size: 14px;
-			color: $secondary-grey;
+			color: var(--secondary-grey);
 
 			[class^=icon] {
-				color: $secondary-grey;
+				color: var(--secondary-grey);
 				display: inline-block;
 				transform: rotate(90deg);
 				font-size: 14px;
