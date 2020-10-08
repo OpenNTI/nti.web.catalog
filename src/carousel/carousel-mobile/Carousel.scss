@@ -39,7 +39,7 @@ $CUSTOM_RANGES: (
 				}
 
 				.course-id {
-					color: $tertiary-grey;
+					color: var(--tertiary-grey);
 					font-size: 10px;
 					font-weight: bold;
 					line-height: 14px;
