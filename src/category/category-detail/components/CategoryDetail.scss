@@ -96,7 +96,7 @@ $CUSTOM_RANGES: (
 
 		.categories-title {
 			color: #fff;
-			font-family: "Open Sans";
+			font-family: var(--body-font-family);
 			font-size: 36px;
 			font-weight: 300;
 			line-height: 49px;
@@ -132,7 +132,7 @@ $CUSTOM_RANGES: (
 			cursor: pointer;
 			margin-left: 0;
 			border-radius: 100px;
-			background-color: #3fb3f6;
+			background-color: var(--primary-blue);
 			font-weight: 600;
 			line-height: 19px;
 			text-align: center;

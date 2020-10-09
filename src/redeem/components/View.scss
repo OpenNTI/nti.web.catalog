@@ -23,7 +23,7 @@ $CUSTOM_RANGES: (
 		}
 
 		p {
-			color: #757474;
+			color: var(--secondary-grey);
 			font-size: 16px;
 			line-height: 24px;
 			margin: 30px 0;
@@ -41,13 +41,13 @@ $CUSTOM_RANGES: (
 		}
 
 		input {
-			color: $primary-grey;
+			color: var(--primary-grey);
 			font-size: 16px;
 			width: 296px;
 			padding: 0 20px;
 
 			&::placeholder {
-				color: $tertiary-grey;
+				color: var(--tertiary-grey);
 			}
 
 			@include responsive-range(mobile) {
@@ -58,7 +58,7 @@ $CUSTOM_RANGES: (
 		button {
 			width: 104px;
 			border-radius: 0 4px 4px 0;
-			background-color: #3fb3f6;
+			background-color: var(--primary-blue);
 			border-color: transparent;
 			font-size: 16px;
 			color: #fff;
@@ -87,7 +87,7 @@ $CUSTOM_RANGES: (
 	}
 
 	.success-redeem {
-		background-color: #3fb34f;
+		background-color: var(--secondary-green);
 		height: 60px;
 		text-align: center;
 		padding-top: 1px;

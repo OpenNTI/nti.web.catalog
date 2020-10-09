@@ -39,7 +39,7 @@ $CUSTOM_RANGES: (
 				}
 
 				.course-id {
-					color: $tertiary-grey;
+					color: var(--tertiary-grey);
 					font-size: 10px;
 					font-weight: bold;
 					line-height: 14px;
@@ -65,7 +65,7 @@ $CUSTOM_RANGES: (
 				}
 
 				.course-title {
-					font: normal 700 1em/1.1em "Open Sans Condensed";
+					font: normal 700 1em/1.1em var(--header-font-family);
 					max-height: 2.2em;
 					overflow: hidden;
 					text-overflow: ellipsis;
@@ -88,7 +88,7 @@ $CUSTOM_RANGES: (
 				.course-instructor {
 					text-transform: uppercase;
 					display: block;
-					color: $primary-blue;
+					color: var(--primary-blue);
 					font-size: 10px;
 					font-weight: bold;
 					line-height: 14px;

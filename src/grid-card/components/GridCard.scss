@@ -49,7 +49,7 @@ $CUSTOM_RANGES: (
 		@include responsive-range(mobile) {
 			display: block;
 			font-size: 18px;
-			color: #494949;
+			color: var(--primary-grey);
 			margin-bottom: 13px;
 		}
 
