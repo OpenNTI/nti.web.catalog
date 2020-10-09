@@ -65,7 +65,7 @@ $CUSTOM_RANGES: (
 				}
 
 				.course-title {
-					font: normal 700 1em/1.1em "Open Sans Condensed";
+					font: normal 700 1em/1.1em var(--header-font-family);
 					max-height: 2.2em;
 					overflow: hidden;
 					text-overflow: ellipsis;

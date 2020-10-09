@@ -96,7 +96,7 @@ $CUSTOM_RANGES: (
 
 		.categories-title {
 			color: #fff;
-			font-family: "Open Sans";
+			font-family: var(--body-font-family);
 			font-size: 36px;
 			font-weight: 300;
 			line-height: 49px;
