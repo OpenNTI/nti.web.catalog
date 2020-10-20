@@ -44,8 +44,8 @@ class Category extends React.Component {
 		store.load(Constants.PURCHASED);
 	}
 
-	componentWillReceiveProps (nextProps) {
-		if (nextProps.location.pathname !== this.props.location.pathname && this.props.location.pathname !== this.props.match.url) {
+	componentDidUpdate (prevProps) {
+		if (prevProps.location.pathname !== this.props.location.pathname && this.props.location.pathname !== this.props.match.url) {
 			store.load(Constants.PURCHASED);
 		}
 	}

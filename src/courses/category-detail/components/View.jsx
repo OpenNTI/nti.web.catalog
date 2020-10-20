@@ -43,9 +43,9 @@ class Category extends React.Component {
 		store.load(Constants.CATEGORY, id);
 	}
 
-	componentWillReceiveProps (nextProps) {
-		if (nextProps.location.pathname !== this.props.location.pathname) {
-			store.load(Constants.CATEGORY, nextProps.id);
+	componentDidUpdate (prevProps) {
+		if (prevProps.location.pathname !== this.props.location.pathname) {
+			store.load(Constants.CATEGORY, this.props.id);
 		}
 	}
 
