@@ -2,7 +2,7 @@
 
 $CUSTOM_RANGES: (
 	mobile: (null, 736px),
-	portraitTablet: (737px, 1023px)
+	portrait-tablet: (737px, 1023px)
 );
 
 .course-catalog {
@@ -120,7 +120,7 @@ $CUSTOM_RANGES: (
 			width: 90%;
 		}
 
-		@include responsive-range(portraitTablet, $CUSTOM_RANGES) {
+		@include responsive-range(portrait-tablet, $CUSTOM_RANGES) {
 			width: 700px;
 			white-space: nowrap;
 			padding-right: 20px;

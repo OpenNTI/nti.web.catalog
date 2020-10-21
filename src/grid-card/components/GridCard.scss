@@ -1,7 +1,7 @@
 @import "~@nti/style-common";
 
 $CUSTOM_RANGES: (
-	portraitTablet: (737px, 1023px)
+	portrait-tablet: (737px, 1023px)
 );
 
 .course-catalog {
@@ -57,7 +57,7 @@ $CUSTOM_RANGES: (
 			margin-left: 8px;
 		}
 
-		@include responsive-range(portraitTablet, $CUSTOM_RANGES) {
+		@include responsive-range(portrait-tablet, $CUSTOM_RANGES) {
 			height: 10px;
 			width: 100%;
 			float: left;
