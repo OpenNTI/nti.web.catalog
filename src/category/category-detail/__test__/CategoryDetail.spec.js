@@ -1,7 +1,7 @@
 /* eslint-env jest */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { mount } from 'enzyme';
+import { render, waitFor } from '@testing-library/react';
 
 import CategoryDetail from '../components/CategoryDetail';
 
@@ -65,46 +65,47 @@ describe('CategoryDetail', () => {
 		hasLink: rel => rel === 'batch-next'
 	};
 	const other = true;
-	const getCategoryWithNoMore = () => mount(
-		<ContextProvider>
-			<CategoryDetail
-				category={category}
-				other={other}
-			/>
-		</ContextProvider>
-	);
-
-	const getCategoryWithMore = () => mount(
-		<ContextProvider>
-			<CategoryDetail
-				category={categoryWithMore}
-				other={other}
-			/>
-		</ContextProvider>
-	);
 
 	test('Test category without hasLink', () => {
 		const cat = {Items: []};
-		const render = () => mount(
+		expect(() => render(
 			<ContextProvider>
 				<CategoryDetail
 					category={cat}
 					other={other}
 				/>
 			</ContextProvider>
+		)).not.toThrow();
+	});
+
+	test('Test category with no more button', async () => {
+		const ref = React.createRef();
+		render(
+			<ContextProvider>
+				<CategoryDetail
+					ref={ref}
+					category={category}
+					other={other}
+				/>
+			</ContextProvider>
 		);
-		expect(render).not.toThrow();
+
+		return waitFor(() =>
+			expect(ref.current.state.noMore).toEqual(undefined)); //TODO: fix this test its suppose to be true
 	});
 
-	test('Test category with no more button', () => {
-		const cmp = getCategoryWithNoMore();
-		const categoryCmp = cmp.find(CategoryDetail);
-		expect(categoryCmp.state.noMore).toEqual(undefined); //TODO: fix this test its suppose to be true
-	});
-
-	test('Test category with more button', () => {
-		const cmp = getCategoryWithMore();
-		const categoryCmp = cmp.find(CategoryDetail);
-		expect(categoryCmp.state.noMore).toEqual(undefined);
+	test('Test category with more button', async () => {
+		const ref = React.createRef();
+		render(
+			<ContextProvider>
+				<CategoryDetail
+					ref={ref}
+					category={categoryWithMore}
+					other={other}
+				/>
+			</ContextProvider>
+		);
+		return waitFor(() =>
+			expect(ref.current.state.noMore).toEqual(undefined));
 	});
 });

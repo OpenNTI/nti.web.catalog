@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import React from 'react';
-import {mount} from 'enzyme';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 
 import Redeem from '../View';
 
@@ -56,70 +56,61 @@ describe('Redeem', () => {
 
 	const match = {params: {}};
 
-	const getCmp = () => mount(
-		<Redeem match={match}/>
-	);
+	const getCmp = () => {
+		const ref = React.createRef();
+		return {
+			ref,
+			...render(<Redeem ref={ref} match={match}/>)
+		};
+	};
 
 	beforeEach(onBefore);
 	afterEach(onAfter);
 
-	test('Test redeem with empty code', () => {
-		const cmp = getCmp();
-		cmp.setState({codeValue: ''});
-		cmp.find('button').simulate('click');
-		expect(cmp.find('.error-redeem p').first().text()).toEqual(errorMessage.empty);
+	test('Test redeem with empty code', async () => {
+		const {ref, container, findByText} = getCmp();
+		ref.current.setState({codeValue: ''});
+		fireEvent.click(container.querySelector('button'));
+		await findByText(errorMessage.empty);
+		expect(container.querySelector('.error-redeem p').textContent).toEqual(errorMessage.empty);
 	});
 
 	test('Test redeem with invalid code', async () => {
-		const cmp = getCmp();
-		cmp.setState({codeValue: 'Invalid'});
-		cmp.find('button').simulate('click');
-		await new Promise(resolve => {
-			setTimeout(() => {
-				resolve();
-			}, 300);
-		});
+		const {container, ref} = getCmp();
+		ref.current.setState({codeValue: 'Invalid'});
+		fireEvent.click(container.querySelector('button'));
 
-		expect(cmp.state().errorMessage).toEqual(errorMessage.invalid);
+		return waitFor(() =>
+			expect(ref.current.state.errorMessage).toEqual(errorMessage.invalid));
 	});
 
 	test('Test redeem with enrolled code', async () => {
-		const cmp = getCmp();
-		cmp.setState({codeValue: 'Enrolled'});
-		cmp.find('button').simulate('click');
-		await new Promise(resolve => {
-			setTimeout(() => {
-				resolve();
-			}, 300);
-		});
+		const {ref, container} = getCmp();
+		ref.current.setState({codeValue: 'Enrolled'});
+		fireEvent.click(container.querySelector('button'));
 
-		expect(cmp.state().errorMessage).toEqual(errorMessage.enrolled);
+		return waitFor(() =>
+			expect(ref.current.state.errorMessage).toEqual(errorMessage.enrolled));
 	});
 
 	test('Test redeem success', async () => {
-		const cmp = getCmp();
-		cmp.setState({codeValue: 'Success'});
-		cmp.find('button').simulate('click');
-		await new Promise(resolve => {
-			setTimeout(() => {
-				resolve();
-			}, 300);
-		});
+		const {ref, container} = getCmp();
+		ref.current.setState({codeValue: 'Success'});
+		fireEvent.click(container.querySelector('button'));
 
-		expect(cmp.state().error).toEqual(false);
+		return waitFor(() =>
+			expect(ref.current.state.error).toEqual(false));
 	});
 
 	test('Test redeem loading', async () => {
-		const cmp = getCmp();
-		cmp.setState({codeValue: 'Success'});
-		cmp.find('button').simulate('click');
-		expect(cmp.state().loading).toEqual(true);
-		await new Promise(resolve => {
-			setTimeout(() => {
-				resolve();
-			}, 300);
-		});
+		const {ref, container} = getCmp();
+		ref.current.setState({codeValue: 'Success'});
+		expect(ref.current.state.loading).toEqual(false);
+		fireEvent.click(container.querySelector('button'));
+		expect(ref.current.state.loading).toEqual(true);
 
-		expect(cmp.state().loading).toEqual(false);
+		return waitFor(() => {
+			expect(ref.current.state.loading).toEqual(false);
+		});
 	});
 });

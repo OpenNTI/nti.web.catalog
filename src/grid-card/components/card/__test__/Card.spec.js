@@ -1,8 +1,7 @@
 /* eslint-env jest */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Card} from '@nti/web-course';
-import { mount } from 'enzyme';
+import { render, waitFor } from '@testing-library/react';
 
 import CatalogCard from '../Card';
 
@@ -53,8 +52,9 @@ describe('Card', () => {
 		getAuthorLine: () => ''
 	};
 
+	//This is a really dumb test...why?
 	test('Renders Course Card', () => {
-		const wrapper = mount(<ContextProvider><CatalogCard course={course} /></ContextProvider>);
-		expect(wrapper.find(Card).first()).toBeTruthy();
+		const {container} = render(<ContextProvider><CatalogCard course={course} /></ContextProvider>);
+		return waitFor(() => expect(container.querySelector('.nti-course-card-container')).toBeTruthy());
 	});
 });

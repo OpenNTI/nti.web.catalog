@@ -1,7 +1,7 @@
 /* eslint-env jest */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { mount } from 'enzyme';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 
 import Carousel from '../components/Carousel';
 
@@ -53,68 +53,67 @@ describe('Carousel', () => {
 		}
 	];
 
-	const getCmp = () => mount(
-		<ContextProvider>
-			<Carousel
-				data={data}
-				carouselSelected={index}
-				selectCarousel={selectCarousel}
-			/>
-		</ContextProvider>
-	);
+	const getCmp = () => {
+		const ref = React.createRef();
+		return {
+			ref,
+			...render(
+				<ContextProvider>
+					<Carousel
+						ref={ref}
+						data={data}
+						carouselSelected={index}
+						selectCarousel={selectCarousel}
+					/>
+				</ContextProvider>
+			)};
+	};
 
-	test('Test click next carousel', (done) => {
-		const cmp = getCmp();
+	test('Test click next carousel', async () => {
+		const {container} = getCmp();
 
-		const nextButton = cmp.find('.icon-chevronup-25').first();
+		const nextButton = container.querySelector('.icon-chevronup-25');
 
-		nextButton.simulate('click');
+		fireEvent.click(nextButton);
 
-		const verifyCalled = () => {
-			expect(selectCarousel).toHaveBeenCalled();
-
-			done();
-		};
-		verifyCalled();
+		return waitFor(() =>
+			expect(selectCarousel).toHaveBeenCalled());
 	});
 
-	test('Test click pre carousel', (done) => {
-		const cmp = getCmp();
+	test('Test click pre carousel', async () => {
+		const {container} = getCmp();
 
-		const preButton = cmp.find('.icon-chevrondown-25').first();
+		const preButton = container.querySelector('.icon-chevrondown-25');
 
-		preButton.simulate('click');
+		fireEvent.click(preButton);
 
-		const verifyCalled = () => {
-			expect(selectCarousel).toHaveBeenCalled();
-
-			done();
-		};
-
-		verifyCalled();
+		return waitFor(() =>
+			expect(selectCarousel).toHaveBeenCalled());
 	});
 
-	test('Test change carousel selected index when click next', () => {
-		const cmp = getCmp();
+	test('Test change carousel selected index when click next', async () => {
+		const {container} = getCmp();
 
-		expect(cmp.find('.course-id').first().text()).toEqual('ITEM1');
-		cmp.find('.icon-chevronup-25').simulate('click');
+		expect(container.querySelector('.course-id').textContent).toEqual('ITEM1');
+		fireEvent.click(container.querySelector('.icon-chevronup-25'));
 
-		cmp.update();
-
-		expect(cmp.find('.course-id').first().text()).toEqual('ITEM2');
-		expect(cmp.find('.course-id').at(1).text()).toEqual('ITEM1');
+		return waitFor(() => {
+			const [item2, item1] = container.querySelectorAll('.course-id');
+			expect(item1.textContent).toEqual('ITEM1');
+			expect(item2.textContent).toEqual('ITEM2');
+		});
 	});
 
-	test('Test change carousel selected index when click previous', () => {
-		const cmp = getCmp();
+	test('Test change carousel selected index when click previous', async () => {
+		const {container} = getCmp();
 
-		expect(cmp.find('.course-id').first().text()).toEqual('ITEM1');
-		cmp.find('.icon-chevrondown-25').simulate('click');
+		expect(container.querySelector('.course-id').textContent).toEqual('ITEM1');
+		fireEvent.click(container.querySelector('.icon-chevrondown-25'));
 
-		cmp.update();
-
-		expect(cmp.find('.course-id').first().text()).toEqual('ITEM3');
-		expect(cmp.find('.course-id').at(1).text()).toEqual('ITEM1');
+		return waitFor(() => {
+			const [item3, item1] = container.querySelectorAll('.course-id');
+			expect(item1.textContent).toEqual('ITEM1');
+			expect(item3.textContent).toEqual('ITEM3');
+		});
 	});
 });

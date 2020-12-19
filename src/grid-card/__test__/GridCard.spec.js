@@ -1,7 +1,7 @@
 /* eslint-env jest */
 import React from 'react';
-import { mount } from 'enzyme';
 import PropTypes from 'prop-types';
+import { render, waitFor } from '@testing-library/react';
 
 import GridCard from '../components/GridCard';
 import * as Constants from '../../Constants';
@@ -79,19 +79,17 @@ describe('GridCard', () => {
 	beforeEach(onBefore);
 	afterEach(onAfter);
 
-	const getCmpWithCategory = () => mount(
-		<ContextProvider>
-			<GridCard
-				courses={purchasedCourses}
-				type={Constants.CATEGORIES}
-			/>
-		</ContextProvider>
-	);
 	test('Test grid card with category have over 4 courses, count courses',  async () => {
-		const cmp = getCmpWithCategory();
+		const {container} = render(
+			<ContextProvider>
+				<GridCard
+					courses={purchasedCourses}
+					type={Constants.CATEGORIES}
+				/>
+			</ContextProvider>
+		);
 
-		await new Promise(t => setTimeout(t, 100));
-
-		cmp.update();
-		expect(cmp.find('ul li').length).toEqual(1);});
+		return waitFor(() =>
+			expect(container.querySelectorAll('ul li').length).toEqual(1));
+	});
 });
