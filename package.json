@@ -50,13 +50,6 @@
     "react-transition-group": "^4.3.0"
   },
   "devDependencies": {
-    "@nti/cmp-scripts": "^2.0.0",
-    "@nti/style-common": "NextThought/nti.style.common",
-    "@testing-library/react": "^11.2.1"
-  },
-  "peerDependencies": {
-    "classnames": "*",
-    "react": "*",
-    "prop-types": "*"
+    "@nti/cmp-scripts": "^2.31.8"
   }
 }
