@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {searchable, contextual} from '@nti/web-search';
-import {Loading, EmptyState} from '@nti/web-commons';
+import {Loading, EmptyState, Errors} from '@nti/web-commons';
 import {scoped} from '@nti/lib-locale';
 
 import * as Constants from '../../Constants';
@@ -36,7 +36,8 @@ class Category extends React.Component {
 		loading: PropTypes.bool,
 		match: PropTypes.object,
 		renderData: PropTypes.func,
-		location: PropTypes.object
+		location: PropTypes.object,
+		error: PropTypes.any
 	}
 
 
@@ -78,12 +79,24 @@ class Category extends React.Component {
 	}
 
 	renderItems () {
+		if (this.props.error) {
+			return (
+				<div className="course-catalog">
+					<div className="content-catalog error">
+						<Errors.Message error={this.props.error} />
+					</div>
+				</div>
+			);
+		}
+
 		if (!this.props.purchased) {
 			return null;
 		}
 		if (this.props.purchased.Items && this.props.purchased.Items.length === 0) {
 			return this.renderEmptyState();
 		}
+
+
 		return (
 			<div className="course-catalog">
 				<section className="content-catalog no-sidebar">

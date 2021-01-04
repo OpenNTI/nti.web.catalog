@@ -15,12 +15,8 @@ export default class CategoryStore extends SearchablePagedStore {
 	async loadPurchased () {
 		const service = await getService();
 		const {href : href } = service.getCollection('Purchased', 'Catalog');
-		try {
-			const purchased = await service.getBatch(href, {batchSize: Constants.BATCH_SIZE, batchStart: 0});
-			return purchased;
-		}
-		catch (e) {
-			return null;
-		}
+
+		const purchased = await service.getBatch(href, {batchSize: Constants.BATCH_SIZE, batchStart: 0});
+		return purchased;
 	}
 }
