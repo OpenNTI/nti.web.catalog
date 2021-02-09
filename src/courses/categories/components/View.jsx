@@ -1,6 +1,7 @@
 import './View.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
+import {decorate} from '@nti/lib-commons';
 import {searchable, contextual} from '@nti/web-search';
 import {Loading, EmptyState, Layouts} from '@nti/web-commons';
 import {LinkTo} from '@nti/web-routing';
@@ -16,22 +17,8 @@ import Store from '../Store';
 const {Responsive} = Layouts;
 const contactOpenBodyClass = 'contact-popup-open';
 const store = new Store();//FIXME: I would prefer if the store could be constructed on first use/mount... instead of statically.
-const propMap = {
-	categories: 'categories',
-	carousel: 'carousel',
-	searchItems: 'searchItems',
-	searchTerm: 'searchTerm',
-	loading: 'loading',
-	hasNextPage: 'hasNextPage',
-	loadingNextPage: 'loadingNextPage',
-	selectCarousel: 'selectCarousel',
-	carouselIndex: 'carouselIndex',
-	error: 'error'
-};
 
-export default
-@contextual('Catalog')
-@searchable(store, propMap)
+
 class Categories extends React.Component {
 	static propTypes = {
 		items: PropTypes.array,
@@ -140,3 +127,20 @@ class Categories extends React.Component {
 		);
 	}
 }
+
+
+export default decorate(Categories, [
+	contextual('Catalog'),
+	searchable(store, {
+		categories: 'categories',
+		carousel: 'carousel',
+		searchItems: 'searchItems',
+		searchTerm: 'searchTerm',
+		loading: 'loading',
+		hasNextPage: 'hasNextPage',
+		loadingNextPage: 'loadingNextPage',
+		selectCarousel: 'selectCarousel',
+		carouselIndex: 'carouselIndex',
+		error: 'error'
+	}),
+]);

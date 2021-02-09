@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {decorate} from '@nti/lib-commons';
 import {searchable, contextual} from '@nti/web-search';
 import {Loading} from '@nti/web-commons';
 
@@ -9,18 +10,8 @@ import Search from '../../../search/components';
 import Store from '../Store';
 
 const store = new Store();
-const propMap = {
-	category: 'category',
-	searchItems: 'searchItems',
-	searchTerm: 'searchTerm',
-	loading: 'loading',
-	error: 'error'
-};
 
-export default
-@contextual('Catalog')
-@searchable(store, propMap)
-class Category extends React.Component {
+class CategoryDetailView extends React.Component {
 	static propTypes = {
 		category: PropTypes.object,
 		searchTerm: PropTypes.string,
@@ -88,3 +79,15 @@ class Category extends React.Component {
 		);
 	}
 }
+
+
+export default decorate(CategoryDetailView, [
+	contextual('Catalog'),
+	searchable(store, {
+		category: 'category',
+		searchItems: 'searchItems',
+		searchTerm: 'searchTerm',
+		loading: 'loading',
+		error: 'error'
+	})
+]);

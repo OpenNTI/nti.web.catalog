@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {decorate} from '@nti/lib-commons';
 import {searchable, contextual} from '@nti/web-search';
 import {Loading, EmptyState, Errors} from '@nti/web-commons';
 import {scoped} from '@nti/lib-locale';
@@ -10,13 +11,6 @@ import Search from '../../search/components';
 import Store from '../Store';
 
 const store = new Store();
-const propMap = {
-	purchased: 'purchased',
-	searchTerm: 'searchTerm',
-	searchItems: 'searchItems',
-	loading: 'loading',
-	error: 'error'
-};
 
 const PURCHASED_TEXT = {
 	empty: 'You don\'t have any courses yet...',
@@ -25,10 +19,7 @@ const PURCHASED_TEXT = {
 
 const t = scoped('catalog.purchased.components.View', PURCHASED_TEXT);
 
-export default
-@contextual(t('search'))
-@searchable(store, propMap)
-class Category extends React.Component {
+class PurchasedView extends React.Component {
 	static propTypes = {
 		purchased: PropTypes.object,
 		searchTerm: PropTypes.string,
@@ -114,3 +105,14 @@ class Category extends React.Component {
 		);
 	}
 }
+
+export default decorate(PurchasedView, [
+	contextual(t('search')),
+	searchable(store, {
+		purchased: 'purchased',
+		searchTerm: 'searchTerm',
+		searchItems: 'searchItems',
+		loading: 'loading',
+		error: 'error'
+	}),
+]);
