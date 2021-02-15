@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {decorate} from '@nti/lib-commons';
-import {searchable, contextual} from '@nti/web-search';
-import {Loading} from '@nti/web-commons';
+import { decorate } from '@nti/lib-commons';
+import { searchable, contextual } from '@nti/web-search';
+import { Loading } from '@nti/web-commons';
 
 import * as Constants from '../../../Constants';
 import GridCard from '../../../grid-card/components/GridCard';
@@ -20,44 +20,52 @@ class CategoryDetailView extends React.Component {
 		match: PropTypes.object,
 		renderData: PropTypes.func,
 		location: PropTypes.object,
-		id: PropTypes.string
-	}
+		id: PropTypes.string,
+	};
 
+	componentDidMount() {
+		const id =
+			this.props.match &&
+			this.props.match.params &&
+			this.props.match.params.id
+				? this.props.match.params.id
+				: '';
 
-	componentDidMount () {
-		const id = this.props.match && this.props.match.params && this.props.match.params.id ?
-			this.props.match.params.id : '';
-
-		if(id === 'item') {
+		if (id === 'item') {
 			return;
 		}
 		store.load(Constants.CATEGORY, id);
 	}
 
-	componentDidUpdate (prevProps) {
+	componentDidUpdate(prevProps) {
 		if (prevProps.location.pathname !== this.props.location.pathname) {
 			store.load(Constants.CATEGORY, this.props.id);
 		}
 	}
 
-	render () {
-		const {loading} = this.props;
+	render() {
+		const { loading } = this.props;
 		if (this.props.searchItems && this.props.searchTerm) {
 			return (
 				<div className="course-catalog">
 					<section className="">
-						<Search term={this.props.searchTerm} courses={this.props.searchItems} loading={this.props.loading}/>
+						<Search
+							term={this.props.searchTerm}
+							courses={this.props.searchItems}
+							loading={this.props.loading}
+						/>
 					</section>
 				</div>
-
 			);
 		}
 
 		return (
-			<div >
+			<div>
 				{loading && (
 					<div className="course-catalog">
-						<div className="loading-mask"><Loading.Mask /></div>
+						<div className="loading-mask">
+							<Loading.Mask />
+						</div>
 					</div>
 				)}
 				{!loading && this.renderItems()}
@@ -65,21 +73,22 @@ class CategoryDetailView extends React.Component {
 		);
 	}
 
-	renderItems () {
+	renderItems() {
 		if (!this.props.category) {
 			return null;
 		}
 		return (
 			<div className="course-catalog">
 				<section className="">
-					<GridCard category={this.props.category} type={Constants.CATEGORY}/>
+					<GridCard
+						category={this.props.category}
+						type={Constants.CATEGORY}
+					/>
 				</section>
 			</div>
-
 		);
 	}
 }
-
 
 export default decorate(CategoryDetailView, [
 	contextual('Catalog'),
@@ -88,6 +97,6 @@ export default decorate(CategoryDetailView, [
 		searchItems: 'searchItems',
 		searchTerm: 'searchTerm',
 		loading: 'loading',
-		error: 'error'
-	})
+		error: 'error',
+	}),
 ]);

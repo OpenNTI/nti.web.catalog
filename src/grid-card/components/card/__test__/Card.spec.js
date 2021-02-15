@@ -7,27 +7,26 @@ import CatalogCard from '../Card';
 
 class ContextProvider extends React.Component {
 	static propTypes = {
-		children: PropTypes.any
-	}
+		children: PropTypes.any,
+	};
 
 	static childContextTypes = {
-		router: PropTypes.object
-	}
+		router: PropTypes.object,
+	};
 
-
-	getChildContext () {
+	getChildContext() {
 		return {
 			router: {
 				history: {
 					createHref: x => x,
 					push: () => {},
-					replace: () => {}
-				}
-			}
+					replace: () => {},
+				},
+			},
 		};
 	}
 
-	render () {
+	render() {
 		return React.Children.only(this.props.children);
 	}
 }
@@ -35,26 +34,35 @@ class ContextProvider extends React.Component {
 describe('Card', () => {
 	let course = {
 		NTIID: 'tag:nextthought.com,2011-10:NTI-CourseInfo-Alpha_NTI_1010',
-		MimeType: 'application/vnd.nextthought.courses.coursecataloglegacyentry',
-		getDefaultAssetRoot: ()=>{},
+		MimeType:
+			'application/vnd.nextthought.courses.coursecataloglegacyentry',
+		getDefaultAssetRoot: () => {},
 		Title: 'Test Title',
 		ProviderUniqueID: 'ID HERE',
 		Instructors: [
 			{
-				Name: 'Instructors 1'
+				Name: 'Instructors 1',
 			},
 			{
-				Name: 'Instructors 2'
-			}
+				Name: 'Instructors 2',
+			},
 		],
 		getStartDate: () => new Date(),
 		getEndDate: () => new Date(),
-		getAuthorLine: () => ''
+		getAuthorLine: () => '',
 	};
 
 	//This is a really dumb test...why?
 	test('Renders Course Card', () => {
-		const {container} = render(<ContextProvider><CatalogCard course={course} /></ContextProvider>);
-		return waitFor(() => expect(container.querySelector('.nti-course-card-container')).toBeTruthy());
+		const { container } = render(
+			<ContextProvider>
+				<CatalogCard course={course} />
+			</ContextProvider>
+		);
+		return waitFor(() =>
+			expect(
+				container.querySelector('.nti-course-card-container')
+			).toBeTruthy()
+		);
 	});
 });

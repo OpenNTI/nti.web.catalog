@@ -1,28 +1,27 @@
-import {getService} from '@nti/web-client';
-import {Stores} from '@nti/lib-store';
+import { getService } from '@nti/web-client';
+import { Stores } from '@nti/lib-store';
 
 import * as Constant from '../Constants';
 
-
 export default class SearchablePagedStore extends Stores.SimpleStore {
-	static convertBatch (batch) {
+	static convertBatch(batch) {
 		const nextLink = batch.getLink('batch-next');
-		const loadNext = !nextLink ?
-			null :
-			async () => {
-				const service = await getService();
-				const nextBatch = await service.getBatch(nextLink);
+		const loadNext = !nextLink
+			? null
+			: async () => {
+					const service = await getService();
+					const nextBatch = await service.getBatch(nextLink);
 
-				return SearchablePagedStore.convertBatch(nextBatch);
-			};
+					return SearchablePagedStore.convertBatch(nextBatch);
+			  };
 
 		return {
 			items: batch.Items,
-			loadNext
+			loadNext,
 		};
 	}
 
-	constructor () {
+	constructor() {
 		super();
 
 		this.set('searchTerm', null);
@@ -34,20 +33,22 @@ export default class SearchablePagedStore extends Stores.SimpleStore {
 		this.set('loading', null);
 		this.set('error', null);
 		this.set('carouselIndex', 0);
-		this.set('selectCarousel', (index) =>{
+		this.set('selectCarousel', index => {
 			this.set('carouselIndex', index);
 		});
 	}
 
-	async load (type, id) {
+	async load(type, id) {
 		this.set('loading', true);
 		this.emitChange('loading');
 
 		if (this.get('searchTerm')) {
-			const searchItems = await this.loadSearchTerm(this.get('searchTerm'));
+			const searchItems = await this.loadSearchTerm(
+				this.get('searchTerm')
+			);
 			this.set('searchItems', searchItems);
 			this.set('loading', false);
-			this.emitChange('searchItems','loading');
+			this.emitChange('searchItems', 'loading');
 			return;
 		}
 
@@ -58,18 +59,15 @@ export default class SearchablePagedStore extends Stores.SimpleStore {
 				this.set('categories', categories.categories);
 				this.set('carousel', categories.carousel);
 				this.emitChange('categories', 'carousel');
-			}
-			else if (type === Constant.CATEGORY) {
+			} else if (type === Constant.CATEGORY) {
 				const category = await this.loadCategory(id);
 				this.set('category', category);
 				this.emitChange('category');
-			}
-			else if (type === Constant.PURCHASED) {
+			} else if (type === Constant.PURCHASED) {
 				const purchased = await this.loadPurchased();
 				this.set('purchased', purchased);
 				this.emitChange('purchased');
 			}
-
 		} catch (e) {
 			this.set('error', e);
 			this.emitChange('error');
@@ -79,7 +77,7 @@ export default class SearchablePagedStore extends Stores.SimpleStore {
 		}
 	}
 
-	updateSearchTerm (term) {
+	updateSearchTerm(term) {
 		this.set('loading', true);
 		this.set('searchTerm', term);
 		this.emitChange('loading', 'searchTerm');
@@ -95,8 +93,7 @@ export default class SearchablePagedStore extends Stores.SimpleStore {
 		}
 	}
 
-
-	async parseRaw (d) {
+	async parseRaw(d) {
 		const data = d;
 		const service = await getService();
 
@@ -105,12 +102,13 @@ export default class SearchablePagedStore extends Stores.SimpleStore {
 		}
 
 		if (data.Items) {
-			data.Items = await Promise.all(data.Items.map(o => this.parseRaw(o)));
+			data.Items = await Promise.all(
+				data.Items.map(o => this.parseRaw(o))
+			);
 		}
 
 		return data;
 	}
-
 
 	/**
 	 * Return the items and loadNext function for a given search term
@@ -118,12 +116,12 @@ export default class SearchablePagedStore extends Stores.SimpleStore {
 	 * @param  {string} term term to search on
 	 * @returns {Object}      with the items and loadNext function
 	 */
-	loadSearchTerm (term) {}
+	loadSearchTerm(term) {}
 
 	/**
 	 * Return the items and loadNext function for a given search term
 	 * @override
 	 * @returns {Object}      with the items and loadNext function
 	 */
-	loadInitial () {}
+	loadInitial() {}
 }

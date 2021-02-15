@@ -1,4 +1,4 @@
-@import "~@nti/style-common";
+@import '~@nti/style-common';
 
 .course-catalog-body {
 	min-width: 100%;
@@ -28,7 +28,8 @@
 		width: 100%;
 	}
 
-	ul, ol {
+	ul,
+	ol {
 		padding-left: 0;
 		overflow: hidden;
 		margin: 0;

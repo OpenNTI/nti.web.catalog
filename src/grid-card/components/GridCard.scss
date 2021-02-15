@@ -1,7 +1,10 @@
-@import "~@nti/style-common";
+@import '~@nti/style-common';
 
 $CUSTOM_RANGES: (
-	portrait-tablet: (737px, 1023px)
+	portrait-tablet: (
+		737px,
+		1023px,
+	),
 );
 
 .course-catalog {

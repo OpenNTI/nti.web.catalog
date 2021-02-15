@@ -9,9 +9,9 @@ import * as Constants from '../../Constants';
 const mockService = () => ({
 	getCollection: () => {
 		return Promise.resolve({
-			Links: [{rel: 'accept-course-invitations'}]
+			Links: [{ rel: 'accept-course-invitations' }],
 		});
-	}
+	},
 });
 
 const onBefore = () => {
@@ -23,34 +23,33 @@ const onBefore = () => {
 
 const onAfter = () => {
 	//unmock getService()
-	const {$AppConfig} = global;
+	const { $AppConfig } = global;
 	delete $AppConfig.nodeInterface;
 	delete $AppConfig.nodeService;
 };
 
 class ContextProvider extends React.Component {
 	static propTypes = {
-		children: PropTypes.any
-	}
+		children: PropTypes.any,
+	};
 
 	static childContextTypes = {
-		router: PropTypes.object
-	}
+		router: PropTypes.object,
+	};
 
-
-	getChildContext () {
+	getChildContext() {
 		return {
 			router: {
 				history: {
 					createHref: x => x,
 					push: () => {},
-					replace: () => {}
-				}
-			}
+					replace: () => {},
+				},
+			},
 		};
 	}
 
-	render () {
+	render() {
 		return React.Children.only(this.props.children);
 	}
 }
@@ -60,27 +59,30 @@ describe('GridCard', () => {
 		{
 			Items: [
 				{
-					NTIID: 'tag:nextthought.com,2011-10:NTI-CourseInfo-Alpha_NTI_1010',
-					getDefaultAssetRoot: ()=>{}
+					NTIID:
+						'tag:nextthought.com,2011-10:NTI-CourseInfo-Alpha_NTI_1010',
+					getDefaultAssetRoot: () => {},
 				},
 				{
-					NTIID: 'tag:nextthought.com,2011-10:NTI-CourseInfo-Alpha_NTI_1010',
-					getDefaultAssetRoot: ()=>{}
+					NTIID:
+						'tag:nextthought.com,2011-10:NTI-CourseInfo-Alpha_NTI_1010',
+					getDefaultAssetRoot: () => {},
 				},
 				{
-					NTIID: 'tag:nextthought.com,2011-10:NTI-CourseInfo-Alpha_NTI_1010',
-					getDefaultAssetRoot: ()=>{}
-				}
+					NTIID:
+						'tag:nextthought.com,2011-10:NTI-CourseInfo-Alpha_NTI_1010',
+					getDefaultAssetRoot: () => {},
+				},
 			],
-			ItemCount:3
-		}
+			ItemCount: 3,
+		},
 	];
 
 	beforeEach(onBefore);
 	afterEach(onAfter);
 
-	test('Test grid card with category have over 4 courses, count courses',  async () => {
-		const {container} = render(
+	test('Test grid card with category have over 4 courses, count courses', async () => {
+		const { container } = render(
 			<ContextProvider>
 				<GridCard
 					courses={purchasedCourses}
@@ -90,6 +92,7 @@ describe('GridCard', () => {
 		);
 
 		return waitFor(() =>
-			expect(container.querySelectorAll('ul li').length).toEqual(1));
+			expect(container.querySelectorAll('ul li').length).toEqual(1)
+		);
 	});
 });

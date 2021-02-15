@@ -1,10 +1,10 @@
-import {Router, Route} from '@nti/web-routing';
+import { Router, Route } from '@nti/web-routing';
 
 import Categories from './categories/components';
 import Category from './category-detail/components';
 
 export default Router.for([
-	Route({path: '/nti-course-catalog-entry', component: Categories}),
+	Route({ path: '/nti-course-catalog-entry', component: Categories }),
 	Route({
 		path: '/:id',
 		component: Category,
@@ -15,14 +15,12 @@ export default Router.for([
 				}
 
 				return `/${encodeURIComponent(obj.Name)}`;
-			}
-
-			else if (obj.action === 'back' && context === 'catalog') {
+			} else if (obj.action === 'back' && context === 'catalog') {
 				return '/';
 			}
 
 			return null;
-		}
+		},
 	}),
-	Route({path: '/', component: Categories, name: 'catalog.courses'}),
+	Route({ path: '/', component: Categories, name: 'catalog.courses' }),
 ]);

@@ -1,22 +1,29 @@
-import {getService} from '@nti/web-client';
+import { getService } from '@nti/web-client';
 
 import SearchablePagedStore from '../common/SearchablePageStore';
 import * as Constants from '../Constants';
 
 export default class CategoryStore extends SearchablePagedStore {
-	async loadSearchTerm (term) {
+	async loadSearchTerm(term) {
 		const service = await getService();
-		const {href : href } = service.getCollection('Purchased', 'Catalog');
-		const searchItems = await service.getBatch(href, {batchSize: Constants.BATCH_SIZE, batchStart: 0, filter: term});
+		const { href: href } = service.getCollection('Purchased', 'Catalog');
+		const searchItems = await service.getBatch(href, {
+			batchSize: Constants.BATCH_SIZE,
+			batchStart: 0,
+			filter: term,
+		});
 
 		return searchItems;
 	}
 
-	async loadPurchased () {
+	async loadPurchased() {
 		const service = await getService();
-		const {href : href } = service.getCollection('Purchased', 'Catalog');
+		const { href: href } = service.getCollection('Purchased', 'Catalog');
 
-		const purchased = await service.getBatch(href, {batchSize: Constants.BATCH_SIZE, batchStart: 0});
+		const purchased = await service.getBatch(href, {
+			batchSize: Constants.BATCH_SIZE,
+			batchStart: 0,
+		});
 		return purchased;
 	}
 }

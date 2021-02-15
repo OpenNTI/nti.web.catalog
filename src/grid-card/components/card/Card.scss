@@ -1,8 +1,14 @@
-@import "~@nti/style-common";
+@import '~@nti/style-common';
 
 $CUSTOM_RANGES: (
-	mobile: (null, 736px),
-	portrait-tablet: (737px, 1023px)
+	mobile: (
+		null,
+		736px,
+	),
+	portrait-tablet: (
+		737px,
+		1023px,
+	),
 );
 
 @mixin bg-gradient($color1, $color2) {
@@ -12,8 +18,9 @@ $CUSTOM_RANGES: (
 .course-catalog {
 	.content-catalog {
 		&.no-sidebar {
-			.course-block, .categories-block {
-				&:nth-child(3n+3) {
+			.course-block,
+			.categories-block {
+				&:nth-child(3n + 3) {
 					margin-right: 9px;
 
 					@include responsive-range(mobile, $CUSTOM_RANGES) {
@@ -25,7 +32,7 @@ $CUSTOM_RANGES: (
 					}
 				}
 
-				&:nth-child(4n+4) {
+				&:nth-child(4n + 4) {
 					margin-right: 0;
 
 					@include responsive-range(tablet) {
@@ -35,7 +42,7 @@ $CUSTOM_RANGES: (
 			}
 
 			.expanse-block {
-				&:nth-child(4n+4) {
+				&:nth-child(4n + 4) {
 					@include responsive-range(portrait-tablet, $CUSTOM_RANGES) {
 						display: none;
 					}
@@ -43,13 +50,13 @@ $CUSTOM_RANGES: (
 			}
 
 			.category-detail {
-				&:nth-child(4n+4) {
+				&:nth-child(4n + 4) {
 					@include responsive-range(portrait-tablet, $CUSTOM_RANGES) {
 						margin-right: 5px;
 					}
 				}
 
-				&:nth-child(3n+3) {
+				&:nth-child(3n + 3) {
 					@include responsive-range(portrait-tablet, $CUSTOM_RANGES) {
 						margin-right: 25px;
 					}
@@ -114,7 +121,7 @@ $CUSTOM_RANGES: (
 			margin: 5px;
 		}
 
-		&:nth-child(3n+3) {
+		&:nth-child(3n + 3) {
 			margin-right: 0;
 		}
 	}
@@ -176,7 +183,7 @@ $CUSTOM_RANGES: (
 			background: linear-gradient(45deg, #5f7e8d, #99c0d4);
 		}
 
-		&:nth-child(3n+3) {
+		&:nth-child(3n + 3) {
 			margin-right: 0;
 
 			@include responsive-range(mobile, $CUSTOM_RANGES) {

@@ -1,7 +1,10 @@
-@import "~@nti/style-common";
+@import '~@nti/style-common';
 
 $CUSTOM_RANGES: (
-	ipadpro: (1023px, 1366px)
+	ipadpro: (
+		1023px,
+		1366px,
+	),
 );
 
 .course-catalog {
@@ -34,7 +37,8 @@ $CUSTOM_RANGES: (
 	.input-redeem {
 		width: 100%;
 
-		input, button {
+		input,
+		button {
 			height: 50px;
 			display: block;
 			float: left;

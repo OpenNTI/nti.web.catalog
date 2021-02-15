@@ -5,93 +5,82 @@ import { render, waitFor } from '@testing-library/react';
 
 import CategoryDetail from '../components/CategoryDetail';
 
-function buildCourse (title) {
+function buildCourse(title) {
 	return {
 		title,
 		getDefaultAssetRoot: () => {},
 		getStartDate: () => new Date(),
 		getEndDate: () => new Date(),
-		MimeType: 'application/vnd.nextthought.courses.coursecataloglegacyentry',
-		getAuthorLine: () => ''
+		MimeType:
+			'application/vnd.nextthought.courses.coursecataloglegacyentry',
+		getAuthorLine: () => '',
 	};
 }
 
-
 class ContextProvider extends React.Component {
 	static propTypes = {
-		children: PropTypes.any
-	}
+		children: PropTypes.any,
+	};
 
 	static childContextTypes = {
-		router: PropTypes.object
-	}
+		router: PropTypes.object,
+	};
 
-
-	getChildContext () {
+	getChildContext() {
 		return {
 			router: {
 				history: {
 					createHref: x => x,
 					push: () => {},
-					replace: () => {}
-				}
-			}
+					replace: () => {},
+				},
+			},
 		};
 	}
 
-	render () {
+	render() {
 		return React.Children.only(this.props.children);
 	}
 }
 
 describe('CategoryDetail', () => {
 	const category = {
-		Items: [
-			buildCourse('title1'),
-			buildCourse('title2')
-		],
+		Items: [buildCourse('title1'), buildCourse('title2')],
 		Total: 30,
 		ItemCount: 2,
-		hasLink: () => false
+		hasLink: () => false,
 	};
 
 	const categoryWithMore = {
-		Items: [
-			buildCourse('title1'),
-			buildCourse('title2')
-		],
+		Items: [buildCourse('title1'), buildCourse('title2')],
 		Total: 50,
 		ItemCount: 2,
-		hasLink: rel => rel === 'batch-next'
+		hasLink: rel => rel === 'batch-next',
 	};
 	const other = true;
 
 	test('Test category without hasLink', () => {
-		const cat = {Items: []};
-		expect(() => render(
-			<ContextProvider>
-				<CategoryDetail
-					category={cat}
-					other={other}
-				/>
-			</ContextProvider>
-		)).not.toThrow();
+		const cat = { Items: [] };
+		expect(() =>
+			render(
+				<ContextProvider>
+					<CategoryDetail category={cat} other={other} />
+				</ContextProvider>
+			)
+		).not.toThrow();
 	});
 
 	test('Test category with no more button', async () => {
 		const ref = React.createRef();
 		render(
 			<ContextProvider>
-				<CategoryDetail
-					ref={ref}
-					category={category}
-					other={other}
-				/>
+				<CategoryDetail ref={ref} category={category} other={other} />
 			</ContextProvider>
 		);
 
 		return waitFor(() =>
-			expect(ref.current.state.noMore).toEqual(undefined)); //TODO: fix this test its suppose to be true
+			expect(ref.current.state.noMore).toEqual(undefined)
+		); //TODO: fix this test its suppose to be true
 	});
 
 	test('Test category with more button', async () => {
@@ -106,6 +95,7 @@ describe('CategoryDetail', () => {
 			</ContextProvider>
 		);
 		return waitFor(() =>
-			expect(ref.current.state.noMore).toEqual(undefined));
+			expect(ref.current.state.noMore).toEqual(undefined)
+		);
 	});
 });
