@@ -4,7 +4,12 @@ import Categories from './categories/components';
 import Category from './category-detail/components';
 
 export default Router.for([
-	Route({ path: '/nti-course-catalog-entry', component: Categories }),
+	Route({
+		path: '/(nti-course-catalog-entry/.*)?',
+		component: Categories,
+		name: 'catalog.courses',
+		exact: true,
+	}),
 	Route({
 		path: '/:id',
 		component: Category,
@@ -22,5 +27,4 @@ export default Router.for([
 			return null;
 		},
 	}),
-	Route({ path: '/', component: Categories, name: 'catalog.courses' }),
 ]);
