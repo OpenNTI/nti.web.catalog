@@ -15,7 +15,6 @@ import Search from '../../../search/components';
 import Store from '../Store';
 
 const { Responsive } = Layouts;
-const contactOpenBodyClass = 'contact-popup-open';
 const store = new Store(); //FIXME: I would prefer if the store could be constructed on first use/mount... instead of statically.
 
 class Categories extends React.Component {
@@ -41,10 +40,6 @@ class Categories extends React.Component {
 
 	componentDidMount() {
 		store.load(Constant.CATEGORIES);
-	}
-
-	componentWillUnmount() {
-		document.body.classList.remove(contactOpenBodyClass);
 	}
 
 	showContact = () => {
