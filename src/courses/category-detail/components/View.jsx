@@ -38,7 +38,7 @@ class CategoryDetailView extends React.Component {
 	}
 
 	componentDidUpdate(prevProps) {
-		if (prevProps.location.pathname !== this.props.location.pathname) {
+		if (prevProps.id !== this.props.id) {
 			store.load(Constants.CATEGORY, this.props.id);
 		}
 	}
