@@ -5,9 +5,9 @@ import Category from './category-detail/components';
 
 export default Router.for([
 	Route({
-		path: '/(nti-course-catalog-entry/.*)?',
+		path: ['/', '/nti-course-catalog-entry/*'],
 		component: Categories,
-		name: 'catalog.courses',
+		// name: 'catalog.courses',
 		exact: true,
 	}),
 	Route({
