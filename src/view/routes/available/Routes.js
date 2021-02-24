@@ -1,5 +1,4 @@
 import {Router, Route} from '@nti/web-routing';
-import {encodeForURI} from '@nti/lib-ntiids';
 
 import {RouteContexts} from '../../Constants';
 
@@ -7,16 +6,10 @@ import View from './View';
 
 export default Router.for([
 	Route({
-		path: '/nti-course-catalog-entry/:entryId',
+		path: ['/', '/nti-course-catalog-entry/*'],
 		component: View,
-		getRouteFor: (obj, context) => {
-			if (obj.isCourseCatalogEntry) {
-				debugger;
-				return `./nti-course-catalog-entry/${encodeForURI(obj.getID())}`;
-			}
-		}
+		exact: true
 	}),
-	Route({path: '/:category/nti-course-catalog-entry/:entryId', component: View}),
 	Route({
 		path: '/:category/',
 		component: View,
@@ -29,6 +22,5 @@ export default Router.for([
 				return `/${encodeURIComponent(obj.Name)}/`;
 			}
 		}
-	}),
-	Route({path: '/', component: View})
+	})
 ]);

@@ -32,7 +32,7 @@ CatalogFrame.propTypes = {
 export default function CatalogFrame ({children}) {
 	const router = Router.useRouter();
 	const baseroute = router?.baseroute;
-	const pathname = router?.route?.location?.pathname;
+	const pathname = global.location?.pathname;
 	const child = React.Children.only(children);
 
 
