@@ -1,6 +1,6 @@
 /* eslint-env jest */
 import React from 'react';
-import {shallow} from 'enzyme';
+import { render } from '@testing-library/react';
 
 import CarouselItem from '../components/CarouselItem';
 
@@ -22,17 +22,17 @@ describe('Carousel', () => {
 	};
 
 	test('Course title is string', () => {
-		const wrapper = shallow(<CarouselItem data={data} />);
-		expect(wrapper.find('.title-carousel').first().text()).toEqual(title);
+		const {container} = render(<CarouselItem data={data} />);
+		expect(container.querySelector('.title-carousel').textContent).toEqual(title);
 	});
 
 	test('Course description when RichDescription define', () => {
-		const wrapper = shallow(<CarouselItem data={data} />);
-		expect(wrapper.find('.detail-txt').first().render().text()).toEqual(richDescription);
+		const {container} = render(<CarouselItem data={data} />);
+		expect(container.querySelector('.detail-txt').textContent).toEqual(richDescription);
 	});
 
 	test('Course description when RichDescription undefined', () => {
-		const wrapper = shallow(<CarouselItem data={dataTemp} />);
-		expect(wrapper.find('.detail-txt').first().render().text()).toEqual(description);
+		const {container} = render(<CarouselItem data={dataTemp} />);
+		expect(container.querySelector('.detail-txt').textContent).toEqual(description);
 	});
 });
