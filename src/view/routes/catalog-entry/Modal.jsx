@@ -8,7 +8,7 @@ import View from './View';
 import getCatalogEntry from './get-catalog-entry';
 
 const {useResolver} = Hooks;
-const {isResolved} = useResolver;
+// const {isResolved} = useResolver;
 
 const cx = classnames.bind(Styles);
 
@@ -17,7 +17,7 @@ CatalogEntryModal.propTypes = {
 };
 export default function CatalogEntryModal ({entryId}) {
 	const resolver = useResolver(() => getCatalogEntry(entryId), [entryId]);
-	const catalog = isResolved(resolver) ? resolver : null;
+	// const catalog = isResolved(resolver) ? resolver : null;
 
 	return (
 		<Prompt.Dialog>
