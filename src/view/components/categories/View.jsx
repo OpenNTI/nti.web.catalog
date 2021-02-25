@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
-import {Text, EmptyState} from '@nti/web-commons';
-import {scoped} from '@nti/lib-locale';
+import { Text, EmptyState } from '@nti/web-commons';
+import { scoped } from '@nti/lib-locale';
 
-import {NTIOtherCategory} from '../../Constants';
+import { NTIOtherCategory } from '../../Constants';
 import Content from '../Content';
 import Grid from '../Grid';
 import Preview from '../category/Preview';
@@ -15,27 +15,30 @@ import Styles from './View.css';
 const cx = classnames.bind(Styles);
 const t = scoped('nti-catalog.view.components.categories', {
 	topCategories: 'Top Categories',
-	empty: 'There are no courses available.'
+	empty: 'There are no courses available.',
 });
 
-function getCategoryParts (categories) {
-	return categories.reduce((acc, category) => {
-		if (category.Name === NTIOtherCategory) {
-			acc.other = category;
-		} else if (category.ItemCount < 4) {
-			acc.collapsed.push(category);
-		} else {
-			acc.expanded.push(category);
-		}
+function getCategoryParts(categories) {
+	return categories.reduce(
+		(acc, category) => {
+			if (category.Name === NTIOtherCategory) {
+				acc.other = category;
+			} else if (category.ItemCount < 4) {
+				acc.collapsed.push(category);
+			} else {
+				acc.expanded.push(category);
+			}
 
-		return acc;
-	}, {collapsed: [], expanded: [], other: null});
+			return acc;
+		},
+		{ collapsed: [], expanded: [], other: null }
+	);
 }
 
 Categories.propTypes = {
-	categories: PropTypes.array
+	categories: PropTypes.array,
 };
-export default function Categories ({categories}) {
+export default function Categories({ categories }) {
 	if (!categories || !categories.length) {
 		return (
 			<Content className={cx('catalog-categories')}>
@@ -44,7 +47,7 @@ export default function Categories ({categories}) {
 		);
 	}
 
-	const {collapsed, expanded, other} = getCategoryParts(categories);
+	const { collapsed, expanded, other } = getCategoryParts(categories);
 
 	return (
 		<Content className={cx('catalog-categories')}>
@@ -65,7 +68,7 @@ export default function Categories ({categories}) {
 				</Text.Base>
 			)}
 			{collapsed.length > 0 && (
-				<Grid as="ul" className={cx('collapsed')} allowTwoColumns >
+				<Grid as="ul" className={cx('collapsed')} allowTwoColumns>
 					{collapsed.map((category, index) => {
 						return (
 							<li key={index}>
@@ -75,9 +78,7 @@ export default function Categories ({categories}) {
 					})}
 				</Grid>
 			)}
-			{other && (
-				<Preview category={other} />
-			)}
+			{other && <Preview category={other} />}
 		</Content>
 	);
 }

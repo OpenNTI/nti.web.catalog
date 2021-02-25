@@ -8,17 +8,21 @@ import SearchWrapper from '../components/SearchWrapper';
 
 CatalogAvailableDesktop.propTypes = {
 	category: PropTypes.string,
-	entryId: PropTypes.string
+	entryId: PropTypes.string,
 };
-export default function CatalogAvailableDesktop ({category, entryId, ...otherProps}) {
+export default function CatalogAvailableDesktop({
+	category,
+	entryId,
+	...otherProps
+}) {
 	return (
 		<SearchWrapper>
-			{
-				category ?
-					(<Category category={category} {...otherProps} />) :
-					(<AllCategories {...otherProps} />)
-			}
-			{entryId && (<CatalogEntry entryId={entryId} />)}
+			{category ? (
+				<Category category={category} {...otherProps} />
+			) : (
+				<AllCategories {...otherProps} />
+			)}
+			{entryId && <CatalogEntry entryId={entryId} />}
 		</SearchWrapper>
 	);
 }

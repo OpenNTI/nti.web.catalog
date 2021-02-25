@@ -1,7 +1,10 @@
-@import "~@nti/style-common";
+@import '~@nti/style-common';
 
 $CUSTOM_RANGES: (
-	mobileLandscape: (600px, 767px)
+	mobileLandscape: (
+		600px,
+		767px,
+	),
 );
 
 .course-catalog {
@@ -65,7 +68,7 @@ $CUSTOM_RANGES: (
 				}
 
 				.course-title {
-					font: normal 700 1em/1.1em "Open Sans Condensed";
+					font: normal 700 1em/1.1em 'Open Sans Condensed';
 					max-height: 2.2em;
 					overflow: hidden;
 					text-overflow: ellipsis;

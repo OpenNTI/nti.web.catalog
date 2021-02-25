@@ -18,21 +18,27 @@ describe('Carousel', () => {
 	const dataTemp = {
 		NTIID: ntiid,
 		title: title,
-		description: description
+		description: description,
 	};
 
 	test('Course title is string', () => {
-		const {container} = render(<CarouselItem data={data} />);
-		expect(container.querySelector('.title-carousel').textContent).toEqual(title);
+		const { container } = render(<CarouselItem data={data} />);
+		expect(container.querySelector('.title-carousel').textContent).toEqual(
+			title
+		);
 	});
 
 	test('Course description when RichDescription define', () => {
-		const {container} = render(<CarouselItem data={data} />);
-		expect(container.querySelector('.detail-txt').textContent).toEqual(richDescription);
+		const { container } = render(<CarouselItem data={data} />);
+		expect(container.querySelector('.detail-txt').textContent).toEqual(
+			richDescription
+		);
 	});
 
 	test('Course description when RichDescription undefined', () => {
-		const {container} = render(<CarouselItem data={dataTemp} />);
-		expect(container.querySelector('.detail-txt').textContent).toEqual(description);
+		const { container } = render(<CarouselItem data={dataTemp} />);
+		expect(container.querySelector('.detail-txt').textContent).toEqual(
+			description
+		);
 	});
 });

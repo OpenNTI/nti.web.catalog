@@ -8,22 +8,24 @@ import SearchWrapper from '../components/SearchWrapper';
 
 CatalogAvailableMobile.propTypes = {
 	category: PropTypes.string,
-	entryId: PropTypes.string
+	entryId: PropTypes.string,
 };
-export default function CatalogAvailableMobile ({category, entryId, ...otherProps}) {
+export default function CatalogAvailableMobile({
+	category,
+	entryId,
+	...otherProps
+}) {
 	if (entryId) {
-		return (
-			<CatalogEntry entryId={entryId} />
-		);
+		return <CatalogEntry entryId={entryId} />;
 	}
 
 	return (
 		<SearchWrapper>
-			{
-				category ?
-					(<Category category={category} {...otherProps} />) :
-					(<AllCategories {...otherProps} />)
-			}
+			{category ? (
+				<Category category={category} {...otherProps} />
+			) : (
+				<AllCategories {...otherProps} />
+			)}
 		</SearchWrapper>
 	);
 }

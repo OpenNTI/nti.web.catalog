@@ -1,25 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {getService} from '@nti/web-client';
-import {searchable, contextual} from '@nti/web-search';
+import { getService } from '@nti/web-client';
+import { searchable, contextual } from '@nti/web-search';
 
 import Search from '../../../components/search';
-import {BatchSize} from '../../../Constants';
+import { BatchSize } from '../../../Constants';
 
-async function loadSearchResults (filter) {
+async function loadSearchResults(filter) {
 	const service = await getService();
 	const catalog = service.getCollection('Purchased', 'Catalog');
 
-	const searchItems = await service.getBatch(catalog.href, {batchSize: BatchSize, batchStart: 0, filter});
+	const searchItems = await service.getBatch(catalog.href, {
+		batchSize: BatchSize,
+		batchStart: 0,
+		filter,
+	});
 
 	return searchItems;
 }
 
 CatalogPurchasedSearch.propTypes = {
 	searchTerm: PropTypes.string,
-	children: PropTypes.any
+	children: PropTypes.any,
 };
-function CatalogPurchasedSearch ({searchTerm, children}) {
+function CatalogPurchasedSearch({ searchTerm, children }) {
 	if (searchTerm) {
 		return (
 			<Search searchTerm={searchTerm} loadResults={loadSearchResults} />
@@ -29,4 +33,6 @@ function CatalogPurchasedSearch ({searchTerm, children}) {
 	return children;
 }
 
-export default contextual('Courses')(searchable(null, null)(CatalogPurchasedSearch));
+export default contextual('Courses')(
+	searchable(null, null)(CatalogPurchasedSearch)
+);

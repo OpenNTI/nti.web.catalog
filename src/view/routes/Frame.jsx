@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
-import {Navigation} from '@nti/web-commons';
-import {Router} from '@nti/web-routing';
-import {scoped} from '@nti/lib-locale';
+import { Navigation } from '@nti/web-commons';
+import { Router } from '@nti/web-routing';
+import { scoped } from '@nti/lib-locale';
 
-import {Routes} from '../Constants';
+import { Routes } from '../Constants';
 
 import Styles from './Frame.css';
 
@@ -14,27 +14,28 @@ const t = scoped('nti-catalog.view.Frame', {
 	tabs: {
 		available: 'Courses',
 		purchased: 'History',
-		redeem: 'Redeem'
-	}
+		redeem: 'Redeem',
+	},
 });
 
 const trimTrailingSlash = route => route.replace(/\/$/, '');
 
-function isActiveRoute (route, pathname, baseroute) {
-	if (trimTrailingSlash(route) === trimTrailingSlash(baseroute)) { return trimTrailingSlash(route) === trimTrailingSlash(pathname); }
+function isActiveRoute(route, pathname, baseroute) {
+	if (trimTrailingSlash(route) === trimTrailingSlash(baseroute)) {
+		return trimTrailingSlash(route) === trimTrailingSlash(pathname);
+	}
 
 	return pathname.indexOf(route) === 0;
 }
 
 CatalogFrame.propTypes = {
-	children: PropTypes.any
+	children: PropTypes.any,
 };
-export default function CatalogFrame ({children}) {
+export default function CatalogFrame({ children }) {
 	const router = Router.useRouter();
 	const baseroute = router?.baseroute;
 	const pathname = global.location?.pathname;
 	const child = React.Children.only(children);
-
 
 	const availableRoute = router.getRouteFor(Routes.Available);
 	const purchasedRoute = router.getRouteFor(Routes.Purchased);
@@ -63,9 +64,7 @@ export default function CatalogFrame ({children}) {
 					active={redeemActive}
 				/>
 			</Navigation.Tabs>
-			<div className={cx('catalog-frame', 'course-catalog')}>
-				{child}
-			</div>
+			<div className={cx('catalog-frame', 'course-catalog')}>{child}</div>
 		</>
 	);
 }

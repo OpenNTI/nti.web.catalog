@@ -13,7 +13,6 @@
 	}
 }
 
-
 @media (min-width: 736px) and (max-width: 799px) {
 	.catalog-grid {
 		display: grid;
@@ -35,7 +34,6 @@
 		grid-gap: var(--catalog-gap, 18px);
 	}
 }
-
 
 @media (min-width: 1044px) {
 	.catalog-grid {

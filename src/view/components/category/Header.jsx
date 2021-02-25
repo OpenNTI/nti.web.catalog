@@ -1,28 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
-import {scoped} from '@nti/lib-locale';
-import {Text} from '@nti/web-commons';
-import {LinkTo} from '@nti/web-routing';
+import { scoped } from '@nti/lib-locale';
+import { Text } from '@nti/web-commons';
+import { LinkTo } from '@nti/web-routing';
 
-import {Routes} from '../../Constants';
+import { Routes } from '../../Constants';
 import Content from '../Content';
 
 import Styles from './Header.css';
-import {getGradientClass} from './Gradient';
-import {getName} from './Name';
+import { getGradientClass } from './Gradient';
+import { getName } from './Name';
 
 const cx = classnames.bind(Styles);
 const t = scoped('nti-catalog.view.components.category.Header', {
-	'back': 'Back'
+	back: 'Back',
 });
 
 CategoryHeader.propTypes = {
 	category: PropTypes.shape({
-		Name: PropTypes.string
-	})
+		Name: PropTypes.string,
+	}),
 };
-export default function CategoryHeader ({category}) {
+export default function CategoryHeader({ category }) {
 	return (
 		<div className={cx('category-header', getGradientClass(category))}>
 			<Content className={cx('header-content')}>

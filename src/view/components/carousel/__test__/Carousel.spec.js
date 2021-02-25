@@ -7,27 +7,26 @@ import Carousel from '../components/Carousel';
 
 class ContextProvider extends React.Component {
 	static propTypes = {
-		children: PropTypes.any
-	}
+		children: PropTypes.any,
+	};
 
 	static childContextTypes = {
-		router: PropTypes.object
-	}
+		router: PropTypes.object,
+	};
 
-
-	getChildContext () {
+	getChildContext() {
 		return {
 			router: {
 				history: {
 					createHref: x => x,
 					push: () => {},
-					replace: () => {}
-				}
-			}
+					replace: () => {},
+				},
+			},
 		};
 	}
 
-	render () {
+	render() {
 		return React.Children.only(this.props.children);
 	}
 }
@@ -39,18 +38,18 @@ describe('Carousel', () => {
 		{
 			ProviderUniqueID: 'ITEM1',
 			NTIID: 'tag:nextthought.com,2011-10:NTI-CourseInfo-Alpha_NTI_1010',
-			getDefaultAssetRoot: ()=>{}
+			getDefaultAssetRoot: () => {},
 		},
 		{
 			ProviderUniqueID: 'ITEM2',
 			NTIID: 'tag:nextthought.com,2011-10:NTI-CourseInfo-Alpha_NTI_1011',
-			getDefaultAssetRoot: ()=>{}
+			getDefaultAssetRoot: () => {},
 		},
 		{
 			ProviderUniqueID: 'ITEM3',
 			NTIID: 'tag:nextthought.com,2011-10:NTI-CourseInfo-Alpha_NTI_1012',
-			getDefaultAssetRoot: ()=>{}
-		}
+			getDefaultAssetRoot: () => {},
+		},
 	];
 
 	const getCmp = () => {
@@ -66,35 +65,36 @@ describe('Carousel', () => {
 						selectCarousel={selectCarousel}
 					/>
 				</ContextProvider>
-			)};
+			),
+		};
 	};
 
 	test('Test click next carousel', async () => {
-		const {container} = getCmp();
+		const { container } = getCmp();
 
 		const nextButton = container.querySelector('.icon-chevronup-25');
 
 		fireEvent.click(nextButton);
 
-		return waitFor(() =>
-			expect(selectCarousel).toHaveBeenCalled());
+		return waitFor(() => expect(selectCarousel).toHaveBeenCalled());
 	});
 
 	test('Test click pre carousel', async () => {
-		const {container} = getCmp();
+		const { container } = getCmp();
 
 		const preButton = container.querySelector('.icon-chevrondown-25');
 
 		fireEvent.click(preButton);
 
-		return waitFor(() =>
-			expect(selectCarousel).toHaveBeenCalled());
+		return waitFor(() => expect(selectCarousel).toHaveBeenCalled());
 	});
 
 	test('Test change carousel selected index when click next', async () => {
-		const {container} = getCmp();
+		const { container } = getCmp();
 
-		expect(container.querySelector('.course-id').textContent).toEqual('ITEM1');
+		expect(container.querySelector('.course-id').textContent).toEqual(
+			'ITEM1'
+		);
 		fireEvent.click(container.querySelector('.icon-chevronup-25'));
 
 		return waitFor(() => {
@@ -105,9 +105,11 @@ describe('Carousel', () => {
 	});
 
 	test('Test change carousel selected index when click previous', async () => {
-		const {container} = getCmp();
+		const { container } = getCmp();
 
-		expect(container.querySelector('.course-id').textContent).toEqual('ITEM1');
+		expect(container.querySelector('.course-id').textContent).toEqual(
+			'ITEM1'
+		);
 		fireEvent.click(container.querySelector('.icon-chevrondown-25'));
 
 		return waitFor(() => {

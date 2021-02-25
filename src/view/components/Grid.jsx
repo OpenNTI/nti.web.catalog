@@ -9,12 +9,22 @@ const cx = classnames.bind(Styles);
 CatalogGrid.propTypes = {
 	className: PropTypes.string,
 	as: PropTypes.any,
-	allowTwoColumns: PropTypes.bool
+	allowTwoColumns: PropTypes.bool,
 };
-export default function CatalogGrid ({className, as: tag, allowTwoColumns, ...otherProps}) {
+export default function CatalogGrid({
+	className,
+	as: tag,
+	allowTwoColumns,
+	...otherProps
+}) {
 	const Cmp = tag || 'div';
 
 	return (
-		<Cmp className={cx('catalog-grid', className, {'allow-two-columns': allowTwoColumns})} {...otherProps} />
+		<Cmp
+			className={cx('catalog-grid', className, {
+				'allow-two-columns': allowTwoColumns,
+			})}
+			{...otherProps}
+		/>
 	);
 }

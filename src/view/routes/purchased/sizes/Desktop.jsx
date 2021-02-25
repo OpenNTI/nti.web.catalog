@@ -5,9 +5,9 @@ import PurchasedItems from '../components/PurchasedItems';
 import SearchWrapper from '../components/SearchWrapper';
 
 PurchasedDesktop.propTypes = {
-	entityId: PropTypes.string
+	entityId: PropTypes.string,
 };
-export default function PurchasedDesktop ({entityId}) {
+export default function PurchasedDesktop({ entityId }) {
 	return (
 		<SearchWrapper>
 			<PurchasedItems />

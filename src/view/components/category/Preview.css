@@ -32,8 +32,8 @@
 
 @media (max-width: 1044px) {
 	.preview-item-list {
-		 & > *:nth-child(4n) {
-		 	display: none;
-		 }
+		& > *:nth-child(4n) {
+			display: none;
+		}
 	}
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
-import {Card} from '@nti/web-course';
+import { Card } from '@nti/web-course';
 
 import Grid from '../Grid';
 
@@ -13,14 +13,18 @@ CatalogItemList.propTypes = {
 	className: PropTypes.string,
 	items: PropTypes.arrayOf(
 		PropTypes.shape({
-			getID: PropTypes.func
+			getID: PropTypes.func,
 		})
-	)
+	),
 };
-export default function CatalogItemList ({className, items, ...otherProps}) {
+export default function CatalogItemList({ className, items, ...otherProps }) {
 	return (
-		<Grid as="ul" className={cx('catalog-item-list', className)} {...otherProps} >
-			{(items || []).map((item) => {
+		<Grid
+			as="ul"
+			className={cx('catalog-item-list', className)}
+			{...otherProps}
+		>
+			{(items || []).map(item => {
 				return (
 					<li key={item.getID()}>
 						<Card course={item} collapseToList />

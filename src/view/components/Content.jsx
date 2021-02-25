@@ -7,9 +7,9 @@ import Styles from './Content.css';
 const cx = classnames.bind(Styles);
 
 Content.propTypes = {
-	className: PropTypes.string
+	className: PropTypes.string,
 };
-export default function Content ({className, ...otherProps}) {
+export default function Content({ className, ...otherProps }) {
 	return (
 		<section className={cx(className, 'catalog-content')} {...otherProps} />
 	);

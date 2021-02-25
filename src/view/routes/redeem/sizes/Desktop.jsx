@@ -5,10 +5,8 @@ import Form from '../components/Form';
 
 CatalogRedeemDesktop.propTypes = {
 	code: PropTypes.string,
-	entryId: PropTypes.string
+	entryId: PropTypes.string,
 };
-export default function CatalogRedeemDesktop ({code, entryId, ...otherProps}) {
-	return (
-		<Form code={code} {...otherProps} />
-	);
+export default function CatalogRedeemDesktop({ code, entryId, ...otherProps }) {
+	return <Form code={code} {...otherProps} />;
 }
