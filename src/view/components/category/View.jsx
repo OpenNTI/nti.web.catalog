@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
 import { scoped } from '@nti/lib-locale';
@@ -17,6 +17,11 @@ const t = scoped('nti-catalog.view.components.category.View', {
 	viewMore: 'View More',
 });
 
+const NEXT_STATE = (state, action) => ({
+	...state,
+	...action,
+});
+
 const hasNextBatch = batch =>
 	batch && batch.hasLink('batch-next') && batch.Items?.length >= BatchSize;
 
@@ -25,27 +30,29 @@ Category.propTypes = {
 	header: PropTypes.bool,
 };
 export default function Category({ category, header = true }) {
-	const [batches, setBatches] = React.useState([category]);
-	const [loadingMore, setLoadingMore] = React.useState(false);
-	const [loadMoreError, setLoadMoreError] = React.useState(null);
+	const [{ batches, loading, error }, setState] = useReducer(NEXT_STATE, {
+		batches: [category],
+		error: null,
+		loading: false,
+	});
 
 	const lastBatch = batches[batches.length - 1];
 	const loadMore =
 		hasNextBatch(lastBatch) &&
 		(async () => {
 			try {
-				setLoadingMore(true);
+				setState({ loading: true });
 
 				const service = await getService();
 				const nextBatch = await service.getBatch(
 					lastBatch.getLink('batch-next')
 				);
 
-				setBatches([...batches, nextBatch]);
-			} catch (e) {
-				setLoadMoreError(e);
+				setState({ batches: [...batches, nextBatch] });
+			} catch (er) {
+				setState({ error: er });
 			} finally {
-				setLoadingMore(false);
+				setState({ loading: false });
 			}
 		});
 
@@ -60,11 +67,9 @@ export default function Category({ category, header = true }) {
 				<ItemList items={items} />
 				{loadMore && (
 					<div className={cx('category-more')}>
-						{loadingMore && <Loading.Spinner />}
-						{!loadingMore && loadMoreError && (
-							<Errors.Message error={loadMoreError} />
-						)}
-						{!loadingMore && !loadMoreError && (
+						{loading && <Loading.Spinner />}
+						{!loading && error && <Errors.Message error={error} />}
+						{!loading && !error && (
 							<Text.Base
 								as="a"
 								className={cx('view-more')}
