@@ -23,7 +23,6 @@ const SEARCH_TEXT = {
 const t = scoped('catalog.search.components.View', SEARCH_TEXT);
 
 export default function Search(props) {
-	const noResult = t('empty');
 	const { courses, loading, term, isSearchPurchased } = props;
 	const count =
 		courses.FilteredTotalItemCount != null
@@ -45,7 +44,7 @@ export default function Search(props) {
 			)}
 			{!loading && count === 0 && (
 				<div className="content-catalog no-sidebar">
-					<EmptyState header={noResult} />
+					<EmptyState header={t('empty')} />
 				</div>
 			)}
 			{!loading && count > 0 && (
