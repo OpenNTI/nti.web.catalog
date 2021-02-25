@@ -22,7 +22,7 @@ export const Classes = Names.reduce((acc, name) => {
 }, {});
 
 export function getGradientClass(category) {
-	const name = category.Name ?? category;
+	const name = category.Name ?? category.tag ?? category;
 	const hash = StringUtils.hash(name);
 	const index = Math.abs(hash) % Names.length;
 
