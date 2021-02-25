@@ -1,6 +1,7 @@
 import React from 'react';
 import { getService } from '@nti/web-client';
-import { Hooks, Loading } from '@nti/web-commons';
+import { Hooks, Loading, Layouts, Text } from '@nti/web-commons';
+import { LinkTo } from '@nti/web-routing';
 import { URL as UrlUtils } from '@nti/lib-commons';
 
 import { NTIOtherCategory, BatchSize } from '../../../Constants';
@@ -9,8 +10,15 @@ import Categories from '../../../components/categories';
 import Category from '../../../components/category';
 import PageError from '../../../components/PageError';
 
+const { Responsive } = Layouts;
 const { useResolver } = Hooks;
 const { isPending, isResolved, isErrored } = useResolver;
+
+const BottomMenu = styled(Text.Base).attrs({as: 'section'})`
+	display: block;
+	text-align: center;
+	padding-bottom: 1rem;
+`;
 
 async function loadFeatured(catalog, service) {
 	try {
@@ -72,6 +80,16 @@ export default function AllCategories() {
 			{featured && <Carousel featured={featured} />}
 			{other && <Category category={other} header={false} />}
 			{items && !other && <Categories categories={items} />}
+			{Responsive.isMobileContext() && (
+				<BottomMenu>
+					<div>
+						<LinkTo.Name name="catalog.redeem">
+							Redeem a Course
+						</LinkTo.Name>
+					</div>
+					<LinkTo.Name name="contact-us">Contact us</LinkTo.Name>
+				</BottomMenu>
+			)}
 		</Loading.Placeholder>
 	);
 }
