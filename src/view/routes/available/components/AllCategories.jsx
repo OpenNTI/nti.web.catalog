@@ -52,7 +52,7 @@ export default function AllCategories() {
 		const catalog = service.getCollection('Courses', 'Catalog');
 		const byTag = catalog.getLink('ByTag');
 
-		const featured = await loadFeatured(catalog);
+		const featured = await loadFeatured(catalog, service);
 
 		const bucketsRaw = await service.get(
 			UrlUtils.appendQueryParams(byTag, { bucketSize: getBucketSize() })

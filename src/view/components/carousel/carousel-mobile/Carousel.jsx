@@ -1,3 +1,4 @@
+import './Carousel.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Presentation } from '@nti/web-commons';
@@ -20,8 +21,8 @@ export default class Carousel extends React.Component {
 				{items.map((course, index) => {
 					const instructors = course.Instructors
 						? course.Instructors.map(instructor => {
-								return instructor.Name;
-						  }).join(', ')
+							return instructor.Name;
+						}).join(', ')
 						: '';
 					return (
 						<div key={index} className="feature-course">

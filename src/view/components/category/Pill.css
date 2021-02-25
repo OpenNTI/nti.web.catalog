@@ -1,4 +1,4 @@
-.category-pill {
+.category-pill:global(.nti-link-to-path) {
 	display: flex;
 	align-items: center;
 	justify-content: center;
