@@ -1,5 +1,6 @@
 .category-preview {
 	padding-top: var(--catalog-gap, 18px);
+	min-height: 365px;
 
 	& .header {
 		display: flex;
