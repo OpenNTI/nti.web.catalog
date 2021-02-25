@@ -25,7 +25,10 @@ const parseRaw = async (raw, service) => {
 	}
 
 	if (raw.Items) {
-		raw.Items = await Promise.all(raw.Items.map(item => parseRaw(item, service)));
+		return {
+			...raw,
+			Items: await Promise.all(raw.Items.map(item => parseRaw(item, service))),
+		};
 	}
 
 	return raw;
