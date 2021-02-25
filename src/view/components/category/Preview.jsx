@@ -35,7 +35,6 @@ export default function CategoryPreview({ className, category }) {
 	const onScreenChange = React.useCallback((changed) => setOnScreen(changed || onScreen), [onScreen]);
 
 	const resolver = useResolver(async () => {
-		debugger;
 		if (!onScreen) { return null; }
 
 		const service = await getService();
