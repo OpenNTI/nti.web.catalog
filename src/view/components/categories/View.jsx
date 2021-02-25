@@ -30,7 +30,7 @@ function getCategoryParts(categories) {
 	const pillsOnly = getPillsOnly();
 
 	return categories.reduce((acc, category) => {
-		if (category.Name === NTIOtherCategory) {
+		if (category.Name === NTIOtherCategory || category.tag === NTIOtherCategory) {
 			acc.other = category;
 		} else if (category.count < 4 || pillsOnly) {
 			acc.collapsed.push(category);

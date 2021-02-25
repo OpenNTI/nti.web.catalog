@@ -39,10 +39,20 @@ export default function AllCategories() {
 				{ batchSize: BatchSize, batchStart: 0 }
 			);
 
-			return { featured, other: otherBucket, onlyOther: true };
-		}
+			return {featured, other: otherBucket, onlyOther: true};
+		} else {
+			const others = await service.getBatch(
+				UrlUtils.join(byTag, NTIOtherCategory),
+				{batchSize: 1, batchStart: 0}
+			);
+			const otherTag = {tag: NTIOtherCategory, count: others.Total};
 
-		return { featured, Items: tags.Items, onlyOther: false };
+			return {
+				featured,
+				Items: others.Total > 0 ? ([...tags.Items, otherTag]) : tags.Items,
+				onlyOther: false
+			};
+		}
 	}, []);
 
 	const loading = isPending(resolver);
