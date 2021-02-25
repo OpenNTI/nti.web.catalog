@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
 import { scoped } from '@nti/lib-locale';
 import { ContextIndicator } from '@nti/web-search';
-import { Loading } from '@nti/web-commons';
+import { Loading, EmptyState } from '@nti/web-commons';
 
 import Category from '../category';
 import PageError from '../PageError';
@@ -12,8 +12,11 @@ import Styles from './View.css';
 
 const cx = classnames.bind(Styles);
 const t = scoped('nti-catalog.view.components.search.View', {
-	back: 'View All Courses',
+	empty: 'No courses found. Please refine your search.',
+	back: 'View All Courses'
 });
+
+const getItemCount = results => results.FilteredTotalItemCount ?? results.Total;
 
 CatalogSearch.propTypes = {
 	searchTerm: PropTypes.string,
@@ -49,6 +52,7 @@ export default function CatalogSearch({ searchTerm, loadResults }) {
 	}
 
 	const error = results instanceof Error ? results : null;
+	const empty = results && getItemCount(results) === 0;
 
 	return (
 		<div className={cx('catalog-search')}>
@@ -61,7 +65,10 @@ export default function CatalogSearch({ searchTerm, loadResults }) {
 				fallback={<Loading.Spinner.Large />}
 			>
 				{error && <PageError error={error} />}
-				{!error && results && (
+				{!error && empty && (
+					<EmptyState header={t('empty')} />
+				)}
+				{!error && !empty && results && (
 					<Category category={results} header={false} />
 				)}
 			</Loading.Placeholder>
