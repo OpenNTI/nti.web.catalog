@@ -14,15 +14,16 @@ export default Router.for([
 		path: '/:category/',
 		component: View,
 		getRouteFor: (obj, context) => {
+			const category = obj.Name ?? obj.tag;
 			if (
-				(obj.Name && context === RouteContexts.CategoryPreview) ||
+				(category && context === RouteContexts.CategoryPreview) ||
 				context === RouteContexts.CategoryPill
 			) {
-				if (obj.Name === '.') {
+				if (category === '.') {
 					return '/%2E/';
 				}
 
-				return `/${encodeURIComponent(obj.Name)}/`;
+				return `/${encodeURIComponent(category)}/`;
 			}
 		},
 	}),
