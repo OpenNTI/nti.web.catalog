@@ -24,7 +24,7 @@ CatalogRedeemForm.propTypes = {
 	code: PropTypes.string,
 	markDirty: PropTypes.func,
 };
-export default function CatalogRedeemForm({ code: defaultValue }) {
+export default function CatalogRedeemForm({ code: defaultValue, markDirty }) {
 	const router = Router.useRouter();
 	const [redeeming, setRedeeming] = React.useState(false);
 
@@ -43,9 +43,7 @@ export default function CatalogRedeemForm({ code: defaultValue }) {
 				json
 			);
 
-			if (this.props.markDirty) {
-				this.props.markDirty();
-			}
+			markDirty?.();
 
 			router?.routeTo?.object?.(
 				{
