@@ -30,22 +30,19 @@ export default function AllCategories() {
 
 		const [featured, tags] = await Promise.all([
 			loadFeatured(catalog, service),
-			catalog.fetchLink('SuggestedTags')
+			catalog.fetchLink('SuggestedTags'),
 		]);
 
-		if (
-			tags.Items.length === 1 &&
-			tags.Items[0].tag === NTIOtherCategory
-		) {
+		if (tags.Items.length === 1 && tags.Items[0].tag === NTIOtherCategory) {
 			const otherBucket = await service.getBatch(
 				UrlUtils.join(byTag, NTIOtherCategory),
-				{batchSize: BatchSize, batchStart: 0}
+				{ batchSize: BatchSize, batchStart: 0 }
 			);
 
-			return {featured, other: otherBucket, onlyOther: true};
+			return { featured, other: otherBucket, onlyOther: true };
 		}
 
-		return {featured, Items: tags.Items, onlyOther: false};
+		return { featured, Items: tags.Items, onlyOther: false };
 	}, []);
 
 	const loading = isPending(resolver);
@@ -63,7 +60,7 @@ export default function AllCategories() {
 		>
 			{error && <PageError error={error} />}
 			{featured && <Carousel featured={featured} />}
-			{other && (<Category category={other} noHeader />)}
+			{other && <Category category={other} header={false} />}
 			{items && !other && <Categories categories={items} />}
 		</Loading.Placeholder>
 	);

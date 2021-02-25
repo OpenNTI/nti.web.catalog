@@ -42,7 +42,9 @@ export default function PurchasedItems() {
 			fallback={<Loading.Spinner.Large />}
 		>
 			{error && <PageError error={error} />}
-			{purchased && !empty && <Category category={purchased} noHeader />}
+			{purchased && !empty && (
+				<Category category={purchased} header={false} />
+			)}
 			{purchased && empty && <EmptyState header={t('empty')} />}
 		</Loading.Placeholder>
 	);

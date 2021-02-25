@@ -22,9 +22,9 @@ const hasNextBatch = batch =>
 
 Category.propTypes = {
 	category: PropTypes.object,
-	noHeader: PropTypes.bool,
+	header: PropTypes.bool,
 };
-export default function Category({ category, noHeader }) {
+export default function Category({ category, header = true }) {
 	const [batches, setBatches] = React.useState([category]);
 	const [loadingMore, setLoadingMore] = React.useState(false);
 	const [loadMoreError, setLoadMoreError] = React.useState(null);
@@ -55,7 +55,7 @@ export default function Category({ category, noHeader }) {
 
 	return (
 		<>
-			{!noHeader && <Header category={category} />}
+			{header && <Header category={category} />}
 			<Content className={cx('category-view')}>
 				<ItemList items={items} />
 				{loadMore && (

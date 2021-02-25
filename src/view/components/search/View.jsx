@@ -61,7 +61,9 @@ export default function CatalogSearch({ searchTerm, loadResults }) {
 				fallback={<Loading.Spinner.Large />}
 			>
 				{error && <PageError error={error} />}
-				{!error && results && <Category category={results} noHeader />}
+				{!error && results && (
+					<Category category={results} header={false} />
+				)}
 			</Loading.Placeholder>
 		</div>
 	);
