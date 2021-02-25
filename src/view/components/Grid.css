@@ -1,7 +1,7 @@
 .catalog-grid {
 }
 
-@media (min-width: 420px) and (max-width: 735px) {
+@media (min-width: 375px) and (max-width: 735px) {
 	.catalog-grid.allow-two-columns {
 		display: grid;
 		display: grid;
