@@ -18,21 +18,28 @@ const t = scoped('nti-catalog.view.components.categories', {
 	empty: 'There are no courses available.',
 });
 
-function getCategoryParts(categories) {
-	return categories.reduce(
-		(acc, category) => {
-			if (category.Name === NTIOtherCategory) {
-				acc.other = category;
-			} else if (category.ItemCount < 4) {
-				acc.collapsed.push(category);
-			} else {
-				acc.expanded.push(category);
-			}
 
-			return acc;
-		},
-		{ collapsed: [], expanded: [], other: null }
-	);
+const TagPillOnlyHosts = /epiccharterschools/;
+const getPillsOnly = () => {
+	const origin = global.location?.origin;
+
+	return origin?.match(TagPillOnlyHosts);
+};
+
+function getCategoryParts(categories) {
+	const pillsOnly = getPillsOnly();
+
+	return categories.reduce((acc, category) => {
+		if (category.Name === NTIOtherCategory) {
+			acc.other = category;
+		} else if (category.count < 4 || pillsOnly) {
+			acc.collapsed.push(category);
+		} else {
+			acc.expanded.push(category);
+		}
+
+		return acc;
+	}, {collapsed: [], expanded: [], other: null});
 }
 
 Categories.propTypes = {
@@ -47,7 +54,7 @@ export default function Categories({ categories }) {
 		);
 	}
 
-	const { collapsed, expanded, other } = getCategoryParts(categories);
+	const { collapsed, expanded, other } = React.useMemo(() => getCategoryParts(categories), [categories]);
 
 	return (
 		<Content className={cx('catalog-categories')}>

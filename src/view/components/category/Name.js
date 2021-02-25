@@ -5,7 +5,7 @@ const t = scoped('nti-catalog.view.component.category.Name', {
 });
 
 export function getName(category) {
-	const name = category.Name ?? category;
+	const name = category.Name ?? category.tag ?? category;
 
 	return t.isMissing(name) ? name : t(name);
 }

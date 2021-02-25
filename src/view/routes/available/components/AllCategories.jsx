@@ -12,30 +12,6 @@ import PageError from '../../../components/PageError';
 const { useResolver } = Hooks;
 const { isPending, isResolved, isErrored } = useResolver;
 
-const TagPillOnlyHosts = /epiccharterschools/;
-const getBucketSize = () => {
-	const origin = global.location?.origin;
-
-	return origin?.match(TagPillOnlyHosts) ? 10000 : 4;
-};
-
-const parseRaw = async (raw, service) => {
-	if (raw.MimeType) {
-		return service.getObject(raw);
-	}
-
-	if (raw.Items) {
-		return {
-			...raw,
-			Items: await Promise.all(
-				raw.Items.map(item => parseRaw(item, service))
-			),
-		};
-	}
-
-	return raw;
-};
-
 async function loadFeatured(catalog, service) {
 	try {
 		const featured = await service.getBatch(catalog.getLink('Featured'));
@@ -52,25 +28,24 @@ export default function AllCategories() {
 		const catalog = service.getCollection('Courses', 'Catalog');
 		const byTag = catalog.getLink('ByTag');
 
-		const featured = await loadFeatured(catalog, service);
-
-		const bucketsRaw = await service.get(
-			UrlUtils.appendQueryParams(byTag, { bucketSize: getBucketSize() })
-		);
-		const buckets = await parseRaw(bucketsRaw, service);
+		const [featured, tags] = await Promise.all([
+			loadFeatured(catalog, service),
+			catalog.fetchLink('SuggestedTags')
+		]);
 
 		if (
-			buckets.Items.length === 1 &&
-			buckets.Items[0].Name === NTIOtherCategory
+			tags.Items.length === 1 &&
+			tags.Items[0].tag === NTIOtherCategory
 		) {
 			const otherBucket = await service.getBatch(
 				UrlUtils.join(byTag, NTIOtherCategory),
-				{ batchSize: BatchSize, batchStart: 0 }
+				{batchSize: BatchSize, batchStart: 0}
 			);
-			return { Items: [otherBucket], featured, onlyOther: true };
+
+			return {featured, other: otherBucket, onlyOther: true};
 		}
 
-		return { Items: buckets.Items, featured, onlyOther: false };
+		return {featured, Items: tags.Items, onlyOther: false};
 	}, []);
 
 	const loading = isPending(resolver);
@@ -79,7 +54,7 @@ export default function AllCategories() {
 
 	const items = categories?.Items;
 	const featured = categories?.featured;
-	const onlyOther = categories?.onlyOther;
+	const other = categories?.other;
 
 	return (
 		<Loading.Placeholder
@@ -88,8 +63,8 @@ export default function AllCategories() {
 		>
 			{error && <PageError error={error} />}
 			{featured && <Carousel featured={featured} />}
-			{items && !onlyOther && <Categories categories={items} />}
-			{items && onlyOther && <Category category={items[0]} noHeader />}
+			{other && (<Category category={other} noHeader />)}
+			{items && !other && <Categories categories={items} />}
 		</Loading.Placeholder>
 	);
 }
