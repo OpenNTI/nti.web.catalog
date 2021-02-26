@@ -41,7 +41,7 @@ export default function AllCategories() {
 			catalog.fetchLink('SuggestedTags'),
 		]);
 
-		if (tags.Items.length === 1 && tags.Items[0].tag === NTIOtherCategory) {
+		if (tags.Items.length === 0) {
 			const otherBucket = await service.getBatch(
 				UrlUtils.join(byTag, NTIOtherCategory),
 				{ batchSize: BatchSize, batchStart: 0 }
