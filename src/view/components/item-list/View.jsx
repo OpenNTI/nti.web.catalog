@@ -27,7 +27,7 @@ export default function CatalogItemList({ className, items, ...otherProps }) {
 			{(items || []).map(item => {
 				return (
 					<li key={item.getID()}>
-						<Card course={item} collapseToList />
+						<Card course={item} variant="auto" />
 					</li>
 				);
 			})}
