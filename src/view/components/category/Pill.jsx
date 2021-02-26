@@ -27,9 +27,7 @@ export default function CategoryPill({ category, className }) {
 				getGradientClass(category)
 			)}
 		>
-			<Text.Base limitLines={2} overflow={Text.Overflow.Ellipsis}>
-				{getName(category)}
-			</Text.Base>
+			<Text.Base limitLines={2}>{getName(category)}</Text.Base>
 		</LinkTo.Object>
 	);
 }
