@@ -51,9 +51,9 @@ export default function AllCategories() {
 		} else {
 			const others = await service.getBatch(
 				UrlUtils.join(byTag, NTIOtherCategory),
-				{batchSize: 1, batchStart: 0}
+				{batchSize: 4, batchStart: 0}
 			);
-			const otherTag = {tag: NTIOtherCategory, count: others.Total};
+			const otherTag = {tag: NTIOtherCategory, count: others.Total, Items: others.Items};
 
 			return {
 				featured,

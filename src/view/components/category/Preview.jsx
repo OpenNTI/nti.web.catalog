@@ -25,7 +25,8 @@ const t = scoped('nti-catalog.view.components.category.Preview', {
 CategoryPreview.propTypes = {
 	className: PropTypes.string,
 	category: PropTypes.shape({
-		tag: PropTypes.string
+		tag: PropTypes.string,
+		Items: PropTypes.array
 	}).isRequired,
 };
 export default function CategoryPreview({ className, category }) {
@@ -36,6 +37,8 @@ export default function CategoryPreview({ className, category }) {
 
 	const resolver = useResolver(async () => {
 		if (!onScreen) { return null; }
+
+		if (category.Items) { return category.Items.slice(0, pageSize); }
 
 		const service = await getService();
 		const catalog = service.getCollection('Courses', 'Catalog');
