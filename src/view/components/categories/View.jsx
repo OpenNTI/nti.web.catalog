@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
-import { Text, EmptyState } from '@nti/web-commons';
+import { Text, EmptyState, Layouts } from '@nti/web-commons';
 import { scoped } from '@nti/lib-locale';
 
 import { NTIOtherCategory } from '../../Constants';
@@ -11,6 +11,8 @@ import Preview from '../category/Preview';
 import Pill from '../category/Pill';
 
 import Styles from './View.css';
+
+const PillGrid = Layouts.grid('58%', '2%');
 
 const cx = classnames.bind(Styles);
 const t = scoped('nti-catalog.view.components.categories', {
@@ -70,19 +72,29 @@ export default function Categories({ categories }) {
 				</ul>
 			)}
 			{collapsed.length > 0 && (
-				<Text.Base as="div" className={cx('categories-header')}>
-					{t('topCategories')}
-				</Text.Base>
+				<Grid>
+					{(columns) => (
+						<Text.Base as="div" className={cx('categories-header', {full: columns >= 4})}>
+							{t('topCategories')}
+						</Text.Base>
+					)}
+				</Grid>
 			)}
 			{collapsed.length > 0 && (
-				<Grid as="ul" className={cx('collapsed')} allowTwoColumns>
-					{collapsed.map((category, index) => {
-						return (
-							<li key={index}>
-								<Pill category={category} />
-							</li>
-						);
-					})}
+				<Grid className={cx('collapsed')}>
+					{(columns) => {
+						const pills = collapsed.map((category, index) => {
+							return (
+								<li key={index}>
+									<Pill category={category} />
+								</li>
+							);
+						});
+
+						if (columns > 1) { return pills; }
+
+						return (<PillGrid colWidth="48%" gap="2%">{pills}</PillGrid>);
+					}}
 				</Grid>
 			)}
 			{other && <Preview category={other} />}

@@ -7,6 +7,10 @@
 		text-transform: uppercase;
 		color: var(--primary-grey);
 		padding: 12px 0 6px;
+
+		&.full {
+			display: none;
+		}
 	}
 
 	& .expanded {
@@ -19,13 +23,5 @@
 		list-style: none;
 		margin: 0 0 var(--catalog-gap);
 		padding: 0;
-	}
-}
-
-@media (min-width: 1024px) {
-	.catalog-categories {
-		& .categories-header {
-			display: none;
-		}
 	}
 }

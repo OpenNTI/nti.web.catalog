@@ -6,9 +6,11 @@ import { scoped } from '@nti/lib-locale';
 import { getService } from '@nti/web-client';
 import { LinkTo } from '@nti/web-routing';
 import { Text, Monitor, Hooks, Loading, Errors } from '@nti/web-commons';
+import { Card as CourseCard } from '@nti/web-course';
 
 import { RouteContexts } from '../../Constants';
 import ItemList from '../item-list';
+import Grid from '../Grid';
 
 import Styles from './Preview.css';
 import { getName } from './Name';
@@ -21,6 +23,19 @@ const cx = classnames.bind(Styles);
 const t = scoped('nti-catalog.view.components.category.Preview', {
 	viewAll: 'View All',
 });
+
+LoadingPlaceholder.propTypes = {
+	pageSize: PropTypes.number
+};
+function LoadingPlaceholder ({pageSize}) {
+	const cards = Array.from({length: pageSize});
+
+	return (
+		<Grid>
+			{cards.map((_, key) => (<CourseCard.Placeholder key={key} />))}
+		</Grid>
+	);
+}
 
 CategoryPreview.propTypes = {
 	className: PropTypes.string,
@@ -58,20 +73,22 @@ export default function CategoryPreview({ className, category }) {
 
 	return (
 		<OnScreen className={cx('category-preview', className)} onChange={onScreenChange}>
-			<div className={cx('header')}>
-				<Text.Base as="div" className={cx('title')}>
-					{getName(category)}
-				</Text.Base>
-				<LinkTo.Object
-					className={cx('view-all')}
-					object={category}
-					context={RouteContexts.CategoryPreview}
-				>
-					<Text.Base>{t('viewAll')}</Text.Base>
-					<i className="icon-chevronup-25" />
-				</LinkTo.Object>
-			</div>
-			<Loading.Placeholder loading={loading} fallback={<Loading.Spinner />}>
+			<Grid singleColumn>
+				<div className={cx('header')}>
+					<Text.Base as="div" className={cx('title')}>
+						{getName(category)}
+					</Text.Base>
+					<LinkTo.Object
+						className={cx('view-all')}
+						object={category}
+						context={RouteContexts.CategoryPreview}
+					>
+						<Text.Base>{t('viewAll')}</Text.Base>
+						<i className="icon-chevronup-25" />
+					</LinkTo.Object>
+				</div>
+			</Grid>
+			<Loading.Placeholder loading={loading} fallback={<LoadingPlaceholder pageSize={pageSize} />}>
 				{error && (<Errors.Message error={error} />)}
 				{items && (<ItemList className={cx('preview-item-list')} items={items} />)}
 			</Loading.Placeholder>

@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
-import { Card } from '@nti/web-course';
+import { Card as CourseCard } from '@nti/web-course';
 
 import Grid from '../Grid';
 
 import Styles from './View.css';
 
 const cx = classnames.bind(Styles);
+
 
 CatalogItemList.propTypes = {
 	className: PropTypes.string,
@@ -24,13 +25,13 @@ export default function CatalogItemList({ className, items, ...otherProps }) {
 			className={cx('catalog-item-list', className)}
 			{...otherProps}
 		>
-			{(items || []).map(item => {
-				return (
-					<li key={item.getID()}>
-						<Card course={item} variant="auto" />
+			{(columns) => (
+				items.map((item) => (
+					<li key={item.getID()} data-columns={columns}>
+						<CourseCard course={item} variant={columns === 1 ? 'list-item' : 'card'} />
 					</li>
-				);
-			})}
+				))
+			)}
 		</Grid>
 	);
 }
