@@ -1,7 +1,7 @@
 @import '~@nti/style-common';
 
 $CUSTOM_RANGES: (
-	mobileLandscape: (
+	mobile-landscape: (
 		600px,
 		767px,
 	),
@@ -12,7 +12,7 @@ $CUSTOM_RANGES: (
 		.carousel-mobile-block {
 			white-space: nowrap;
 			position: relative;
-			overflow-x: scroll;
+			overflow-x: auto;
 			overflow-y: hidden;
 			padding: 10px;
 			display: table;
@@ -35,7 +35,10 @@ $CUSTOM_RANGES: (
 						height: 210px;
 					}
 
-					@include responsive-range(mobileLandscape, $CUSTOM_RANGES) {
+					@include responsive-range(
+						mobile-landscape,
+						$CUSTOM_RANGES
+					) {
 						width: calc(55vw);
 						height: 250px;
 					}
@@ -62,13 +65,16 @@ $CUSTOM_RANGES: (
 						max-width: calc(40vw);
 					}
 
-					@include responsive-range(mobileLandscape, $CUSTOM_RANGES) {
+					@include responsive-range(
+						mobile-landscape,
+						$CUSTOM_RANGES
+					) {
 						max-width: calc(55vw);
 					}
 				}
 
 				.course-title {
-					font: normal 700 1em/1.1em 'Open Sans Condensed';
+					font: normal 700 1em/1.1em var(--header-font-family);
 					max-height: 2.2em;
 					overflow: hidden;
 					text-overflow: ellipsis;
@@ -83,7 +89,10 @@ $CUSTOM_RANGES: (
 						max-width: calc(40vw);
 					}
 
-					@include responsive-range(mobileLandscape, $CUSTOM_RANGES) {
+					@include responsive-range(
+						mobile-landscape,
+						$CUSTOM_RANGES
+					) {
 						max-width: calc(55vw);
 					}
 				}
@@ -108,7 +117,10 @@ $CUSTOM_RANGES: (
 						max-width: calc(40vw);
 					}
 
-					@include responsive-range(mobileLandscape, $CUSTOM_RANGES) {
+					@include responsive-range(
+						mobile-landscape,
+						$CUSTOM_RANGES
+					) {
 						max-width: calc(55vw);
 					}
 				}
