@@ -3,3 +3,9 @@
 	padding: 0;
 	margin: 0;
 }
+
+@media (max-width: 800px) {
+	.catalog-item-list {
+		margin-bottom: 2rem; /* badges overhang their card boundary a bit in the list-item variant. this prevents collision with content below */
+	}
+}
