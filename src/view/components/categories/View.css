@@ -27,6 +27,12 @@
 }
 
 .pill-grid {
+	/*
+		the base grid only takes one gap prop for both row and column
+		we need a column gap of 2%, but that breaks the row gap pretty bad...
+		so we're forcing the row gap to be 14px
+		&& makes it more specific than the base grids gap property
+	*/
 	&& {
 		gap: 14px var(--gap, 14px);
 	}
