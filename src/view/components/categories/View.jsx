@@ -12,7 +12,7 @@ import Pill from '../category/Pill';
 
 import Styles from './View.css';
 
-const PillGrid = Layouts.grid('58%', '2%');
+const PillGrid = Layouts.grid('48%', '2%');
 
 const cx = classnames.bind(Styles);
 const t = scoped('nti-catalog.view.components.categories', {
@@ -93,7 +93,7 @@ export default function Categories({ categories }) {
 
 						if (columns > 1) { return pills; }
 
-						return (<PillGrid colWidth="48%" gap="2%">{pills}</PillGrid>);
+						return (<PillGrid colWidth="48%" gap="2%" className={cx('pill-grid')}>{pills}</PillGrid>);
 					}}
 				</Grid>
 			)}

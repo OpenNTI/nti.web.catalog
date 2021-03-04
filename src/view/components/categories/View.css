@@ -25,3 +25,9 @@
 		padding: 0;
 	}
 }
+
+.pill-grid {
+	&& {
+		gap: 14px var(--gap, 14px);
+	}
+}
