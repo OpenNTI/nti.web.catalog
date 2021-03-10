@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
+
 import { Navigation } from '@nti/web-commons';
 import { Router } from '@nti/web-routing';
 import { scoped } from '@nti/lib-locale';

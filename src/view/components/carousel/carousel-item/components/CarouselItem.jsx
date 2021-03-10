@@ -1,6 +1,7 @@
 import './CarouselItem.scss';
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import { Presentation, DateTime } from '@nti/web-commons';
 import { LinkTo } from '@nti/web-routing';
 import { rawContent } from '@nti/lib-commons';

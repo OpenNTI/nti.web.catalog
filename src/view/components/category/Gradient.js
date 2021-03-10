@@ -1,4 +1,5 @@
 import classnames from 'classnames/bind';
+
 import { String as StringUtils } from '@nti/lib-commons';
 
 import Styles from './Gradient.css';

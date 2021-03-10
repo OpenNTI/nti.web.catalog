@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
+
 import { scoped } from '@nti/lib-locale';
 import { ContextIndicator } from '@nti/web-search';
 import { Loading, EmptyState } from '@nti/web-commons';

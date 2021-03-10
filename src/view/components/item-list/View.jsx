@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
+
 import { Card as CourseCard } from '@nti/web-course';
 
 import Grid from '../Grid';
