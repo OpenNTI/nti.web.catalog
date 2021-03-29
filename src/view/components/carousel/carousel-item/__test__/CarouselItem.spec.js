@@ -13,6 +13,7 @@ describe('Carousel', () => {
 		NTIID: ntiid,
 		title: title,
 		RichDescription: richDescription,
+		getStartDate: () => new Date(),
 	};
 
 	const dataTemp = {
