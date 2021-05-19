@@ -1,20 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { scoped } from '@nti/lib-locale';
 import { Prompt, Hooks } from '@nti/web-commons';
 
 import View from './View';
 import getCatalogEntry from './get-catalog-entry';
 
-const { useResolver } = Hooks;
-// const {isResolved} = useResolver;
+const t = scoped('catalog.entry', {
+	title: 'Course Info',
+});
 
-const Container = styled('div').attrs(({ onDismiss, ...other }) => ({
-	...other,
-}))`
-	background: white;
-	min-height: 400px;
+const { useResolver } = Hooks;
+
+const Container = styled(Prompt.BaseWindow)`
 	min-width: 400px;
+	min-height: 400px;
 `;
 
 CatalogEntryModal.propTypes = {
@@ -26,7 +27,11 @@ export default function CatalogEntryModal({ entryId }) {
 
 	return (
 		<Prompt.Dialog>
-			<Container>
+			<Container
+				title={t('title')}
+				// doClose={closePrompt}
+				buttons={[]}
+			>
 				<View catalogEntry={resolver} />
 			</Container>
 		</Prompt.Dialog>
