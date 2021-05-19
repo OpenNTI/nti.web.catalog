@@ -9,9 +9,9 @@ const { useResolver } = Hooks;
 const { isPending, isErrored, isResolved } = useResolver;
 
 CatalogEntry.propTypes = {
-	catalog: PropTypes.any,
+	catalogEntry: PropTypes.any,
 };
-export default function CatalogEntry({ catalog: resolver }) {
+export default function CatalogEntry({ catalogEntry: resolver }) {
 	const loading = isPending(resolver);
 	const error = isErrored(resolver) ? resolver : null;
 	const entry = isResolved(resolver) ? resolver : null;

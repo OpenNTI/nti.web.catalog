@@ -29,6 +29,12 @@ function isActiveRoute(route, pathname, baseroute) {
 	return pathname.indexOf(route) === 0;
 }
 
+const getRouteFor = obj => {
+	if ((obj?.isCourseCatalogEntry || obj?.isCourse) && obj.getID?.()) {
+		return `./nti-course-catalog-entry/${obj.getID()}`;
+	}
+};
+
 CatalogFrame.propTypes = {
 	children: PropTypes.any,
 };
@@ -65,7 +71,11 @@ export default function CatalogFrame({ children }) {
 					active={redeemActive}
 				/>
 			</Navigation.Tabs>
-			<div className={cx('catalog-frame', 'course-catalog')}>{child}</div>
+			<Router.RouteForProvider getRouteFor={getRouteFor}>
+				<div className={cx('catalog-frame', 'course-catalog')}>
+					{child}
+				</div>
+			</Router.RouteForProvider>
 		</>
 	);
 }

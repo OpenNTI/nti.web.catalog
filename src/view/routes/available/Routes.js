@@ -6,7 +6,7 @@ import View from './View';
 
 export default Router.for([
 	Route({
-		path: ['/', '/nti-course-catalog-entry/*'],
+		path: ['/', '/nti-course-catalog-entry/:entryId'],
 		component: View,
 		exact: true,
 	}),
