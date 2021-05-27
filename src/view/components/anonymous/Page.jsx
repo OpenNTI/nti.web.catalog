@@ -4,10 +4,17 @@ import Catalog from '../../index.js';
 
 import { Header } from './Header';
 
-export function AnonymousPage(props) {
+/**
+ * Renders the Catalog view for unauthenticated users
+ *
+ * @param {Object} props
+ * @param {Object} props.paths - A mapping of { name: path } to be rendered as navigation, e.g. { signup: '/signup' }
+ * @returns {JSX.Element}
+ */
+export function AnonymousPage({ paths, ...props }) {
 	return (
 		<div>
-			<Header />
+			<Header paths={paths} />
 			<Catalog {...props} />
 		</div>
 	);

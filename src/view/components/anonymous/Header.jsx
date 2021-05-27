@@ -1,6 +1,11 @@
 import { LinkTo } from '@nti/web-routing';
 import { Input as Search } from '@nti/web-search';
-import { getConfig } from '@nti/web-client';
+import { scoped } from '@nti/lib-locale';
+
+const t = scoped('catalog.anonymous.header', {
+	login: 'Log In',
+	signup: 'Sign Up',
+});
 
 const Container = styled('header')`
 	display: flex;
@@ -16,15 +21,24 @@ const Nav = styled('nav')`
 	gap: 0.5em;
 `;
 
-export function Header(props) {
-	const basePath = getConfig('basepath');
+/**
+ * @param {Object} props
+ * @param {Object} props.paths - A mapping of { name: path } to be rendered as navigation, e.g. { signup: '/signup' }
+ * @returns {JSX.Element}
+ */
+export function Header({ paths }) {
 	return (
 		<Container>
 			<Search />
-			<Nav>
-				<LinkTo.Path to={basePath}>Sign In</LinkTo.Path>
-				<LinkTo.Path to={basePath}>Create Account</LinkTo.Path>
-			</Nav>
+			{paths && (
+				<Nav>
+					{Object.entries(paths).map(([key, path]) => (
+						<LinkTo.Path key={key} to={path}>
+							{t(key)}
+						</LinkTo.Path>
+					))}
+				</Nav>
+			)}
 		</Container>
 	);
 }

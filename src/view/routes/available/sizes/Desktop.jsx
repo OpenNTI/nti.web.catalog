@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Router } from '@nti/web-routing';
+
 import CatalogEntry from '../../catalog-entry/Modal';
 import AllCategories from '../components/AllCategories';
 import Category from '../components/Category';
@@ -15,6 +17,9 @@ export default function CatalogAvailableDesktop({
 	entryId,
 	...otherProps
 }) {
+	const router = Router.useRouter();
+	const onClose = () => router.routeTo.path(router.baseroute);
+
 	return (
 		<SearchWrapper>
 			{category ? (
@@ -22,7 +27,7 @@ export default function CatalogAvailableDesktop({
 			) : (
 				<AllCategories {...otherProps} />
 			)}
-			{entryId && <CatalogEntry entryId={entryId} />}
+			{entryId && <CatalogEntry entryId={entryId} onClose={onClose} />}
 		</SearchWrapper>
 	);
 }
