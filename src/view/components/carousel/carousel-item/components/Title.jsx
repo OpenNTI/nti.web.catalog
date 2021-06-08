@@ -9,7 +9,7 @@ export const Title = styled(Text.Base).attrs({
 	margin-top: 10px;
 	margin-bottom: 15px;
 	font-size: 28px;
-	font-family: var(--header-font-family);
+	font-family: var(--legacy-header-font-family);
 	line-height: 34px;
 	text-transform: uppercase;
 `;
