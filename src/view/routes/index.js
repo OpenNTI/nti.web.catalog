@@ -17,5 +17,5 @@ export default Router.for(
 		}),
 		Route({ path: '/', component: Available, name: Routes.Available }),
 	],
-	{ frame: Router.for([Route({ path: '/', component: Frame})]) }
+	{ frame: Router.for([Route({ path: '/', component: Frame })]) }
 );

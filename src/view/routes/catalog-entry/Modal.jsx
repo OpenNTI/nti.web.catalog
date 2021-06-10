@@ -1,32 +1,53 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames/bind';
 
+import { scoped } from '@nti/lib-locale';
 import { Prompt, Hooks } from '@nti/web-commons';
 
-import Styles from './Modal';
 import View from './View';
 import getCatalogEntry from './get-catalog-entry';
 
+const t = scoped('catalog.entry', {
+	title: 'Course Info',
+});
+
 const { useResolver } = Hooks;
-// const {isResolved} = useResolver;
 
-const cx = classnames.bind(Styles);
-
-CatalogEntryModal.propTypes = {
-	entryId: PropTypes.string,
-};
-export default function CatalogEntryModal({ entryId }) {
-	const resolver = useResolver(() => getCatalogEntry(entryId), [entryId]);
-	// const catalog = isResolved(resolver) ? resolver : null;
-
+/**
+ * Provides the content for the modal's title bar
+ *
+ * @param {Object} props
+ * @param {Object} props.catalogEntry The CatalogEntry model from which to derive the header content
+ * @param {string} props.catalogEntry.title
+ * @param {string} props.catalogEntry.ProviderUniqueID
+ * @returns {JSX.Element}
+ */
+function Title({ catalogEntry: { title, ProviderUniqueID: courseId } = {} }) {
 	return (
+		<div>
+			<div>{courseId}</div>
+			<div>{title ?? t('title')}</div>
+		</div>
+	);
+}
+
+/**
+ * @param {Object} props
+ * @param {string} props.entryId The ID of the catalog entry to display
+ * @param {() => void} props.onClose Invoked to close the modal
+ * @returns {JSX.Element}
+ */
+export default function CatalogEntryModal({ entryId, onClose }) {
+	const resolver = useResolver(() => getCatalogEntry(entryId), [entryId]);
+
+	// waiting on isResolved only to avoid jarring dom re-layout; not strictly necessary
+	return !useResolver.isResolved(resolver) ? null : (
 		<Prompt.Dialog>
-			<div className={cx('catalog-entry-modal')}>
-				<div className={cx('header')}></div>
+			<Prompt.BaseWindow
+				title={<Title catalogEntry={resolver} />}
+				doClose={onClose}
+			>
 				<View catalogEntry={resolver} />
-				<div className={cx('footer')}></div>
-			</div>
+			</Prompt.BaseWindow>
 		</Prompt.Dialog>
 	);
 }
