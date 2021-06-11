@@ -15,7 +15,7 @@ const { Responsive } = Layouts;
 const { useResolver } = Hooks;
 const { isPending, isResolved, isErrored } = useResolver;
 
-const BottomMenu = styled(Text.Base).attrs({as: 'section'})`
+const BottomMenu = styled(Text.Base).attrs({ as: 'section' })`
 	display: block;
 	text-align: center;
 	padding-bottom: 1rem;
@@ -37,9 +37,13 @@ export default function AllCategories() {
 		const catalog = service.getCollection('Courses', 'Catalog');
 		const byTag = catalog.getLink('ByTag');
 
+		const suggestedTags = catalog.hasLink('SuggestedTags')
+			? catalog.fetchLink('SuggestedTags')
+			: { Items: [] };
+
 		const [featured, tags] = await Promise.all([
 			loadFeatured(catalog, service),
-			catalog.fetchLink('SuggestedTags'),
+			suggestedTags,
 		]);
 
 		if (tags.Items.length === 0) {
@@ -48,18 +52,23 @@ export default function AllCategories() {
 				{ batchSize: BatchSize, batchStart: 0 }
 			);
 
-			return {featured, other: otherBucket, onlyOther: true};
+			return { featured, other: otherBucket, onlyOther: true };
 		} else {
 			const others = await service.getBatch(
 				UrlUtils.join(byTag, NTIOtherCategory),
-				{batchSize: 4, batchStart: 0}
+				{ batchSize: 4, batchStart: 0 }
 			);
-			const otherTag = {tag: NTIOtherCategory, count: others.Total, Items: others.Items};
+			const otherTag = {
+				tag: NTIOtherCategory,
+				count: others.Total,
+				Items: others.Items,
+			};
 
 			return {
 				featured,
-				Items: others.Total > 0 ? ([...tags.Items, otherTag]) : tags.Items,
-				onlyOther: false
+				Items:
+					others.Total > 0 ? [...tags.Items, otherTag] : tags.Items,
+				onlyOther: false,
 			};
 		}
 	}, []);
