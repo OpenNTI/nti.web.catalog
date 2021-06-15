@@ -31,12 +31,15 @@ function isActiveRoute(route, pathname, baseroute) {
 
 CatalogFrame.propTypes = {
 	children: PropTypes.any,
+	suppressDetails: PropTypes.bool,
 };
-export default function CatalogFrame({ children }) {
+export default function CatalogFrame({ children, suppressDetails }) {
 	const router = Router.useRouter();
 	const baseroute = router?.baseroute;
 	const pathname = global.location?.pathname;
-	const child = React.Children.only(children);
+	const child = React.cloneElement(React.Children.only(children), {
+		suppressDetails,
+	});
 
 	const availableRoute = router.getRouteFor(Routes.Available);
 	const purchasedRoute = router.getRouteFor(Routes.Purchased);
