@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { scoped } from '@nti/lib-locale';
-import { Prompt, Hooks } from '@nti/web-commons';
+import { StandardUI, Prompt, Hooks } from '@nti/web-commons';
 
 import View from './View';
 import getCatalogEntry from './get-catalog-entry';
@@ -11,6 +11,16 @@ const t = scoped('catalog.entry', {
 });
 
 const { useResolver } = Hooks;
+
+const Identifier = styled.div`
+	font-size: 10px;
+	color: var(--tertiary-grey);
+	font-weight: 400;
+`;
+
+const CourseTitle = styled.div`
+	color: var(--tertiary-grey);
+`;
 
 /**
  * Provides the content for the modal's title bar
@@ -23,10 +33,10 @@ const { useResolver } = Hooks;
  */
 function Title({ catalogEntry: { title, ProviderUniqueID: courseId } = {} }) {
 	return (
-		<div>
-			<div>{courseId}</div>
-			<div>{title ?? t('title')}</div>
-		</div>
+		<StandardUI.Box pb="sm">
+			<Identifier>{courseId}</Identifier>
+			<CourseTitle>{title ?? t('title')}</CourseTitle>
+		</StandardUI.Box>
 	);
 }
 
