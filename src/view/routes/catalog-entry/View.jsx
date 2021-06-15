@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Hooks, Loading } from '@nti/web-commons';
+import { Hooks, Loading, Presentation } from '@nti/web-commons';
 import { Info, Enrollment } from '@nti/web-course';
 
 import PageError from '../../components/PageError';
@@ -9,11 +9,12 @@ import PageError from '../../components/PageError';
 const { useResolver } = Hooks;
 const { isPending, isErrored, isResolved } = useResolver;
 
-const Layout = styled('div')`
+const Layout = styled(Presentation.AssetBackground)`
 	display: grid;
 	grid-template-columns: 642px 310px;
 	gap: 15px;
 	padding: 15px;
+	background-size: cover;
 `;
 
 CatalogEntry.propTypes = {
@@ -31,7 +32,7 @@ export default function CatalogEntry({ catalogEntry: resolver }) {
 		>
 			{error && <PageError error={error} />}
 			{entry && (
-				<Layout>
+				<Layout contentPackage={entry} type="background">
 					<Info.Inline catalogEntry={entry} />
 					<Enrollment.Options catalogEntry={entry} />
 				</Layout>
