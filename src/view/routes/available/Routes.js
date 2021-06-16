@@ -42,6 +42,7 @@ export default Router.for([
 		},
 	}),
 
+	//Redirect older routes to the newer ones. These routes have to be maintained, since clients may be relying on them
 	Route({
 		path: [
 			'/nti-course-catalog-entry/:entryId',
