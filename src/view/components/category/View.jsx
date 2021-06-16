@@ -28,9 +28,10 @@ const hasNextBatch = batch =>
 
 Category.propTypes = {
 	category: PropTypes.object,
+	categoryName: PropTypes.bool,
 	header: PropTypes.bool,
 };
-export default function Category({ category, header = true }) {
+export default function Category({ category, categoryName, header = true }) {
 	const [{ batches, loading, error }, setState] = useReducer(NEXT_STATE, {
 		batches: [category],
 		error: null,
@@ -65,7 +66,7 @@ export default function Category({ category, header = true }) {
 		<>
 			{header && <Header category={category} />}
 			<Content className={cx('category-view')}>
-				<ItemList items={items} />
+				<ItemList items={items} categoryName={categoryName} />
 				{loadMore && (
 					<div className={cx('category-more')}>
 						{loading && <Loading.Spinner />}

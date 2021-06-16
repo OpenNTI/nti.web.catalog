@@ -41,7 +41,9 @@ export default function CategoryPage({ category: categoryName }) {
 			fallback={<Loading.Spinner.Large />}
 		>
 			{error && <PageError error={error} />}
-			{category && <Category category={category} />}
+			{category && (
+				<Category category={category} categoryName={categoryName} />
+			)}
 		</Loading.Placeholder>
 	);
 }

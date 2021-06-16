@@ -10,29 +10,38 @@ import Styles from './View.css';
 
 const cx = classnames.bind(Styles);
 
-
 CatalogItemList.propTypes = {
 	className: PropTypes.string,
+	categoryName: PropTypes.string,
 	items: PropTypes.arrayOf(
 		PropTypes.shape({
 			getID: PropTypes.func,
 		})
 	),
 };
-export default function CatalogItemList({ className, items, ...otherProps }) {
+export default function CatalogItemList({
+	className,
+	categoryName,
+	items,
+	...otherProps
+}) {
 	return (
 		<Grid
 			as="ul"
 			className={cx('catalog-item-list', className)}
 			{...otherProps}
 		>
-			{(columns) => (
-				items.map((item) => (
+			{columns =>
+				items.map(item => (
 					<li key={item.getID()} data-columns={columns}>
-						<CourseCard course={item} variant={columns === 1 ? 'list-item' : 'card'} />
+						<CourseCard
+							course={item}
+							context={categoryName}
+							variant={columns === 1 ? 'list-item' : 'card'}
+						/>
 					</li>
 				))
-			)}
+			}
 		</Grid>
 	);
 }
