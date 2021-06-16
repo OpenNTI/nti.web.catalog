@@ -9,13 +9,15 @@ import SearchWrapper from '../components/SearchWrapper';
 CatalogAvailableMobile.propTypes = {
 	category: PropTypes.string,
 	entryId: PropTypes.string,
+	suppressDetails: PropTypes.bool,
 };
 export default function CatalogAvailableMobile({
 	category,
 	entryId,
+	suppressDetails,
 	...otherProps
 }) {
-	if (entryId) {
+	if (entryId && !suppressDetails) {
 		return <CatalogEntry entryId={entryId} />;
 	}
 

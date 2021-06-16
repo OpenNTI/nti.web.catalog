@@ -11,10 +11,12 @@ import SearchWrapper from '../components/SearchWrapper';
 CatalogAvailableDesktop.propTypes = {
 	category: PropTypes.string,
 	entryId: PropTypes.string,
+	suppressDetails: PropTypes.bool,
 };
 export default function CatalogAvailableDesktop({
 	category,
 	entryId,
+	suppressDetails,
 	...otherProps
 }) {
 	const router = Router.useRouter();
@@ -27,7 +29,9 @@ export default function CatalogAvailableDesktop({
 			) : (
 				<AllCategories {...otherProps} />
 			)}
-			{entryId && <CatalogEntry entryId={entryId} onClose={onClose} />}
+			{entryId && !suppressDetails && (
+				<CatalogEntry entryId={entryId} onClose={onClose} />
+			)}
 		</SearchWrapper>
 	);
 }

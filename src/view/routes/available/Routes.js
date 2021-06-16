@@ -4,40 +4,35 @@ import { RouteContexts } from '../../Constants';
 
 import View from './View';
 
+const getCategoryPart = category =>
+	category === '.' ? '%2E' : encodeURIComponent(category);
+
 export default Router.for([
 	Route({
-		path: '/',
-		exact: true,
-		component: View,
-	}),
-
-	Route({
-		path: ['/item/:entryId', '/tag/:category/item/:entryId'],
-		exact: true,
-		component: View,
-		getRouteFor: obj => {
-			if ((obj?.isCourseCatalogEntry || obj?.isCourse) && obj.getID?.()) {
-				return `./item/${obj.getID()}`;
-			}
-		},
-		isDisabled: (baseRoute, props) => props?.suppressDetails,
-	}),
-
-	Route({
-		path: '/tag/:category',
+		path: [
+			'/tag/:category/item/:entryId',
+			'/tag/:category',
+			'/item/:entryId',
+			'/',
+		],
 		component: View,
 		getRouteFor: (obj, context) => {
+			if ((obj?.isCourseCatalogEntry || obj?.isCourse) && obj.getID) {
+				const search = obj.redeem ? '?redeem=1' : '';
+				const itemRoute = `/item/${obj.getID()}${search}`;
+
+				return context
+					? `/tag/${getCategoryPart(context)}${itemRoute}`
+					: itemRoute;
+			}
+
 			const category = obj?.Name ?? obj?.tag;
 
 			if (
 				(category && context === RouteContexts.CategoryPreview) ||
 				context === RouteContexts.CategoryPill
 			) {
-				if (category === '.') {
-					return '/tag/%2E/';
-				}
-
-				return `/tag/${encodeURIComponent(category)}/`;
+				return `/tag/${getCategoryPart(category)}/`;
 			}
 		},
 	}),
@@ -49,7 +44,11 @@ export default Router.for([
 			'/:category/nti-course-catalog-entry/:entryId',
 			'/:category',
 		],
-		getRedirect: ({ category, entryId }) => {
+		getRedirect: ({ category, entryId, ...otherProps }) => {
+			if (category === 'item' || category === 'tag') {
+				return null;
+			}
+
 			const tagPart = category ? `/tag/${category}` : '';
 			const entryPart = entryId ? `/item/${entryId}` : '';
 
