@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 
 import { getService } from '@nti/web-client';
 import { searchable, contextual } from '@nti/web-search';
+import { Layouts } from '@nti/web-commons';
 
 import Search from '../../../components/search';
 import { BatchSize } from '../../../Constants';
+
+const { Slot } = Layouts;
 
 async function loadSearchResults(filter) {
 	const service = await getService();
@@ -27,7 +30,13 @@ CatalogAvailableSearch.propTypes = {
 function CatalogAvailableSearch({ searchTerm, children }) {
 	if (searchTerm) {
 		return (
-			<Search searchTerm={searchTerm} loadResults={loadSearchResults} />
+			<>
+				<Search
+					searchTerm={searchTerm}
+					loadResults={loadSearchResults}
+				/>
+				<Slot slot="modal" children={children} />
+			</>
 		);
 	}
 

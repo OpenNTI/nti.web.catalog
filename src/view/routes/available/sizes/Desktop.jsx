@@ -30,7 +30,11 @@ export default function CatalogAvailableDesktop({
 				<AllCategories {...otherProps} />
 			)}
 			{entryId && !suppressDetails && (
-				<CatalogEntry entryId={entryId} onClose={onClose} />
+				<CatalogEntry
+					slot="modal"
+					entryId={entryId}
+					onClose={onClose}
+				/>
 			)}
 		</SearchWrapper>
 	);
