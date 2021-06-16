@@ -6,30 +6,53 @@ import View from './View';
 
 export default Router.for([
 	Route({
-		path: ['/', '/nti-course-catalog-entry/:entryId'],
+		path: '/',
+		exact: true,
+		component: View,
+	}),
+
+	Route({
+		path: ['/item/:entryId', '/tag/:category/item/:entryId'],
+		exact: true,
 		component: View,
 		getRouteFor: obj => {
 			if ((obj?.isCourseCatalogEntry || obj?.isCourse) && obj.getID?.()) {
-				return `./nti-course-catalog-entry/${obj.getID()}`;
+				return `./item/${obj.getID()}`;
 			}
 		},
-		exact: true,
+		isDisabled: (baseRoute, props) => props?.suppressDetails,
 	}),
+
 	Route({
-		path: '/:category/',
+		path: '/tag/:category',
 		component: View,
 		getRouteFor: (obj, context) => {
-			const category = obj.Name ?? obj.tag;
+			const category = obj?.Name ?? obj?.tag;
+
 			if (
 				(category && context === RouteContexts.CategoryPreview) ||
 				context === RouteContexts.CategoryPill
 			) {
 				if (category === '.') {
-					return '/%2E/';
+					return '/tag/%2E/';
 				}
 
-				return `/${encodeURIComponent(category)}/`;
+				return `/tag/${encodeURIComponent(category)}/`;
 			}
+		},
+	}),
+
+	Route({
+		path: [
+			'/nti-course-catalog-entry/:entryId',
+			'/:category/nti-course-catalog-entry/:entryId',
+			'/:category',
+		],
+		getRedirect: ({ category, entryId }) => {
+			const tagPart = category ? `/tag/${category}` : '';
+			const entryPart = entryId ? `/item/${entryId}` : '';
+
+			return `${tagPart}${entryPart}`;
 		},
 	}),
 ]);
