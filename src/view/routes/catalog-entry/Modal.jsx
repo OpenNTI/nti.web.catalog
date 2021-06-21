@@ -19,7 +19,7 @@ const Identifier = styled.div`
 `;
 
 const CourseTitle = styled.div`
-	color: var(--tertiary-grey);
+	color: var(--text-color-secondary);
 `;
 
 /**
