@@ -14,10 +14,15 @@ import Styles from './View.css';
 const cx = classnames.bind(Styles);
 const t = scoped('nti-catalog.view.components.search.View', {
 	empty: 'No courses found. Please refine your search.',
-	back: 'View All Courses'
+	back: 'View All Courses',
 });
 
 const getItemCount = results => results.FilteredTotalItemCount ?? results.Total;
+
+const Empty = styled(EmptyState)`
+	background: none;
+	border: none;
+`;
 
 CatalogSearch.propTypes = {
 	searchTerm: PropTypes.string,
@@ -66,9 +71,7 @@ export default function CatalogSearch({ searchTerm, loadResults }) {
 				fallback={<Loading.Spinner.Large />}
 			>
 				{error && <PageError error={error} />}
-				{!error && empty && (
-					<EmptyState header={t('empty')} />
-				)}
+				{!error && empty && <Empty header={t('empty')} />}
 				{!error && !empty && results && (
 					<Category category={results} header={false} />
 				)}
