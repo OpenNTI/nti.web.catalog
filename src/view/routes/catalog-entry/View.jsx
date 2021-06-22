@@ -1,21 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Hooks, Loading, Presentation } from '@nti/web-commons';
+import { Hooks, Layouts, Loading, Presentation } from '@nti/web-commons';
 import { Info, Enrollment } from '@nti/web-course';
 
 import PageError from '../../components/PageError';
 
+const { Responsive } = Layouts;
 const { useResolver } = Hooks;
 const { isPending, isErrored, isResolved } = useResolver;
 
-const Layout = styled(Presentation.AssetBackground)`
+const LayoutDesktop = styled(Presentation.AssetBackground)`
 	display: grid;
 	grid-template-columns: 642px 310px;
 	gap: 15px;
 	padding: 15px;
 	background-size: cover;
 `;
+
+const LayoutMobile = Presentation.AssetBackground;
+
+const Layout = props => {
+	const Cmp = Responsive.isMobile() ? LayoutMobile : LayoutDesktop;
+	return <Cmp {...props} />;
+};
 
 CatalogEntry.propTypes = {
 	catalogEntry: PropTypes.any,

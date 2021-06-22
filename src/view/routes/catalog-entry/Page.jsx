@@ -1,7 +1,13 @@
 import React from 'react';
 
-import View from './View';
+import { Hooks } from '@nti/web-commons';
 
-export default function CatalogEntryPage() {
-	return <View />;
+import View from './View';
+import getCatalogEntry from './get-catalog-entry';
+
+const { useResolver } = Hooks;
+
+export default function CatalogEntryPage({ entryId }) {
+	const catalogEntry = useResolver(() => getCatalogEntry(entryId), [entryId]);
+	return <View catalogEntry={catalogEntry} />;
 }
