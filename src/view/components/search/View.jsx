@@ -20,8 +20,11 @@ const t = scoped('nti-catalog.view.components.search.View', {
 const getItemCount = results => results.FilteredTotalItemCount ?? results.Total;
 
 const Empty = styled(EmptyState)`
-	background: none;
-	border: none;
+	&& {
+		/* increase specificity */
+		background: none;
+		border: none;
+	}
 `;
 
 CatalogSearch.propTypes = {
