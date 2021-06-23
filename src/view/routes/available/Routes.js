@@ -18,8 +18,7 @@ export default Router.for([
 		component: View,
 		getRouteFor: (obj, context) => {
 			if ((obj?.isCourseCatalogEntry || obj?.isCourse) && obj.getID) {
-				const search = obj.redeem ? '?redeem=1' : '';
-				const itemRoute = `/item/${obj.getID()}${search}`;
+				const itemRoute = `/item/${obj.getID()}`;
 
 				return context
 					? `/tag/${getCategoryPart(context)}${itemRoute}`

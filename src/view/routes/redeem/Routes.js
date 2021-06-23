@@ -3,10 +3,14 @@ import { Router, Route } from '@nti/web-routing';
 import View from './View';
 
 export default Router.for([
-	Route({ path: '/nti-course-catalog-entry/:entryId', component: View }),
 	Route({
-		path: '/:code/nti-course-catalog-entry/:entryId',
+		path: ['/:code/item/:entryId', '/item/:entryId', '/:code?'],
 		component: View,
+		getRouteFor: (obj, context) => {
+			if ((obj?.isCourseCatalogEntry || obj?.isCourse) && obj.getID) {
+				const search = obj.redeemed ? '?redeem=1' : '';
+				return `/item/${obj.getID()}${search}`;
+			}
+		},
 	}),
-	Route({ path: '/:code?', component: View }),
 ]);
