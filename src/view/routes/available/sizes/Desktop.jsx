@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Router } from '@nti/web-routing';
 
-import CatalogEntry from '../../catalog-entry/Modal';
+import CatalogEntryModal from '../../catalog-entry/Modal';
 import AllCategories from '../components/AllCategories';
 import Category from '../components/Category';
 import SearchWrapper from '../components/SearchWrapper';
@@ -30,8 +30,9 @@ export default function CatalogAvailableDesktop({
 				<AllCategories {...otherProps} />
 			)}
 			{entryId && !suppressDetails && (
-				<CatalogEntry
+				<CatalogEntryModal
 					slot="modal"
+					category={category}
 					entryId={entryId}
 					onClose={onClose}
 				/>

@@ -1,13 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Router } from '@nti/web-routing';
-
-import CatalogEntry from '../../catalog-entry/Modal';
+import CatalogEntryModal from '../../catalog-entry/Modal';
 import AllCategories from '../components/AllCategories';
 import Category from '../components/Category';
 import SearchWrapper from '../components/SearchWrapper';
-import { RouteContexts } from '../../../Constants';
 
 CatalogAvailableMobile.propTypes = {
 	category: PropTypes.string,
@@ -21,15 +18,7 @@ export default function CatalogAvailableMobile({
 	...otherProps
 }) {
 	if (entryId && !suppressDetails) {
-		const router = Router.useRouter();
-		const onClose = () =>
-			category
-				? router.routeTo.object(
-						{ tag: category },
-						RouteContexts.CategoryPill
-				  )
-				: router.routeTo.path(router.baseroute);
-		return <CatalogEntry entryId={entryId} onClose={onClose} />;
+		return <CatalogEntryModal entryId={entryId} category={category} />;
 	}
 
 	return (

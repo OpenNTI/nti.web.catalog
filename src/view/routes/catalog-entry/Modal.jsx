@@ -2,6 +2,9 @@ import React from 'react';
 
 import { scoped } from '@nti/lib-locale';
 import { StandardUI, Prompt, Hooks } from '@nti/web-commons';
+import { Router } from '@nti/web-routing';
+
+import { RouteContexts } from '../../Constants';
 
 import View from './View';
 import getCatalogEntry from './get-catalog-entry';
@@ -43,11 +46,19 @@ function Title({ catalogEntry: { title, ProviderUniqueID: courseId } = {} }) {
 /**
  * @param {Object} props
  * @param {string} props.entryId The ID of the catalog entry to display
- * @param {() => void} props.onClose Invoked to close the modal
+ * @param {string} props.category The current course tag/category if applicable
  * @returns {JSX.Element}
  */
-export default function CatalogEntryModal({ entryId, onClose }) {
+export default function CatalogEntryModal({ entryId, category }) {
 	const resolver = useResolver(() => getCatalogEntry(entryId), [entryId]);
+	const router = Router.useRouter();
+	const onClose = () =>
+		category
+			? router.routeTo.object(
+					{ tag: category },
+					RouteContexts.CategoryPill
+			  )
+			: router.routeTo.path(router.baseroute);
 
 	// waiting on isResolved only to avoid jarring dom re-layout; not strictly necessary
 	return !useResolver.isResolved(resolver) ? null : (
