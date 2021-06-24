@@ -28,7 +28,7 @@ const hasNextBatch = batch =>
 
 Category.propTypes = {
 	category: PropTypes.object,
-	categoryName: PropTypes.bool,
+	categoryName: PropTypes.string,
 	header: PropTypes.bool,
 };
 export default function Category({ category, categoryName, header = true }) {
