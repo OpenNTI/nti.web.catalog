@@ -1,7 +1,9 @@
 import { LinkTo } from '@nti/web-routing';
 import { Input as Search } from '@nti/web-search';
 import { scoped } from '@nti/lib-locale';
-import { Theme } from '@nti/web-commons';
+import { Theme, Layouts } from '@nti/web-commons';
+
+const { Responsive } = Layouts;
 
 const t = scoped('catalog.anonymous.header', {
 	login: 'Log In',
@@ -21,8 +23,16 @@ const Content = styled.div`
 	align-items: center;
 	padding: 8px 0;
 
-	> *:not(:first-child) {
+	&:not(.mobile) > *:not(:first-child) {
 		margin-left: 1rem;
+	}
+
+	&.mobile {
+		min-height: 45px;
+		align-items: center;
+		padding: 8px;
+		flex-direction: row-reverse;
+		justify-content: space-between;
 	}
 `;
 
@@ -30,6 +40,27 @@ const Nav = styled('nav')`
 	display: flex;
 	gap: 0.5em;
 	font-size: 14px;
+	align-items: center;
+
+	&.mobile {
+		&::before {
+			font-family: 'icomoon';
+			content: '<';
+			color: var(--primary-blue);
+			font-size: 1.5em;
+			vertical-align: middle;
+			text-transform: none;
+		}
+
+		[href] {
+			color: var(--primary-blue);
+		}
+
+		:nth-child(n + 2) {
+			/* hide everything but the first link */
+			display: none;
+		}
+	}
 `;
 
 const HomeLink = styled(LinkTo.Path)`
@@ -46,16 +77,19 @@ const Logo = styled(Theme.Asset).attrs({ name: 'logo' })`
  * @returns {JSX.Element}
  */
 export function Header({ paths }) {
+	const isMobile = Responsive.isMobile();
 	return (
 		<Theme.Scope scope="login">
 			<Container>
-				<Content>
-					<HomeLink to={paths.login}>
-						<Logo />
-					</HomeLink>
+				<Content mobile={isMobile}>
+					{!isMobile && (
+						<HomeLink to={paths.login}>
+							<Logo />
+						</HomeLink>
+					)}
 					<Search />
 					{paths && (
-						<Nav>
+						<Nav mobile={isMobile}>
 							{Object.entries(paths).map(([key, path]) => (
 								<LinkTo.Path key={key} to={path}>
 									{t(key)}
