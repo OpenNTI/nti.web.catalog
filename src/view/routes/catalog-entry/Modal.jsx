@@ -23,6 +23,9 @@ const Identifier = styled.div`
 
 const CourseTitle = styled.div`
 	color: var(--text-color-secondary);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 `;
 
 /**
