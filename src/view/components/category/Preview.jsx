@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
 
-import { URL as UrlUtils } from '@nti/lib-commons';
+import { url } from '@nti/lib-commons';
 import { scoped } from '@nti/lib-locale';
 import { getService } from '@nti/web-client';
 import { LinkTo } from '@nti/web-routing';
@@ -16,9 +16,9 @@ import Grid from '../Grid';
 import Styles from './Preview.css';
 import { getName } from './Name';
 
-const {OnScreen} = Monitor;
-const {useResolver, useMobileValue} = Hooks;
-const {isPending, isErrored, isResolved} = useResolver;
+const { OnScreen } = Monitor;
+const { useResolver, useMobileValue } = Hooks;
+const { isPending, isErrored, isResolved } = useResolver;
 
 const cx = classnames.bind(Styles);
 const t = scoped('nti-catalog.view.components.category.Preview', {
@@ -26,14 +26,16 @@ const t = scoped('nti-catalog.view.components.category.Preview', {
 });
 
 LoadingPlaceholder.propTypes = {
-	pageSize: PropTypes.number
+	pageSize: PropTypes.number,
 };
-function LoadingPlaceholder ({pageSize}) {
-	const cards = Array.from({length: pageSize});
+function LoadingPlaceholder({ pageSize }) {
+	const cards = Array.from({ length: pageSize });
 
 	return (
 		<Grid>
-			{cards.map((_, key) => (<CourseCard.Placeholder key={key} />))}
+			{cards.map((_, key) => (
+				<CourseCard.Placeholder key={key} />
+			))}
 		</Grid>
 	);
 }
@@ -42,26 +44,33 @@ CategoryPreview.propTypes = {
 	className: PropTypes.string,
 	category: PropTypes.shape({
 		tag: PropTypes.string,
-		Items: PropTypes.array
+		Items: PropTypes.array,
 	}).isRequired,
 };
 export default function CategoryPreview({ className, category }) {
 	const pageSize = useMobileValue(3, 4);
 
 	const [onScreen, setOnScreen] = React.useState(false);
-	const onScreenChange = React.useCallback((changed) => setOnScreen(changed || onScreen), [onScreen]);
+	const onScreenChange = React.useCallback(
+		changed => setOnScreen(changed || onScreen),
+		[onScreen]
+	);
 
 	const resolver = useResolver(async () => {
-		if (!onScreen) { return null; }
+		if (!onScreen) {
+			return null;
+		}
 
-		if (category.Items) { return category.Items.slice(0, pageSize); }
+		if (category.Items) {
+			return category.Items.slice(0, pageSize);
+		}
 
 		const service = await getService();
 		const catalog = service.getCollection('Courses', 'Catalog');
 
 		const resp = await service.getBatch(
-			UrlUtils.join(catalog.getLink('ByTag'), category.tag),
-			{batchSize: pageSize, batchStart: 0}
+			url.join(catalog.getLink('ByTag'), category.tag),
+			{ batchSize: pageSize, batchStart: 0 }
 		);
 
 		return resp.Items;
@@ -71,9 +80,11 @@ export default function CategoryPreview({ className, category }) {
 	const items = isResolved(resolver) ? resolver : null;
 	const loading = items === null || isPending(resolver);
 
-
 	return (
-		<OnScreen className={cx('category-preview', className)} onChange={onScreenChange}>
+		<OnScreen
+			className={cx('category-preview', className)}
+			onChange={onScreenChange}
+		>
 			<Grid singleColumn>
 				<div className={cx('header')}>
 					<Text.Base as="div" className={cx('title')}>
@@ -89,9 +100,17 @@ export default function CategoryPreview({ className, category }) {
 					</LinkTo.Object>
 				</div>
 			</Grid>
-			<Loading.Placeholder loading={loading} fallback={<LoadingPlaceholder pageSize={pageSize} />}>
-				{error && (<Errors.Message error={error} />)}
-				{items && (<ItemList className={cx('preview-item-list')} items={items} />)}
+			<Loading.Placeholder
+				loading={loading}
+				fallback={<LoadingPlaceholder pageSize={pageSize} />}
+			>
+				{error && <Errors.Message error={error} />}
+				{items && (
+					<ItemList
+						className={cx('preview-item-list')}
+						items={items}
+					/>
+				)}
 			</Loading.Placeholder>
 		</OnScreen>
 	);

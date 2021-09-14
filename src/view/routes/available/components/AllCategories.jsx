@@ -3,7 +3,7 @@ import React from 'react';
 import { getService } from '@nti/web-client';
 import { Hooks, Loading, Layouts, Text } from '@nti/web-commons';
 import { LinkTo } from '@nti/web-routing';
-import { URL as UrlUtils } from '@nti/lib-commons';
+import { url } from '@nti/lib-commons';
 
 import { NTIOtherCategory, BatchSize } from '../../../Constants';
 import Carousel from '../../../components/carousel';
@@ -48,14 +48,14 @@ export default function AllCategories() {
 
 		if (tags.Items.length === 0) {
 			const otherBucket = await service.getBatch(
-				UrlUtils.join(byTag, NTIOtherCategory),
+				url.join(byTag, NTIOtherCategory),
 				{ batchSize: BatchSize, batchStart: 0 }
 			);
 
 			return { featured, other: otherBucket, onlyOther: true };
 		} else {
 			const others = await service.getBatch(
-				UrlUtils.join(byTag, NTIOtherCategory),
+				url.join(byTag, NTIOtherCategory),
 				{ batchSize: 4, batchStart: 0 }
 			);
 			const otherTag = {

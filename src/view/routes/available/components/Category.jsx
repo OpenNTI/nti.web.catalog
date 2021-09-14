@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { getService } from '@nti/web-client';
 import { Hooks, Loading } from '@nti/web-commons';
-import { URL as UrlUtils } from '@nti/lib-commons';
+import { url } from '@nti/lib-commons';
 
 import { BatchSize } from '../../../Constants';
 import Category from '../../../components/category';
@@ -21,7 +21,7 @@ export default function CategoryPage({ category: categoryName }) {
 		const catalog = service.getCollection('Courses', 'Catalog');
 
 		const byTag = catalog.getLink('ByTag');
-		const categoryLink = UrlUtils.join(byTag, categoryName);
+		const categoryLink = url.join(byTag, categoryName);
 
 		const category = await service.getBatch(categoryLink, {
 			batchSize: BatchSize,
