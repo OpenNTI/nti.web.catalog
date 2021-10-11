@@ -38,7 +38,7 @@ export default function AllCategories() {
 		const byTag = catalog.getLink('ByTag');
 
 		const suggestedTags = catalog.hasLink('SuggestedTags')
-			? catalog.fetchLink('SuggestedTags')
+			? catalog.fetchLink({ mode: 'raw', rel: 'SuggestedTags' })
 			: { Items: [] };
 
 		const [featured, tags] = await Promise.all([
