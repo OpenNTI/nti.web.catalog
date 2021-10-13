@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
 
@@ -32,9 +32,9 @@ CatalogSearch.propTypes = {
 	loadResults: PropTypes.func.isRequired,
 };
 export default function CatalogSearch({ searchTerm, loadResults }) {
-	const [results, setResults] = React.useState(null);
+	const [results, setResults] = useState(null);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		setResults(null);
 
 		if (!searchTerm) {

@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { Layouts } from '@nti/web-commons';
@@ -12,7 +12,7 @@ CatalogCarousel.propTypes = {
 	featured: PropTypes.array,
 };
 export default function CatalogCarousel({ featured }) {
-	const [selectCarousel, setSelectCarousel] = React.useState(0);
+	const [selectCarousel, setSelectCarousel] = useState(0);
 
 	if (!featured || !featured.length) {
 		return null;

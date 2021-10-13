@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
 
@@ -27,7 +27,7 @@ CatalogRedeemForm.propTypes = {
 };
 export default function CatalogRedeemForm({ code: defaultValue, markDirty }) {
 	const router = Router.useRouter();
-	const [redeeming, setRedeeming] = React.useState(false);
+	const [redeeming, setRedeeming] = useState(false);
 
 	const onSubmit = async ({ json }) => {
 		setRedeeming(true);

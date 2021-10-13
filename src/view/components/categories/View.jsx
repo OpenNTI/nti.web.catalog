@@ -1,4 +1,4 @@
-import React from 'react';
+import { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
 
@@ -21,7 +21,6 @@ const t = scoped('nti-catalog.view.components.categories', {
 	empty: 'There are no courses available.',
 });
 
-
 const TagPillOnlyHosts = /epiccharterschools/;
 const getPillsOnly = () => {
 	const origin = global.location?.origin;
@@ -32,17 +31,23 @@ const getPillsOnly = () => {
 function getCategoryParts(categories) {
 	const pillsOnly = getPillsOnly();
 
-	return categories.reduce((acc, category) => {
-		if (category.Name === NTIOtherCategory || category.tag === NTIOtherCategory) {
-			acc.other = category;
-		} else if (category.count < 4 || pillsOnly) {
-			acc.collapsed.push(category);
-		} else {
-			acc.expanded.push(category);
-		}
+	return categories.reduce(
+		(acc, category) => {
+			if (
+				category.Name === NTIOtherCategory ||
+				category.tag === NTIOtherCategory
+			) {
+				acc.other = category;
+			} else if (category.count < 4 || pillsOnly) {
+				acc.collapsed.push(category);
+			} else {
+				acc.expanded.push(category);
+			}
 
-		return acc;
-	}, {collapsed: [], expanded: [], other: null});
+			return acc;
+		},
+		{ collapsed: [], expanded: [], other: null }
+	);
 }
 
 Categories.propTypes = {
@@ -57,7 +62,10 @@ export default function Categories({ categories }) {
 		);
 	}
 
-	const { collapsed, expanded, other } = React.useMemo(() => getCategoryParts(categories), [categories]);
+	const { collapsed, expanded, other } = useMemo(
+		() => getCategoryParts(categories),
+		[categories]
+	);
 
 	return (
 		<Content className={cx('catalog-categories')}>
@@ -74,8 +82,13 @@ export default function Categories({ categories }) {
 			)}
 			{collapsed.length > 0 && (
 				<Grid>
-					{(columns) => (
-						<Text.Base as="div" className={cx('categories-header', {full: columns >= 4})}>
+					{columns => (
+						<Text.Base
+							as="div"
+							className={cx('categories-header', {
+								full: columns >= 4,
+							})}
+						>
 							{t('topCategories')}
 						</Text.Base>
 					)}
@@ -83,7 +96,7 @@ export default function Categories({ categories }) {
 			)}
 			{collapsed.length > 0 && (
 				<Grid className={cx('collapsed')}>
-					{(columns) => {
+					{columns => {
 						const pills = collapsed.map((category, index) => {
 							return (
 								<li key={index}>
@@ -92,9 +105,19 @@ export default function Categories({ categories }) {
 							);
 						});
 
-						if (columns > 1) { return pills; }
+						if (columns > 1) {
+							return pills;
+						}
 
-						return (<PillGrid colWidth="48%" gap="2%" className={cx('pill-grid')}>{pills}</PillGrid>);
+						return (
+							<PillGrid
+								colWidth="48%"
+								gap="2%"
+								className={cx('pill-grid')}
+							>
+								{pills}
+							</PillGrid>
+						);
 					}}
 				</Grid>
 			)}

@@ -1,4 +1,4 @@
-import React from 'react';
+import { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
 
@@ -50,8 +50,8 @@ CategoryPreview.propTypes = {
 export default function CategoryPreview({ className, category }) {
 	const pageSize = useMobileValue(3, 4);
 
-	const [onScreen, setOnScreen] = React.useState(false);
-	const onScreenChange = React.useCallback(
+	const [onScreen, setOnScreen] = useState(false);
+	const onScreenChange = useCallback(
 		changed => setOnScreen(changed || onScreen),
 		[onScreen]
 	);
