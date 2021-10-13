@@ -1,4 +1,3 @@
-import React from 'react';
 
 import { Hooks } from '@nti/web-commons';
 

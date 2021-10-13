@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import { useReducer } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames/bind';
 

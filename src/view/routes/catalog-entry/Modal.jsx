@@ -1,4 +1,3 @@
-import React from 'react';
 
 import { scoped } from '@nti/lib-locale';
 import { StandardUI, Prompt, Hooks } from '@nti/web-commons';

@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Hooks, Layouts, Loading, Presentation } from '@nti/web-commons';

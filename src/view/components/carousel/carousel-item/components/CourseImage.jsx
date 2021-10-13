@@ -1,4 +1,3 @@
-import React from 'react';
 
 import { Presentation } from '@nti/web-commons';
 

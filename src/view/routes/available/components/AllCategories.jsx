@@ -1,4 +1,3 @@
-import React from 'react';
 
 import { getService } from '@nti/web-client';
 import { Hooks, Loading, Layouts, Text } from '@nti/web-commons';

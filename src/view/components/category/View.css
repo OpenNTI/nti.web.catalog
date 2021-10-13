@@ -1,5 +1,6 @@
 .category-view {
 	padding-top: var(--catalog-gap);
+
 	& .category-more {
 		text-align: center;
 		margin: var(--catalog-gap, 18px) auto;
