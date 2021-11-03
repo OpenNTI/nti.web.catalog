@@ -14,7 +14,7 @@ CatalogCarousel.propTypes = {
 export default function CatalogCarousel({ featured }) {
 	const [selectCarousel, setSelectCarousel] = useState(0);
 
-	if (!featured || !featured.length) {
+	if (!featured?.length) {
 		return null;
 	}
 

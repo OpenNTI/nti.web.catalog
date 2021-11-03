@@ -1,38 +1,47 @@
-import { useReducer } from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames/bind';
-
 import { scoped } from '@nti/lib-locale';
-import { getService } from '@nti/web-client';
 import { Loading, Errors, Text } from '@nti/web-commons';
+import { useReducerState } from '@nti/web-core';
 
-import { BatchSize } from '../../Constants';
-import Content from '../Content';
+import _Content from '../Content';
 import ItemList from '../item-list';
 
-import Styles from './View.css';
 import Header from './Header';
 
-const cx = classnames.bind(Styles);
 const t = scoped('nti-catalog.view.components.category.View', {
 	viewMore: 'View More',
 });
 
-const NEXT_STATE = (state, action) => ({
-	...state,
-	...action,
-});
+const Content = styled(_Content)`
+	padding-top: var(--catalog-gap);
+`;
 
-const hasNextBatch = batch =>
-	batch && batch.hasLink('batch-next') && batch.Items?.length >= BatchSize;
+const More = styled.div`
+	text-align: center;
+	margin: var(--catalog-gap, 18px) auto;
+`;
 
-Category.propTypes = {
-	category: PropTypes.object,
-	categoryName: PropTypes.string,
-	header: PropTypes.bool,
-};
+const MoreLink = styled.a`
+	display: block;
+	background: var(--primary-blue);
+	border-radius: 100px;
+	cursor: pointer;
+	color: white;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 19px;
+	text-align: center;
+	padding: 6px 0 8px;
+`;
+
+/**
+ * @param {object} props
+ * @param {import('@nti/lib-interfaces').Batch} props.category
+ * @param {string} props.categoryName
+ * @param {boolean} props.header
+ * @returns {JSX.Element}
+ */
 export default function Category({ category, categoryName, header = true }) {
-	const [{ batches, loading, error }, setState] = useReducer(NEXT_STATE, {
+	const [{ batches, loading, error }, setState] = useReducerState({
 		batches: [category],
 		error: null,
 		loading: false,
@@ -40,15 +49,12 @@ export default function Category({ category, categoryName, header = true }) {
 
 	const lastBatch = batches[batches.length - 1];
 	const loadMore =
-		hasNextBatch(lastBatch) &&
+		lastBatch.hasMore &&
 		(async () => {
 			try {
 				setState({ loading: true });
 
-				const service = await getService();
-				const nextBatch = await service.getBatch(
-					lastBatch.getLink('batch-next')
-				);
+				const nextBatch = await lastBatch.next();
 
 				setState({ batches: [...batches, nextBatch] });
 			} catch (er) {
@@ -65,22 +71,22 @@ export default function Category({ category, categoryName, header = true }) {
 	return (
 		<>
 			{header && <Header category={category} />}
-			<Content className={cx('category-view')}>
+			<Content className="category-view">
 				<ItemList items={items} categoryName={categoryName} />
 				{loadMore && (
-					<div className={cx('category-more')}>
+					<More className="category-more">
 						{loading && <Loading.Spinner />}
 						{!loading && error && <Errors.Message error={error} />}
 						{!loading && !error && (
 							<Text.Base
-								as="a"
-								className={cx('view-more')}
+								as={MoreLink}
+								className="view-more"
 								onClick={loadMore}
 							>
 								{t('viewMore')}
 							</Text.Base>
 						)}
-					</div>
+					</More>
 				)}
 			</Content>
 		</>
